@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    app:layout_wrapBehaviorInParent="included"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -12,6 +14,7 @@
         android:layout_height="wrap_content"
         android:alpha="0.89"
         android:scaleType="centerCrop"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +22,7 @@
         app:srcCompat="@drawable/red" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="299dp"
         android:layout_height="348dp"
         android:orientation="vertical"
@@ -61,19 +65,37 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
     <ImageView
-            android:layout_width="267dp"
-            android:layout_height="328dp"
-            app:srcCompat="@drawable/logobiancoenero"
-            android:id="@+id/imageView"
-            android:scaleType="fitStart"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="108dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginEnd="50dp"
-            app:layout_constraintHorizontal_bias="1.0" />
+        android:id="@+id/imageView"
+        android:layout_width="267dp"
+        android:layout_height="328dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="50dp"
+        android:scaleType="fitStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logobiancoenero" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:text="Sign In"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:iconTint="#1A4DA3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.755"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

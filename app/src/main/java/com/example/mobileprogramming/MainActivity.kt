@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
+
+
     }
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
