@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+
     namespace 'com.example.mobileprogramming'
     compileSdk 33
 
@@ -30,6 +31,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding true
+    }
+
 }
 
 dependencies {
