@@ -52,18 +52,36 @@
                 android:textColor="#FFFFFF"
                 android:textSize="28sp" />
 
-            <EditText
-                android:id="@+id/MatricolaInput"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="#FFFFFF"
-                android:ems="10"
-                android:fontFamily="@font/aldrich"
-                android:hint="Matricola"
-                android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/MatricolaLayout"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:hint="Matricola"
+                    android:textColorHint="#FFFFFF"
+                    app:boxBackgroundColor="#000000"
+                    app:boxStrokeColor="#FFFFFF"
+                    app:boxStrokeWidth="50dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/MatricolaInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00000000"
+                        android:backgroundTint="#FFFFFF"
+                        android:fontFamily="@font/aldrich"
+                        android:inputType="text"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="20sp"
+                        android:typeface="normal">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -81,29 +99,16 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/PasswordInput"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:background="#00000000"
-                    android:backgroundTint="#FFFFFF"
-                    android:fontFamily="@font/aldrich"
-                    android:inputType="textPassword"
-                    android:lineSpacingExtra="34sp"
-                    android:outlineAmbientShadowColor="#FFFFFF"
-                    android:outlineSpotShadowColor="#FFFFFF"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingBottom="10dp"
-                    android:singleLine="false"
-                    android:textAlignment="gravity"
-                    android:textAllCaps="true"
-                    android:textColor="#FFFFFF"
-                    android:textColorHighlight="#FFFFFF"
-                    android:textColorHint="#FFFFFF"
-                    android:textColorLink="#FFFFFF"
-                    android:textSize="20sp"
-                    android:typeface="normal" />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00000000"
+                        android:backgroundTint="#FFFFFF"
+                        android:fontFamily="@font/aldrich"
+                        android:inputType="textPassword"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="20sp"
+                        android:typeface="normal" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
