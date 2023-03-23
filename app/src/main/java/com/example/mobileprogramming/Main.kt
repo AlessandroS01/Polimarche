@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import com.example.mobileprogramming.com.example.mobileprogramming.Login
 import com.google.android.material.textfield.TextInputLayout
@@ -18,10 +19,11 @@ class Main : AppCompatActivity() {
 
 
         val signIn: Button = findViewById<Button>(R.id.SignInButton)
-        val matriculationNumber: String = findViewById<TextInputLayout>(R.id.MatricolaInput).toString()
-        val password: String = findViewById<TextInputLayout>(R.id.PasswordInput).toString()
+
 
         signIn.setOnClickListener {
+            val matriculationNumber = findViewById<EditText>(R.id.MatricolaInput).text
+            val password = findViewById<EditText>(R.id.PasswordInput).text
             Login(matriculationNumber, password)
         }
 

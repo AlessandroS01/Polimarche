@@ -1,12 +1,13 @@
 package com.example.mobileprogramming.com.example.mobileprogramming
 
-import android.os.Bundle
-import com.example.mobileprogramming.R
-import com.google.android.material.textfield.TextInputEditText
+import android.text.Editable
 
-class Login(matriculationNumber: String, password: String) {
+class Login(matriculationNumber: Editable, password: Editable) {
 
-        val matriculationNumber: String = matriculationNumber
-        val password: String = password
+        val matriculationNumber = matriculationNumber
+        val password = password
 
+        init {
+            println("${this.matriculationNumber}")
+        }
 }
