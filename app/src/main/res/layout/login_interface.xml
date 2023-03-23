@@ -71,16 +71,13 @@
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
-                android:background="#00000000"
-                android:backgroundTint="#FFFFFF"
+                android:hint="Password"
                 android:textColorHint="#FFFFFF"
-                app:boxBackgroundColor="#FAFAFA"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:boxBackgroundColor="#000000"
+                app:boxStrokeColor="#FFFFFF"
+                app:boxStrokeWidth="50dp"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#FFFFFF"
-                app:placeholderTextColor="#FFFFFF"
-                app:prefixTextColor="#FFFFFF">
+                app:passwordToggleTint="#FFFFFF">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/PasswordInput"
@@ -89,20 +86,25 @@
                     android:background="#00000000"
                     android:backgroundTint="#FFFFFF"
                     android:fontFamily="@font/aldrich"
-                    android:hint="Password"
                     android:inputType="textPassword"
                     android:lineSpacingExtra="34sp"
                     android:outlineAmbientShadowColor="#FFFFFF"
                     android:outlineSpotShadowColor="#FFFFFF"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="10dp"
                     android:singleLine="false"
-                    android:textAlignment="viewStart"
-                    android:textAllCaps="false"
+                    android:textAlignment="gravity"
+                    android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorHint="#FFFFFF"
                     android:textColorLink="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:typeface="normal" />
+
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
