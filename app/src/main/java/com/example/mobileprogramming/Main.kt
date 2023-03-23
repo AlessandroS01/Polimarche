@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import com.example.mobileprogramming.com.example.mobileprogramming.Login
+import com.google.android.material.textfield.TextInputLayout
 
 class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,11 +17,12 @@ class Main : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
 
 
+        val signIn: Button = findViewById<Button>(R.id.SignInButton)
+        val matriculationNumber: String = findViewById<TextInputLayout>(R.id.MatricolaInput).toString()
+        val password: String = findViewById<TextInputLayout>(R.id.PasswordInput).toString()
 
-        // val binding =
-        val bottone: Button = findViewById<Button>(R.id.SignInButton)
-        bottone.setOnClickListener {
-            Login()
+        signIn.setOnClickListener {
+            Login(matriculationNumber, password)
         }
 
     }
