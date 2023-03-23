@@ -61,7 +61,8 @@
                     android:textColorHint="#FFFFFF"
                     app:boxBackgroundColor="#000000"
                     app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="50dp">
+                    app:boxStrokeWidth="50dp"
+                    >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/MatricolaInput"
@@ -74,7 +75,8 @@
                         android:paddingTop="15dp"
                         android:paddingBottom="5dp"
                         android:textSize="20sp"
-                        android:typeface="normal">
+                        android:typeface="normal"
+                        >
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -98,7 +100,7 @@
                 app:passwordToggleTint="#FFFFFF">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PasswordInput"
+                        android:id="@+id/PasswordInput"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00000000"
@@ -108,7 +110,9 @@
                         android:paddingTop="15dp"
                         android:paddingBottom="5dp"
                         android:textSize="20sp"
-                        android:typeface="normal" />
+                        android:typeface="normal"
+                        android:cursorVisible="true"
+                        android:textCursorDrawable="@null"/>
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
