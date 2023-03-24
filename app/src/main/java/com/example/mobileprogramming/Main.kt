@@ -14,11 +14,12 @@ class Main : AppCompatActivity() {
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
 
-
         val signIn: Button = findViewById(R.id.SignInButton)
         signIn.setOnClickListener {
-            val matriculationNumber = findViewById<EditText>(R.id.MatricolaInput).text
-            val password = findViewById<EditText>(R.id.PasswordInput).text
+            val matriculationNumber: String = findViewById<EditText>(R.id.MatricolaInput).text.toString()
+            val password: String = findViewById<EditText>(R.id.PasswordInput).text.toString()
+            println(password)
+            Login(matriculationNumber, password)
         }
 
     }
