@@ -18,7 +18,6 @@ class Main : AppCompatActivity() {
         signIn.setOnClickListener {
             val matriculationNumber: String = findViewById<EditText>(R.id.MatricolaInput).text.toString()
             val password: String = findViewById<EditText>(R.id.PasswordInput).text.toString()
-            println(password)
             Login(matriculationNumber, password)
         }
 
