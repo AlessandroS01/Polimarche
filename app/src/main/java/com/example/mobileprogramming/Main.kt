@@ -18,13 +18,9 @@ class Main : AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
 
 
-        val signIn: Button = findViewById<Button>(R.id.SignInButton)
-
-
+        val signIn: Button = findViewById(R.id.SignInButton)
         signIn.setOnClickListener {
-            val matriculationNumber = findViewById<EditText>(R.id.MatricolaInput).text
-            val password = findViewById<EditText>(R.id.PasswordInput).text
-            Login(matriculationNumber, password)
+            Login()
         }
 
     }
