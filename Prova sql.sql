@@ -13,3 +13,7 @@ alter table member drop constraint member_ibfk_1;
 
 alter table member add
 CONSTRAINT `member_ibfk_1` FOREIGN KEY (`workshop_area`) REFERENCES `workshop` (`area_name`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+alter table workshop drop constraint `workshop_ibfk_1`;
+
+alter table workshop add CONSTRAINT `workshop_ibfk_1` FOREIGN KEY (`supervisor`) REFERENCES `member` (`matriculation_number`) ON DELETE RESTRICT ON UPDATE CASCADE;
