@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
-import com.example.mobileprogramming.com.example.mobileprogramming.Login
 
 class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_view)
+        setContentView(R.layout.login_interface)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
 
@@ -20,7 +19,6 @@ class Main : AppCompatActivity() {
         signIn.setOnClickListener {
             val matriculationNumber = findViewById<EditText>(R.id.MatricolaInput).text
             val password = findViewById<EditText>(R.id.PasswordInput).text
-            Login()
         }
 
     }
