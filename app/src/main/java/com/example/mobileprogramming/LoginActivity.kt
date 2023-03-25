@@ -1,24 +1,25 @@
 package com.example.mobileprogramming
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.EditText
 
-class Main : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_interface)
+        setContentView(R.layout.activity_login_interface)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
 
         val signIn: Button = findViewById(R.id.SignInButton)
         signIn.setOnClickListener {
-            val matriculationNumber: String = findViewById<EditText>(R.id.MatricolaInput).text.toString()
-            val password: String = findViewById<EditText>(R.id.PasswordInput).text.toString()
-            Login(matriculationNumber, password)
+            Intent(this, ManagersHomeActivity::class.java).also {
+                startActivity(it)
+            }
+
         }
 
     }
