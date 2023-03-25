@@ -7,7 +7,6 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
-import java.math.BigInteger
 import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
@@ -17,30 +16,23 @@ class LoginActivity : AppCompatActivity() {
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
 
-
-
         val signIn: Button = findViewById(R.id.SignInButton)
         signIn.setOnClickListener {
-
             /*
             This section acquire the text written in
             the 2 different boxes of the activity_login_interface
             that, inside the OnClickListener method of the button,
             will compare with the values saved inside the database
              */
-            val matriculation: BigInteger = findViewById<TextInputEditText?>(R.id.MatricolaInput).text.toString().toBigInteger()
-            val password: String = findViewById<TextInputEditText?>(R.id.PasswordInput).text.toString()
+            val matriculation: String = findViewById<TextInputEditText>(R.id.MatricolaInput).text.toString()
+            val password: String = findViewById<TextInputEditText>(R.id.PasswordInput).text.toString()
 
-            val passwordEncrypted = sha256(password)
+            val passwordEncrypted = enctyptSha256(password)
 
             Intent(this, ManagersHomeActivity::class.java).also {
-                startActivity(it)
                 it.putExtra("EXTRA_MATRICULATION", matriculation)
                 it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
-
-
-            //finish()
-
+                startActivity(it)
             }
         }
     }
@@ -65,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
         This method return the password used inside
         the login interface encrypted in sha-256
      */
-    private fun sha256(password: String): String {
+    private fun enctyptSha256(password: String): String {
         val bytes = password.toByteArray(Charsets.UTF_8)
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
