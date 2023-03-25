@@ -2,6 +2,7 @@ package com.example.mobileprogramming
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,14 +18,13 @@ class ManagersHomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_managers_home)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
+        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
 
 
         val matriculation = intent.getStringExtra("EXTRA_MATRICULATION").toString()
         val password = intent.getStringExtra("EXTRA_PASSWORD").toString()
 
-        val testo = findViewById<TextView>(R.id.textViewggggg)
-        testo.text = "$matriculation and $password"
     }
 
     /*

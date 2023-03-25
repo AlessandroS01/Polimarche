@@ -1,18 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/LayoutBase"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-    <TextView
-            android:text="TextViewff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewggggg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textSize="40sp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:elevation="0dp"
+            android:background="@drawable/denis_sebastian_tamas_q8er2zpwhjq_unsplash">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/menuLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="#B1AFA8" >
+
+            <ImageButton
+                    android:layout_width="126dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/home_svgrepo_com_red"
+                    android:id="@+id/homeButtonMenuManager"
+                    android:layout_weight="1"
+                    android:background="#B0AEA7" />
+
+            <Space
+                    android:layout_width="19dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            <ImageButton
+                    android:layout_width="124dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/user_svgrepo_com"
+                    android:id="@+id/userButtonMenuManager"
+                    android:layout_weight="1"
+                    android:background="#B1AFA8" />
+        </LinearLayout>
+
+        <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:srcCompat="@drawable/menu_hamburger_svgrepo_com"
+                android:id="@+id/menuButtonManager"
+                android:background="@drawable/circular_shape"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="15dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

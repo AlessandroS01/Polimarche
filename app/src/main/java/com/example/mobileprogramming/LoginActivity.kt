@@ -3,6 +3,7 @@ package com.example.mobileprogramming
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login_interface)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
+        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+
 
         val signIn: Button = findViewById(R.id.SignInButton)
         signIn.setOnClickListener {
@@ -64,11 +67,8 @@ class LoginActivity : AppCompatActivity() {
         val bytes = password.toByteArray(Charsets.UTF_8)
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
-        return digest.fold("", { str, it -> str + "%02x".format(it) })
+        return digest.fold("") { str, it -> str + "%02x".format(it) }
     }
 
-    private fun callManagersHomeActivity(){
-
-    }
 
 }
