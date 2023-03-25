@@ -28,7 +28,10 @@ class LoginActivity : AppCompatActivity() {
             val password: String = findViewById<TextInputEditText>(R.id.PasswordInput).text.toString()
 
             val passwordEncrypted = enctyptSha256(password)
-
+            /*
+             TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
+             TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
+             */
             Intent(this, ManagersHomeActivity::class.java).also {
                 it.putExtra("EXTRA_MATRICULATION", matriculation)
                 it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
@@ -62,6 +65,10 @@ class LoginActivity : AppCompatActivity() {
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
         return digest.fold("", { str, it -> str + "%02x".format(it) })
+    }
+
+    private fun callManagersHomeActivity(){
+
     }
 
 }
