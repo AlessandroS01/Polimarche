@@ -2,10 +2,11 @@ package com.example.mobileprogramming
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,14 +17,18 @@ class LoginActivity : AppCompatActivity() {
 
         val signIn: Button = findViewById(R.id.SignInButton)
         signIn.setOnClickListener {
+
             Intent(this, ManagersHomeActivity::class.java).also {
                 startActivity(it)
             }
-
         }
-
     }
 
+    /*
+        This method is used to set the status bar
+        completely transparent but keeping the icon at the top
+        of the layout
+     */
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
         val winParams = win.attributes
@@ -35,7 +40,15 @@ class LoginActivity : AppCompatActivity() {
         win.attributes = winParams
     }
 
-
-
+    /*
+        This method return the password used inside
+        the login interface already encrypted in sha-256
+     */
+    private fun sha256(password: String): String {
+        val bytes = password.toByteArray(Charsets.UTF_8)
+        val md = MessageDigest.getInstance("SHA-256")
+        val digest = md.digest(bytes)
+        return digest.fold("", { str, it -> str + "%02x".format(it) })
+    }
 
 }
