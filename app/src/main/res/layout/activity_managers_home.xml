@@ -20,6 +20,28 @@
             android:elevation="0dp"
             android:background="@drawable/denis_sebastian_tamas_q8er2zpwhjq_unsplash">
 
+        <TextView
+                android:text="Hello, NomeMatricola."
+                android:layout_width="345dp"
+                android:layout_height="34dp"
+                android:id="@+id/textView2"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="88dp" />
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:id="@+id/popMenu"
+                android:alpha="1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/menuLayout" />
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -29,7 +51,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="#B1AFA8" >
+                android:background="#E7E5DD">
 
             <ImageButton
                     android:layout_width="126dp"
@@ -37,7 +59,7 @@
                     app:srcCompat="@drawable/home_svgrepo_com_red"
                     android:id="@+id/homeButtonMenuManager"
                     android:layout_weight="1"
-                    android:background="#B0AEA7" />
+                    android:background="#E8E6DE" />
 
             <Space
                     android:layout_width="19dp"
@@ -50,7 +72,7 @@
                     app:srcCompat="@drawable/user_svgrepo_com"
                     android:id="@+id/userButtonMenuManager"
                     android:layout_weight="1"
-                    android:background="#B1AFA8" />
+                    android:background="#E7E5DD" />
         </LinearLayout>
 
         <ImageButton
