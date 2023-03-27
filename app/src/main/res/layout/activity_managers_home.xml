@@ -80,11 +80,12 @@
                 android:layout_height="70dp"
                 app:srcCompat="@drawable/menu_hamburger_svgrepo_com"
                 android:id="@+id/menuButtonManager"
-                android:background="@drawable/circular_shape"
+                android:background="@drawable/ripple_effect_menu_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="15dp" />
+                android:layout_marginBottom="15dp"
+                android:elevation="10dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

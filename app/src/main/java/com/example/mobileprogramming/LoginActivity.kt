@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import java.security.MessageDigest
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
 
-        val signIn: Button = findViewById(R.id.SignInButton)
+        val signIn: ImageButton = findViewById(R.id.signInButton)
         signIn.setOnClickListener {
             /*
             This section acquire the text written in

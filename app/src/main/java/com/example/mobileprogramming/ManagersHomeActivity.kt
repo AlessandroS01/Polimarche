@@ -4,9 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class ManagersHomeActivity : AppCompatActivity() {
@@ -26,12 +25,31 @@ class ManagersHomeActivity : AppCompatActivity() {
         val matriculation = intent.getStringExtra("EXTRA_MATRICULATION").toString()
         val password = intent.getStringExtra("EXTRA_PASSWORD").toString()
 
-        val fragment = MenuFragment()
+        /*
+            Code that allows the users to pop up and close
+            the menu with the same button .
+            The variable showedMenu is used to track whether
+            the menu is already popped up in order to hide and show
+            the menu properly.
+         */
+        val menuFragment = MenuFragment()
+        val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out_menu)
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_menu)
+        var showedMenu = false
         val menuButton = findViewById<ImageButton>(R.id.menuButtonManager)
         menuButton.setOnClickListener{
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.popMenu, fragment)
-                commit()
+                showedMenu = if (!showedMenu) {
+                    replace(R.id.popMenu, menuFragment).commit()
+                    menuButton.setImageResource(R.drawable.close_md_svgrepo_com)
+                    menuButton.startAnimation(fadeOut)
+                    true
+                } else {
+                    supportFragmentManager.beginTransaction().remove(menuFragment).commit()
+                    menuButton.setImageResource(R.drawable.menu_hamburger_svgrepo_com)
+                    menuButton.startAnimation(fadeIn)
+                    false
+                }
             }
         }
     }

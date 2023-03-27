@@ -19,19 +19,6 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp">
 
-        <Button
-                android:id="@+id/SignInButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#807E78"
-                android:fontFamily="@font/aldrich"
-                android:text="Sign In"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="5sp"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
         <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="296dp"
@@ -126,6 +113,30 @@
                 app:layout_constraintVertical_bias="0.152"
                 android:layout_marginStart="36dp"
                 app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageButton
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:id="@+id/signInButton"
+                android:paddingStart="-75dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/ripple_effect_sign_in_button"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2" />
+
+        <TextView
+                android:text="SIGN IN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/aldrich"
+                app:layout_constraintTop_toTopOf="@+id/signInButton"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintStart_toStartOf="@+id/signInButton"
+                app:layout_constraintEnd_toEndOf="@+id/signInButton"
+                android:textSize="15sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
