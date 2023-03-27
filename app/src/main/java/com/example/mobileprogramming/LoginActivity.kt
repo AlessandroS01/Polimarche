@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.security.MessageDigest
 
+
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,10 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+        val database = DatabaseConnection()
+        database.openConnection()
+
     }
 
     /*
