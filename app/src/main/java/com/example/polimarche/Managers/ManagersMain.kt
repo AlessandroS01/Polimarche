@@ -7,9 +7,11 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
+import com.example.polimarche.Managers.Menu.MenuFloatingFragment
 import com.example.polimarche.Managers.Menu.MenuHomeFragment
 import com.example.polimarche.Managers.Menu.MenuTeamFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ManagersMain: AppCompatActivity() {
 
@@ -41,6 +43,7 @@ class ManagersMain: AppCompatActivity() {
          */
         val homeFragment = MenuHomeFragment()
         val teamFragment = MenuTeamFragment()
+        val floatingMenuFragment = MenuFloatingFragment()
         setCurrentFragment(homeFragment)
         navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -48,6 +51,23 @@ class ManagersMain: AppCompatActivity() {
                 R.id.team_members -> setCurrentFragment(teamFragment)
             }
             true
+        }
+
+        var menuClosed = true
+        val menuButton : FloatingActionButton = findViewById(R.id.floatingButton)
+        menuButton.setOnClickListener{
+            val fragmentOpened = supportFragmentManager.findFragmentById(R.id.fragmentLayoutManagers)
+            if (menuClosed){
+                setCurrentFragment(floatingMenuFragment)
+                menuClosed = false
+            }else {
+                when (fragmentOpened){
+                    is MenuHomeFragment -> setCurrentFragment(homeFragment)
+                    is MenuTeamFragment -> setCurrentFragment(teamFragment)
+                }
+                menuClosed = true
+            }
+
         }
 
 
