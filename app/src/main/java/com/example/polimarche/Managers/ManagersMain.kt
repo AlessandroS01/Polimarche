@@ -1,13 +1,19 @@
 package com.example.polimarche.Managers
 
+import android.app.Dialog
+import android.view.Gravity
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.MenuFloatingFragment
 import com.example.polimarche.Managers.Menu.MenuHomeFragment
 import com.example.polimarche.Managers.Menu.MenuTeamFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -43,7 +49,6 @@ class ManagersMain: AppCompatActivity() {
          */
         val homeFragment = MenuHomeFragment()
         val teamFragment = MenuTeamFragment()
-        val floatingMenuFragment = MenuFloatingFragment()
         setCurrentFragment(homeFragment)
         navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -53,25 +58,56 @@ class ManagersMain: AppCompatActivity() {
             true
         }
 
-        var menuClosed = true
-        val menuButton : FloatingActionButton = findViewById(R.id.floatingButton)
-        menuButton.setOnClickListener{
-            val fragmentOpened = supportFragmentManager.findFragmentById(R.id.fragmentLayoutManagers)
-            if (menuClosed){
-                setCurrentFragment(floatingMenuFragment)
-                menuClosed = false
-            }else {
-                when (fragmentOpened){
-                    is MenuHomeFragment -> setCurrentFragment(homeFragment)
-                    is MenuTeamFragment -> setCurrentFragment(teamFragment)
-                }
-                menuClosed = true
+
+        val floatingMenuButton : FloatingActionButton = findViewById(R.id.floatingButton)
+        floatingMenuButton.setOnClickListener {
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.fragment_managers_floating_menu)
+
+            val homeLayout = dialog.findViewById<LinearLayout>(R.id.layout_home)
+            val teamLayout = dialog.findViewById<LinearLayout>(R.id.layout_team)
+            val setupLayout = dialog.findViewById<LinearLayout>(R.id.layout_setup)
+            val tracksLayout = dialog.findViewById<LinearLayout>(R.id.layout_tracks)
+            val practiceSessionLayout = dialog.findViewById<LinearLayout>(R.id.layout_practice_session)
+
+            homeLayout.setOnClickListener {
+                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+            }
+            teamLayout.setOnClickListener {
+                Toast.makeText(this, "Team is clicked!", Toast.LENGTH_SHORT).show()
+            }
+            setupLayout.setOnClickListener {
+                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+            }
+            tracksLayout.setOnClickListener {
+                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+            }
+            practiceSessionLayout.setOnClickListener {
+                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
             }
 
+            dialog.show()
+            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+            dialog.window?.setGravity(Gravity.BOTTOM)
         }
 
+        /*
+        floatingMenuButton.setOnClickListener{
+            when (supportFragmentManager.findFragmentById(R.id.fragmentLayoutManagers)){
+                is MenuFloatingFragment -> setCurrentFragment(homeFragment)
+                is MenuHomeFragment -> setCurrentFragment(floatingMenuFragment)
+                is MenuTeamFragment -> setCurrentFragment(floatingMenuFragment)
+            }
+        }
 
+         */
+    }
 
+    private fun showDialog() {
 
     }
 
@@ -100,6 +136,8 @@ class ManagersMain: AppCompatActivity() {
     private fun setCurrentFragment(fragment : Fragment){
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentLayoutManagers, fragment).commit()
+            setReorderingAllowed(true)
+            addToBackStack(null)
         }
     }
 }

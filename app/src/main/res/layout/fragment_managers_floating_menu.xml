@@ -1,32 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frameLayout">
+        android:orientation="vertical"
+        android:background="@drawable/dialog_box_shape"
+        android:clickable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+            android:id="@+id/menuText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:text="Menu"
+            android:textAlignment="center"
+            android:fontFamily="@font/aldrich"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp" />
 
-        <Button
-                android:text="Setup"
-                android:layout_width="258dp"
-                android:layout_height="74dp"
-                android:id="@+id/button"
-                app:icon="@drawable/setup_svgrepo_com"
-                android:backgroundTint="#FFFFFF"
-                app:iconTint="#000000"
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:id="@+id/layout_home"
+            android:layout_marginTop="10dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/home_icon_bottom_menu" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/home_menu"
+                android:text="Home"
                 android:textColor="#000000"
-                android:alpha="1"
+                android:fontFamily="@font/aldrich"
                 android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.357"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.411"
-                app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginStart="30dp" />
 
-</FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:id="@+id/layout_team"
+            android:layout_marginTop="10dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/team_icon_bottom_menu" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/team_menu"
+                android:text="Team"
+                android:textColor="#000000"
+                android:fontFamily="@font/aldrich"
+                android:textSize="20sp"
+                android:layout_marginStart="30dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:id="@+id/layout_setup"
+            android:layout_marginTop="10dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/car_icon"
+                app:srcCompat="@drawable/baseline_directions_car_24" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/setup_menu"
+                android:text="Setup"
+                android:textColor="#000000"
+                android:fontFamily="@font/aldrich"
+                android:textSize="16sp"
+                android:layout_marginStart="30dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:id="@+id/layout_tracks"
+            android:layout_marginTop="10dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/car_icon"
+                app:srcCompat="@drawable/baseline_directions_car_24" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tracks_menu"
+                android:text="Tracks"
+                android:textColor="#000000"
+                android:fontFamily="@font/aldrich"
+                android:textSize="16sp"
+                android:layout_marginStart="30dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:id="@+id/layout_practice_session"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/car_icon"
+                app:srcCompat="@drawable/baseline_directions_car_24" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/practice_session_menu"
+                android:text="Practice session"
+                android:textColor="#000000"
+                android:fontFamily="@font/aldrich"
+                android:textSize="16sp"
+                android:layout_marginStart="30dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
