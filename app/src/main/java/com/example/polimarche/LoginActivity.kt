@@ -1,4 +1,4 @@
-package com.example.mobileprogramming
+package com.example.polimarche
 
 import android.content.Intent
 import android.graphics.Color
@@ -7,11 +7,16 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobileprogramming.R
+import com.example.polimarche.Managers.ManagersMain
+import com.example.polimarche.Managers.Menu.MenuHomeFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 import java.security.MessageDigest
 
 
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_interface)
@@ -35,15 +40,12 @@ class LoginActivity : AppCompatActivity() {
              TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
              TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
              */
-            Intent(this, ManagersHomeActivity::class.java).also {
+            Intent(this, ManagersMain::class.java).also {
                 it.putExtra("EXTRA_MATRICULATION", matriculation)
                 it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
                 startActivity(it)
             }
         }
-
-        val database = DatabaseConnection()
-        database.openConnection()
 
     }
 

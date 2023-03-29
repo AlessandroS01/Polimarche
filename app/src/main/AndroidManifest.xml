@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
             android:allowBackup="true"
@@ -16,9 +14,10 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MobileProgramming"
             tools:targetApi="31">
-        <activity android:name=".ManagersHomeActivity"/>
+
+        <activity android:name="com.example.polimarche.Managers.ManagersMain"/>
         <activity
-                android:name=".LoginActivity"
+                android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

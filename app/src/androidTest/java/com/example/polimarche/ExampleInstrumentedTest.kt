@@ -1,4 +1,4 @@
-package com.example.mobileprogramming
+package com.example.polimarche
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

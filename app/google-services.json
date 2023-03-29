@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "132471023401",
+    "project_id": "polimarche-b8fc4",
+    "storage_bucket": "polimarche-b8fc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132471023401:android:0789f9ea8d4f57ef26f938",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132471023401-2c2gkictcmg44vo0j1qf4ttbn683kt2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrMbERKq0JEikxqp-OD2BNgiY7SwUGibU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132471023401-2c2gkictcmg44vo0j1qf4ttbn683kt2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
