@@ -16,6 +16,7 @@
             tools:targetApi="31">
 
         <activity android:name="com.example.polimarche.Managers.ManagersMain"/>
+        <activity android:name="com.example.polimarche.Managers.ManagersSetup"/>
         <activity
                 android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">

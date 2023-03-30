@@ -8,7 +8,9 @@
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/fragmentLayoutManagers"></FrameLayout>
+            android:id="@+id/frameMainManagers">
+
+    </FrameLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
@@ -20,8 +22,8 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/bottomNavigationView"
-                app:menu="@menu/bottom_navigation_menu"
+                android:id="@+id/setupBottomNavigationView"
+                app:menu="@menu/managers_main_navigation_menu"
                 android:layout_marginEnd="16dp"
                 android:background="@color/transparent" />
     </com.google.android.material.bottomappbar.BottomAppBar>

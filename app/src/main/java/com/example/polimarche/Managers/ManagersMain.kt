@@ -1,6 +1,7 @@
 package com.example.polimarche.Managers
 
 import android.app.Dialog
+import android.content.Intent
 import android.view.Gravity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,8 +15,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.MenuHomeFragment
-import com.example.polimarche.Managers.Menu.MenuTeamFragment
+import com.example.polimarche.Managers.Menu.Main.MenuHomeFragment
+import com.example.polimarche.Managers.Menu.Main.MenuTeamFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -38,9 +39,9 @@ class ManagersMain: AppCompatActivity() {
         This part of the code deletes the background shadow
         created by the bottomNavigationView
          */
-        val navigation = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        navigation.background = null
-        navigation.menu.getItem(1).isEnabled = false
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.setupBottomNavigationView)
+        bottomNavigationView.background = null
+        bottomNavigationView.menu.getItem(1).isEnabled = false
 
         /*
         Part that allow us to change the Fragments inside
@@ -50,7 +51,7 @@ class ManagersMain: AppCompatActivity() {
         val homeFragment = MenuHomeFragment()
         val teamFragment = MenuTeamFragment()
         setCurrentFragment(homeFragment)
-        navigation.setOnNavigationItemSelectedListener {
+        bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.team_members -> setCurrentFragment(teamFragment)
@@ -59,34 +60,23 @@ class ManagersMain: AppCompatActivity() {
         }
 
 
+        /*
+        Part that creates the menu after the click on the
+        floating button.
+         */
         val floatingMenuButton : FloatingActionButton = findViewById(R.id.floatingButton)
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.fragment_managers_main_floating_menu)
+        val homeLayout = dialog.findViewById<LinearLayout>(R.id.layout_home)
+        val teamLayout = dialog.findViewById<LinearLayout>(R.id.layout_team)
+        val setupLayout = dialog.findViewById<LinearLayout>(R.id.layout_setup)
+        val tracksLayout = dialog.findViewById<LinearLayout>(R.id.layout_tracks)
+        val practiceSessionLayout = dialog.findViewById<LinearLayout>(R.id.layout_practice_session)
         floatingMenuButton.setOnClickListener {
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.fragment_managers_floating_menu)
-
-            val homeLayout = dialog.findViewById<LinearLayout>(R.id.layout_home)
-            val teamLayout = dialog.findViewById<LinearLayout>(R.id.layout_team)
-            val setupLayout = dialog.findViewById<LinearLayout>(R.id.layout_setup)
-            val tracksLayout = dialog.findViewById<LinearLayout>(R.id.layout_tracks)
-            val practiceSessionLayout = dialog.findViewById<LinearLayout>(R.id.layout_practice_session)
-
-            homeLayout.setOnClickListener {
-                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
-            }
-            teamLayout.setOnClickListener {
-                Toast.makeText(this, "Team is clicked!", Toast.LENGTH_SHORT).show()
-            }
-            setupLayout.setOnClickListener {
-                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
-            }
-            tracksLayout.setOnClickListener {
-                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
-            }
-            practiceSessionLayout.setOnClickListener {
-                Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
-            }
-
+            /*
+            Defines the properties of the menu
+             */
             dialog.show()
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -94,17 +84,31 @@ class ManagersMain: AppCompatActivity() {
             dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
             dialog.window?.setGravity(Gravity.BOTTOM)
         }
-
-        /*
-        floatingMenuButton.setOnClickListener{
-            when (supportFragmentManager.findFragmentById(R.id.fragmentLayoutManagers)){
-                is MenuFloatingFragment -> setCurrentFragment(homeFragment)
-                is MenuHomeFragment -> setCurrentFragment(floatingMenuFragment)
-                is MenuTeamFragment -> setCurrentFragment(floatingMenuFragment)
+        homeLayout.setOnClickListener {
+            dialog.hide()
+            val itemHome = R.id.home
+            setCurrentFragment(homeFragment)
+            bottomNavigationView.selectedItemId  = itemHome
+        }
+        teamLayout.setOnClickListener {
+            dialog.hide()
+            val itemTeam = R.id.team_members
+            setCurrentFragment(teamFragment)
+            bottomNavigationView.selectedItemId  = itemTeam
+        }
+        setupLayout.setOnClickListener {
+            dialog.hide()
+            Intent(this, ManagersSetup::class.java).also {
+                startActivity(it)
             }
         }
+        tracksLayout.setOnClickListener {
+            Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+        }
+        practiceSessionLayout.setOnClickListener {
+            Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+        }
 
-         */
     }
 
     private fun showDialog() {
@@ -129,13 +133,13 @@ class ManagersMain: AppCompatActivity() {
 
     /*
         This method is used to change the View inside the
-        FrameLayout used in the MainActivityManagers directly
+        FrameLayout used in the "activity_managers_main" directly
         without the use of the methods provided by the class
         Fragment.
      */
     private fun setCurrentFragment(fragment : Fragment){
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentLayoutManagers, fragment).commit()
+            replace(R.id.frameMainManagers, fragment).commit()
             setReorderingAllowed(true)
             addToBackStack(null)
         }
