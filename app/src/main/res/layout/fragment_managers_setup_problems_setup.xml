@@ -33,7 +33,7 @@
                 android:orientation="vertical">
 
             <Button
-                    android:text="PROBLEMA CHE &quot;MATCHA&quot; CON IL PROBLEMA IMMESSO IN ORDINE ALFABETICO"
+                    android:text="PROBLEMA CHE &quot;MATCHA&quot; CON IL PROBLEMA IMMESSO IN ORDINE ALFABETICO CON POSSIBILITA' DI AGGIUNGERE AD UN SETUP PRECISO UN PROBLEMA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/button"

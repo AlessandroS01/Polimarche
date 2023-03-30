@@ -103,15 +103,14 @@ class ManagersMain: AppCompatActivity() {
             }
         }
         tracksLayout.setOnClickListener {
-            Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+            dialog.hide()
+            Intent(this, ManagersTracks::class.java).also {
+                startActivity(it)
+            }
         }
         practiceSessionLayout.setOnClickListener {
             Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
         }
-
-    }
-
-    private fun showDialog() {
 
     }
 

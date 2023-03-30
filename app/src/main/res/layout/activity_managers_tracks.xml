@@ -4,7 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/sfondo_schermata_setup">
+        android:background="@drawable/sfondo_schermata_circuiti"
+        android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,14 +24,14 @@
             <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/setupBottomNavigationView"
-                    app:menu="@menu/managers_setup_navigation_menu"
+                    android:id="@+id/tracksBottomNavigationView"
+                    app:menu="@menu/managers_tracks_navigation_menu"
                     android:layout_marginEnd="16dp"
                     android:background="@color/transparent" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <TextView
-                android:text="Setup"
+                android:text="Tracks"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:id="@+id/textView2"
@@ -48,7 +49,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/back_icon"
-                android:id="@+id/backButtonSetup"
+                android:id="@+id/backButtonTracks"
                 android:backgroundTint="#000000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -66,20 +67,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
-                android:id="@+id/frameSetupSfuocatoManagers"
+                android:id="@+id/frameTracksSfuocatoManagers"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/sfondo_schermata_setup_blurrato"
-                android:alpha="0.95">
+                android:layout_marginBottom="10dp">
 
         </FrameLayout>
 
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:id="@+id/frameSetupManagers"
+                android:id="@+id/frameTracksManagers"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
                 app:layout_constraintStart_toStartOf="parent"
