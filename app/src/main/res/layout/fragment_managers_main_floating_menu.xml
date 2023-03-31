@@ -131,8 +131,7 @@
             android:orientation="horizontal"
             android:padding="8dp"
             android:id="@+id/layout_practice_session"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="10dp">
 
         <ImageView
                 android:layout_width="wrap_content"
@@ -144,6 +143,33 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/practice_session_menu"
                 android:text="Practice session"
+                android:textColor="#000000"
+                android:fontFamily="@font/aldrich"
+                android:textSize="20sp"
+                android:layout_marginStart="30dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:id="@+id/layout_log_out"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/log_out_icon" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/log_out_menu"
+                android:text="Log out"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"
                 android:textSize="20sp"

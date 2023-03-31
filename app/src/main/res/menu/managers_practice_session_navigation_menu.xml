@@ -8,7 +8,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/add_session"
+        android:id="@+id/add_practice_session"
         android:title="Add"
         android:icon="@drawable/create_icon"
         app:showAsAction="ifRoom"/>

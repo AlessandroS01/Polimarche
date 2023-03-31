@@ -35,14 +35,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:id="@+id/textView2"
-                android:textSize="34sp"
+                android:textSize="26sp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:fontFamily="@font/aldrich"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="50dp" />
+                android:gravity="center" />
 
         <ImageButton
                 android:layout_width="50dp"
@@ -50,13 +52,12 @@
                 app:srcCompat="@drawable/back_icon"
                 android:id="@+id/backButtonPracticeSession"
                 android:backgroundTint="#000000"
+                app:tint="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="20dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:tint="#FFFFFF" />
+                android:layout_marginTop="40dp" />
 
         <FrameLayout
                 android:layout_width="match_parent"

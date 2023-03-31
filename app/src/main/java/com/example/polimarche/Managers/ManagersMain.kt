@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
+import com.example.polimarche.LoginActivity
 import com.example.polimarche.Managers.Menu.Main.MenuHomeFragment
 import com.example.polimarche.Managers.Menu.Main.MenuTeamFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -73,6 +74,7 @@ class ManagersMain: AppCompatActivity() {
         val setupLayout = dialog.findViewById<LinearLayout>(R.id.layout_setup)
         val tracksLayout = dialog.findViewById<LinearLayout>(R.id.layout_tracks)
         val practiceSessionLayout = dialog.findViewById<LinearLayout>(R.id.layout_practice_session)
+        val logOutLayout = dialog.findViewById<LinearLayout>(R.id.layout_log_out)
         floatingMenuButton.setOnClickListener {
             /*
             Defines the properties of the menu
@@ -111,6 +113,12 @@ class ManagersMain: AppCompatActivity() {
         practiceSessionLayout.setOnClickListener {
             dialog.hide()
             Intent(this, ManagersPracticeSession::class.java).also {
+                startActivity(it)
+            }
+        }
+        logOutLayout.setOnClickListener {
+            dialog.hide()
+            Intent(this, LoginActivity::class.java).also {
                 startActivity(it)
             }
         }

@@ -9,9 +9,8 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.Tracks.MenuCreateTrackFragment
-import com.example.polimarche.Managers.Menu.Tracks.MenuDeleteTrackFragment
-import com.example.polimarche.Managers.Menu.Tracks.MenuSeeTrackFragment
+import com.example.polimarche.Managers.Menu.PracticeSession.MenuAddPracticeSession
+import com.example.polimarche.Managers.Menu.PracticeSession.MenuPracticeSession
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ManagersPracticeSession : AppCompatActivity(){
@@ -44,22 +43,19 @@ class ManagersPracticeSession : AppCompatActivity(){
 
         /*
         Part that allow us to change the Fragments inside
-        R.id.frameSetupManagers at the touch of the buttons
+        R.id.framePracticeSessionManagers at the touch of the buttons
         right below the bottomNavigationBar
-
-        val seeTracksFragment = MenuSeeTrackFragment()
-        val createTracksFragment = MenuCreateTrackFragment()
-        val deleteTracksFragment = MenuDeleteTrackFragment()
-        setCurrentFragment(seeTracksFragment)
+        */
+        val seePracticeSessionFragment = MenuPracticeSession()
+        val addPracticeSessionFragment = MenuAddPracticeSession()
+        setCurrentFragment(seePracticeSessionFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.see_tracks -> setCurrentFragment(seeTracksFragment)
-                R.id.create_tracks -> setCurrentFragment(createTracksFragment)
-                R.id.delete_tracks -> setCurrentFragment(deleteTracksFragment)
+                R.id.see_practice_session -> setCurrentFragment(seePracticeSessionFragment)
+                R.id.add_practice_session -> setCurrentFragment(addPracticeSessionFragment)
             }
             true
         }
-        */
 
 
 

@@ -36,8 +36,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/button2"
-                    android:textColor="#FFFFFF"
-                    android:backgroundTint="#000000" />
+                    android:textColor="#000000"
+                    android:backgroundTint="#FFFFFF" />
         </LinearLayout>
     </ScrollView>
 
