@@ -5,24 +5,17 @@
         android:layout_height="match_parent"
         android:background="@drawable/sfondo_schermata_home">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/frameMainManagers">
-
-    </FrameLayout>
-
     <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottomAppBar"
+            android:id="@+id/bottomAppBarMainManagers"
             android:layout_gravity="bottom"
             app:fabCradleRoundedCornerRadius="50dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/setupBottomNavigationView"
+                android:id="@+id/mainBottomNavigationView"
                 app:menu="@menu/managers_main_navigation_menu"
                 android:layout_marginEnd="16dp"
                 android:background="@color/transparent" />
@@ -33,6 +26,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/menu_icon"
-            app:layout_anchor="@id/bottomAppBar" />
+            app:layout_anchor="@id/mainBottomNavigationView" />
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frameMainManagers">
+
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

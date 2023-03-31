@@ -39,7 +39,7 @@ class ManagersMain: AppCompatActivity() {
         This part of the code deletes the background shadow
         created by the bottomNavigationView
          */
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.setupBottomNavigationView)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mainBottomNavigationView)
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(1).isEnabled = false
 
@@ -109,7 +109,10 @@ class ManagersMain: AppCompatActivity() {
             }
         }
         practiceSessionLayout.setOnClickListener {
-            Toast.makeText(this, "Home is clicked!", Toast.LENGTH_SHORT).show()
+            dialog.hide()
+            Intent(this, ManagersPracticeSession::class.java).also {
+                startActivity(it)
+            }
         }
 
     }

@@ -9,11 +9,11 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.Setup.MenuCreateFragment
-import com.example.polimarche.Managers.Menu.Setup.MenuDeleteFragment
-import com.example.polimarche.Managers.Menu.Setup.MenuProblemsFragment
+import com.example.polimarche.Managers.Menu.Setup.MenuCreateSetupFragment
+import com.example.polimarche.Managers.Menu.Setup.MenuDeleteSetupFragment
+import com.example.polimarche.Managers.Menu.Setup.MenuProblemsSetupFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.polimarche.Managers.Menu.Setup.MenuSeeFragment
+import com.example.polimarche.Managers.Menu.Setup.MenuSeeSetupFragment
 
 class ManagersSetup : AppCompatActivity(){
 
@@ -48,10 +48,10 @@ class ManagersSetup : AppCompatActivity(){
         R.id.frameSetupManagers at the touch of the buttons
         right below the bottomNavigationBar
          */
-        val seeSetupFragment = MenuSeeFragment()
-        val createSetupFragment = MenuCreateFragment()
-        val problemsSetupFragment = MenuProblemsFragment()
-        val deleteSetupFragment = MenuDeleteFragment()
+        val seeSetupFragment = MenuSeeSetupFragment()
+        val createSetupFragment = MenuCreateSetupFragment()
+        val problemsSetupFragment = MenuProblemsSetupFragment()
+        val deleteSetupFragment = MenuDeleteSetupFragment()
         setCurrentFragment(seeSetupFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){

@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/see_practice_session"
+        android:title="Practice Session"
+        android:icon="@drawable/session_icon"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/add_session"
+        android:title="Add"
+        android:icon="@drawable/create_icon"
+        app:showAsAction="ifRoom"/>
+</menu>
