@@ -4,60 +4,23 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="#959292">
 
-    <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <ImageView
-                    android:layout_width="146dp"
-                    android:layout_height="197dp"
-                    tools:srcCompat="@drawable/setup_icon"
-                    android:id="@+id/imageView3"
-                    android:background="#686868" />
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="197dp"
-                    tools:srcCompat="@drawable/setup_icon"
-                    android:id="@+id/imageView7"
-                    android:background="#686868" />
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="197dp"
-                    tools:srcCompat="@drawable/setup_icon"
-                    android:id="@+id/imageView8"
-                    android:background="#686868" />
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="197dp"
-                    tools:srcCompat="@drawable/setup_icon"
-                    android:id="@+id/imageView11"
-                    android:background="#686868" />
-
-            <TextView
-                    android:text="AIUTOOOOOOO"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView15"
-                    android:textColor="#FFFFFF"
-                    android:textSize="100sp" />
-
-            <TextView
-                    android:text="aiuto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView16"
-                    android:textColor="#FFFFFF" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
+    <TextView
+            android:text="Team Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="34sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/aldrich"
+            android:layout_marginTop="40dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
