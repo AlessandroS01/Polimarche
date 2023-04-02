@@ -1,23 +1,44 @@
 package com.example.polimarche
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.ManagersMain
-import com.google.android.material.textfield.TextInputEditText
-import java.security.MessageDigest
+import com.example.polimarche.Managers.TeamMembersAdapterManager
+import com.example.polimarche.Managers.TeamMember
+import com.example.polimarche.Managers.WorkshopArea
 
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_managers_main_team)
+
+        var listWorkshopAreas = mutableListOf(
+            WorkshopArea("Telaio"),
+            WorkshopArea("Aereodinamica"),
+            WorkshopArea("Aereodinamica"),
+            WorkshopArea("Aereodinamica"),
+            WorkshopArea("Aereodinamica"),
+            WorkshopArea("Aereodinamica"),
+            WorkshopArea("Aereodinamica"),
+        )
+        var listMemberTeam = mutableListOf(
+            TeamMember("1097931 : Alessandro"),
+            TeamMember("1088392 : Francesco")
+        )
+
+        val adapter = TeamMembersAdapterManager(listMemberTeam, listWorkshopAreas)
+        var recyclerView = findViewById<RecyclerView>(R.id.list_members_workshop_areas)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+}
+/*
         setContentView(R.layout.activity_login_interface)
+
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
 
@@ -76,3 +97,4 @@ class LoginActivity : AppCompatActivity() {
 
 
 }
+ */
