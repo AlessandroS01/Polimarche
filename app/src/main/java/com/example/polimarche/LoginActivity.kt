@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.TeamMembersAdapterManager
-import com.example.polimarche.Managers.TeamMember
-import com.example.polimarche.Managers.WorkshopArea
+import com.example.polimarche.Managers.Adapters.DataModelTeamMembers
+import com.example.polimarche.Managers.Adapters.TeamMembersAdapterManager
 
 
 class LoginActivity : AppCompatActivity() {
@@ -16,21 +15,38 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_managers_main_team)
 
+        /*
         var listWorkshopAreas = mutableListOf(
             WorkshopArea("Telaio"),
-            WorkshopArea("Aereodinamica"),
-            WorkshopArea("Aereodinamica"),
-            WorkshopArea("Aereodinamica"),
-            WorkshopArea("Aereodinamica"),
-            WorkshopArea("Aereodinamica"),
-            WorkshopArea("Aereodinamica"),
+            WorkshopArea("D"),
+            WorkshopArea("C"),
+            WorkshopArea("BB"),
+            WorkshopArea("E"),
+            WorkshopArea("AA"),
+            WorkshopArea("N"),
         )
         var listMemberTeam = mutableListOf(
             TeamMember("1097931 : Alessandro"),
             TeamMember("1088392 : Francesco")
         )
 
-        val adapter = TeamMembersAdapterManager(listMemberTeam, listWorkshopAreas)
+         */
+
+        val listMembers = mutableListOf(
+            DataModelTeamMembers("Telaio", 0),
+            DataModelTeamMembers("Aereodinamica", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1),
+            DataModelTeamMembers("Marketing", 0),
+            DataModelTeamMembers("Elettronica", 0),
+            DataModelTeamMembers("BOH", 0),
+            DataModelTeamMembers("AA", 0),
+            DataModelTeamMembers("N", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1)
+        )
+
+        val adapter = TeamMembersAdapterManager(listMembers)
         var recyclerView = findViewById<RecyclerView>(R.id.list_members_workshop_areas)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)

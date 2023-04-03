@@ -25,12 +25,12 @@
                 android:fontFamily="@font/aldrich"
                 android:layout_gravity="center" />
 
-        <ImageButton
-                android:layout_width="1dp"
+        <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/visibility_icon"
-                android:id="@+id/buttonDetailsMember"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF" />
+                android:id="@+id/viewDetailsMember"
+                android:layout_weight="1" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
