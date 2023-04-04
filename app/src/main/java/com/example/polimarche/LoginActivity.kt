@@ -1,6 +1,8 @@
 package com.example.polimarche
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,38 +11,32 @@ import com.example.polimarche.Managers.Adapters.DataModelTeamMembers
 import com.example.polimarche.Managers.Adapters.TeamMembersAdapterManager
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_managers_main_team)
 
-        /*
-        var listWorkshopAreas = mutableListOf(
-            WorkshopArea("Telaio"),
-            WorkshopArea("D"),
-            WorkshopArea("C"),
-            WorkshopArea("BB"),
-            WorkshopArea("E"),
-            WorkshopArea("AA"),
-            WorkshopArea("N"),
-        )
-        var listMemberTeam = mutableListOf(
-            TeamMember("1097931 : Alessandro"),
-            TeamMember("1088392 : Francesco")
-        )
-
-         */
 
         val listMembers = mutableListOf(
             DataModelTeamMembers("Telaio", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1),
             DataModelTeamMembers("Aereodinamica", 0),
             DataModelTeamMembers("1097931 : Alessandro", 1),
             DataModelTeamMembers("1088392 : Francesco", 1),
             DataModelTeamMembers("Marketing", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1),
             DataModelTeamMembers("Elettronica", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1),
             DataModelTeamMembers("BOH", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1),
             DataModelTeamMembers("AA", 0),
+            DataModelTeamMembers("1097931 : Alessandro", 1),
+            DataModelTeamMembers("1088392 : Francesco", 1),
             DataModelTeamMembers("N", 0),
             DataModelTeamMembers("1097931 : Alessandro", 1),
             DataModelTeamMembers("1088392 : Francesco", 1)
@@ -50,7 +46,25 @@ class LoginActivity : AppCompatActivity() {
         var recyclerView = findViewById<RecyclerView>(R.id.list_members_workshop_areas)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+/*
+        adapter.onClickWorkshopAreas = {
+            var v: View? = recyclerView.layoutManager!!.findViewByPosition(position)
+            when (adapter.findNextWorkshopAreaIndex(position)){
+                            -1 -> {}
+                            else ->{
+                                for (index in position .. adapter.findNextWorkshopAreaIndex(position)){
+                                    v = recyclerView.layoutManager!!.findViewByPosition(index)
+                                }
+                            }
+                        }
+
+        }
+
+ */
+
+
     }
+
 }
 /*
         setContentView(R.layout.activity_login_interface)
