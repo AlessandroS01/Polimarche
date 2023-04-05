@@ -62,8 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/frameSetupSfuocatoManagers"
-                android:background="@drawable/sfondo_schermata_setup_blurrato"
-                android:alpha="0.95"
+                android:alpha="0.85"
                 app:layout_constraintBottom_toTopOf="@+id/bottomAppBarSetupManagers"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -72,7 +71,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:background="#000000">
 
         </FrameLayout>
 

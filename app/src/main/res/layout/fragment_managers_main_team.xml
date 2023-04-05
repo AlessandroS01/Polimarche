@@ -6,9 +6,20 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="10dp"
-        android:background="#959292">
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            android:background="#000000"
+            android:alpha="0.85">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
             android:orientation="vertical"
@@ -19,7 +30,9 @@
             app:layout_constraintVertical_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent">>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/linearLayout">>
+
         <TextView
                 android:text="Team Members"
                 android:layout_width="wrap_content"
@@ -32,9 +45,10 @@
                 android:layout_gravity="center_horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_members_workshop_areas"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                android:id="@+id/membersWorkshopAreasRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 

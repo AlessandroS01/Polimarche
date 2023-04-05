@@ -1,72 +1,23 @@
 package com.example.polimarche
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import android.view.WindowManager
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Adapters.DataModelTeamMembers
-import com.example.polimarche.Managers.Adapters.TeamMembersAdapterManager
+import com.example.polimarche.Managers.ManagersMain
+import com.google.android.material.textfield.TextInputEditText
+import java.security.MessageDigest
 
 
 class LoginActivity : AppCompatActivity(){
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_managers_main_team)
-
-
-        val listMembers = mutableListOf(
-            DataModelTeamMembers("Telaio", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1),
-            DataModelTeamMembers("Aereodinamica", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1),
-            DataModelTeamMembers("Marketing", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1),
-            DataModelTeamMembers("Elettronica", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1),
-            DataModelTeamMembers("BOH", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1),
-            DataModelTeamMembers("AA", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1),
-            DataModelTeamMembers("N", 0),
-            DataModelTeamMembers("1097931 : Alessandro", 1),
-            DataModelTeamMembers("1088392 : Francesco", 1)
-        )
-
-        val adapter = TeamMembersAdapterManager(listMembers)
-        var recyclerView = findViewById<RecyclerView>(R.id.list_members_workshop_areas)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-/*
-        adapter.onClickWorkshopAreas = {
-            var v: View? = recyclerView.layoutManager!!.findViewByPosition(position)
-            when (adapter.findNextWorkshopAreaIndex(position)){
-                            -1 -> {}
-                            else ->{
-                                for (index in position .. adapter.findNextWorkshopAreaIndex(position)){
-                                    v = recyclerView.layoutManager!!.findViewByPosition(index)
-                                }
-                            }
-                        }
-
-        }
-
- */
-
-
-    }
-
-}
-/*
         setContentView(R.layout.activity_login_interface)
 
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
@@ -127,4 +78,3 @@ class LoginActivity : AppCompatActivity(){
 
 
 }
- */

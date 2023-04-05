@@ -1,6 +1,7 @@
 package com.example.polimarche.Managers.Adapters
 
-class DataModelTeamMembers(
+data class DataModelTeamMembers(
     val identifyItem : String,
-    val viewType : Int
+    val viewType : Int,
+    val department : String
 )

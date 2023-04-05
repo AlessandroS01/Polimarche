@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
@@ -21,11 +20,7 @@ import com.example.polimarche.Managers.Menu.Main.MenuTeamFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ManagersMain: AppCompatActivity() {
-
-    override fun onBackPressed(){
-        moveTaskToBack(false);
-    }
+class ManagersMain: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -154,4 +149,10 @@ class ManagersMain: AppCompatActivity() {
             addToBackStack(null)
         }
     }
+
+    override fun onBackPressed(){
+        moveTaskToBack(false);
+    }
+
+
 }
