@@ -1,15 +1,16 @@
 package com.example.polimarche.Managers.Adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.mobileprogramming.R
-
-
+import com.example.polimarche.DetailsMember
 
 
 /*
@@ -27,11 +28,6 @@ class TeamMembersManagerAdapter (
     class ViewHolderMembersList(memberView : View) : ViewHolder(memberView) {
         val identifyMember: TextView = memberView.findViewById(R.id.identifyMember)
         val detailsView: ImageView = memberView.findViewById(R.id.viewDetailsMember)
-        init {
-            detailsView.setOnClickListener{
-                println("Cliccato")
-            }
-        }
     }
 
     inner class ViewHolderWorkshopAreas(
@@ -72,11 +68,15 @@ class TeamMembersManagerAdapter (
                 holder.apply {
                     identifyMember.text = elementList[position].identifyItem
                     detailsView.setImageResource(R.drawable.visibility_icon)
+                    holder.detailsView.setOnClickListener {
+                        Intent(it.context, DetailsMember::class.java).apply {
+                            it.context.startActivity(this)
+                        }
+                    }
                 }
             }
         }
     }
-
 
 
     override fun getItemViewType(position: Int): Int {

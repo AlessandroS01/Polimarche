@@ -51,7 +51,7 @@
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/back_icon"
                 android:id="@+id/backButtonPracticeSession"
-                android:backgroundTint="#000000"
+                android:backgroundTint="@color/transparent"
                 app:tint="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

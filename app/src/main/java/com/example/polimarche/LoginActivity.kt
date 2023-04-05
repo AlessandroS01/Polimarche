@@ -15,7 +15,6 @@ import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity(){
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_interface)
@@ -45,6 +44,7 @@ class LoginActivity : AppCompatActivity(){
                 it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
                 startActivity(it)
             }
+
         }
 
     }

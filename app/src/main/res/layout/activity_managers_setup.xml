@@ -49,7 +49,7 @@
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/back_icon"
                 android:id="@+id/backButtonSetup"
-                android:backgroundTint="#000000"
+                android:backgroundTint="@color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
