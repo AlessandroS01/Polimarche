@@ -61,6 +61,7 @@
             app:elevation="10dp"
             app:layout_anchor="@id/mainBottomNavigationView"
             app:borderWidth="2dp"
-            app:backgroundTint="#A5A5A5" />
+            app:backgroundTint="#A5A5A5"
+            android:layout_marginTop="5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

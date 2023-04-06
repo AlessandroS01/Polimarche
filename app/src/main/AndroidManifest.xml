@@ -15,11 +15,16 @@
             android:theme="@style/Theme.MobileProgramming"
             tools:targetApi="31">
 
-        <activity android:name="com.example.polimarche.Managers.ManagersMain"/>
-        <activity android:name="com.example.polimarche.Managers.ManagersSetup"/>
-        <activity android:name="com.example.polimarche.Managers.ManagersTracks"/>
-        <activity android:name="com.example.polimarche.Managers.ManagersPracticeSession"/>
-        <activity android:name="com.example.polimarche.DetailsMember"/>
+        <activity android:name="com.example.polimarche.Managers.ManagersMain"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.Managers.ManagersSetup"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.Managers.ManagersTracks"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.Managers.ManagersPracticeSession"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.DetailsMember"
+                  android:screenOrientation="portrait"/>
         <activity
                 android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">
