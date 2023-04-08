@@ -29,7 +29,6 @@ class TeamMembersManagerAdapter (
         val identifyMember: TextView = memberView.findViewById(R.id.identifyMember)
         val detailsView: ImageView = memberView.findViewById(R.id.viewDetailsMember)
     }
-
     inner class ViewHolderWorkshopAreas(
         workshopAreaView : View
     ) : ViewHolder(workshopAreaView), View.OnClickListener{
