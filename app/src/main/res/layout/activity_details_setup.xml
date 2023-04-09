@@ -71,8 +71,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_marginRight="3dp"
-                            android:background="@drawable/border_notes_setup">
+                            android:layout_marginRight="3dp">
 
                         <TextView
                                 android:text="Wheels"
@@ -233,11 +232,17 @@
                                     android:layout_weight="0.5" />
                         </LinearLayout>
 
-                        <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:id="@+id/view3"
-                                android:background="#FFFFFF" />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="3dp">
 
                         <TextView
                                 android:text="Balance"
@@ -314,15 +319,51 @@
                                 android:paddingStart="5dp"
                                 android:textSize="14sp" />
 
+
+                        <TextView
+                                android:text="Front Wing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView58"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp" />
+
+                        <TextView
+                                android:text="Description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView59"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:layout_marginTop="5dp"
+                                android:textSize="14sp" />
+
+
+
+
+
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2">
 
                     <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_marginLeft="3dp"
-                            android:background="@drawable/border_notes_setup">
+                            android:layout_marginRight="3dp">
+
 
                         <TextView
                                 android:text="Damper"
@@ -333,7 +374,7 @@
                                 android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:fontFamily="@font/aldrich"
-                                android:gravity="center" />
+                                android:gravity="center"/>
 
                         <TextView
                                 android:text="Front End"
@@ -409,11 +450,16 @@
                                     android:layout_weight="0.6" />
                         </LinearLayout>
 
-                        <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:id="@+id/view4"
-                                android:background="#FFFFFF" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="3dp">
+
 
                         <TextView
                                 android:text="Spring"
@@ -424,7 +470,7 @@
                                 android:textSize="22sp"
                                 android:textColor="#FFFFFF"
                                 android:fontFamily="@font/aldrich"
-                                android:gravity="center" />
+                                android:gravity="center"/>
 
                         <TextView
                                 android:text="Front End"
@@ -500,36 +546,17 @@
                                     android:layout_weight="0.6" />
                         </LinearLayout>
 
-                        <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:id="@+id/view5"
-                                android:background="#FFFFFF" />
-
-                        <TextView
-                                android:text="Front Wing"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textView58"
-                                android:textStyle="bold"
-                                android:textSize="22sp"
-                                android:textColor="#FFFFFF"
-                                android:fontFamily="@font/aldrich"
-                                android:gravity="center" />
-
-                        <TextView
-                                android:text="Description"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textView59"
-                                android:textColor="#FFFFFF"
-                                android:fontFamily="@font/aldrich"
-                                android:layout_marginTop="5dp"
-                                android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                    <TextView
                         android:text="Notes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -538,7 +565,8 @@
                         android:textStyle="bold"
                         android:fontFamily="@font/aldrich"
                         android:textSize="22sp"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"/>
 
                 <TextView
                         android:text="AFDJVHCX DANKDJSFDHBVBJC NKDAJFHBD NCSAKJDFSHDFZCKDSGHFBVSDFVBNGFDSDFGMGFDDDFGHJJHGFDSADFGHHHGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG "
@@ -549,6 +577,9 @@
                         android:fontFamily="@font/aldrich"
                         android:background="@drawable/border_notes_setup"
                         android:padding="5dp" />
+
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 
