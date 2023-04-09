@@ -1,6 +1,7 @@
 package com.example.polimarche.Managers.Adapters
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.DetailsSetup
 
 class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetup>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -39,7 +41,9 @@ class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetup>) : Re
                     setupCode.text = "Setup " + elementList[position].setupCode.toString()
                     detailSetup.setImageResource(R.drawable.visibility_icon)
                     detailSetup.setOnClickListener {
-                        println("Ciao")
+                        Intent(holder.itemView.context, DetailsSetup::class.java).apply {
+                            it.context.startActivity(this)
+                        }
                     }
                 }
             }

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sfondo_schermata_details_setup">
+
+    <ImageButton
+            android:id="@+id/backButtonDetailSetup"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/back_icon"
+            app:tint="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/transparent" />
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backButtonDetailSetup"
+            android:layout_margin="10dp"
+            android:background="#CC000000">
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/setup_code_icon"
+                        android:id="@+id/imageView6" />
+
+                <TextView
+                        android:text="Setup Code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView26"
+                        android:layout_marginTop="10dp"
+                        android:textSize="28sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:gravity="center" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2">
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginRight="3dp"
+                            android:background="@drawable/border_notes_setup">
+
+                        <TextView
+                                android:text="Wheels"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView27"
+                                android:textColor="#FFFFFF"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/aldrich"
+                                android:gravity="center" />
+
+                        <TextView
+                                android:text="Front Right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView29"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Wheel code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView37"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView7"
+                                    android:layout_weight="0.5" />
+                        </LinearLayout>
+
+                        <TextView
+                                android:text="Front Left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView33"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Wheel code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView38"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView8"
+                                    android:layout_weight="0.5" />
+                        </LinearLayout>
+
+                        <TextView
+                                android:text="Rear Right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView34"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Wheel code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView39"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView9"
+                                    android:layout_weight="0.5" />
+                        </LinearLayout>
+
+                        <TextView
+                                android:text="Rear Left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView35"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Wheel code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView40"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView10"
+                                    android:layout_weight="0.5" />
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:id="@+id/view3"
+                                android:background="#FFFFFF" />
+
+                        <TextView
+                                android:text="Balance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView50"
+                                android:textColor="#FFFFFF"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/aldrich"
+                                android:gravity="center" />
+
+                        <TextView
+                                android:text="Front End"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView51"
+                                android:fontFamily="@font/aldrich"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:layout_marginTop="5dp" />
+
+                        <TextView
+                                android:text="Brake :"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView53"
+                                android:textColor="#FFFFFF"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/aldrich"
+                                android:paddingStart="5dp"
+                                android:textSize="14sp" />
+
+                        <TextView
+                                android:text="Balance :"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView54"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:paddingStart="5dp"
+                                android:textSize="14sp" />
+
+                        <TextView
+                                android:text="Back End"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView52"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:layout_marginTop="5dp" />
+
+                        <TextView
+                                android:text="Brake :"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView55"
+                                android:textColor="#FFFFFF"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/aldrich"
+                                android:paddingStart="5dp"
+                                android:textSize="14sp" />
+
+                        <TextView
+                                android:text="Balance :"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView56"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:paddingStart="5dp"
+                                android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="3dp"
+                            android:background="@drawable/border_notes_setup">
+
+                        <TextView
+                                android:text="Damper"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView28"
+                                android:textColor="#FFFFFF"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/aldrich"
+                                android:gravity="center" />
+
+                        <TextView
+                                android:text="Front End"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView41"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Damper code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView42"
+                                    android:layout_weight="1.4"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView12"
+                                    android:layout_weight="0.6" />
+                        </LinearLayout>
+
+                        <TextView
+                                android:text="Back End"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView43"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Damper code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView44"
+                                    android:layout_weight="1.4"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView13"
+                                    android:layout_weight="0.6" />
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:id="@+id/view4"
+                                android:background="#FFFFFF" />
+
+                        <TextView
+                                android:text="Spring"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView45"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:gravity="center" />
+
+                        <TextView
+                                android:text="Front End"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView46"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Spring code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView47"
+                                    android:layout_weight="1.4"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView14"
+                                    android:layout_weight="0.6" />
+                        </LinearLayout>
+
+                        <TextView
+                                android:text="Back End"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView48"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18sp" />
+
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="3dp">
+
+                            <TextView
+                                    android:text="Spring code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView49"
+                                    android:layout_weight="1.4"
+                                    android:textColor="#FFFFFF"
+                                    android:fontFamily="@font/aldrich"
+                                    android:paddingStart="5dp"
+                                    android:textSize="14sp" />
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/visibility_icon"
+                                    android:id="@+id/imageView15"
+                                    android:layout_weight="0.6" />
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:id="@+id/view5"
+                                android:background="#FFFFFF" />
+
+                        <TextView
+                                android:text="Front Wing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView58"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:gravity="center" />
+
+                        <TextView
+                                android:text="Description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView59"
+                                android:textColor="#FFFFFF"
+                                android:fontFamily="@font/aldrich"
+                                android:layout_marginTop="5dp"
+                                android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                        android:text="Notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView60"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:textSize="22sp"
+                        android:gravity="center" />
+
+                <TextView
+                        android:text="AFDJVHCX DANKDJSFDHBVBJC NKDAJFHBD NCSAKJDFSHDFZCKDSGHFBVSDFVBNGFDSDFGMGFDDDFGHJJHGFDSADFGHHHGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView61"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/aldrich"
+                        android:background="@drawable/border_notes_setup"
+                        android:padding="5dp" />
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
