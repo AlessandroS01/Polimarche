@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.M_Adapters.TeamMembersManagerAdapter
 
 class WheelsCodificationAdapter(
     private var elementList: MutableList<DataWheelsCodification>,
-    private val listener: WheelsCodificationAdapter.OnCodificationClickListener
+    private val listener: OnCodificationClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnCodificationClickListener{
