@@ -28,6 +28,12 @@
                   android:screenOrientation="portrait"/>
         <activity android:name="com.example.polimarche.DetailsSetup"
                   android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.DetailsWheel"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.DetailsDamper"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.DetailsSpring"
+                  android:screenOrientation="portrait"/>
         <activity
                 android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sfondo_schermata_details_damper">
+
+    <ImageButton
+            android:id="@+id/backButtonDetailDamper"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/back_icon"
+            app:tint="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/transparent" />
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="#BF000000"
+            app:layout_constraintStart_toEndOf="@+id/backButtonDetailWheel"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/damper_icon"
+                android:id="@+id/imageView8" />
+
+        <TextView
+                android:text="Damper code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView31"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center"
+                android:layout_marginTop="10dp" />
+
+
+
+        <TextView
+                android:text="End"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView32"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:fontFamily="@font/aldrich"
+                android:layout_marginTop="10dp" />
+
+        <TextView
+                android:text="Lato Damper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView33"
+                android:layout_marginTop="3dp"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/aldrich"
+                android:paddingStart="10dp" />
+
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:text="HSR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView38"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal" />
+
+                <TextView
+                        android:text="Hsr data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView43"
+                        android:layout_marginTop="3dp"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginRight="5dp" />
+
+                <TextView
+                        android:text="LSR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView42"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal" />
+
+                <TextView
+                        android:text="Lsr data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView39"
+                        android:layout_marginTop="3dp"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginRight="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:text="HSC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView40"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal" />
+
+                <TextView
+                        android:text="Hsc Data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView41"
+                        android:layout_marginTop="3dp"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/aldrich" />
+
+                <TextView
+                        android:text="LSC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView44"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal" />
+
+                <TextView
+                        android:text="Lsc Data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView45"
+                        android:layout_marginTop="3dp"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/aldrich" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

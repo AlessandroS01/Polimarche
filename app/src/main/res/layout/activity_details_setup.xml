@@ -117,7 +117,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView7"
+                                    android:id="@+id/frontRightWheelDetails"
                                     android:layout_weight="0.5" />
                         </LinearLayout>
 
@@ -154,7 +154,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView8"
+                                    android:id="@+id/frontLeftWheelDetails"
                                     android:layout_weight="0.5" />
                         </LinearLayout>
 
@@ -191,7 +191,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView9"
+                                    android:id="@+id/rearRightWheelDetails"
                                     android:layout_weight="0.5" />
                         </LinearLayout>
 
@@ -228,7 +228,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView10"
+                                    android:id="@+id/rearLeftWheelDetails"
                                     android:layout_weight="0.5" />
                         </LinearLayout>
 
@@ -409,7 +409,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView12"
+                                    android:id="@+id/frontDamperDetails"
                                     android:layout_weight="0.6" />
                         </LinearLayout>
 
@@ -446,7 +446,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView13"
+                                    android:id="@+id/backDamperDetails"
                                     android:layout_weight="0.6" />
                         </LinearLayout>
 
@@ -505,7 +505,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView14"
+                                    android:id="@+id/frontSpringDetails"
                                     android:layout_weight="0.6" />
                         </LinearLayout>
 
@@ -542,7 +542,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     app:srcCompat="@drawable/visibility_icon"
-                                    android:id="@+id/imageView15"
+                                    android:id="@+id/backSpringDetails"
                                     android:layout_weight="0.6" />
                         </LinearLayout>
 
