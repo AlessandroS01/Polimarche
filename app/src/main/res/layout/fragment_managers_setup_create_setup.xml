@@ -3,60 +3,151 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
-    <LinearLayout
-            android:orientation="vertical"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#000000"
+            android:scrollbars="none">
 
-        <TextView
-                android:text="PULSANTE CHE TI PERMETTE DI DETERMINARE LE GOMME. APRE UNA SCHERMATA CONTENENTE TUTTE LE GOMME TENUTE ALL'INTERNO DEL DATABASE E IN CASO SE NE POSSONO AGGIUGNERE O RIMUOVERE ALCUNE."
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView6"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF" />
-
-        <TextView
-                android:text="PULSANTE CHE TI PERMETTE DI DETERMINARE IL BILANCIAMENTO APRE UNA SCHERMATA CONTENENTE TUTTE LE GOMME TENUTE ALL'INTERNO DEL DATABASE E IN CASO SE NE POSSONO AGGIUGNERE O RIMUOVERE ALCUNE."
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView7"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF" />
+                android:layout_height="wrap_content">
 
-        <TextView
-                android:text="PULSANTE CHE TI PERMETTE DI DETERMINARE LE GOMME. APRE UNA SCHERMATA CONTENENTE TUTTE LE GOMME TENUTE ALL'INTERNO DEL DATABASE E IN CASO SE NE POSSONO AGGIUGNERE O RIMUOVERE ALCUNE."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView8"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF" />
+            <TextView
+                    android:text="* The creation of a new setup is made by clicking on the different paragraphs below.\n
+It's not compulsory to specify the setup code or to add notes."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView30"
+                    android:textColor="#FFFFFF" />
 
-        <TextView
-                android:text="PULSANTE CHE TI PERMETTE DI DETERMINARE LE GOMME. APRE UNA SCHERMATA CONTENENTE TUTTE GLI AMMORTIZZATORI TENUTE ALL'INTERNO DEL DATABASE E IN CASO SE NE POSSONO AGGIUGNERE O RIMUOVERE ALCUNE."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView9"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF" />
+            <TextView
+                    android:text="Choose wheels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chooseWheelsCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/aldrich"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp" />
 
-        <TextView
-                android:text="PULSANTE CHE TI PERMETTE DI AGGIUNGERE LA POSIZIONE DELLA FRONT WING"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView12"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF" />
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <TextView
-                android:text="PULSANTE CHE TI PERMETTE DI AGGIUNGERE DELLE NOTE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView13"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF" />
-    </LinearLayout>
+            <TextView
+                    android:text="Choose dampers"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/chooseDampersCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/aldrich"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Choose springs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chooseSpringsCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/aldrich"
+                    android:layout_marginTop="15dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Choose front wing hole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chooseFrontWingHoleCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:text="Specify setup code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chooseSetupCodeCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp" />
+
+            <TextView
+                    android:text="Add notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addNotesCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/aldrich"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp" />
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginTop="15dp">
+
+                <TextView
+                        android:text="Add setup "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView57"
+                        android:layout_weight="1.5"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich"
+                        android:gravity="center" />
+
+                <ImageView
+                        android:layout_width="199dp"
+                        android:layout_height="23dp"
+                        app:srcCompat="@drawable/create_setup_icon"
+                        android:id="@+id/addSetup"
+                        android:layout_weight="0.5" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
