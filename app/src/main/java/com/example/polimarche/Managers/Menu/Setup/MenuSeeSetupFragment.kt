@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersMainHomeBinding
 import com.example.mobileprogramming.databinding.FragmentManagersSetupSeeSetupBinding
-import com.example.polimarche.Managers.Adapters.DataSeeSetup
-import com.example.polimarche.Managers.Adapters.SeeSetupAdapter
+import com.example.polimarche.General_Adapters.DataSeeSetup
+import com.example.polimarche.General_Adapters.SeeSetupAdapter
 
 class MenuSeeSetupFragment : Fragment(R.layout.fragment_managers_setup_see_setup){
 
@@ -52,6 +50,7 @@ class MenuSeeSetupFragment : Fragment(R.layout.fragment_managers_setup_see_setup
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {

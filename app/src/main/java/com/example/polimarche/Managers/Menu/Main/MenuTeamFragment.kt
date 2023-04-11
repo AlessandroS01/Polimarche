@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Adapters.DataModelTeamMembers
-import com.example.polimarche.Managers.Adapters.TeamMembersManagerAdapter
+import com.example.polimarche.Managers.M_Adapters.DataModelTeamMembers
+import com.example.polimarche.Managers.M_Adapters.TeamMembersManagerAdapter
 
 class MenuTeamFragment : Fragment(R.layout.fragment_managers_main_team), TeamMembersManagerAdapter.OnWorkshopAreaClickListener {
 

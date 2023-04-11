@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers.Adapters
+package com.example.polimarche.General_Adapters
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -18,6 +18,10 @@ class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetup>) : Re
         val detailSetup: ImageView = setupView.findViewById(R.id.setupDetails)
     }
 
+    /*
+    This method lets change the item on the recyclerView
+    at the change of the text inserted inside the SearchView
+     */
     @SuppressLint("NotifyDataSetChanged")
     fun setFilteredList(filteredList: MutableList<DataSeeSetup>){
         this.elementList = filteredList

@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers.Adapters
+package com.example.polimarche.General_Adapters
 
 data class DataSeeSetup (
     val setupCode: Int)

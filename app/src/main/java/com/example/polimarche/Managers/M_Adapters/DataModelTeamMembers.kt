@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers.Adapters
+package com.example.polimarche.Managers.M_Adapters
 
 data class DataModelTeamMembers(
     val identifyItem : String,

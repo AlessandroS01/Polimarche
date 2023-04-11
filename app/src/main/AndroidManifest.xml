@@ -34,6 +34,8 @@
                   android:screenOrientation="portrait"/>
         <activity android:name="com.example.polimarche.DetailsSpring"
                   android:screenOrientation="portrait"/>
+        <activity android:name="com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheels"
+                  android:screenOrientation="portrait"/>
         <activity
                 android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">

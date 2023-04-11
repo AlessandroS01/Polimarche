@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers.Adapters
+package com.example.polimarche.Managers.M_Adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.mobileprogramming.R
