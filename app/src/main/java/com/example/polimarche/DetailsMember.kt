@@ -1,6 +1,5 @@
 package com.example.polimarche
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.ManagersMain
 
 class DetailsMember: AppCompatActivity() {
 

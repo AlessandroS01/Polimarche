@@ -15,27 +15,38 @@
             android:theme="@style/Theme.MobileProgramming"
             tools:targetApi="31">
 
-        <activity android:name="com.example.polimarche.Managers.ManagersMain"
+        <activity android:name="com.example.polimarche.Managers.Menu.Main.ManagersMain"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.example.polimarche.Managers.ManagersSetup"
+
+        <activity android:name="com.example.polimarche.Managers.Menu.Setup.ManagersSetup"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.example.polimarche.Managers.ManagersTracks"
+
+        <activity android:name="com.example.polimarche.Managers.Menu.Tracks.ManagersTracks"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.example.polimarche.Managers.ManagersPracticeSession"
+
+        <activity android:name="com.example.polimarche.Managers.Menu.PracticeSession.ManagersPracticeSession"
                   android:screenOrientation="portrait"/>
+
         <activity android:name="com.example.polimarche.DetailsMember"
                   android:screenOrientation="portrait"/>
+
         <activity android:name="com.example.polimarche.DetailsSetup"
                   android:screenOrientation="portrait"/>
+
         <activity android:name="com.example.polimarche.DetailsWheel"
                   android:screenOrientation="portrait"/>
+
         <activity android:name="com.example.polimarche.DetailsDamper"
                   android:screenOrientation="portrait"/>
+
         <activity android:name="com.example.polimarche.DetailsSpring"
                   android:screenOrientation="portrait"/>
+
         <activity android:name="com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheels"
-                  android:screenOrientation="portrait"/>
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+
         <activity
                 android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">
@@ -45,6 +56,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

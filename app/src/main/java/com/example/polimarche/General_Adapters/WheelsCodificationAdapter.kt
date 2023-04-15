@@ -33,7 +33,7 @@ class WheelsCodificationAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_wheels_codification, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_wheels_codification, parent, false)
         return ViewHolderWheelCodification(view)
     }
 
@@ -45,8 +45,8 @@ class WheelsCodificationAdapter(
         when(holder){
             is ViewHolderWheelCodification ->{
                 holder.apply {
-                    codification.text = elementList[position].codification
-                    quantity.text = elementList[position].quantity.toString()
+                    codification.text = "Cod: ${elementList[position].codification}"
+                    quantity.text = "Q: ${elementList[position].quantity.toString()}"
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers
+package com.example.polimarche.Managers.Menu.PracticeSession
 
 import android.content.Intent
 import android.graphics.Color
@@ -9,12 +9,10 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.Tracks.MenuCreateTrackFragment
-import com.example.polimarche.Managers.Menu.Tracks.MenuDeleteTrackFragment
-import com.example.polimarche.Managers.Menu.Tracks.MenuSeeTrackFragment
+import com.example.polimarche.Managers.Menu.Main.ManagersMain
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class ManagersTracks : AppCompatActivity(){
+class ManagersPracticeSession : AppCompatActivity(){
 
     override fun onBackPressed(){
         moveTaskToBack(false);
@@ -22,19 +20,19 @@ class ManagersTracks : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_managers_tracks)
+        setContentView(R.layout.activity_managers_practice_session)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.tracksBottomNavigationView)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.practiceSessionBottomNavigationView)
         bottomNavigationView.background = null
 
         /*
         This part allows the user to go back at the main page
         clicking on the back button at the top of the screen
          */
-        val backButton = findViewById<ImageButton>(R.id.backButtonTracks)
+        val backButton = findViewById<ImageButton>(R.id.backButtonPracticeSession)
         backButton.setOnClickListener {
             Intent(this, ManagersMain::class.java).also {
                 startActivity(it)
@@ -44,18 +42,16 @@ class ManagersTracks : AppCompatActivity(){
 
         /*
         Part that allow us to change the Fragments inside
-        R.id.frameSetupManagers at the touch of the buttons
+        R.id.framePracticeSessionManagers at the touch of the buttons
         right below the bottomNavigationBar
         */
-        val seeTracksFragment = MenuSeeTrackFragment()
-        val createTracksFragment = MenuCreateTrackFragment()
-        val deleteTracksFragment = MenuDeleteTrackFragment()
-        setCurrentFragment(seeTracksFragment)
+        val seePracticeSessionFragment = MenuPracticeSession()
+        val addPracticeSessionFragment = MenuAddPracticeSession()
+        setCurrentFragment(seePracticeSessionFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.see_tracks -> setCurrentFragment(seeTracksFragment)
-                R.id.create_tracks -> setCurrentFragment(createTracksFragment)
-                R.id.delete_tracks -> setCurrentFragment(deleteTracksFragment)
+                R.id.see_practice_session -> setCurrentFragment(seePracticeSessionFragment)
+                R.id.add_practice_session -> setCurrentFragment(addPracticeSessionFragment)
             }
             true
         }
@@ -82,13 +78,13 @@ class ManagersTracks : AppCompatActivity(){
 
     /*
         This method is used to change the View inside the
-        FrameLayout used in the "activity_managers_tracks" directly
+        FrameLayout used in the "activity_managers_practice_session" directly
         without the use of the methods provided by the class
         Fragment.
      */
     private fun setCurrentFragment(fragment : Fragment){
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frameTracksManagers, fragment).commit()
+            replace(R.id.framePracticeSessionManagers, fragment).commit()
             setReorderingAllowed(true)
             addToBackStack(null)
         }

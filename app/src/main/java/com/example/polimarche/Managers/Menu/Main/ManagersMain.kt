@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers
+package com.example.polimarche.Managers.Menu.Main
 
 import android.app.Dialog
 import android.content.Intent
@@ -10,14 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.polimarche.LoginActivity
-import com.example.polimarche.Managers.Menu.Main.MenuHomeFragment
-import com.example.polimarche.Managers.Menu.Main.MenuTeamFragment
+import com.example.polimarche.Managers.Menu.PracticeSession.ManagersPracticeSession
+import com.example.polimarche.Managers.Menu.Setup.ManagersSetup
+import com.example.polimarche.Managers.Menu.Tracks.ManagersTracks
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

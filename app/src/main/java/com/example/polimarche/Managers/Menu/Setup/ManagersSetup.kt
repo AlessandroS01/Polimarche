@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers
+package com.example.polimarche.Managers.Menu.Setup
 
 import android.content.Intent
 import android.graphics.Color
@@ -9,11 +9,8 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.Setup.MenuCreateSetupFragment
-import com.example.polimarche.Managers.Menu.Setup.MenuDeleteSetupFragment
-import com.example.polimarche.Managers.Menu.Setup.MenuProblemsSetupFragment
+import com.example.polimarche.Managers.Menu.Main.ManagersMain
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.polimarche.Managers.Menu.Setup.MenuSeeSetupFragment
 
 class ManagersSetup : AppCompatActivity(){
 

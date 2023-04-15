@@ -25,7 +25,7 @@ class WheelsAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_wheels, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_wheels, parent, false)
         return ViewHolderWheel(view)
     }
 
@@ -65,4 +65,7 @@ class WheelsAdapter(
         this.elementList = filteredList
         notifyDataSetChanged()
     }
+
+
+
 }

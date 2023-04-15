@@ -8,7 +8,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.ManagersMain
+import com.example.polimarche.Managers.Menu.Main.ManagersMain
 import com.google.android.material.textfield.TextInputEditText
 import java.security.MessageDigest
 
