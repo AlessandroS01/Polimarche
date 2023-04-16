@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/back_white_icon"
+            android:id="@+id/nextDamperFirstDamper"
+            android:rotation="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+            android:text="Front end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/aldrich"
+            android:textStyle="bold" />
+
+    <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintVertical_bias="0.0"
+            android:id="@+id/radioGroupFirstDamper">
+
+        <RadioButton
+                android:text="Existing parameters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonExistingDamperParameters"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFFFFF"
+                android:fontFamily="@font/aldrich"
+                android:textSize="12sp"
+                android:checked="true" />
+
+        <RadioButton
+                android:text="Add parameters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonAddDamperParameters"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFFFFF"
+                android:fontFamily="@font/aldrich"
+                android:textSize="12sp" />
+    </RadioGroup>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/nextDamperFirstDamper"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/frameLayoutChoiceChooseDampers"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupFirstDamper">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

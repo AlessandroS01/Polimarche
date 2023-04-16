@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupCreateSetupBinding
 import com.example.polimarche.Managers.Menu.Setup.Create.ChooseDampersMain
+import com.example.polimarche.Managers.Menu.Setup.Create.ChooseSpringsMain
 import com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheelsMain
 
 class MenuCreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_setup){
@@ -38,6 +39,12 @@ class MenuCreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create
 
         binding.chooseDampersCreateSetup.setOnClickListener {
             Intent(it.context, ChooseDampersMain::class.java).apply{
+                startActivity(this)
+            }
+        }
+
+        binding.chooseSpringsCreateSetup.setOnClickListener {
+            Intent(it.context, ChooseSpringsMain::class.java).apply{
                 startActivity(this)
             }
         }

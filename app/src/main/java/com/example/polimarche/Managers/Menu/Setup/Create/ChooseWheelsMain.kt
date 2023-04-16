@@ -163,9 +163,14 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
             recyclerViewRearLeftWheel.visibility = if (!hasFocus) View.VISIBLE else View.GONE
         }
 
-        val fragment = FirstWheelFragment()
+        /*
+        Initialize the fragment to be seen inside the second frame at the
+        bottom of the layout containing and letting the user to decide whether
+        to add a new set of parameters for the wheels or to use an existing one.
+         */
+        val firstWheel = FirstWheelFragment()
         supportFragmentManager.beginTransaction().apply {
-            replace(binding.layoutChooseWheels.id, fragment).commit()
+            replace(binding.layoutChooseWheels.id, firstWheel).commit()
             setReorderingAllowed(true)
             addToBackStack(null)
         }

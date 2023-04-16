@@ -29,13 +29,13 @@ class ThirdWheelFragment: Fragment(R.layout.fragment_managers_choose_third_wheel
         super.onViewCreated(view, savedInstanceState)
 
 
-        val secondFragment = SecondWheelFragment()
+        val secondWheel = SecondWheelFragment()
         binding.previousWheelThirdWheel.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, secondFragment).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, secondWheel).commit()
         }
-        val fourthFragment = FourthWheelFragment()
+        val fourthWheel = FourthWheelFragment()
         binding.nextWheelThirdWheel.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, fourthFragment).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, fourthWheel).commit()
         }
 
 

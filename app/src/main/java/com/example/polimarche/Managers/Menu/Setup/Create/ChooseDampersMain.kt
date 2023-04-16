@@ -12,6 +12,7 @@ import com.example.polimarche.Managers.M_Adapters.DampersAdapter
 import com.example.polimarche.Managers.M_Adapters.DampersCodificationAdapter
 import com.example.polimarche.Managers.M_Adapters.DataDampers
 import com.example.polimarche.Managers.M_Adapters.DataDampersCodification
+import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingDampers.FirstDamperFragment
 
 /*
 Class used for the selection of the dampers used in a new setup
@@ -105,7 +106,18 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
                 return true
             }
         })
-
+        
+        /*
+        Initialize the fragment to be seen inside the second frame at the
+        bottom of the layout containing and letting the user to decide whether
+        to add a new set of parameters for the dampers or to use an existing one.
+         */
+        val firstDamper = FirstDamperFragment()
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.layoutChooseDampers.id, firstDamper).commit()
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
 
         /*
         Change the visibility of the recyclerView when the searchView is focused or not.

@@ -28,9 +28,9 @@ class FourthWheelFragment: Fragment(R.layout.fragment_managers_choose_fourth_whe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val thirdFragment = ThirdWheelFragment()
+        val thirdWheel = ThirdWheelFragment()
         binding.previousWheelFourthWheel.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, thirdFragment).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, thirdWheel).commit()
         }
 
 

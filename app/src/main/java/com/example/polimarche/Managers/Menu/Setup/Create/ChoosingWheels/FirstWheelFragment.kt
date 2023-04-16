@@ -29,9 +29,9 @@ class FirstWheelFragment: Fragment(R.layout.fragment_managers_choose_first_wheel
         super.onViewCreated(view, savedInstanceState)
 
 
-        val secondFragment = SecondWheelFragment()
+        val secondWheel = SecondWheelFragment()
         binding.nextWheelFirstWheel.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, secondFragment).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.layoutChooseWheels, secondWheel).commit()
         }
 
 
