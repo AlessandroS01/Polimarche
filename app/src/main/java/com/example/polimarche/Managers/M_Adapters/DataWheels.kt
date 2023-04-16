@@ -1,4 +1,4 @@
-package com.example.polimarche.General_Adapters
+package com.example.polimarche.Managers.M_Adapters
 
 data class DataWheels (
     val code: Int,

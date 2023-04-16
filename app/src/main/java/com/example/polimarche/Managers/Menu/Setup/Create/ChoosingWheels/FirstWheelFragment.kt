@@ -35,8 +35,8 @@ class FirstWheelFragment: Fragment(R.layout.fragment_managers_choose_first_wheel
         }
 
 
-        val existingParameters = ExistingParameters(binding.nextWheelFirstWheel, null)
-        val addParameters = AddParameters(binding.nextWheelFirstWheel, null)
+        val existingParameters = ExistingWheelParameters(binding.nextWheelFirstWheel, null)
+        val addParameters = AddWheelsParameters(binding.nextWheelFirstWheel, null)
         parentFragmentManager.beginTransaction().replace(R.id.frameLayoutChoiceChooseWheels, existingParameters).commit()
         binding.radioGroupFirstWheel.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == binding.radioButtonAddParameters.id){

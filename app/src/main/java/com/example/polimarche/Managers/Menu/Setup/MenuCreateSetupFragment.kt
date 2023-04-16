@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupCreateSetupBinding
-import com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheels
+import com.example.polimarche.Managers.Menu.Setup.Create.ChooseDampersMain
+import com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheelsMain
 
 class MenuCreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_setup){
 
@@ -31,9 +31,18 @@ class MenuCreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create
 
 
         binding.chooseWheelsCreateSetup.setOnClickListener {
-            Intent(it.context, ChooseWheels::class.java).apply{
+            Intent(it.context, ChooseWheelsMain::class.java).apply{
                 startActivity(this)
             }
         }
+
+        binding.chooseDampersCreateSetup.setOnClickListener {
+            Intent(it.context, ChooseDampersMain::class.java).apply{
+                startActivity(this)
+            }
+        }
+
+
+
     }
 }

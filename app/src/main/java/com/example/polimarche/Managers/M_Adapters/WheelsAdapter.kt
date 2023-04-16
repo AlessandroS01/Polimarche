@@ -1,4 +1,4 @@
-package com.example.polimarche.General_Adapters
+package com.example.polimarche.Managers.M_Adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

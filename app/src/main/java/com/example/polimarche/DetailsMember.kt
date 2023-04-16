@@ -18,7 +18,7 @@ class DetailsMember: AppCompatActivity() {
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
 
-        val backButton : ImageButton = findViewById<ImageButton>(R.id.backButtonDetailMember)
+        val backButton : ImageButton = findViewById(R.id.backButtonDetailMember)
         backButton.setOnClickListener {
             finish()
         }

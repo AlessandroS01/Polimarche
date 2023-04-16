@@ -1,4 +1,4 @@
-package com.example.polimarche.General_Adapters
+package com.example.polimarche.Managers.M_Adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,20 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 
-class WheelsCodificationAdapter(
-    private var elementList: MutableList<DataWheelsCodification>,
-    private val listener: OnCodificationClickListener
+class DampersCodificationAdapter(
+    private var elementList: MutableList<DataDampersCodification>,
+    private val listener: OnDampersCodificationClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    interface OnCodificationClickListener{
-        fun onCodificationClick(codification: String)
+    interface OnDampersCodificationClickListener{
+        fun onCodificationClick(codification: Int)
     }
 
-    inner class ViewHolderWheelCodification(wheelCodificationView : View) : RecyclerView.ViewHolder(wheelCodificationView), View.OnClickListener {
-        val codification: TextView = wheelCodificationView.findViewById(R.id.wheelsCodification)
-        val quantity: TextView = wheelCodificationView.findViewById(R.id.wheelsQuantity)
+    inner class ViewHolderDamperCodification(damperCodificationView : View) : RecyclerView.ViewHolder(damperCodificationView), View.OnClickListener {
+        val codification: TextView = damperCodificationView.findViewById(R.id.dampersCodification)
         init {
-            wheelCodificationView.setOnClickListener(this)
+            damperCodificationView.setOnClickListener(this)
         }
         override fun onClick(v: View?) {
             val position : Int = adapterPosition
@@ -33,8 +32,8 @@ class WheelsCodificationAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_wheels_codification, parent, false)
-        return ViewHolderWheelCodification(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_dampers_codification, parent, false)
+        return ViewHolderDamperCodification(view)
     }
 
     override fun getItemCount(): Int {
@@ -43,10 +42,9 @@ class WheelsCodificationAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
-            is ViewHolderWheelCodification ->{
+            is ViewHolderDamperCodification ->{
                 holder.apply {
                     codification.text = "Cod: ${elementList[position].codification}"
-                    quantity.text = "Q: ${elementList[position].quantity.toString()}"
                 }
             }
         }
@@ -57,7 +55,7 @@ class WheelsCodificationAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataWheelsCodification>){
+    fun setFilteredList(filteredList: MutableList<DataDampersCodification>){
         this.elementList = filteredList
         notifyDataSetChanged()
     }

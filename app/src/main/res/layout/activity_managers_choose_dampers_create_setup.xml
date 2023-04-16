@@ -4,7 +4,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/sfondo_schermata_create_setup_choose_wheels"
+            android:background="@drawable/sfondo_schermata_create_setup_choose_damper"
             android:layout_alignParentBottom="true"
             android:fitsSystemWindows="true">
 
@@ -37,7 +37,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:srcCompat="@drawable/back_white_icon"
-                            android:id="@+id/backButtonChooseWheels"
+                            android:id="@+id/backButtonChooseDampers"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -48,13 +48,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/backButtonChooseWheels"
+                            app:layout_constraintStart_toEndOf="@+id/backButtonChooseDampers"
                             app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0">
+                            app:layout_constraintVertical_bias="0.0"
+                            android:id="@+id/linearLayout7">
 
                         <TextView
-                                android:text="Stocked Wheels"
+                                android:text="Stocked Dampers"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/textView13"
@@ -79,7 +80,7 @@
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            app:layout_constraintTop_toBottomOf="@+id/backButtonChooseWheels"
+                            app:layout_constraintTop_toBottomOf="@+id/backButtonChooseDampers"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +90,8 @@
                         <androidx.appcompat.widget.SearchView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/search_view_wheels_codification"
-                                app:queryHint="Enter wheels codification"
+                                android:id="@+id/search_view_dampers_code"
+                                app:queryHint="Enter damper codification"
                                 android:background="@drawable/search_bar_shape"
                                 app:iconifiedByDefault="false"
                                 android:layout_marginTop="10dp"
@@ -108,39 +109,39 @@
                                 android:layout_marginStart="5dp"
                                 android:layout_marginEnd="5dp"
                                 android:layout_marginBottom="40dp"
-                                android:id="@+id/listWheelsCodification" />
+                                android:id="@+id/listDampersCode" />
                     </LinearLayout>
 
                     <ScrollView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:scrollbars="none">
+                            android:scrollbars="none"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
                         <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:orientation="vertical"
-                                app:layout_constraintTop_toBottomOf="@+id/backButtonChooseWheels"
+                                app:layout_constraintTop_toBottomOf="@+id/backButtonChooseDampers"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent">
 
 
                             <TextView
-                                    android:text="Front Right : Codification"
+                                    android:text="Front End : Code"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/front_right_wheel_codification"
+                                    android:id="@+id/frontEndDampersCodification"
                                     android:textColor="#FFFFFF"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/listFrontRightWheel"
+                                    android:id="@+id/listFrontEndDampers"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
@@ -150,10 +151,10 @@
 
 
                             <TextView
-                                    android:text="Front Left : Codification"
+                                    android:text="Back End : Code"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/front_left_wheel_codification"
+                                    android:id="@+id/backEndDampersCodification"
                                     android:textColor="#FFFFFF"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -161,47 +162,12 @@
                             <androidx.recyclerview.widget.RecyclerView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/listFrontLeftWheel"
+                                    android:id="@+id/listBackEndDampers"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginEnd="5dp"
                                     android:layout_marginBottom="20dp"
                                     android:layout_marginTop="10dp" />
 
-                            <TextView
-                                    android:text="Rear Right : Codification"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/rear_right_wheel_codification"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/listRearRightWheel"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="5dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp" />
-
-                            <TextView
-                                    android:text="Rear Left : Codification"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/rear_left_wheel_codification"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/listRearLeftWheel"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="5dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp" />
 
                         </LinearLayout>
                     </ScrollView>
@@ -227,7 +193,7 @@
                         android:layout_height="match_parent">
 
                     <TextView
-                            android:text="Choose Wheels"
+                            android:text="Choose Dampers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textView6"
@@ -242,7 +208,7 @@
                     <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:id="@+id/layoutChooseWheels"
+                            android:id="@+id/layoutChooseDampers"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"

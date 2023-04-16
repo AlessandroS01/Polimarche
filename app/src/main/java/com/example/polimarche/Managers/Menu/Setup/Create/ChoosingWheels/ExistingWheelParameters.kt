@@ -1,10 +1,7 @@
 package com.example.polimarche.Managers.Menu.Setup.Create.ChoosingWheels
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,21 +9,16 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersAddParametersBinding
-import com.example.mobileprogramming.databinding.FragmentManagersChooseFirstWheelBinding
-import com.google.android.material.internal.ViewUtils.hideKeyboard
+import com.example.mobileprogramming.databinding.FragmentManagersExistingWheelsParametersBinding
 
-class AddParameters(
+class ExistingWheelParameters(
     private val view1: ImageView?, private val view2: ImageView?
-): Fragment(R.layout.fragment_managers_add_parameters) {
+ ): Fragment(R.layout.fragment_managers_existing_wheels_parameters) {
 
-    private var _binding: FragmentManagersAddParametersBinding? = null
+    private var _binding: FragmentManagersExistingWheelsParametersBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +26,7 @@ class AddParameters(
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentManagersAddParametersBinding.inflate(inflater, container, false)
+        _binding = FragmentManagersExistingWheelsParametersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,9 +34,6 @@ class AddParameters(
         super.onViewCreated(view, savedInstanceState)
 
         setViewVisibility(binding.inputWheelCode)
-        setViewVisibility(binding.inputWheelPressure)
-        setViewVisibility(binding.inputWheelCamber)
-        setViewVisibility(binding.inputWheelToe)
 
     }
 
@@ -56,28 +45,28 @@ class AddParameters(
     fragments to VISIBLE after the submit of the input inside the editText.
     Furthermore it hides the keyboard at the same time.
      */
-    private fun setViewVisibility(editText: EditText){
+    private fun setViewVisibility(editText: EditText) {
 
         editText.setOnFocusChangeListener { _, hasFocus ->
-            if(hasFocus){
+            if (hasFocus) {
                 if (view1 != null) view1.visibility = View.GONE
                 if (view2 != null) view2.visibility = View.GONE
-            }
-            else{
+            } else {
                 view1?.visibility = View.VISIBLE
                 view2?.visibility = View.VISIBLE
             }
         }
 
         editText.setOnEditorActionListener { v, actionId, _ ->
-             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                 val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                 imm.hideSoftInputFromWindow(v.windowToken, 0)
-                 view1?.visibility = View.VISIBLE
-                 view2?.visibility = View.VISIBLE
-                 v.clearFocus()
-             }
-             true
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val imm =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                view1?.visibility = View.VISIBLE
+                view2?.visibility = View.VISIBLE
+                v.clearFocus()
+            }
+            true
         }
     }
 }

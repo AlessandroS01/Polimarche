@@ -4,27 +4,31 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseWheelsCreateSetupBinding
-import com.example.polimarche.General_Adapters.DataWheels
-import com.example.polimarche.General_Adapters.DataWheelsCodification
-import com.example.polimarche.General_Adapters.WheelsAdapter
-import com.example.polimarche.General_Adapters.WheelsCodificationAdapter
+import com.example.polimarche.Managers.M_Adapters.DataWheels
+import com.example.polimarche.Managers.M_Adapters.DataWheelsCodification
+import com.example.polimarche.Managers.M_Adapters.WheelsAdapter
+import com.example.polimarche.Managers.M_Adapters.WheelsCodificationAdapter
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingWheels.FirstWheelFragment
+
 
 /*
 Class used for the selection of the wheels used in a new setup
  */
-class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificationClickListener {
+class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsCodificationClickListener {
 
     override fun onBackPressed(){
         moveTaskToBack(false)
     }
 
     private lateinit var binding : ActivityManagersChooseWheelsCreateSetupBinding
+
+    private lateinit var searchView: SearchView
 
     private var wheelsCodificationList: MutableList<DataWheelsCodification> = insertCodification()
     private lateinit var adapterWheelsCodification: WheelsCodificationAdapter
@@ -34,8 +38,6 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
     private var frontLeftWheels: MutableList<DataWheels> = initializeFrontLeft()
     private var rearRightWheels: MutableList<DataWheels> = initializeRearRight()
     private var rearLeftWheels: MutableList<DataWheels> = initializeRearLeft()
-
-    private lateinit var searchView: SearchView
 
     private lateinit var adapterFrontRightWheel: WheelsAdapter
     private lateinit var adapterFrontLeftWheel: WheelsAdapter
@@ -54,6 +56,10 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+
+        binding.backButtonChooseWheels.setOnClickListener {
+            finish()
+        }
 
         searchView = binding.searchViewWheelsCodification
         /*
@@ -128,11 +134,24 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
         /*
         Change the visibility of the recyclerView when the searchView is focused or not.
         The recycler view is hidden if the search view is not focused and visible if focused.
+        It changes the visibility and weight of the MainFrame when the search view change focus type
+        by letting the other frame layout view to gone when it has focus.
         Then it sets the other recycler view and text view ( the ones that are used to show
         the wheels basing on the position and, sometimes, the codification ) hidden when the search
         view is focused and visible when it's not.
          */
         searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            binding.layoutContainer.visibility = if (!hasFocus) View.VISIBLE else View.GONE
+            if ( hasFocus) {
+                val params = binding.frameMain.layoutParams as LinearLayout.LayoutParams
+                params.weight = 2.0f
+                binding.frameMain.layoutParams = params
+            }
+            else {
+                val params = binding.frameMain.layoutParams as LinearLayout.LayoutParams
+                params.weight = 1.0f
+                binding.frameMain.layoutParams = params
+            }
             recyclerViewWheelsCodification.visibility = if (hasFocus) View.VISIBLE else View.GONE
             binding.frontRightWheelCodification.visibility = if (!hasFocus) View.VISIBLE else View.GONE
             recyclerViewFrontRightWheel.visibility = if (!hasFocus) View.VISIBLE else View.GONE
@@ -151,9 +170,6 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
             addToBackStack(null)
         }
 
-        binding.backButtonChooseWheels.setOnClickListener {
-            finish()
-        }
     }
 
     /*
@@ -177,7 +193,6 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
             DataWheelsCodification("F", 20)
         )
     }
-
     private fun listWheels(): MutableList<DataWheels>{
         return mutableListOf(
             DataWheels(1, "Front right", "A", "1", "-1+2piastrini", "1"),
@@ -198,7 +213,6 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
             DataWheels(16, "Rear left", "D", "1", "-1+2piastrini", "1"),
         )
     }
-
     private fun initializeFrontRight(): MutableList<DataWheels>{
         return listWheels().filter { it.position == "Front right" }.toMutableList()
     }
@@ -212,6 +226,10 @@ class ChooseWheels: AppCompatActivity(), WheelsCodificationAdapter.OnCodificatio
         return listWheels().filter { it.position == "Rear left" }.toMutableList()
     }
 
+    /*
+    Change the behaviour of the layout on an item click of the recycler view
+    containing every wheel codifications.
+     */
     override fun onCodificationClick(codification: String) {
 
         searchView.queryHint = "Codification : $codification"

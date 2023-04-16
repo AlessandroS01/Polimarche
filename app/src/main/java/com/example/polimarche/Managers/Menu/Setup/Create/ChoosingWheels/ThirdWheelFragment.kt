@@ -39,8 +39,8 @@ class ThirdWheelFragment: Fragment(R.layout.fragment_managers_choose_third_wheel
         }
 
 
-        val existingParameters = ExistingParameters(binding.nextWheelThirdWheel, binding.previousWheelThirdWheel)
-        val addParameters = AddParameters(binding.nextWheelThirdWheel, binding.previousWheelThirdWheel)
+        val existingParameters = ExistingWheelParameters(binding.nextWheelThirdWheel, binding.previousWheelThirdWheel)
+        val addParameters = AddWheelsParameters(binding.nextWheelThirdWheel, binding.previousWheelThirdWheel)
         parentFragmentManager.beginTransaction().replace(R.id.frameLayoutChoiceChooseWheels, existingParameters).commit()
         binding.radioGroupThirdWheel.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == binding.radioButtonAddParameters.id){

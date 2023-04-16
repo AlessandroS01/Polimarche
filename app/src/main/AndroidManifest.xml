@@ -43,7 +43,11 @@
         <activity android:name="com.example.polimarche.DetailsSpring"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheels"
+        <activity android:name="com.example.polimarche.Managers.Menu.Setup.Create.ChooseWheelsMain"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name="com.example.polimarche.Managers.Menu.Setup.Create.ChooseDampersMain"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
 

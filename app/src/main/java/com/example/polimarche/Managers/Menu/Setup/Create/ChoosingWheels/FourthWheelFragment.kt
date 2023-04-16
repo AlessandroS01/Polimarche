@@ -34,8 +34,8 @@ class FourthWheelFragment: Fragment(R.layout.fragment_managers_choose_fourth_whe
         }
 
 
-        val existingParameters = ExistingParameters(binding.previousWheelFourthWheel, binding.uploadWheels)
-        val addParameters = AddParameters(binding.previousWheelFourthWheel, binding.uploadWheels)
+        val existingParameters = ExistingWheelParameters(binding.previousWheelFourthWheel, binding.uploadWheels)
+        val addParameters = AddWheelsParameters(binding.previousWheelFourthWheel, binding.uploadWheels)
         parentFragmentManager.beginTransaction().replace(R.id.frameLayoutChoiceChooseWheels, existingParameters).commit()
         binding.radioGroupFourthWheel.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == binding.radioButtonAddParameters.id){

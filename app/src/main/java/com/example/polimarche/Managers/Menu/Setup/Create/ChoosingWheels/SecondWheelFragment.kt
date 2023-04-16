@@ -39,8 +39,8 @@ class SecondWheelFragment: Fragment(R.layout.fragment_managers_choose_second_whe
         }
 
 
-        val existingParameters = ExistingParameters(binding.nextWheelSecondWheel, binding.previousWheelSecondWheel)
-        val addParameters = AddParameters(binding.nextWheelSecondWheel, binding.previousWheelSecondWheel)
+        val existingParameters = ExistingWheelParameters(binding.nextWheelSecondWheel, binding.previousWheelSecondWheel)
+        val addParameters = AddWheelsParameters(binding.nextWheelSecondWheel, binding.previousWheelSecondWheel)
         parentFragmentManager.beginTransaction().replace(R.id.frameLayoutChoiceChooseWheels, existingParameters).commit()
         binding.radioGroupSecondWheel.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == binding.radioButtonAddParameters.id){
