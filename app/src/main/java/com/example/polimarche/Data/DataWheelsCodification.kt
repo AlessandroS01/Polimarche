@@ -1,4 +1,4 @@
-package com.example.polimarche.Managers.M_Adapters
+package com.example.polimarche.Data
 
 data class DataWheelsCodification(
     val codification: String,

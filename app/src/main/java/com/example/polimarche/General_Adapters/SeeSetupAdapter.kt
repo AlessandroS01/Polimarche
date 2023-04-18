@@ -9,13 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.Data.DataSeeSetupCode
 import com.example.polimarche.DetailsSetup
 
-class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetup>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetupCode>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ViewHolderSetup(setupView : View) : RecyclerView.ViewHolder(setupView) {
-        val setupCode: TextView = setupView.findViewById(R.id.setupCode)
-        val detailSetup: ImageView = setupView.findViewById(R.id.setupDetails)
+        val setupCode: TextView = setupView.findViewById(R.id.seeSetupSetupCode)
+        val detailSetup: ImageView = setupView.findViewById(R.id.seeSetupSetupDetails)
     }
 
     /*
@@ -23,7 +24,7 @@ class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetup>) : Re
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataSeeSetup>){
+    fun setFilteredList(filteredList: MutableList<DataSeeSetupCode>){
         this.elementList = filteredList
         notifyDataSetChanged()
     }
@@ -42,7 +43,7 @@ class SeeSetupAdapter (private var elementList : MutableList<DataSeeSetup>) : Re
         when (holder){
             is ViewHolderSetup -> {
                 holder.apply {
-                    setupCode.text = "Setup " + elementList[position].setupCode.toString()
+                    setupCode.text = "Setup " + elementList[position].code.toString()
                     detailSetup.setImageResource(R.drawable.visibility_icon)
                     detailSetup.setOnClickListener {
                         Intent(holder.itemView.context, DetailsSetup::class.java).apply {

@@ -32,4 +32,6 @@
     <style name="SearchView" parent="Widget.AppCompat.SearchView" >
         <item name="android:textSize">14sp</item>
     </style>
+
+
 </resources>

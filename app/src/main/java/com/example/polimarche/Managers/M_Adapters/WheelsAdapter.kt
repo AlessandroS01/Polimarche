@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.Data.DataWheels
 
 class WheelsAdapter(
     private var elementList: MutableList<DataWheels>

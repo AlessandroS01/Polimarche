@@ -8,9 +8,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.ActivityDetailsSetupBinding
-import com.example.mobileprogramming.databinding.FragmentManagersMainHomeBinding
 
 class DetailsSetup: AppCompatActivity() {
 

@@ -64,13 +64,13 @@ class ManagersMain: AppCompatActivity(){
         val floatingMenuButton : FloatingActionButton = findViewById(R.id.floatingButton)
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.fragment_managers_main_floating_menu)
-        val homeLayout = dialog.findViewById<LinearLayout>(R.id.layout_home)
-        val teamLayout = dialog.findViewById<LinearLayout>(R.id.layout_team)
-        val setupLayout = dialog.findViewById<LinearLayout>(R.id.layout_setup)
-        val tracksLayout = dialog.findViewById<LinearLayout>(R.id.layout_tracks)
-        val practiceSessionLayout = dialog.findViewById<LinearLayout>(R.id.layout_practice_session)
-        val logOutLayout = dialog.findViewById<LinearLayout>(R.id.layout_log_out)
+        dialog.setContentView(R.layout.dialog_box_main_floating_menu)
+        val homeLayout = dialog.findViewById<LinearLayout>(R.id.layoutHome)
+        val teamLayout = dialog.findViewById<LinearLayout>(R.id.layoutTeam)
+        val setupLayout = dialog.findViewById<LinearLayout>(R.id.layoutSetup)
+        val tracksLayout = dialog.findViewById<LinearLayout>(R.id.layoutTracks)
+        val practiceSessionLayout = dialog.findViewById<LinearLayout>(R.id.layoutPracticeSession)
+        val logOutLayout = dialog.findViewById<LinearLayout>(R.id.layoutLogOut)
         floatingMenuButton.setOnClickListener {
             /*
             Defines the properties of the menu

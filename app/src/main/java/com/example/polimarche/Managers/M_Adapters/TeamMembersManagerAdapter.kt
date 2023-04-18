@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.mobileprogramming.R
+import com.example.polimarche.Data.DataModelTeamMembers
 import com.example.polimarche.DetailsMember
 
 
@@ -17,7 +18,8 @@ class TeamMembersAdapterManager(
  */
 class TeamMembersManagerAdapter (
     private var elementList : MutableList<DataModelTeamMembers>,
-    private val listener: OnWorkshopAreaClickListener) : RecyclerView.Adapter<ViewHolder>() {
+    private val listener: OnWorkshopAreaClickListener
+) : RecyclerView.Adapter<ViewHolder>() {
 
 
     interface OnWorkshopAreaClickListener{

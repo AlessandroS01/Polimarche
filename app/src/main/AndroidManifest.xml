@@ -55,6 +55,10 @@
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
 
+        <activity android:name="com.example.polimarche.Managers.Menu.Setup.Create.ChooseBalanceMain"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"/>
+
         <activity
                 android:name="com.example.polimarche.LoginActivity"
                 android:exported="true">

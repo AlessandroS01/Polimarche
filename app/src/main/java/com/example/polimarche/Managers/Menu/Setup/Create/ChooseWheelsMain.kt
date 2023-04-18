@@ -10,8 +10,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseWheelsCreateSetupBinding
-import com.example.polimarche.Managers.M_Adapters.DataWheels
-import com.example.polimarche.Managers.M_Adapters.DataWheelsCodification
+import com.example.polimarche.Data.DataWheels
+import com.example.polimarche.Data.DataWheelsCodification
 import com.example.polimarche.Managers.M_Adapters.WheelsAdapter
 import com.example.polimarche.Managers.M_Adapters.WheelsCodificationAdapter
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingWheels.FirstWheelFragment

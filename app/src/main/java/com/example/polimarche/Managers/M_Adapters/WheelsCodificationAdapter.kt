@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.Data.DataWheelsCodification
 
 class WheelsCodificationAdapter(
     private var elementList: MutableList<DataWheelsCodification>,

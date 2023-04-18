@@ -15,7 +15,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="#000000"
             android:scrollbars="none">
 
         <LinearLayout
@@ -29,7 +28,9 @@ It's not compulsory to specify the setup code or to add notes."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView30"
-                    android:textColor="#FFFFFF" />
+                    android:textSize="10sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/aldrich" />
 
             <TextView
                     android:text="Choose wheels"
@@ -78,7 +79,27 @@ It's not compulsory to specify the setup code or to add notes."
 
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                    android:text="Choose balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chooseBalanceCreateSetup"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/aldrich"
+                    android:layout_marginTop="15dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                     android:text="Choose front wing hole"
@@ -92,9 +113,39 @@ It's not compulsory to specify the setup code or to add notes."
                     android:gravity="center"
                     android:layout_marginTop="15dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutFrontWingHole"
+                    android:weightSum="2">
+
+                <TextView
+                        android:text="Front wing hole:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView64"
+                        android:layout_weight="1.2"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_margin="5dp" />
+
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/editTextFrontWing"
+                        android:layout_weight="0.8"
+                        android:textSize="16sp"
+                        android:hint="Position"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_margin="5dp"
+                        android:textAlignment="textStart"
+                        android:imeOptions="actionDone"/>
+            </LinearLayout>
 
             <TextView
                     android:text="Specify setup code"
@@ -108,6 +159,43 @@ It's not compulsory to specify the setup code or to add notes."
                     android:textStyle="bold"
                     android:layout_marginTop="15dp" />
 
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layoutSetupCode"
+                    android:weightSum="2">
+
+                <TextView
+                        android:text="New setup code:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView67"
+                        android:layout_weight="1.2"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_margin="5dp" />
+
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxEms="4"
+                        android:minEms="1"
+                        android:maxLength="4"
+                        android:ems="10"
+                        android:id="@+id/editTextSetupCode"
+                        android:layout_weight="0.8"
+                        android:textSize="16sp"
+                        android:hint="Code"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_margin="5dp"
+                        android:textAlignment="textStart"
+                        android:imeOptions="actionDone"/>
+            </LinearLayout>
+
             <TextView
                     android:text="Add notes"
                     android:layout_width="match_parent"
@@ -120,6 +208,11 @@ It's not compulsory to specify the setup code or to add notes."
                     android:gravity="center"
                     android:layout_marginTop="15dp" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/listNotesNewSetup"/>
+
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -128,7 +221,7 @@ It's not compulsory to specify the setup code or to add notes."
                     android:layout_marginTop="15dp">
 
                 <TextView
-                        android:text="Add setup "
+                        android:text="Create setup "
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView57"
@@ -143,7 +236,7 @@ It's not compulsory to specify the setup code or to add notes."
                         android:layout_width="199dp"
                         android:layout_height="23dp"
                         app:srcCompat="@drawable/create_setup_icon"
-                        android:id="@+id/addSetup"
+                        android:id="@+id/createSetup"
                         android:layout_weight="0.5" />
             </LinearLayout>
 

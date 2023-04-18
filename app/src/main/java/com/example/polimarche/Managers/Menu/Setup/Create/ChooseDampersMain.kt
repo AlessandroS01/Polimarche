@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseDampersCreateSetupBinding
 import com.example.polimarche.Managers.M_Adapters.DampersAdapter
 import com.example.polimarche.Managers.M_Adapters.DampersCodificationAdapter
-import com.example.polimarche.Managers.M_Adapters.DataDampers
-import com.example.polimarche.Managers.M_Adapters.DataDampersCodification
+import com.example.polimarche.Data.DataDampers
+import com.example.polimarche.Data.DataDampersCodification
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingDampers.FirstDamperFragment
 
 /*

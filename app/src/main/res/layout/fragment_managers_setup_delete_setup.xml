@@ -3,51 +3,77 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/costraintLayout"
+        android:focusable="true">
 
-    <TextView
-            android:text="ABILITA RICERCA ISTANTANEA SUL NUMERO DEL SETUP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chooseWheelsCreateSetup"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chooseWheelsCreateSetup">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            android:id="@+id/linearLayout8">
 
-        <LinearLayout
+        <TextView
+                android:text="*To delete a setup you have to click on a setup code to render a new layout containing infos, parameters and the posibility to delete the setup clicked."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:id="@+id/textView73"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/aldrich" />
 
-            <Button
-                    android:text="Setup 1 cliccabile - AL CLICK COMPARE LA SCHERMATA SOTTO- DOPO AVERLO CLICCATO COMPARE UNA SCHERMATA DOVE VIENE VISUALIZZATO IL SETUP E ALLA FINE DEI BOTTONI PER CONFERMARE O MENO L'ELIMINAZIONE"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button"
-                    android:textColor="#000000"
-                    android:backgroundTint="#FFFFFF" />
+        <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchViewSetupDelete"
+                app:queryHint="Setup code"
+                android:background="@drawable/search_bar_shape"
+                app:iconifiedByDefault="false"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                app:searchIcon="@drawable/search_icon"
+                android:focusable="true"
+                app:queryBackground="@android:color/transparent"
+                android:theme="@style/SearchView" />
 
-            <TextView
-                    android:text="FARE COSI' PER TUTTI I SETUP POSSIBILI"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView5"
-                    android:textColor="#FAFAFA" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/deleteSetupList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
 
-        </LinearLayout>
-    </ScrollView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout8"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/frameLayoutDeleteSetupVisualizeSetup">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

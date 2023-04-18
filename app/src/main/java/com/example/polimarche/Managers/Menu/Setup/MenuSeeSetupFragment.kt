@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupSeeSetupBinding
-import com.example.polimarche.General_Adapters.DataSeeSetup
+import com.example.polimarche.Data.DataSeeSetupCode
 import com.example.polimarche.General_Adapters.SeeSetupAdapter
 
 class MenuSeeSetupFragment : Fragment(R.layout.fragment_managers_setup_see_setup){
 
-    private val setupList: MutableList<DataSeeSetup> = insertSetup()
+    private val setupList: MutableList<DataSeeSetupCode> = insertSetup()
     private lateinit var searchView: SearchView
     private lateinit var adapter: SeeSetupAdapter
     private lateinit var recyclerView: RecyclerView
@@ -61,27 +61,27 @@ class MenuSeeSetupFragment : Fragment(R.layout.fragment_managers_setup_see_setup
 
     }
 
-    private fun insertSetup(): MutableList<DataSeeSetup> {
+    private fun insertSetup(): MutableList<DataSeeSetupCode> {
         return mutableListOf(
-            DataSeeSetup(1),
-            DataSeeSetup(2),
-            DataSeeSetup(3),
-            DataSeeSetup(4),
-            DataSeeSetup(5),
-            DataSeeSetup(10),
-            DataSeeSetup(11),
-            DataSeeSetup(12),
-            DataSeeSetup(7),
-            DataSeeSetup(8),
-            DataSeeSetup(9),
-            DataSeeSetup(17),
-            DataSeeSetup(6)
+            DataSeeSetupCode(1),
+            DataSeeSetupCode(2),
+            DataSeeSetupCode(3),
+            DataSeeSetupCode(4),
+            DataSeeSetupCode(5),
+            DataSeeSetupCode(10),
+            DataSeeSetupCode(11),
+            DataSeeSetupCode(12),
+            DataSeeSetupCode(7),
+            DataSeeSetupCode(8),
+            DataSeeSetupCode(9),
+            DataSeeSetupCode(17),
+            DataSeeSetupCode(6)
         )
     }
 
     private fun filterList(query: String?){
         if(query != null){
-            val filteredList = setupList.filter { query in it.setupCode.toString() }
+            val filteredList = setupList.filter { query in it.code.toString() }
             adapter.setFilteredList(filteredList.toMutableList())
         }
     }

@@ -8,8 +8,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseSpringsCreateSetupBinding
-import com.example.polimarche.Managers.M_Adapters.DataSprings
-import com.example.polimarche.Managers.M_Adapters.DataSpringsCodification
+import com.example.polimarche.Data.DataSprings
+import com.example.polimarche.Data.DataSpringsCodification
 import com.example.polimarche.Managers.M_Adapters.SpringsAdapter
 import com.example.polimarche.Managers.M_Adapters.SpringsCodificationAdapter
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingDampers.FirstSpringsFragment

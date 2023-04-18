@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:id="@+id/layout_home"
+            android:id="@+id/layoutHome"
             android:layout_marginTop="10dp">
 
         <ImageView
@@ -36,7 +36,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/home_menu"
+                android:id="@+id/homeMenu"
                 android:text="Home"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:id="@+id/layout_team"
+            android:id="@+id/layoutTeam"
             android:layout_marginTop="10dp">
 
         <ImageView
@@ -62,7 +62,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/team_menu"
+                android:id="@+id/teamMenu"
                 android:text="Team"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:id="@+id/layout_setup"
+            android:id="@+id/layoutSetup"
             android:layout_marginTop="10dp">
 
         <ImageView
@@ -88,7 +88,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/setup_menu"
+                android:id="@+id/setupMenu"
                 android:text="Setup"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:id="@+id/layout_tracks"
+            android:id="@+id/layoutTracks"
             android:layout_marginTop="10dp">
 
         <ImageView
@@ -114,7 +114,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tracks_menu"
+                android:id="@+id/tracksMenu"
                 android:text="Tracks"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:id="@+id/layout_practice_session"
+            android:id="@+id/layoutPracticeSession"
             android:layout_marginTop="10dp">
 
         <ImageView
@@ -141,7 +141,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/practice_session_menu"
+                android:id="@+id/practiceSessionMenu"
                 android:text="Practice session"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:id="@+id/layout_log_out"
+            android:id="@+id/layoutLogOut"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
@@ -168,7 +168,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/log_out_menu"
+                android:id="@+id/logOutMenu"
                 android:text="Log out"
                 android:textColor="#000000"
                 android:fontFamily="@font/aldrich"

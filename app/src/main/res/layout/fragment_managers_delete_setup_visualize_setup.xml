@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:clickable="true">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/back_white_icon"
+                android:id="@+id/imageViewCloseVisualizationSetup"
+                android:layout_gravity="end" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/costraintLayoutDeleteSetup">
+
+            <TextView
+                        android:textColor="@color/white"
+                    android:text="Setup Code"
+                    android:layout_width="111dp"
+                    android:layout_height="34dp"
+                    android:id="@+id/deleteSetupCode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:padding="3dp"
+                    android:id="@+id/linearLayoutExpandableDeleteSetup">
+
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Wheels"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView66"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Front left"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView72"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontLeftWheelCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Codification:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontLeftWheelCodification"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Pressure:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontLeftWheelPressure"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Camber:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontLeftWheelCamber"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Toe:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontLeftWheelToe"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Front right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView74"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontRightWheelCode"
+                                android:layout_weight="1"
+                                android:textAlignment="textStart"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Codification:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontRightWheelCodification"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Pressure:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontRightWheelPressure"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Camber:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontRightWheelCamber"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Toe:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontRightWheelToe"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Rear left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView75"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearLeftWheelCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Codification:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearLeftWheelCodification"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Pressure:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearLeftWheelPressure"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Camber:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearLeftWheelCamber"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Toe:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearLeftWheelToe"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Rear right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView76"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearRightWheelCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Codification:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearRightWheelCodification"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Pressure:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearRightWheelPressure"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Camber:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearRightWheelCamber"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Toe:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupRearRightWheelToe"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Dampers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView99"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Front"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView100"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontDamperCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Hsr:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontDamperHsr"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Hsc:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontDamperHsc"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Lsr:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontDamperLsr"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Lsc:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontDamperLsc"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView106"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackDamperCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Hsr:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackDamperHsr"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Hsc:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackDamperHsc"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Lsr:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackDamperLsr"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Lsc:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackDamperLsc"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Springs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView112"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Front"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView113"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontSpringCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Codification:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontSpringCodification"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Height:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontSpringHeight"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Arb stiffness:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontSpringArbStiff"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Arb position:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontSpringArbPos"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView119"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackSpringCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Codification:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackSpringCodification"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Height:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackSpringHeight"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Arb stiffness:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackSpringArbStiff"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Arb position:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackSpringArbPos"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Balance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView125"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Front"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView127"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontBalanceCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Brake:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontBalanceBrake"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Weight:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupFrontBalanceWeight"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp">
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView130"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/aldrich"
+                                android:textStyle="bold" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Code:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackBalanceCode"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Brake:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackBalanceBrake"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+
+                        <TextView
+                        android:textColor="@color/white"
+                                android:text="Weight:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/deleteSetupBackBalanceWeight"
+                                android:layout_weight="1"
+                                android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Front Wing Hole"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView126"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Front wing hole:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deleteSetupFrontWingHole"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_margin="3dp" />
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="Notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView134"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <TextView
+                        android:textColor="@color/white"
+                        android:text="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/deleteSetupNotes"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/border_notes_setup" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+                    <TextView
+                            android:textColor="@color/white"
+                            android:text="Delete setup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView101"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/aldrich" />
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/delete_setup_icon"
+                            android:id="@+id/imageViewDeleteSetup"
+                            android:layout_weight="1"
+                            android:layout_margin="3dp"
+                            android:layout_gravity="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

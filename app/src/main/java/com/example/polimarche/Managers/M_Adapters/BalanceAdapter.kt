@@ -8,27 +8,26 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.Data.DataBalance
 import com.example.polimarche.Data.DataDampers
 
-class DampersAdapter(
-    private var elementList: MutableList<DataDampers>
+class BalanceAdapter(
+    private var elementList: MutableList<DataBalance>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class ViewHolderDamper(damperView : View) : RecyclerView.ViewHolder(damperView){
-        val damperCode: TextView = damperView.findViewById(R.id.damperCode)
-        val damperHSR: TextView = damperView.findViewById(R.id.hsrDamper)
-        val damperHSC: TextView = damperView.findViewById(R.id.hscDamper)
-        val damperLSR: TextView = damperView.findViewById(R.id.lsrDamper)
-        val damperLSC: TextView = damperView.findViewById(R.id.lscDamper)
+    inner class ViewHolderBalance(balanceView : View) : RecyclerView.ViewHolder(balanceView){
+        val balanceCode: TextView = balanceView.findViewById(R.id.balanceCode)
+        val balanceBrake: TextView = balanceView.findViewById(R.id.brakeBalance)
+        val balanceWeight: TextView = balanceView.findViewById(R.id.weightBalance)
 
-        val linearLayout = damperView.findViewById<LinearLayout>(R.id.linearLayoutExpandableDamper)
-        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = damperView.findViewById(R.id.costraintLayoutDamper)
+        val linearLayout: LinearLayout = balanceView.findViewById(R.id.linearLayoutExpandableBalance)
+        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = balanceView.findViewById(R.id.costraintLayoutBalance)
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_dampers, parent, false)
-        return ViewHolderDamper(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_balance, parent, false)
+        return ViewHolderBalance(view)
     }
 
     override fun getItemCount(): Int {
@@ -37,13 +36,11 @@ class DampersAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
-            is ViewHolderDamper ->{
+            is ViewHolderBalance ->{
                 holder.apply {
-                    damperCode.text = elementList[position].code.toString()
-                    damperHSR.text = elementList[position].hsr.toString()
-                    damperHSC.text = elementList[position].hsc.toString()
-                    damperLSR.text = elementList[position].lsr.toString()
-                    damperLSC.text = elementList[position].lsc.toString()
+                    balanceCode.text = elementList[position].code.toString()
+                    balanceBrake.text = elementList[position].brake.toString()
+                    balanceWeight.text = elementList[position].weight.toString()
 
                     val expansion = elementList[position].expansion
 
@@ -64,7 +61,7 @@ class DampersAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataDampers>){
+    fun setFilteredList(filteredList: MutableList<DataBalance>){
         this.elementList = filteredList
         notifyDataSetChanged()
     }
