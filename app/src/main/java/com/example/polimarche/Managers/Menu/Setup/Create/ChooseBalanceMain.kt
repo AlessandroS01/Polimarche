@@ -177,8 +177,8 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         recyclerViewBalanceCode.visibility = View.GONE
         searchView.clearFocus()
 
-        binding.frontEndBalanceCode.text = "Front Right : $code"
-        binding.backEndBalanceCode.text = "Front left : $code"
+        binding.frontEndBalanceCode.text = "Front end : $code"
+        binding.backEndBalanceCode.text = "Back end : $code"
 
         frontBalance = listBalance().filter { it.end == "Front" && it.code == code }.toMutableList()
         backBalance = listBalance().filter { it.end == "Back" && it.code == code }.toMutableList()

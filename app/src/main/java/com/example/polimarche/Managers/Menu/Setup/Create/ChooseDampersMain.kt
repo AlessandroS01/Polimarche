@@ -170,8 +170,8 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
         recyclerViewDampersCodification.visibility = View.GONE
         searchView.clearFocus()
 
-        binding.frontEndDampersCodification.text = "Front Right : $codification"
-        binding.backEndDampersCodification.text = "Front left : $codification"
+        binding.frontEndDampersCodification.text = "Front end : $codification"
+        binding.backEndDampersCodification.text = "Back end : $codification"
 
         frontDampers = listDampers().filter { it.end == "Front" && it.code == codification }.toMutableList()
         backDampers = listDampers().filter { it.end == "End" && it.code == codification }.toMutableList()

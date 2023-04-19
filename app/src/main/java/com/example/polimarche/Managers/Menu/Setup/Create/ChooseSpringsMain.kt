@@ -170,8 +170,8 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         recyclerViewSpringsCodification.visibility = View.GONE
         searchView.clearFocus()
 
-        binding.frontEndSpringsCodification.text = "Front Right : $codification"
-        binding.backEndSpringsCodification.text = "Front left : $codification"
+        binding.frontEndSpringsCodification.text = "Front end : $codification"
+        binding.backEndSpringsCodification.text = "Back end : $codification"
 
         frontSprings = listSprings().filter { it.end == "Front" && it.codification == codification }.toMutableList()
         backSprings = listSprings().filter { it.end == "End" && it.codification == codification }.toMutableList()

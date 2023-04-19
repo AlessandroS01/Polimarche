@@ -4,9 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/black"
-        android:clickable="true">
+        android:background="@color/black">
 
     <LinearLayout
             android:orientation="vertical"
@@ -17,7 +15,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            app:layout_constraintVertical_bias="0.5"
+            android:clickable="true">
 
         <ImageView
                 android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
                 android:id="@+id/costraintLayoutDeleteSetup">
 
             <TextView
-                        android:textColor="@color/white"
+                    android:textColor="@color/white"
                     android:text="Setup Code"
                     android:layout_width="111dp"
                     android:layout_height="34dp"
@@ -84,7 +83,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Front left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -94,7 +93,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -103,7 +102,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Codification:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -112,7 +111,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Pressure:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -121,7 +120,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Camber:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -130,7 +129,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Toe:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -148,7 +147,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Front right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -158,7 +157,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -168,7 +167,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Codification:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -177,7 +176,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Pressure:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -186,7 +185,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Camber:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -195,7 +194,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Toe:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -219,7 +218,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Rear left"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -229,7 +228,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -238,7 +237,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Codification:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -247,7 +246,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Pressure:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -256,7 +255,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Camber:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -265,7 +264,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Toe:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -283,7 +282,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Rear right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -293,7 +292,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -302,7 +301,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Codification:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -311,7 +310,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Pressure:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -320,7 +319,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Camber:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -329,7 +328,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Toe:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -362,7 +361,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Front"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -372,7 +371,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -381,7 +380,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Hsr:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -390,7 +389,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Hsc:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -399,7 +398,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Lsr:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -408,7 +407,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Lsc:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -426,7 +425,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Back"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -436,7 +435,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -445,7 +444,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Hsr:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -454,7 +453,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Hsc:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -463,7 +462,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Lsr:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -472,7 +471,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Lsc:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -506,7 +505,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Front"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -516,7 +515,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -525,7 +524,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Codification:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -534,7 +533,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Height:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -543,7 +542,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Arb stiffness:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -552,7 +551,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Arb position:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -570,7 +569,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Back"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -580,7 +579,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -589,7 +588,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Codification:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -598,7 +597,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Height:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -607,7 +606,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Arb stiffness:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -616,7 +615,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Arb position:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -650,7 +649,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Front"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -660,7 +659,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -669,7 +668,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Brake:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -678,7 +677,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Weight:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -697,7 +696,7 @@
                             android:layout_margin="3dp">
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Back"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -707,7 +706,7 @@
                                 android:textStyle="bold" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Code:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -716,7 +715,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Brake:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -725,7 +724,7 @@
                                 android:textSize="12sp" />
 
                         <TextView
-                        android:textColor="@color/white"
+                                android:textColor="@color/white"
                                 android:text="Weight:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

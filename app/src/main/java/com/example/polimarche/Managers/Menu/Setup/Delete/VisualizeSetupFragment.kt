@@ -33,12 +33,13 @@ class VisualizeSetupFragment(
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentManagersDeleteSetupVisualizeSetupBinding.inflate(inflater, container, false)
-        binding.root.rootView.setOnTouchListener { _, _ -> true }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         /*
         Closes the fragment when a user click on the Image view positioned

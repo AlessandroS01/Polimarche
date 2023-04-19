@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/costraintLayout"
-        android:focusable="true">
 
-    <LinearLayout
+    <LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -28,6 +23,11 @@
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/aldrich" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
         <androidx.appcompat.widget.SearchView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,45 +35,42 @@
                 app:queryHint="Setup code"
                 android:background="@drawable/search_bar_shape"
                 app:iconifiedByDefault="false"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="20dp"
                 app:searchIcon="@drawable/search_icon"
                 android:focusable="true"
                 app:queryBackground="@android:color/transparent"
-                android:theme="@style/SearchView" />
+                android:theme="@style/SearchView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/deleteSetupList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/searchViewSetupDelete" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/frameLayoutDeleteSetupVisualizeSetup"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintTop_toTopOf="@+id/searchViewSetupDelete">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout8"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:id="@+id/frameLayoutDeleteSetupVisualizeSetup">
 
-    </FrameLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
