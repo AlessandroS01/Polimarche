@@ -1,5 +1,6 @@
 package com.example.polimarche.Data
 
+
 data class DataSetup(
     val code: Int,
     val frontRightWheel: DataWheels,
@@ -12,6 +13,8 @@ data class DataSetup(
     val backSpring: DataSprings,
     val frontBalance: DataBalance,
     val backBalance: DataBalance,
+
+    val preferredEvent: String,
 
     val frontWingHole: String,
     val notes: String

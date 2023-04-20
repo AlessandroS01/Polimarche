@@ -1,5 +1,6 @@
 package com.example.polimarche.Data
 
+
 data class DataBalance(
 
     val code: Int,

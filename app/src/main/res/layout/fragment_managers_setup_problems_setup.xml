@@ -1,62 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <TextView
-            android:text="ABILITA RICERCA ISTANTANEA SU UN PROBLEMA  E RESTITUISCE SE IL PROBLEMA ESISTE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chooseWheelsCreateSetup"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chooseWheelsCreateSetup">
-
-        <LinearLayout
+            android:text="*To search for a specific problem, you have to insert the problem as a string.\n If you then want to add a problem to another setup then you have to know the problem code."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:id="@+id/textView73"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/aldrich"/>
 
-            <Button
-                    android:text="PROBLEMA CHE &quot;MATCHA&quot; CON IL PROBLEMA IMMESSO IN ORDINE ALFABETICO CON POSSIBILITA' DI AGGIUNGERE AD UN SETUP PRECISO UN PROBLEMA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button"
-                    android:textColor="#000000"
-                    android:backgroundTint="#FFFFFF" />
 
-            <Button
-                    android:text="COMPARE LISTA DEI SETUP IN CUI QUEL PROBLEMA E' PRESENTE - OGNUNO DEVE AVERE LA POSSIBILITA' DI VISUALIZZARE IL SETUP E IN CASO DI ELIMINARE IL PROBLEMA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button3"
-                    android:textColor="#000000"
-                    android:backgroundTint="#FFFFFF"
-                    android:textSize="10sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+        <androidx.appcompat.widget.SearchView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchViewProblemSetup"
+                app:queryHint="Setup problem"
+                android:background="@drawable/search_bar_shape"
+                app:iconifiedByDefault="false"
+                app:searchIcon="@drawable/search_icon"
+                android:focusable="true"
+                app:queryBackground="@android:color/transparent"
+                android:theme="@style/SearchView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/problemSetupList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/searchViewProblemSetup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout9" />
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/linearLayout9">
 
             <TextView
-                    android:text="FARE COSI' PER TUTTI I SETUP POSSIBILI"
+                    android:text="Add problem"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView77"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/aldrich"
+                    android:textAllCaps="false"
+                    android:textSize="16sp" />
+
+            <ImageButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView5"
-                    android:textColor="#FAFAFA" />
-
+                    app:srcCompat="@drawable/create_icon"
+                    android:id="@+id/imageButtonAddProblem"
+                    android:backgroundTint="@color/transparent"
+                    app:tint="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+                android:id="@+id/frameLayoutSetupManageProblemSetup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="10dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

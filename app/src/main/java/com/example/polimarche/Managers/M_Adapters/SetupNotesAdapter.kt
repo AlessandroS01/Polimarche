@@ -61,7 +61,7 @@ class SetupNotesAdapter(
                      */
                     add.setOnClickListener {
                         noteList.add(DataSetupNotes(""))
-                        notifyItemInserted(position + 1)
+                        notifyItemInserted(noteList.size - 1)
                     }
                     /*
                     Removes the note after the click on the imageView

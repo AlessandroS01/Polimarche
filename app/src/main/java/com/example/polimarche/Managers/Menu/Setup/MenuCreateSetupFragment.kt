@@ -91,6 +91,14 @@ class MenuCreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create
         }
 
         /*
+        Shows and hides the layout used to choose the preferred event types
+        for which the setup was made for.
+         */
+        binding.chooseSetupPreferredEvents.setOnClickListener {
+            changeVisibilityViews(binding.layoutSetupPreferredEvents)
+        }
+
+        /*
         Shows and hides the layout used to choose the setup code of the new setup.
          */
         binding.chooseSetupCodeCreateSetup.setOnClickListener { 
