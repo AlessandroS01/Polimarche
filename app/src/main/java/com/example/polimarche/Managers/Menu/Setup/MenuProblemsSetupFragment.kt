@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -101,26 +102,47 @@ class MenuProblemsSetupFragment : Fragment(R.layout.fragment_managers_setup_prob
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_box_managers_add_setup_problem)
 
+        val errorText = dialog.findViewById(R.id.problemDescriptionError) as TextView
+        errorText.visibility = View.GONE
+
         val newDescription = dialog.findViewById(R.id.editTextNewProblemDescription) as EditText
 
         val confirmAddNewProblem = dialog.findViewById(R.id.confirmAddNewProblem) as FrameLayout
         val cancelAddNewProblem = dialog.findViewById(R.id.cancelAddNewProblem) as FrameLayout
+
         /*
-        Confirm the deletion with the removal of the item inside the list and the call to the
-        adapter to let it know that the item was removed.
+        Control if a problem inserted already exists or not.
+        The value of correctness boolean variable is set to false if the problem
+        already exists or the user has not inserted nothing inside the edit text.
+        During the confirm then, there's a check on the value of correctness.
+         */
+        var correctness = false
+        newDescription.addTextChangedListener {
+            if(newDescription.text.isEmpty()) {
+                errorText.visibility = View.GONE
+            }
+            else if (problemList.any {
+                    newDescription.text.toString().lowercase() in it.description.lowercase()
+                    }){
+                        correctness = false
+                        errorText.visibility = View.VISIBLE
+            } else {
+                errorText.visibility = View.GONE
+                correctness = true
+            }
+        }
+        /*
+        Confirm the add of the new problem inside the list and the call to the
+        adapter to let it know that the item was added.
          */
         confirmAddNewProblem.setOnClickListener {
-            /*
-            while (problemList.filter { newDescription.text.toString().lowercase() in it.description.lowercase() }
-                    .isNotEmpty()) {
-                newDescription.setTextColor(R.color.red)
+            if (correctness) {
+                val newCode = problemList[problemList.size - 1].code + 1
+                val newProblem = DataProblem(newCode, newDescription.text.toString())
+                problemList.add(newProblem)
+                adapter.notifyItemInserted(problemList.size - 1)
+                dialog.dismiss()
             }
-             */
-            val newCode = problemList[problemList.size - 1].code + 1
-            val newProblem = DataProblem(newCode, newDescription.text.toString())
-            problemList.add(newProblem)
-            adapter.notifyItemInserted(problemList.size - 1)
-            dialog.dismiss()
         }
         cancelAddNewProblem.setOnClickListener {
             dialog.dismiss()

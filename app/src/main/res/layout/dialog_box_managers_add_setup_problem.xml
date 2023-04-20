@@ -45,7 +45,18 @@
                     android:id="@+id/editTextNewProblemDescription"
                     android:textSize="16sp"
                     android:fontFamily="@font/aldrich" />
+
+            <TextView
+                    android:id="@+id/problemDescriptionError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="*Problem already exists."
+                    android:textColor="@color/red_700"
+                    android:textSize="12sp"/>
         </LinearLayout>
+
+
 
         <LinearLayout
                 android:orientation="horizontal"

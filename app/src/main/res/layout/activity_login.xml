@@ -118,7 +118,6 @@
                 android:layout_width="110dp"
                 android:layout_height="40dp"
                 android:id="@+id/signInButton"
-                android:paddingStart="-75dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
