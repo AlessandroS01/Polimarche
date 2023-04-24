@@ -21,15 +21,19 @@
 
         <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="296dp"
-                android:layout_height="279dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.568"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.060000002"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="100dp"
+                app:layout_constraintHorizontal_bias="0.4"
+                android:background="#BF000000"
+                android:padding="30dp">
 
             <TextView
                     android:id="@+id/textView"
@@ -38,7 +42,8 @@
                     android:fontFamily="@font/aldrich"
                     android:text="Login"
                     android:textColor="#FFFFFF"
-                    android:textSize="28sp" />
+                    android:textSize="28sp"
+                    android:gravity="center" />
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutMatricola"
@@ -109,9 +114,8 @@
                 android:layout_height="137dp"
                 app:srcCompat="@drawable/logobianco_prova"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
                 app:layout_constraintVertical_bias="0.152"
-                android:layout_marginStart="36dp"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
@@ -122,7 +126,9 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/ripple_effect_sign_in_button"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintVertical_bias="0.19999999" />
 
         <TextView
                 android:text="SIGN IN"
@@ -132,7 +138,7 @@
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/aldrich"
                 app:layout_constraintTop_toTopOf="@+id/signInButton"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintBottom_toBottomOf="@+id/signInButton"
                 app:layout_constraintStart_toStartOf="@+id/signInButton"
                 app:layout_constraintEnd_toEndOf="@+id/signInButton"
                 android:textSize="15sp" />

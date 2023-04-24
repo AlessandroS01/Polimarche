@@ -3,19 +3,19 @@ package com.example.polimarche.Data
 
 data class DataSetup(
     val code: Int,
-    val frontRightWheel: DataWheels,
-    val frontLeftWheel: DataWheels,
-    val rearRightWheel: DataWheels,
-    val rearLeftWheel: DataWheels,
-    val frontDamper: DataDampers,
-    val backDamper: DataDampers,
-    val frontSpring: DataSprings,
-    val backSpring: DataSprings,
+    val frontRightWheel: DataWheel,
+    val frontLeftWheel: DataWheel,
+    val rearRightWheel: DataWheel,
+    val rearLeftWheel: DataWheel,
+    val frontDamper: DataDamper,
+    val backDamper: DataDamper,
+    val frontSpring: DataSpring,
+    val backSpring: DataSpring,
     val frontBalance: DataBalance,
     val backBalance: DataBalance,
 
     val preferredEvent: String,
 
     val frontWingHole: String,
-    val notes: String
+    var notes: MutableList<String>
 )

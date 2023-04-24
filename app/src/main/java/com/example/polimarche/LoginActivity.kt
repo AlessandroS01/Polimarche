@@ -8,7 +8,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileprogramming.R
-import com.example.polimarche.Managers.Menu.Main.ManagersMain
+import com.example.polimarche.Users.All.Menu.Main.Main
 import com.google.android.material.textfield.TextInputEditText
 import java.security.MessageDigest
 
@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity(){
              TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
              TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
              */
-            Intent(this, ManagersMain::class.java).also {
+            Intent(this, Main::class.java).also {
                 it.putExtra("EXTRA_MATRICULATION", matriculation)
                 it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
                 startActivity(it)

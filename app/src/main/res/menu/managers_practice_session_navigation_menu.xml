@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/see_practice_session"
-        android:title="Practice Session"
+        android:title="See"
         android:icon="@drawable/session_icon"
         app:showAsAction="ifRoom"/>
 
