@@ -69,8 +69,10 @@ class SetupNotesAdapter(
                      */
                     remove.setOnClickListener {
                         if (itemCount != 1) {
+                            println(position)
+                            println(newSetup.notes.size)
                             newSetup.notes.removeAt(position)
-                            notifyItemRemoved(position)
+                            notifyDataSetChanged()
                         }
                     }
                 }

@@ -12,6 +12,7 @@ import com.example.mobileprogramming.R
 import com.example.polimarche.Users.All.Menu.Main.Main
 import com.example.polimarche.Users.All.Menu.PracticeSession.SeePracticeSessionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class ManagersPracticeSession : AppCompatActivity(){
 
@@ -27,6 +28,9 @@ class ManagersPracticeSession : AppCompatActivity(){
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.practiceSessionBottomNavigationView)
+        bottomNavigationView.setPadding(0, 0 , 0, 0)
+        bottomNavigationView.setOnApplyWindowInsetsListener(null)
+        bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
         bottomNavigationView.background = null
 
         /*

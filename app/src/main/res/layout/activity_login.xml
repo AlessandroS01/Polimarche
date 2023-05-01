@@ -19,94 +19,21 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp">
 
-        <LinearLayout
-                android:id="@+id/linearLayout2"
+        <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.060000002"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/frameLayoutLoginSignIn"
+                android:layout_margin="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="100dp"
-                app:layout_constraintHorizontal_bias="0.4"
-                android:background="#BF000000"
-                android:padding="30dp">
-
-            <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/aldrich"
-                    android:text="Login"
-                    android:textColor="#FFFFFF"
-                    android:textSize="28sp"
-                    android:gravity="center" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutMatricola"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="15dp"
-                    android:hint="Matricola"
-                    android:textColorHint="#FFFFFF"
-                    app:boxBackgroundColor="#000000"
-                    app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="50dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/MatricolaInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:backgroundTint="#FFFFFF"
-                        android:fontFamily="@font/aldrich"
-                        android:inputType="text"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="5dp"
-                        android:textSize="20sp"
-                        android:typeface="normal"
-                        android:cursorVisible="true"
-                        android:textCursorDrawable="@null">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                app:layout_constraintVertical_bias="0.19999999">
 
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutPassword"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="15dp"
-                    android:hint="Password"
-                    android:textColorHint="#FFFFFF"
-                    app:boxBackgroundColor="#000000"
-                    app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="50dp"
-                    app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#FFFFFF">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/PasswordInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:backgroundTint="#FFFFFF"
-                        android:fontFamily="@font/aldrich"
-                        android:inputType="textPassword"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="5dp"
-                        android:textSize="20sp"
-                        android:typeface="normal"
-                        android:cursorVisible="true"
-                        android:textCursorDrawable="@null" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+        </FrameLayout>
 
         <ImageView
                 android:id="@+id/imageView2"
@@ -114,34 +41,12 @@
                 android:layout_height="137dp"
                 app:srcCompat="@drawable/logobianco_prova"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                app:layout_constraintVertical_bias="0.152"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-        <ImageButton
-                android:layout_width="110dp"
-                android:layout_height="40dp"
-                android:id="@+id/signInButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/ripple_effect_sign_in_button"
+                app:layout_constraintVertical_bias="0.15"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                app:layout_constraintVertical_bias="0.19999999" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="#4D000000" />
 
-        <TextView
-                android:text="SIGN IN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/aldrich"
-                app:layout_constraintTop_toTopOf="@+id/signInButton"
-                app:layout_constraintBottom_toBottomOf="@+id/signInButton"
-                app:layout_constraintStart_toStartOf="@+id/signInButton"
-                app:layout_constraintEnd_toEndOf="@+id/signInButton"
-                android:textSize="15sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="password">Password</string>
+    <string name="sign_up"><u>Sign Up</u></string>
+    <string name="log_in"><u>Log In</u></string>
 </resources>

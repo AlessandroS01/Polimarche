@@ -14,18 +14,28 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.LoginActivity
+import com.example.polimarche.Login.LoginActivity
 import com.example.polimarche.Users.Managers.Menu.PracticeSession.ManagersPracticeSession
 import com.example.polimarche.Users.Managers.Menu.Setup.ManagersSetup
 import com.example.polimarche.Users.Managers.Menu.Tracks.ManagersTracks
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationBarView.LABEL_VISIBILITY_SELECTED
 
 class Main: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_main)
+        /*
+        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(bottom = insets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
+
+         */
+
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
@@ -37,7 +47,10 @@ class Main: AppCompatActivity(){
         created by the bottomNavigationView
          */
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mainBottomNavigationView)
+        bottomNavigationView.setPadding(0, 0 , 0, 0)
+        bottomNavigationView.setOnApplyWindowInsetsListener(null)
         bottomNavigationView.background = null
+        bottomNavigationView.labelVisibilityMode = LABEL_VISIBILITY_SELECTED
         bottomNavigationView.menu.getItem(1).isEnabled = false
 
         /*

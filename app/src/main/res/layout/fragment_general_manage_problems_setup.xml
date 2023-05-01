@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+    <TextView
+            android:text="Manage Problem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView81"
+            app:layout_constraintEnd_toStartOf="@+id/closeButtonManageProblemsSetup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/closeButtonManageProblemsSetup"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:fontFamily="@font/aldrich"
+            android:textAllCaps="false"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="@+id/closeButtonManageProblemsSetup" />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/close_icon"
+            android:id="@+id/closeButtonManageProblemsSetup"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="15dp" />
+
+    <TextView
+            android:text="Problem Code:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView82"
+            app:layout_constraintTop_toBottomOf="@+id/closeButtonManageProblemsSetup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:fontFamily="@font/aldrich" />
+
+    <TextView
+            android:text="Description:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView83"
+            app:layout_constraintTop_toBottomOf="@+id/textView82"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/aldrich"
+            android:layout_marginTop="3dp" />
+
+    <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/textView83"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_margin="20dp"
+            android:id="@+id/radioGroupManageProblem">
+
+        <RadioButton
+                android:text="Occurs in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonManageProblemOccurring"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:fontFamily="@font/aldrich"
+                android:checked="true" />
+
+        <RadioButton
+                android:text="Solved by"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonManageProblemSolved"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFFFFF"
+                android:fontFamily="@font/aldrich"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+    </RadioGroup>
+
+    <FrameLayout
+            android:id="@+id/frameLayoutManageProblem"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupManageProblem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

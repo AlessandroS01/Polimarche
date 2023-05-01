@@ -6,20 +6,37 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataProblem
 
 class ProblemAdapter(
-    private var problemList: MutableList<DataProblem>
+    private var problemList: MutableList<DataProblem>,
+    private val listener: OnManageProblemClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class ViewHolderProblem(problemView : View) : RecyclerView.ViewHolder(problemView){
+    interface OnManageProblemClick{
+        fun onManageProblemClick(position: Int)
+    }
+
+    inner class ViewHolderProblem(problemView : View) : RecyclerView.ViewHolder(problemView), View.OnClickListener{
         val problemCode: TextView = problemView.findViewById(R.id.problemCode)
         val problemDescription: TextView = problemView.findViewById(R.id.problemDescription)
 
         val linearLayout: LinearLayout = problemView.findViewById(R.id.linearLayoutExpandableProblem)
         val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = problemView.findViewById(R.id.costraintLayoutProblem)
+
+        init {
+            problemView.setOnClickListener(this)
+        }
+        override fun onClick(v: View?) {
+            val position : Int = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onManageProblemClick(position)
+            }
+        }
     }
 
 

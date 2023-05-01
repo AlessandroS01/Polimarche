@@ -41,9 +41,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/mainBottomNavigationView"
-                    app:menu="@menu/managers_main_navigation_menu"
+                    app:menu="@menu/general_main_navigation_menu"
                     android:layout_marginEnd="16dp"
-                    android:background="@color/transparent" />
+                    android:background="@color/transparent"
+                    app:itemRippleColor="@color/transparent"/>
         </com.google.android.material.bottomappbar.BottomAppBar>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -55,13 +56,11 @@
             android:src="@drawable/menu_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/coordinatorLayout"
-            app:layout_constraintTop_toTopOf="@+id/coordinatorLayout"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:elevation="10dp"
-            app:layout_anchor="@id/mainBottomNavigationView"
             app:borderWidth="2dp"
             app:backgroundTint="#A5A5A5"
-            android:layout_marginTop="5dp" />
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/frameMainUsers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

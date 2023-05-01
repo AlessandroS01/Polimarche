@@ -60,7 +60,7 @@
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity
-                android:name="com.example.polimarche.LoginActivity"
+                android:name="com.example.polimarche.Login.LoginActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

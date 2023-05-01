@@ -29,7 +29,8 @@
                         android:id="@+id/setupManagersBottomNavigationView"
                         app:menu="@menu/managers_setup_navigation_menu"
                         android:layout_marginEnd="16dp"
-                        android:background="@color/transparent" />
+                        android:background="@color/transparent"
+                        app:itemRippleColor="@color/transparent"/>
 
             </com.google.android.material.bottomappbar.BottomAppBar>
 

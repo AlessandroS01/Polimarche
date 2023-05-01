@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.All.Menu.Setup
+package com.example.polimarche.Users.All.Menu.Setup.Problem
 
 import android.app.Dialog
 import android.graphics.Color
@@ -21,7 +21,8 @@ import com.example.mobileprogramming.databinding.FragmentGeneralSetupProblemsSet
 import com.example.polimarche.Data.DataProblem
 import com.example.polimarche.Users.All.Adapters.ProblemAdapter
 
-class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_setup){
+class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_setup),
+    ProblemAdapter.OnManageProblemClick {
 
     private var _binding: FragmentGeneralSetupProblemsSetupBinding? = null
     private val binding get() = _binding!!
@@ -49,7 +50,7 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
 
         searchView = binding.searchViewProblemSetup
 
-        adapter = ProblemAdapter(problemList)
+        adapter = ProblemAdapter(problemList, this)
         recyclerView = binding.problemSetupList
         val layoutManager = LinearLayoutManager(this.context)
         recyclerView.layoutManager = layoutManager
@@ -159,5 +160,11 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
             DataProblem(4, "Aiuto"),
             DataProblem(5, "Vero"),
         )
+    }
+
+    override fun onManageProblemClick(position: Int) {
+        val manageProblemFragment = ManageProblemFragment()
+        parentFragmentManager.beginTransaction().replace(binding.frameLayoutSetupManageProblemSetup.id,
+            manageProblemFragment).commit()
     }
 }

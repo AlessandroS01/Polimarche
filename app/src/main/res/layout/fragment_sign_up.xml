@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#80000000"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/sign_up_icon"
+                    android:id="@+id/imageView7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/aldrich"
+                    android:text="Sign Up"
+                    android:textColor="#FFFFFF"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutMatricola"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="Matricola"
+                android:textColorHint="#FFFFFF"
+                app:boxBackgroundColor="#000000"
+                app:boxStrokeColor="#FFFFFF"
+                app:boxStrokeWidth="50dp"
+                app:passwordToggleTint="#FFFFFF"
+                android:background="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/MatricolaInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:fontFamily="@font/aldrich"
+                    android:inputType="text"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="16sp"
+                    android:typeface="normal"
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@null"
+                    android:textStyle="bold">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutPassword"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="Password"
+                android:textColorHint="#FFFFFF"
+                app:boxBackgroundColor="#000000"
+                app:boxStrokeColor="#FFFFFF"
+                app:boxStrokeWidth="50dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#FFFFFF"
+                android:background="#000000">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:fontFamily="@font/aldrich"
+                    android:inputType="textPassword"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="16sp"
+                    android:typeface="normal"
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@null"
+                    android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:hint="Confirm Password"
+                android:textColorHint="#FFFFFF"
+                app:boxBackgroundColor="#000000"
+                app:boxStrokeColor="#FFFFFF"
+                app:boxStrokeWidth="50dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#FFFFFF"
+                android:background="#000000">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ConfirmPasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:fontFamily="@font/aldrich"
+                    android:inputType="textPassword"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="16sp"
+                    android:typeface="normal"
+                    android:cursorVisible="true"
+                    android:textCursorDrawable="@null"
+                    android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:text="Sign Up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signUpButton"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#9A9A9A"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:fontFamily="@font/aldrich"
+                app:rippleColor="#5C5C5C"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:paddingRight="18dp"
+                android:paddingLeft="18dp" />
+
+        <TextView
+                android:text="@string/log_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LoginFromSignUp"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/aldrich"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

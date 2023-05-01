@@ -10,11 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.polimarche.Users.All.Menu.Main.Main
-import com.example.polimarche.Users.All.Menu.Setup.ProblemsSetupFragment
-import com.example.polimarche.Users.All.Menu.Setup.SeeSetupFragment
+import com.example.polimarche.Users.All.Menu.Setup.Problem.ProblemsSetupFragment
+import com.example.polimarche.Users.All.Menu.Setup.See.SeeSetupFragment
 import com.example.polimarche.Users.Managers.Menu.Setup.Create.CreateSetupFragment
 import com.example.polimarche.Users.Managers.Menu.Setup.Delete.DeleteSetupFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class ManagersSetup : AppCompatActivity(){
 
@@ -30,6 +31,9 @@ class ManagersSetup : AppCompatActivity(){
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.setupManagersBottomNavigationView)
+        bottomNavigationView.setPadding(0, 0 , 0, 0)
+        bottomNavigationView.setOnApplyWindowInsetsListener(null)
+        bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
         bottomNavigationView.background = null
 
         /*

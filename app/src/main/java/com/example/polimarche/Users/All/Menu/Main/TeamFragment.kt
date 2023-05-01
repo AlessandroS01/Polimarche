@@ -15,7 +15,9 @@ class TeamFragment : Fragment(R.layout.fragment_general_main_team), TeamMembersM
 
     private var listMembers : MutableList<DataTeamMember> = insertMembers()
     private var listDepartment: MutableList<DataWorkshopArea> = insertDepartments()
+
     private var membersToggled : MutableList<DataTeamMember> = mutableListOf()
+
     private lateinit var adapter : TeamMembersManagerAdapter
     private lateinit var recyclerView: RecyclerView
 
