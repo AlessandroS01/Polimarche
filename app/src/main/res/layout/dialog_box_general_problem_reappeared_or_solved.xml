@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#000000">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:weightSum="2">
+
+            <TextView
+                    android:text="Problem description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewBody"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/aldrich"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Description"
+                    android:ems="10"
+                    android:id="@+id/editTextReappearedProblem"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/aldrich" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/border_dialog_box_frames"
+                    android:id="@+id/cancelReappearedProblem">
+
+                <TextView
+                        android:text="Cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView78"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:shadowColor="#1A000000"
+                        android:shadowRadius="1"
+                        android:shadowDx="5"
+                        android:shadowDy="5"
+                        android:gravity="center"
+                        android:padding="3dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:id="@+id/confirmReappearedProblem">
+
+                <TextView
+                        android:text="Confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView79"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:shadowColor="#1A000000"
+                        android:shadowRadius="1"
+                        android:shadowDx="5"
+                        android:shadowDy="5"
+                        android:gravity="center"
+                        android:background="@drawable/border_dialog_box_frames"
+                        android:padding="3dp" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <TextView
+                android:text="If the problem reappeared click on confirm otherwise click on cancel.\nDescription value is not compulsory."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewChangeable"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/aldrich"
+                android:padding="5dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

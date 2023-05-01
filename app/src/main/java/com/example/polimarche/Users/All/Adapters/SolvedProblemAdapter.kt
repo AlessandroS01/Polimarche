@@ -10,49 +10,53 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Data.DataOccurringProblem
+import com.example.polimarche.Data.DataSolvedProblem
 
-class OccurringProblemAdapter(
-    private val listOccurringProblem: MutableList<DataOccurringProblem>
+class SolvedProblemAdapter(
+    private val listSolvedProblem: MutableList<DataSolvedProblem>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class ViewHolderOccurringProblem(occurringProblemView : View) : RecyclerView.ViewHolder(occurringProblemView){
-        val setupCode: TextView = occurringProblemView.findViewById(R.id.setupCodeOccurringProblem)
-        val description: EditText = occurringProblemView.findViewById(R.id.descriptionOccurringProblem)
-        val removeProblem: ImageView = occurringProblemView.findViewById(R.id.imageViewRemoveOccurringProblem)
-        
-        val linearLayoutTouchable: LinearLayout = occurringProblemView.findViewById(R.id.linearLayoutTouchableOccurringProblem)
-        val linearLayout: LinearLayout = occurringProblemView.findViewById(R.id.linearLayoutExpandableOccurringProblem)
+    inner class ViewHolderSolvedProblem(solvedProblemView : View) : RecyclerView.ViewHolder(solvedProblemView){
+        val setupCode: TextView = solvedProblemView.findViewById(R.id.setupCodeSolvedProblem)
+        val description: EditText = solvedProblemView.findViewById(R.id.descriptionSolvedProblem)
+        val reappearedProblem: ImageView = solvedProblemView.findViewById(R.id.imageViewReappearedSolvedProblem)
+
+        val linearLayoutTouchable: LinearLayout = solvedProblemView.findViewById(R.id.linearLayoutTouchableSolvedProblem)
+        val linearLayout: LinearLayout = solvedProblemView.findViewById(R.id.linearLayoutExpandableSolvedProblem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_general_occurring_problem, parent, false
+            R.layout.item_general_solved_problem, parent, false
         )
-        return ViewHolderOccurringProblem(view)
+        return ViewHolderSolvedProblem(view)
     }
 
     override fun getItemCount(): Int {
-        return listOccurringProblem.size
+        return listSolvedProblem.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
-            is ViewHolderOccurringProblem ->{
+            is ViewHolderSolvedProblem ->{
                 holder.apply {
-                    setupCode.text = listOccurringProblem[position].setupCode.toString()
-                    description.setText(listOccurringProblem[position].description)
-                    removeProblem.setImageResource(R.drawable.remove_setup_note_icon)
+                    setupCode.text = listSolvedProblem[position].setupCode.toString()
+                    description.setText(listSolvedProblem[position].description)
+                    reappearedProblem.setImageResource(R.drawable.remove_setup_note_icon)
 
-                    val expansion = listOccurringProblem[position].expansion
+                    val expansion = listSolvedProblem[position].expansion
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
                     linearLayoutTouchable.setOnClickListener{
-                        listOccurringProblem[position].expansion = !listOccurringProblem[position].expansion
+                        listSolvedProblem[position].expansion = !listSolvedProblem[position].expansion
                         notifyItemChanged(position)
                     }
-
-                    removeProblem.setOnClickListener {
+                    /*
+                    If the users click on the imageVew, a dialog box pops up and, inside
+                    the element, the user can put a description of the problem again.
+                    Then if the user confirms the reappearance the element will be removed.
+                     */
+                    reappearedProblem.setOnClickListener {
                         showDialog(holder.itemView, position)
                     }
                 }
@@ -77,9 +81,6 @@ class OccurringProblemAdapter(
         dialog.setContentView(R.layout.dialog_box_general_problem_reappeared_or_solved)
 
         val newDescription = dialog.findViewById(R.id.editTextReappearedProblem) as EditText
-        val changeableText = dialog.findViewById(R.id.textViewChangeable) as TextView
-
-        changeableText.text = "If the problem is solved click on confirm otherwise click on cancel.\nDescription value is not compulsory."
 
         val confirmReappearedProblem = dialog.findViewById(R.id.confirmReappearedProblem) as FrameLayout
         val cancelReappearedProblem = dialog.findViewById(R.id.cancelReappearedProblem) as FrameLayout
@@ -88,7 +89,7 @@ class OccurringProblemAdapter(
         Confirm that the problem that was solved before reappeared on the same setup.
          */
         confirmReappearedProblem.setOnClickListener {
-            listOccurringProblem.removeAt(position)
+            listSolvedProblem.removeAt(position)
             notifyDataSetChanged()
             dialog.dismiss()
         }
@@ -97,6 +98,5 @@ class OccurringProblemAdapter(
         }
         dialog.show()
     }
-
 
 }

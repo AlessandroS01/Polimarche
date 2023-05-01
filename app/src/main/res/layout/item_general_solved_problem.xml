@@ -16,13 +16,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/linearLayoutTouchableOccurringProblem">
+            android:id="@+id/linearLayoutTouchableSolvedProblem">
 
         <TextView
                 android:text="Setup Code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/setupCodeOccurringProblem"
+                android:id="@+id/setupCodeSolvedProblem"
                 android:textSize="18sp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
@@ -30,11 +30,11 @@
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/linearLayoutExpandableOccurringProblem"
+            android:id="@+id/linearLayoutExpandableSolvedProblem"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutTouchableOccurringProblem"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutTouchableSolvedProblem"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -46,7 +46,7 @@
                 android:hint="Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/descriptionOccurringProblem"
+                android:id="@+id/descriptionSolvedProblem"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:fontFamily="@font/aldrich"
@@ -62,7 +62,7 @@
                 android:layout_margin="5dp">
 
             <TextView
-                    android:text="Problem solved"
+                    android:text="Problem reappeared"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView71"
@@ -77,8 +77,8 @@
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/remove_setup_note_icon"
-                    android:id="@+id/imageViewRemoveOccurringProblem"
+                    app:srcCompat="@drawable/reappear_icon"
+                    android:id="@+id/imageViewReappearedSolvedProblem"
                     android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>

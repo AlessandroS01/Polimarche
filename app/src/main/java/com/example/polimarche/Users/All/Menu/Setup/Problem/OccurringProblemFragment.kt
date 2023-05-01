@@ -81,6 +81,8 @@ class OccurringProblemFragment: Fragment(R.layout.fragment_general_setup_occurri
         recyclerViewAddOccurringProblem.layoutManager = linearLayoutManagerAddProblem
         recyclerViewAddOccurringProblem.adapter = adapterAddOccurringProblems
 
+
+
         dialog.show()
         /*
         The confirm button check weather if a checkbox inside the recycler view

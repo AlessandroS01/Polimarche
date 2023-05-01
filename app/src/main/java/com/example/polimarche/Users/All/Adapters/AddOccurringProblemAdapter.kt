@@ -1,5 +1,6 @@
 package com.example.polimarche.Users.All.Adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataSetup
+import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 
 class AddOccurringProblemAdapter(
     private val listSetups: MutableList<DataSetup>
@@ -46,6 +48,12 @@ class AddOccurringProblemAdapter(
                 holder.apply {
                     setupCode.text = "Setup code: ${listSetups[position].code.toString()}"
                     visualizeSetup.setImageResource(R.drawable.visibility_icon)
+
+                    visualizeSetup.setOnClickListener {
+                        Intent(holder.itemView.context, DetailsSetupActivity::class.java).apply {
+                            it.context.startActivity(this)
+                        }
+                    }
 
                     /*
                     Changes the values inside the 2 lists created as attributes

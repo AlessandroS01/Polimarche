@@ -80,7 +80,7 @@ class VisualizeSetupFragment(
          */
         confirmDeletion.setOnClickListener {
             setupList.removeAt(clickedSetupPosition)
-            adapter.notifyItemRemoved(clickedSetupPosition)
+            adapter.notifyDataSetChanged()
             parentFragmentManager.beginTransaction().remove(this).commit()
             dialog.dismiss()
         }
