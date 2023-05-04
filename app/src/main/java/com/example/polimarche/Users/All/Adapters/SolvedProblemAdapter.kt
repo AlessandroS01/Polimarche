@@ -1,6 +1,7 @@
 package com.example.polimarche.Users.All.Adapters
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
@@ -11,6 +12,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataSolvedProblem
+import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 
 class SolvedProblemAdapter(
     private val listSolvedProblem: MutableList<DataSolvedProblem>
@@ -20,6 +22,7 @@ class SolvedProblemAdapter(
         val setupCode: TextView = solvedProblemView.findViewById(R.id.setupCodeSolvedProblem)
         val description: EditText = solvedProblemView.findViewById(R.id.descriptionSolvedProblem)
         val reappearedProblem: ImageView = solvedProblemView.findViewById(R.id.imageViewReappearedSolvedProblem)
+        val visualizeProblem: ImageView = solvedProblemView.findViewById(R.id.imageViewVisualizeSetupSolvedProblem)
 
         val linearLayoutTouchable: LinearLayout = solvedProblemView.findViewById(R.id.linearLayoutTouchableSolvedProblem)
         val linearLayout: LinearLayout = solvedProblemView.findViewById(R.id.linearLayoutExpandableSolvedProblem)
@@ -43,6 +46,13 @@ class SolvedProblemAdapter(
                     setupCode.text = listSolvedProblem[position].setupCode.toString()
                     description.setText(listSolvedProblem[position].description)
                     reappearedProblem.setImageResource(R.drawable.remove_setup_note_icon)
+                    visualizeProblem.setImageResource(R.drawable.visibility_icon)
+
+                    visualizeProblem.setOnClickListener {
+                        Intent(it.context, DetailsSetupActivity::class.java).apply {
+                            itemView.context.startActivity(this)
+                        }
+                    }
 
                     val expansion = listSolvedProblem[position].expansion
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE

@@ -141,7 +141,7 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
                 val newCode = problemList[problemList.size - 1].code + 1
                 val newProblem = DataProblem(newCode, newDescription.text.toString())
                 problemList.add(newProblem)
-                adapter.notifyItemInserted(problemList.size - 1)
+                adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }
         }
@@ -162,9 +162,10 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
         )
     }
 
-    override fun onManageProblemClick(position: Int) {
-        val manageProblemFragment = ManageProblemFragment()
+    override fun onManageProblemClick(problemClicked: DataProblem) {
+        val manageProblemFragment = ManageProblemFragment(problemClicked)
         parentFragmentManager.beginTransaction().replace(binding.frameLayoutSetupManageProblemSetup.id,
             manageProblemFragment).commit()
+
     }
 }

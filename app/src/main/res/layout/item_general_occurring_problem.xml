@@ -62,6 +62,34 @@
                 android:layout_margin="5dp">
 
             <TextView
+                    android:text="Visualize setup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView75"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:layout_gravity="center" />
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/visibility_icon"
+                    android:id="@+id/imageViewVisualizeSetupOccurringProblem"
+                    android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp">
+
+            <TextView
                     android:text="Problem solved"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -9,17 +9,18 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
-import com.example.polimarche.Data.DataSetup
 import com.example.polimarche.Users.Managers.Adapters.DeleteSetupAdapter
+import com.example.polimarche.Users.All.Menu.Setup.Problem.SetupViewModel
 
 class VisualizeSetupFragment(
     private val clickedSetupPosition: Int,
-    private val setupList: MutableList<DataSetup>,
     val adapter: DeleteSetupAdapter
-)
-    : Fragment(R.layout.fragment_managers_delete_setup_visualize_setup) {
+) : Fragment(R.layout.fragment_managers_delete_setup_visualize_setup) {
+
+    private val setupViewModel: SetupViewModel by viewModels()
 
     private var _binding: FragmentManagersDeleteSetupVisualizeSetupBinding? = null
     private val binding get() = _binding!!
@@ -79,8 +80,8 @@ class VisualizeSetupFragment(
         adapter to let it know that the item was removed.
          */
         confirmDeletion.setOnClickListener {
-            setupList.removeAt(clickedSetupPosition)
-            adapter.notifyDataSetChanged()
+            setupViewModel.deleteSetup(clickedSetupPosition)
+            adapter.notifyItemRemoved(clickedSetupPosition)
             parentFragmentManager.beginTransaction().remove(this).commit()
             dialog.dismiss()
         }

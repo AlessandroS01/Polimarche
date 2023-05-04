@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <TextView
-            android:text="*To search for a specific problem, you have to insert the problem as a string.\n If you then want to add a problem to another setup then you have to know the problem code."
+            android:text="*To search for a specific problem, you have to insert the problem as a string."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView73"

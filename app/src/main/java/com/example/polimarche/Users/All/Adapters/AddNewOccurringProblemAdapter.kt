@@ -13,7 +13,8 @@ import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataSetup
 import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 
-class AddOccurringProblemAdapter(
+
+class AddNewOccurringProblemAdapter(
     private val listSetups: MutableList<DataSetup>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -22,8 +23,8 @@ class AddOccurringProblemAdapter(
     the setups that are chosen from the entire list thanks to the isChecked method of
     CheckBoxes.
      */
-    private val listCheckedElements: MutableList<Boolean> = MutableList(listSetups.size){false}
-    private val listDescriptionElements: MutableList<String> = MutableList(listSetups.size){""}
+    private val listCheckedElements = initializeMappingCheckedElements()
+    private val listDescriptionElements = initializeMappingDescriptionElements()
 
     inner class ViewHolderAddOccurringProblem(addOccurringProblemView : View) : RecyclerView.ViewHolder(addOccurringProblemView){
         val setupCode: CheckBox = addOccurringProblemView.findViewById(R.id.checkBoxAddOccurringProblem)
@@ -61,10 +62,10 @@ class AddOccurringProblemAdapter(
                      */
                     description.visibility = View.GONE
                     description.addTextChangedListener {
-                        listDescriptionElements[position] = description.text.toString()
+                        listDescriptionElements[listSetups[position]] = description.text.toString()
                     }
                     setupCode.setOnCheckedChangeListener { _, isChecked ->
-                        listCheckedElements[position] = isChecked
+                        listCheckedElements[listSetups[position]] = isChecked
                         description.visibility = if (isChecked) View.VISIBLE else View.GONE
                     }
                 }
@@ -72,10 +73,27 @@ class AddOccurringProblemAdapter(
         }
     }
 
-    fun getListCheckedElements(): MutableList<Boolean>{
+    private fun initializeMappingCheckedElements(): MutableMap<DataSetup, Boolean> {
+        val map = mutableMapOf<DataSetup, Boolean>()
+        listSetups.forEach {
+            map[it] = false
+        }
+        return map
+    }
+
+    private fun initializeMappingDescriptionElements(): MutableMap<DataSetup, String>{
+        val map = mutableMapOf<DataSetup, String>()
+        listSetups.forEach {
+            map[it] = ""
+        }
+        return map
+    }
+
+    fun getListCheckedElements(): MutableMap<DataSetup, Boolean>{
+
         return listCheckedElements
     }
-    fun getListDescriptionElements(): MutableList<String>{
+    fun getListDescriptionElements(): MutableMap<DataSetup, String>{
         return listDescriptionElements
     }
 

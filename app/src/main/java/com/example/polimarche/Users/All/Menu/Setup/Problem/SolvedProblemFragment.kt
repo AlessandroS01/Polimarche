@@ -51,7 +51,7 @@ class SolvedProblemFragment: Fragment(R.layout.fragment_general_setup_solved_pro
             DataSolvedProblem(1, 4, "Risolto posteriore"),
             DataSolvedProblem(1, 5, "Risolto posteriore"),
             DataSolvedProblem(1, 6, "Risolto posteriore"),
-            DataSolvedProblem(1, 7, "Risolto posteriore"),
+            DataSolvedProblem(1, 7, ""),
         )
     }
 
