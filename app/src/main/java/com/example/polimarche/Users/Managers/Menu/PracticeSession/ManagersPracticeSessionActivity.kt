@@ -9,12 +9,12 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Users.All.Menu.Main.Main
+import com.example.polimarche.Users.All.Menu.Main.MainActivity
 import com.example.polimarche.Users.All.Menu.PracticeSession.SeePracticeSessionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
-class ManagersPracticeSession : AppCompatActivity(){
+class ManagersPracticeSessionActivity : AppCompatActivity(){
 
     override fun onBackPressed(){
         moveTaskToBack(false);
@@ -39,7 +39,7 @@ class ManagersPracticeSession : AppCompatActivity(){
          */
         val backButton = findViewById<ImageButton>(R.id.backButtonPracticeSession)
         backButton.setOnClickListener {
-            Intent(this, Main::class.java).also {
+            Intent(this, MainActivity::class.java).also {
                 startActivity(it)
             }
         }

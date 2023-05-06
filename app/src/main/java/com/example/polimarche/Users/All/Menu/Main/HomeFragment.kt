@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralMainHomeBinding
-import com.example.polimarche.Users.Managers.Menu.PracticeSession.ManagersPracticeSession
-import com.example.polimarche.Users.Managers.Menu.Setup.ManagersSetup
-import com.example.polimarche.Users.Managers.Menu.Tracks.ManagersTracks
+import com.example.polimarche.Users.Managers.Menu.PracticeSession.ManagersPracticeSessionActivity
+import com.example.polimarche.Users.Managers.Menu.Setup.ManagersSetupActivity
+import com.example.polimarche.Users.Managers.Menu.Tracks.ManagersTracksActivity
 
 class HomeFragment : Fragment(R.layout.fragment_general_main_home){
 
@@ -36,17 +36,17 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
         on the frame layout positioned in the Home.
          */
         binding.frameLayoutSetup.setOnClickListener {
-            Intent(context, ManagersSetup::class.java).apply {
+            Intent(context, ManagersSetupActivity::class.java).apply {
                 startActivity(this)
             }
         }
         binding.frameLayoutPracticeSession.setOnClickListener {
-            Intent(context, ManagersPracticeSession::class.java).apply {
+            Intent(context, ManagersPracticeSessionActivity::class.java).apply {
                 startActivity(this)
             }
         }
         binding.frameLayoutTracks.setOnClickListener {
-            Intent(context, ManagersTracks::class.java).apply {
+            Intent(context, ManagersTracksActivity::class.java).apply {
                 startActivity(this)
             }
         }

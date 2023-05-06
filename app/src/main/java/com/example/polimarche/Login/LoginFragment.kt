@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentLoginBinding
-import com.example.polimarche.Users.All.Menu.Main.Main
+import com.example.polimarche.Users.All.Menu.Main.MainActivity
 import java.security.MessageDigest
 
 class LoginFragment: Fragment(R.layout.fragment_login) {
@@ -51,7 +51,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
              TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
              TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
              */
-            Intent(this.context, Main::class.java).also {
+            Intent(this.context, MainActivity::class.java).also {
                 it.putExtra("EXTRA_MATRICULATION", matriculation)
                 it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
                 startActivity(it)

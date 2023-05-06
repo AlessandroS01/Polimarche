@@ -15,14 +15,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.polimarche.Login.LoginActivity
-import com.example.polimarche.Users.Managers.Menu.PracticeSession.ManagersPracticeSession
-import com.example.polimarche.Users.Managers.Menu.Setup.ManagersSetup
-import com.example.polimarche.Users.Managers.Menu.Tracks.ManagersTracks
+import com.example.polimarche.Users.Managers.Menu.PracticeSession.ManagersPracticeSessionActivity
+import com.example.polimarche.Users.Managers.Menu.Setup.ManagersSetupActivity
+import com.example.polimarche.Users.Managers.Menu.Tracks.ManagersTracksActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationBarView.LABEL_VISIBILITY_SELECTED
 
-class Main: AppCompatActivity(){
+class MainActivity: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,20 +109,20 @@ class Main: AppCompatActivity(){
         }
         setupLayout.setOnClickListener {
             dialog.hide()
-            Intent(this, ManagersSetup::class.java).also {
+            Intent(this, ManagersSetupActivity::class.java).also {
                 startActivity(it)
             }
         }
         tracksLayout.setOnClickListener {
             dialog.hide()
 
-            Intent(this, ManagersTracks::class.java).also {
+            Intent(this, ManagersTracksActivity::class.java).also {
                 startActivity(it)
             }
         }
         practiceSessionLayout.setOnClickListener {
             dialog.hide()
-            Intent(this, ManagersPracticeSession::class.java).also {
+            Intent(this, ManagersPracticeSessionActivity::class.java).also {
                 startActivity(it)
             }
         }

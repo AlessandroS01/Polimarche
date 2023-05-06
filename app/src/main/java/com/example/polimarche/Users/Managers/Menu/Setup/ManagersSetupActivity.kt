@@ -9,7 +9,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
-import com.example.polimarche.Users.All.Menu.Main.Main
+import com.example.polimarche.Users.All.Menu.Main.MainActivity
 import com.example.polimarche.Users.All.Menu.Setup.Problem.ProblemsSetupFragment
 import com.example.polimarche.Users.All.Menu.Setup.See.SeeSetupFragment
 import com.example.polimarche.Users.Managers.Menu.Setup.Create.CreateSetupFragment
@@ -17,7 +17,7 @@ import com.example.polimarche.Users.Managers.Menu.Setup.Delete.DeleteSetupFragme
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
-class ManagersSetup : AppCompatActivity(){
+class ManagersSetupActivity : AppCompatActivity(){
 
     override fun onBackPressed(){
         moveTaskToBack(false);
@@ -42,7 +42,7 @@ class ManagersSetup : AppCompatActivity(){
          */
         val backButton = findViewById<ImageButton>(R.id.backButtonSetup)
         backButton.setOnClickListener {
-            Intent(this, Main::class.java).also {
+            Intent(this, MainActivity::class.java).also {
                 startActivity(it)
             }
         }

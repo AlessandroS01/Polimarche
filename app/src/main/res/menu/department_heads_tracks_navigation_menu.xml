@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/see_tracks"
+        android:title="Tracks"
+        android:icon="@drawable/track_icon"
+        app:showAsAction="ifRoom"/>
+
+</menu>

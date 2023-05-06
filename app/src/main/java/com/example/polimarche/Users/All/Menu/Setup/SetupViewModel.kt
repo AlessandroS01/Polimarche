@@ -94,7 +94,6 @@ class SetupViewModel: ViewModel() {
     fun deleteSetup(position: Int){
         _setupListData.removeAt(position)
         // TODO FARE IN MODO TALE DA ELIMINARE LA RIGA DAL DB E RICHIAMARE IN SEGUITO LA VISUALIZZAZIONE DEI VARI SETUP PRESENTI
-
     }
 
 }
