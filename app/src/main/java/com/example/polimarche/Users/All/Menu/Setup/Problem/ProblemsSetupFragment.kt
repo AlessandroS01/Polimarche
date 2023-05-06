@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
@@ -24,14 +25,14 @@ import com.example.polimarche.Users.All.Adapters.ProblemAdapter
 class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_setup),
     ProblemAdapter.OnManageProblemClick {
 
+    private val problemViewModel: ProblemsViewModel by viewModels()
+
     private var _binding: FragmentGeneralSetupProblemsSetupBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var searchView: SearchView
 
-    private val problemList: MutableList<DataProblem> = insertProblems()
-
-    private lateinit var adapter: ProblemAdapter
+    private lateinit var problemAdapter: ProblemAdapter
     private lateinit var recyclerView: RecyclerView
 
 
@@ -50,11 +51,14 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
 
         searchView = binding.searchViewProblemSetup
 
-        adapter = ProblemAdapter(problemList, this)
+        problemAdapter = ProblemAdapter(
+            problemViewModel.listProblems.value?.toMutableList()!!,
+            this
+        )
         recyclerView = binding.problemSetupList
         val layoutManager = LinearLayoutManager(this.context)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+        recyclerView.adapter = problemAdapter
 
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -83,8 +87,10 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
      */
     private fun filterList(query: String?){
         if(query != null){
-            val filteredList = problemList.filter { query.lowercase() in it.description.lowercase() }
-            adapter.setFilteredList(filteredList.toMutableList())
+            val filteredList = problemViewModel.listProblems.value?.toMutableList()!!.filter {
+                query.lowercase() in it.description.lowercase()
+            }
+            problemAdapter.setFilteredList(filteredList.toMutableList())
         }
     }
 
@@ -122,7 +128,7 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
             if(newDescription.text.isEmpty()) {
                 errorText.visibility = View.GONE
             }
-            else if (problemList.any {
+            else if (problemViewModel.listProblems.value?.toMutableList()!!.any {
                     newDescription.text.toString().lowercase() in it.description.lowercase()
                     }){
                         correctness = false
@@ -138,10 +144,23 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
          */
         confirmAddNewProblem.setOnClickListener {
             if (correctness) {
-                val newCode = problemList[problemList.size - 1].code + 1
-                val newProblem = DataProblem(newCode, newDescription.text.toString())
-                problemList.add(newProblem)
-                adapter.notifyDataSetChanged()
+                var newCode = 1
+                while (
+                    problemViewModel.listProblems.value?.toMutableList()!!.filter {
+                        it.code == newCode
+                    }.isNotEmpty()
+                ){
+                    newCode++
+                }
+
+                val newProblem = DataProblem(
+                    newCode,
+                    newDescription.text.toString()
+                )
+                problemViewModel.addNewProblem(newProblem)
+                problemAdapter.setList(
+                    problemViewModel.listProblems.value?.toMutableList()!!
+                )
                 dialog.dismiss()
             }
         }
@@ -149,17 +168,6 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
             dialog.dismiss()
         }
         dialog.show()
-    }
-
-
-    private fun insertProblems(): MutableList<DataProblem> {
-        return mutableListOf(
-            DataProblem(1, "Vite mancante"),
-            DataProblem(2, "Bullone"),
-            DataProblem(3, "Sdrogo"),
-            DataProblem(4, "Aiuto"),
-            DataProblem(5, "Vero"),
-        )
     }
 
     override fun onManageProblemClick(problemClicked: DataProblem) {

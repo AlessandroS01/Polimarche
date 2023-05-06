@@ -14,7 +14,7 @@ import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupDeleteSetupBinding
 import com.example.polimarche.Data.*
 import com.example.polimarche.Users.Managers.Adapters.DeleteSetupAdapter
-import com.example.polimarche.Users.All.Menu.Setup.Problem.SetupViewModel
+import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 /*
     Fragment used to show all the setup and their parameters that, unlike

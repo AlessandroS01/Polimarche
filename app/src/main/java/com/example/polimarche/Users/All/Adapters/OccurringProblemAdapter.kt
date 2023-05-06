@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataOccurringProblem
 import com.example.polimarche.Data.DataProblem
+import com.example.polimarche.Data.DataSolvedProblem
 import com.example.polimarche.Users.All.Menu.Setup.Problem.OccurringProblemViewModel
+import com.example.polimarche.Users.All.Menu.Setup.Problem.SolvedProblemViewModel
 import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 /*
 Passes directly the list of problems that matches with the problem clicked
@@ -18,16 +20,17 @@ on ProblemsSetupFragment and then the viewModel to
  */
 class OccurringProblemAdapter(
     private val problemClicked: DataProblem,
-    private var occurringProblemViewModel: OccurringProblemViewModel,
+    private val occurringProblemViewModel: OccurringProblemViewModel,
     private val listener: OnProblemSolvedClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val listOccurringProblem = occurringProblemViewModel.filterListByProblemCode(
+
+    private var listOccurringProblem = occurringProblemViewModel.filterListByProblemCode(
                                             problemClicked.code
                                         )
 
     interface OnProblemSolvedClick{
-        fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View, position: Int)
+        fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View)
     }
 
     inner class ViewHolderOccurringProblem(
@@ -58,8 +61,7 @@ class OccurringProblemAdapter(
                         occurringProblemViewModel.filterListByProblemCode(
                             problemClicked.code
                         ).value?.get(position)!!,
-                        v,
-                        position
+                        v
                     )
                 }
             }
@@ -109,37 +111,34 @@ class OccurringProblemAdapter(
 
     /*
     Adds a new item to the list inside the ViewModel.
+    Then it calls directly a method of the adapter
+    that replaces the list of the adapter.
      */
     fun addItemToItemView(item: DataOccurringProblem){
         occurringProblemViewModel.addNewOccurringProblem(item)
-        notifyDataSetChanged()
+        setNewList(
+            occurringProblemViewModel.filterListByProblemCode(problemClicked.code)
+        )
     }
 
     /*
-    Used to set a new list to the recycler view
+    Firstly it adds to the list inside solvedProblemViewModel a new SolvedProblem
+    in which the problem code is the one of the problem clicked, the
+    setup code is the one of the item removed and the description is the one passed
+    as a parameter from OccurringProblemFragment.
+    Then it calls directly a method of the adapter
+    that replaces the list of the adapter.
      */
-    fun refreshList(problem: DataProblem) {
-        listOccurringProblem.value =
-            occurringProblemViewModel.filterListByProblemCode(problem.code).value
-        notifyDataSetChanged()
+    fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
+        occurringProblemViewModel.removeItemFromList(item, descriptionSolvedProblem)
+        setNewList(
+            occurringProblemViewModel.filterListByProblemCode(problemClicked.code)
+        )
     }
 
-    /*
-    Removes an item inside listOccurringProblem after checking
-    if the item is contained in the same list
-     */
-    fun removeItemFromList(item: DataOccurringProblem){
-        if (checkItemExist(item)) {
-            occurringProblemViewModel.removeItemFromList(item)
-            listOccurringProblem.value =
-                occurringProblemViewModel.filterListByProblemCode(item.problemCode).value
-            notifyDataSetChanged()
-        }
-    }
-    /*
-    Checks if an item is contained inside listOccurringProblem
-     */
-    private fun checkItemExist(item: DataOccurringProblem): Boolean{
-        return occurringProblemViewModel.listOccurringProblem.value?.contains(item) !!
+
+    fun setNewList(newList: MutableLiveData<MutableList<DataOccurringProblem>>){
+        listOccurringProblem = newList
+        notifyDataSetChanged()
     }
 }

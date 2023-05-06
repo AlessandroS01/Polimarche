@@ -1,6 +1,7 @@
 package com.example.polimarche.Users.All.Adapters
 
 import android.annotation.SuppressLint
+import android.provider.ContactsContract.Data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,12 +77,20 @@ class ProblemAdapter(
     }
 
     /*
-    This method lets change the item on the recyclerView
-    at the change of the text inserted inside the SearchView
+    This method changes the list of items of the recyclerView
+    based on the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setFilteredList(filteredList: MutableList<DataProblem>){
         this.problemList = filteredList
+        notifyDataSetChanged()
+    }
+
+    /*
+        This method changes the list of items of the recyclerView
+     */
+    fun setList(newList: MutableList<DataProblem>){
+        this.problemList = newList
         notifyDataSetChanged()
     }
 

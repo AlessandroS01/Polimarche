@@ -21,19 +21,26 @@ import com.example.mobileprogramming.databinding.FragmentGeneralSetupOccurringPr
 import com.example.polimarche.Data.*
 import com.example.polimarche.Users.All.Adapters.AddNewOccurringProblemAdapter
 import com.example.polimarche.Users.All.Adapters.OccurringProblemAdapter
+import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 class OccurringProblemFragment(
     private val problemClicked: DataProblem
-): Fragment(R.layout.fragment_general_setup_occurring_problem), OccurringProblemAdapter.OnProblemSolvedClick {
+):
+    Fragment(R.layout.fragment_general_setup_occurring_problem),
+    OccurringProblemAdapter.OnProblemSolvedClick
+{
 
     private val setupViewModel: SetupViewModel by viewModels()
     private val occurringProblemViewModel: OccurringProblemViewModel by viewModels()
+    private val solvedProblemViewModel: SolvedProblemViewModel by viewModels()
+
 
     private var _binding: FragmentGeneralSetupOccurringProblemBinding? = null
     private val binding get()= _binding!!
 
-    private lateinit var adapterMain: OccurringProblemAdapter
-    private lateinit var recyclerViewMain: RecyclerView
+
+    private lateinit var occurringProblemAdapter: OccurringProblemAdapter
+    private lateinit var recyclerViewOccurringProblem: RecyclerView
 
     private lateinit var adapterAddOccurringProblems: AddNewOccurringProblemAdapter
 
@@ -44,7 +51,11 @@ class OccurringProblemFragment(
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentGeneralSetupOccurringProblemBinding.inflate(inflater, container, false)
+        _binding = FragmentGeneralSetupOccurringProblemBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return binding.root
     }
 
@@ -54,19 +65,16 @@ class OccurringProblemFragment(
         Passes to the adapter the list of problems that matches with the problem code clicked
         on ProblemsSetupFragment.
          */
-        adapterMain = OccurringProblemAdapter(
+        occurringProblemAdapter = OccurringProblemAdapter(
             problemClicked,
             occurringProblemViewModel,
             this
         )
-        recyclerViewMain = binding.listOccurringProblemSetup
+
+        recyclerViewOccurringProblem = binding.listOccurringProblemSetup
         val linearLayoutManagerMain = LinearLayoutManager(this.context)
-        recyclerViewMain.layoutManager = linearLayoutManagerMain
-        recyclerViewMain.adapter = adapterMain
-
-        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner){
-
-        }
+        recyclerViewOccurringProblem.layoutManager = linearLayoutManagerMain
+        recyclerViewOccurringProblem.adapter = occurringProblemAdapter
 
 
         binding.imageButtonAddOccurringProblem.setOnClickListener {
@@ -95,7 +103,9 @@ class OccurringProblemFragment(
         val confirmAddition: FrameLayout = dialog.findViewById(R.id.confirmAddNewOccurringProblem)
         val closeAddition: FrameLayout = dialog.findViewById(R.id.closeAddNewOccurringProblem)
 
-        val recyclerViewAddOccurringProblem: RecyclerView = dialog.findViewById(R.id.listAddNewOccurringProblem)
+        val recyclerViewAddOccurringProblem: RecyclerView = dialog.findViewById(
+            R.id.listAddNewOccurringProblem
+        )
         /*
         Create a list of setups in which all elements have a setupCode different from
         the other setup codes stored inside listOccurringProblem.
@@ -115,7 +125,6 @@ class OccurringProblemFragment(
         recyclerViewAddOccurringProblem.adapter = adapterAddOccurringProblems
 
 
-        dialog.show()
         /*
         The confirm button check weather if a checkbox inside the recycler view
         isChecked or not using a map created inside the adapter itself.
@@ -135,16 +144,16 @@ class OccurringProblemFragment(
                         it.key.code,
                         adapterAddOccurringProblems.getListDescriptionElements().getValue(it.key)
                 )
-                adapterMain.addItemToItemView(newOccurringProblem)
+                occurringProblemAdapter.addItemToItemView(newOccurringProblem)
             }
             /*
-            It sends to adapterMain a request to visualize the list everytime the list
-            changes by sending the newest list created with the use of filterListByProblemCode method
-            of the viewModel.
+            It sends to adapterMain a request to visualize the updated list
              */
-            occurringProblemViewModel.listOccurringProblem.value?.let {
-                adapterMain.refreshList(problemClicked)
-            }
+            occurringProblemAdapter.setNewList(
+                occurringProblemViewModel.filterListByProblemCode(
+                    problemClicked.code
+                )
+            )
             Toast.makeText(this.context, "New setups facing the problem added", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
@@ -152,13 +161,15 @@ class OccurringProblemFragment(
         closeAddition.setOnClickListener {
             dialog.dismiss()
         }
+
+        dialog.show()
     }
 
     /*
     Whenever the user clicks on removeItem the dialog box shows up
     after the call on showDialogRemovingProblem method.
      */
-    override fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View, position: Int) {
+    override fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View) {
         showDialogRemovingProblem(element, itemView)
     }
 
@@ -178,7 +189,7 @@ class OccurringProblemFragment(
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_box_general_problem_reappeared_or_solved)
 
-        val newDescription = dialog.findViewById(R.id.editTextReappearedProblem) as EditText
+        val descriptionNewSolvedProblem = dialog.findViewById(R.id.editTextReappearedProblem) as EditText
         val changeableText = dialog.findViewById(R.id.textViewChangeable) as TextView
 
         changeableText.text = "If the problem is solved click on confirm otherwise click on cancel.\nDescription value is not compulsory."
@@ -190,7 +201,14 @@ class OccurringProblemFragment(
         Confirm that the problem that was solved before reappeared on the same setup.
          */
         confirmReappearedProblem.setOnClickListener {
-            adapterMain.removeItemFromList(element)
+            /*
+            Calls the method removeItemFromList of the adapter and pass
+            the element clicked and the description of the future problemSolved.
+             */
+            occurringProblemAdapter.removeItemFromList(
+                element,
+                descriptionNewSolvedProblem.text.toString()
+            )
             dialog.dismiss()
         }
         cancelReappearedProblem.setOnClickListener {
@@ -202,21 +220,26 @@ class OccurringProblemFragment(
      /*
     Returns a list in which all the different setups are not already stored inside
     listOccurringProblem.
-    So it analyzes all the setups created and then it returns the ones that are not inside
-    the list mentioned 2 lines above.
+    So it analyzes all the setups stored and then it returns the ones that are not inside
+    the list mentioned 2 lines above. Moreover checks if the setup has already fixed the
+    problem.
      */
     private fun findSetupsWithoutProblem(): MutableList<DataSetup>{
         val listSetupsWithoutProblem= mutableListOf<DataSetup>()
 
         setupViewModel.setupList.forEachIndexed { _, dataSetup ->
             if(occurringProblemViewModel.listOccurringProblem.value?.filter {
-                    dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
-                }?.size == 0) {
+                    dataSetup.code == it.setupCode &&
+                            it.problemCode == problemClicked.code
+                }?.size == 0 &&
+                    solvedProblemViewModel.listSolvedProblem.value?.filter {
+                        dataSetup.code == it.setupCode &&
+                                it.problemCode == problemClicked.code
+                    }?.size == 0) {
                 listSetupsWithoutProblem.add(dataSetup)
             }
         }
         return listSetupsWithoutProblem
     }
-
 
 }

@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
 import com.example.polimarche.Users.Managers.Adapters.DeleteSetupAdapter
-import com.example.polimarche.Users.All.Menu.Setup.Problem.SetupViewModel
+import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 class VisualizeSetupFragment(
     private val clickedSetupPosition: Int,

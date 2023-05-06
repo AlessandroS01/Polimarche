@@ -14,7 +14,7 @@ import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralSetupSeeSetupBinding
 import com.example.polimarche.Data.*
 import com.example.polimarche.Users.All.Adapters.SeeSetupAdapter
-import com.example.polimarche.Users.All.Menu.Setup.Problem.SetupViewModel
+import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
 

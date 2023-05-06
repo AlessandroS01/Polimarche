@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.All.Menu.Setup.Problem
+package com.example.polimarche.Users.All.Menu.Setup
 
 import androidx.lifecycle.ViewModel
 import com.example.polimarche.Data.*
