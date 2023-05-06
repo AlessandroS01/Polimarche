@@ -187,15 +187,15 @@ class OccurringProblemFragment(
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.setCancelable(false)
-        dialog.setContentView(R.layout.dialog_box_general_problem_reappeared_or_solved)
+        dialog.setContentView(R.layout.dialog_box_general_all_uses)
 
-        val descriptionNewSolvedProblem = dialog.findViewById(R.id.editTextReappearedProblem) as EditText
-        val changeableText = dialog.findViewById(R.id.textViewChangeable) as TextView
+        val descriptionNewSolvedProblem = dialog.findViewById(R.id.editTextAllUses) as EditText
+        val changeableText = dialog.findViewById(R.id.textViewChangeableAllUses) as TextView
 
         changeableText.text = "If the problem is solved click on confirm otherwise click on cancel.\nDescription value is not compulsory."
 
-        val confirmReappearedProblem = dialog.findViewById(R.id.confirmReappearedProblem) as FrameLayout
-        val cancelReappearedProblem = dialog.findViewById(R.id.cancelReappearedProblem) as FrameLayout
+        val confirmReappearedProblem = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
+        val cancelReappearedProblem = dialog.findViewById(R.id.cancelFrameAllUses) as FrameLayout
 
         /*
         Confirm that the problem that was solved before reappeared on the same setup.

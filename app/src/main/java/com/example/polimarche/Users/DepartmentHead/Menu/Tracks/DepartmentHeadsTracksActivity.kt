@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileprogramming.databinding.ActivityDepartmentHeadsTracksBinding
-import com.example.polimarche.Users.All.Menu.Tracks.SeeTrackFragment
+import com.example.polimarche.Users.All.Menu.Tracks.SeeTracksFragment
 
 class DepartmentHeadsTracksActivity: AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class DepartmentHeadsTracksActivity: AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val seeTracksFragment = SeeTrackFragment()
+        val seeTracksFragment = SeeTracksFragment()
         supportFragmentManager.beginTransaction().apply {
             replace(binding.frameDHTracksManagers.id, seeTracksFragment).commit()
         }

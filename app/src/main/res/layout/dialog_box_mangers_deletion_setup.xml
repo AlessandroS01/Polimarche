@@ -14,40 +14,19 @@
             app:layout_constraintVertical_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="#000000">
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
+        <TextView
+                android:text="Confirm the deletion ?"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:weightSum="2">
-
-            <TextView
-                    android:text="Problem description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewBody"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/aldrich"
-                    android:layout_margin="5dp"
-                    android:layout_gravity="center" />
-
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:hint="Description"
-                    android:ems="10"
-                    android:id="@+id/editTextReappearedProblem"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/aldrich" />
-
-        </LinearLayout>
-
+                android:id="@+id/textViewTitleAllUses"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/aldrich"
+                android:layout_gravity="center"
+                android:background="#000000" />
 
         <LinearLayout
                 android:orientation="horizontal"
@@ -60,7 +39,7 @@
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:background="@drawable/border_dialog_box_frames"
-                    android:id="@+id/cancelReappearedProblem">
+                    android:id="@+id/cancelDeletionSetup">
 
                 <TextView
                         android:text="Cancel"
@@ -84,7 +63,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_margin="5dp"
-                    android:id="@+id/confirmReappearedProblem">
+                    android:id="@+id/confirmDeletionSetup">
 
                 <TextView
                         android:text="Confirm"
@@ -105,17 +84,6 @@
             </FrameLayout>
 
         </LinearLayout>
-
-        <TextView
-                android:text="If the problem reappeared click on confirm otherwise click on cancel.\nDescription value is not compulsory."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewChangeable"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/aldrich"
-                android:padding="5dp" />
 
     </LinearLayout>
 

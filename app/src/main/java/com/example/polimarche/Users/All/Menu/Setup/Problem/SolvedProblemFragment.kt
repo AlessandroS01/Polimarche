@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralSetupSolvedProblemBinding
-import com.example.polimarche.Data.DataOccurringProblem
 import com.example.polimarche.Data.DataProblem
 import com.example.polimarche.Data.DataSolvedProblem
 import com.example.polimarche.Users.All.Adapters.SolvedProblemAdapter
@@ -84,14 +83,14 @@ class SolvedProblemFragment(
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.setCancelable(false)
-        dialog.setContentView(R.layout.dialog_box_general_problem_reappeared_or_solved)
+        dialog.setContentView(R.layout.dialog_box_general_all_uses)
 
         val descriptionNewOccurringProblem = dialog.findViewById(
-            R.id.editTextReappearedProblem
+            R.id.editTextAllUses
         ) as EditText
 
-        val confirmReappearedProblem = dialog.findViewById(R.id.confirmReappearedProblem) as FrameLayout
-        val cancelReappearedProblem = dialog.findViewById(R.id.cancelReappearedProblem) as FrameLayout
+        val confirmReappearedProblem = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
+        val cancelReappearedProblem = dialog.findViewById(R.id.cancelFrameAllUses) as FrameLayout
 
         /*
         Confirm that the problem that was solved before reappeared on the same setup.

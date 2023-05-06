@@ -87,7 +87,7 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
     Add the possibility to delete the setup.
      */
     override fun onSetupCodeClickListener(position: Int) {
-        val visualizeSetup = VisualizeSetupFragment(position, adapter)
+        val visualizeSetup = VisualizeSetupFragment(setupViewModel, position, adapter)
         parentFragmentManager.beginTransaction().apply{
             replace(binding.frameLayoutDeleteSetupVisualizeSetup.id, visualizeSetup).commit()
         }

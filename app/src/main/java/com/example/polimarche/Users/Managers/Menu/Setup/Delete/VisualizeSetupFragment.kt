@@ -9,18 +9,17 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
 import com.example.polimarche.Users.Managers.Adapters.DeleteSetupAdapter
 import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 class VisualizeSetupFragment(
+    private val setupViewModel: SetupViewModel,
     private val clickedSetupPosition: Int,
     val adapter: DeleteSetupAdapter
 ) : Fragment(R.layout.fragment_managers_delete_setup_visualize_setup) {
 
-    private val setupViewModel: SetupViewModel by viewModels()
 
     private var _binding: FragmentManagersDeleteSetupVisualizeSetupBinding? = null
     private val binding get() = _binding!!
@@ -70,9 +69,9 @@ class VisualizeSetupFragment(
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.setCancelable(false)
-        dialog.setContentView(R.layout.dialog_box_managers_confirm_delete_setup)
+        dialog.setContentView(R.layout.dialog_box_mangers_deletion_setup)
 
-        dialog.findViewById(R.id.textViewBody) as TextView
+        dialog.findViewById(R.id.textViewTitleAllUses) as TextView
         val confirmDeletion = dialog.findViewById(R.id.confirmDeletionSetup) as FrameLayout
         val cancelDeletion = dialog.findViewById(R.id.cancelDeletionSetup) as FrameLayout
         /*
@@ -81,7 +80,7 @@ class VisualizeSetupFragment(
          */
         confirmDeletion.setOnClickListener {
             setupViewModel.deleteSetup(clickedSetupPosition)
-            adapter.notifyItemRemoved(clickedSetupPosition)
+            adapter.notifyDataSetChanged()
             parentFragmentManager.beginTransaction().remove(this).commit()
             dialog.dismiss()
         }

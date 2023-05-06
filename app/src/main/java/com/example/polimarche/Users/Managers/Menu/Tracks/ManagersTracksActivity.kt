@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.polimarche.Users.All.Menu.Main.MainActivity
-import com.example.polimarche.Users.All.Menu.Tracks.SeeTrackFragment
+import com.example.polimarche.Users.All.Menu.Tracks.SeeTracksFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
@@ -50,7 +50,7 @@ class ManagersTracksActivity : AppCompatActivity(){
         R.id.frameSetupManagers at the touch of the buttons
         right below the bottomNavigationBar
         */
-        val seeTracksFragment = SeeTrackFragment()
+        val seeTracksFragment = SeeTracksFragment()
         val createTracksFragment = CreateTrackFragment()
         val deleteTracksFragment = DeleteTrackFragment()
         setCurrentFragment(seeTracksFragment)
