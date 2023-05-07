@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralTracksSeeTracksBinding
 import com.example.polimarche.Data.DataTrack
-import com.example.polimarche.Users.All.Adapters.SeeTracksAdapter
 
 class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 

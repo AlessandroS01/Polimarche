@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.All.Adapters
+package com.example.polimarche.Users.All.Menu.Main
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataTeamMember
-import com.example.polimarche.Data.DataTrack
 import com.example.polimarche.Data.DataWorkshopArea
-import com.example.polimarche.Users.All.Menu.Main.TeamViewModel
 import com.example.polimarche.Users.All.Menu.Setup.See.DetailsMemberActivity
 
 

@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.All.Adapters
+package com.example.polimarche.Users.All.Menu.Setup.See
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 
 class SeeSetupAdapter (
     private var elementList : MutableList<Int>

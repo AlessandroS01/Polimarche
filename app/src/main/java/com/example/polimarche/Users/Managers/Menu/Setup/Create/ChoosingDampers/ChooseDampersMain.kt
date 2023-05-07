@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseDampersCreateSetupBinding
 import com.example.polimarche.Data.DataDamper
-import com.example.polimarche.Users.Managers.Adapters.DampersAdapter
-import com.example.polimarche.Users.Managers.Adapters.DampersCodificationAdapter
 
 /*
 Class used for the selection of the dampers used in a new setup

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/constraintLayoutSeePS">
+
+            <TextView
+                    android:text="Practice session date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pSDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:layout_marginTop="5dp"
+                android:padding="3dp"
+                android:id="@+id/linearLayoutExpandablePS">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:text="Event type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSEventType"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Starting time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSStartingTime"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Ending time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSEndingTime"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Track"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSTrack"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Weather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSWeather"
+                        android:layout_margin="3dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Track condition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSTrackCondition"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Track temperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSTrackTemperature"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Ambient pressure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSAmbientPressure"
+                        android:layout_margin="5dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:text="Air temperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pSAirTemperature"
+                        android:layout_margin="3dp"
+                        android:paddingStart="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

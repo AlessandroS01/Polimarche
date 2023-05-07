@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupCreateSetupBinding
 import com.example.polimarche.Data.*
-import com.example.polimarche.Users.Managers.Adapters.SetupNotesAdapter
 import com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingBalance.ChooseBalanceMain
 import com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingDampers.ChooseDampersMain
 import com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingSprings.ChooseSpringsMain

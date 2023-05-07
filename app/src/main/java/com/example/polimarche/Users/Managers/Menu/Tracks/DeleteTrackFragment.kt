@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersTracksDeleteTrackBinding
 import com.example.polimarche.Users.All.Menu.Tracks.TracksViewModel
-import com.example.polimarche.Users.Managers.Adapters.DeleteTracksAdapter
 
 class DeleteTrackFragment : Fragment(R.layout.fragment_managers_tracks_delete_track){
 

@@ -2,9 +2,7 @@ package com.example.polimarche.Users.All.Menu.Setup.Problem
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.polimarche.Data.DataProblem
 import com.example.polimarche.Data.DataSolvedProblem
-import com.example.polimarche.Users.All.Adapters.SolvedProblemAdapter
 
 class SolvedProblemViewModel: ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.Managers.Adapters
+package com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingDampers
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,21 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 
-class SpringsCodificationAdapter(
-    private var elementList: MutableList<String>,
-    private val listener: OnSpringsCodificationClickListener
+class DampersCodificationAdapter(
+    private var elementList: MutableList<Int>,
+    private val listener: OnDampersCodificationClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    interface OnSpringsCodificationClickListener{
-        fun onCodificationClick(codification: String)
+    interface OnDampersCodificationClickListener{
+        fun onCodificationClick(codification: Int)
     }
 
-    inner class ViewHolderSpringsCodification(
-        springCodificationView : View
-    ) : RecyclerView.ViewHolder(springCodificationView), View.OnClickListener {
-        val codification: TextView = springCodificationView.findViewById(R.id.springsCodification)
+    inner class ViewHolderDamperCodification(damperCodificationView : View) : RecyclerView.ViewHolder(damperCodificationView), View.OnClickListener {
+        val codification: TextView = damperCodificationView.findViewById(R.id.dampersCodification)
         init {
-            springCodificationView.setOnClickListener(this)
+            damperCodificationView.setOnClickListener(this)
         }
         override fun onClick(v: View?) {
             val position : Int = adapterPosition
@@ -34,8 +32,8 @@ class SpringsCodificationAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_springs_codification, parent, false)
-        return ViewHolderSpringsCodification(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_dampers_codification, parent, false)
+        return ViewHolderDamperCodification(view)
     }
 
     override fun getItemCount(): Int {
@@ -44,7 +42,7 @@ class SpringsCodificationAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
-            is ViewHolderSpringsCodification ->{
+            is ViewHolderDamperCodification ->{
                 holder.apply {
                     codification.text = "Cod: ${elementList[position]}"
                 }
@@ -57,7 +55,7 @@ class SpringsCodificationAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<String>){
+    fun setFilteredList(filteredList: MutableList<Int>){
         this.elementList = filteredList
         notifyDataSetChanged()
     }

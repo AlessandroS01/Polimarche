@@ -1,7 +1,6 @@
-package com.example.polimarche.Users.All.Adapters
+package com.example.polimarche.Users.All.Menu.Setup.Problem
 
 import android.annotation.SuppressLint
-import android.provider.ContactsContract.Data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,7 @@ class ProblemAdapter(
 
 
         val linearLayout: LinearLayout = problemView.findViewById(R.id.linearLayoutExpandableProblem)
-        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = problemView.findViewById(R.id.costraintLayoutProblem)
+        val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = problemView.findViewById(R.id.costraintLayoutProblem)
 
         init {
             /*
@@ -67,7 +66,7 @@ class ProblemAdapter(
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    costraintLayout.setOnClickListener {
+                    constraintLayout.setOnClickListener {
                         problemList[position].expansion = !problemList[position].expansion
                         notifyItemChanged(position)
                     }

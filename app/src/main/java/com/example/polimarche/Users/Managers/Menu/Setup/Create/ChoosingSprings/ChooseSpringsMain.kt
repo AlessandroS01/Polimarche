@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseSpringsCreateSetupBinding
 import com.example.polimarche.Data.DataSpring
-import com.example.polimarche.Users.Managers.Adapters.SpringsAdapter
-import com.example.polimarche.Users.Managers.Adapters.SpringsCodificationAdapter
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingDampers.FirstSpringsFragment
 
 /*

@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.All.Adapters
+package com.example.polimarche.Users.All.Menu.Setup.Problem
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataOccurringProblem
 import com.example.polimarche.Data.DataProblem
-import com.example.polimarche.Users.All.Menu.Setup.Problem.OccurringProblemViewModel
 import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 /*
 Passes directly the list of problems that matches with the problem clicked

@@ -19,8 +19,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralSetupOccurringProblemBinding
 import com.example.polimarche.Data.*
-import com.example.polimarche.Users.All.Adapters.AddNewOccurringProblemAdapter
-import com.example.polimarche.Users.All.Adapters.OccurringProblemAdapter
 import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 class OccurringProblemFragment(

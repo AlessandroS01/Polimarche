@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupDeleteSetupBinding
 import com.example.polimarche.Data.*
-import com.example.polimarche.Users.Managers.Adapters.DeleteSetupAdapter
 import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 /*

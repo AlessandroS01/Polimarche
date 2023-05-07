@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseBalanceCreateSetupBinding
 import com.example.polimarche.Data.DataBalance
-import com.example.polimarche.Users.Managers.Adapters.BalanceAdapter
-import com.example.polimarche.Users.Managers.Adapters.BalanceCodeAdapter
 
 /*
 Class used for the selection of the dampers used in a new setup

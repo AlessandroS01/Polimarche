@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseWheelsCreateSetupBinding
 import com.example.polimarche.Data.DataWheel
-import com.example.polimarche.Users.Managers.Adapters.WheelsAdapter
-import com.example.polimarche.Users.Managers.Adapters.WheelsCodificationAdapter
 
 
 /*

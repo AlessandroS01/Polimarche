@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.All.Adapters
+package com.example.polimarche.Users.All.Menu.Setup.Problem
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -90,7 +90,6 @@ class AddNewOccurringProblemAdapter(
     }
 
     fun getListCheckedElements(): MutableMap<DataSetup, Boolean>{
-
         return listCheckedElements
     }
     fun getListDescriptionElements(): MutableMap<DataSetup, String>{

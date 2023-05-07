@@ -1,22 +1,23 @@
-package com.example.polimarche.Users.Managers.Adapters
+package com.example.polimarche.Users.All.Menu.Tracks
 
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.InputType
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataTrack
-import com.example.polimarche.Users.All.Menu.Tracks.TracksViewModel
 
-class DeleteTracksAdapter(
+class SeeTracksAdapter(
     private val tracksViewModel: TracksViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -40,8 +41,7 @@ class DeleteTracksAdapter(
 
         val trackName = tracksView.findViewById(R.id.trackName) as TextView
         val trackLength = tracksView.findViewById(R.id.trackLength) as TextView
-        val removeTrack = tracksView.findViewById(R.id.imageViewModifyAllUsesTracks) as ImageView
-        val textView = tracksView.findViewById(R.id.textViewChangeableTracks) as TextView
+        val modifyTrackLength = tracksView.findViewById(R.id.imageViewModifyAllUsesTracks) as ImageView
 
         val constraintLayout: ConstraintLayout = tracksView.findViewById(
             R.id.constraintLayoutAllUsesTracks
@@ -68,8 +68,7 @@ class DeleteTracksAdapter(
                 holder.apply {
                     trackName.text = listTracks.value?.get(position)?.name
                     trackLength.text = "${listTracks.value?.get(position)?.length.toString()} km"
-                    removeTrack.setImageResource(R.drawable.remove_general_small_icon)
-                    textView.text = "Remove track"
+                    modifyTrackLength.setImageResource(R.drawable.modify_icon)
 
                     val expansion = listTracks.value?.get(position)?.expansion!!
 
@@ -81,12 +80,12 @@ class DeleteTracksAdapter(
                         notifyItemChanged(position)
                     }
 
-                    removeTrack.setOnClickListener {
+                    modifyTrackLength.setOnClickListener {
                         /*
                         Recalls a method in which the user can confirm or cancel the
                         track length modification
                          */
-                        showDialogRemoveTrack(holder.itemView, position)
+                        showDialogModifyTrackLength(holder.itemView, position)
                     }
                 }
             }
@@ -94,7 +93,7 @@ class DeleteTracksAdapter(
     }
 
     @SuppressLint("ResourceAsColor")
-    private fun showDialogRemoveTrack(item: View, position: Int) {
+    private fun showDialogModifyTrackLength(item: View, position: Int) {
         val dialog = Dialog(item.context)
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -106,31 +105,51 @@ class DeleteTracksAdapter(
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_box_general_all_uses)
 
-        val editTextToNonVisible = dialog.findViewById(R.id.editTextAllUses) as EditText
-        editTextToNonVisible.visibility = View.GONE
-
-        val textViewChangeableToNonVisible = dialog.findViewById(R.id.textViewChangeableAllUses) as TextView
-        textViewChangeableToNonVisible.visibility = View.GONE
-        
+        val modifyLengthEditText = dialog.findViewById(R.id.editTextAllUses) as EditText
         val titleDialog = dialog.findViewById(R.id.textViewTitleAllUses) as TextView
         val confirmFrame = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
         val cancelFrame = dialog.findViewById(R.id.cancelFrameAllUses) as FrameLayout
 
-        titleDialog.text = "Remove track"
+        titleDialog.text = "Modify track length"
 
+        modifyLengthEditText.hint = "Track length (in km)"
+        modifyLengthEditText.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
+
+        val changeableText = dialog.findViewById(R.id.textViewChangeableAllUses) as TextView
+        changeableText.text = "Inside the edit text only write a decimal number like 6.092 if the track length is 6.092km"
 
         /*
         Confirm to modify the length of the track
          */
         confirmFrame.setOnClickListener {
-            tracksViewModel.removeTrack(
-                tracksViewModel.filterTracksByName(
-                    inputQuery.value.toString()
-                ).value?.get(position)!!
-            )
-            setNewList(tracksViewModel.listTracks)
-            dialog.dismiss()
-
+            /*
+            Whenever the user inserts a value that cannot be converted to a Double value,
+            the dialog won't be dismissed and changes also the color and the text of a textView
+            in which there's written what the error is.
+             */
+            if(modifyLengthEditText.text.toString().toDoubleOrNull() == null){
+                changeableText.setTextColor(ContextCompat.getColor(item.context, R.color.red_700))
+                changeableText.text = "The value inside the edit text must be changed to confirm the modification. \nWrite a decimal number like 6.092 if the track length is 6.092km"
+            }
+            /*
+            When the user sets a proper value inside the edit text, the adapter recalls directly
+            modifyTrackLength method of the viewModel giving it a DataTrack and the new length.
+            The DataTrack given is found thanks to the use of an other method of the viewModel
+            called filterTracksByName that requires the string of the query.
+            So if filterTracksByName returns a list of DataTracks, it can find the exact
+            DataTrack that was touched getting the element at the position clicked,
+            even though the list can be different.
+             */
+            else{
+                tracksViewModel.modifyTrackLength(
+                    tracksViewModel.filterTracksByName(
+                        inputQuery.value.toString()
+                    ).value?.get(position)!!,
+                    modifyLengthEditText.text.toString().toDouble()
+                )
+                notifyItemChanged(position)
+                dialog.dismiss()
+            }
         }
         cancelFrame.setOnClickListener {
             dialog.dismiss()
@@ -152,6 +171,12 @@ class DeleteTracksAdapter(
     private fun setNewList(newList: MutableLiveData<MutableList<DataTrack>>){
         listTracks = newList
         notifyDataSetChanged()
+    }
+
+
+    fun addNewTrack(newTrack: DataTrack){
+        tracksViewModel.addNewTrack(newTrack)
+        setNewList(tracksViewModel.filterTracksByName(inputQuery.value.toString()))
     }
 
 

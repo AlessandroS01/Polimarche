@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.Managers.Adapters
+package com.example.polimarche.Users.Managers.Menu.Setup.Create
 
 import android.text.Editable
 import android.text.TextWatcher

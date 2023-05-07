@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralSetupProblemsSetupBinding
 import com.example.polimarche.Data.DataProblem
-import com.example.polimarche.Users.All.Adapters.ProblemAdapter
 
 class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_setup),
     ProblemAdapter.OnManageProblemClick {

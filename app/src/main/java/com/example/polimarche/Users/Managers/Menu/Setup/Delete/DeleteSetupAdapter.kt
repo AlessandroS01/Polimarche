@@ -1,4 +1,4 @@
-package com.example.polimarche.Users.Managers.Adapters
+package com.example.polimarche.Users.Managers.Menu.Setup.Delete
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

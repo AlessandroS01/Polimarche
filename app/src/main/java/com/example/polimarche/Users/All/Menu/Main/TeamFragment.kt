@@ -8,9 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Data.DataTeamMember
-import com.example.polimarche.Data.DataWorkshopArea
-import com.example.polimarche.Users.All.Adapters.TeamAdapter
 
 class TeamFragment : Fragment(
     R.layout.fragment_general_main_team

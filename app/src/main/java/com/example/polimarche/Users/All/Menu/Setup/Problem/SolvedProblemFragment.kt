@@ -18,7 +18,6 @@ import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentGeneralSetupSolvedProblemBinding
 import com.example.polimarche.Data.DataProblem
 import com.example.polimarche.Data.DataSolvedProblem
-import com.example.polimarche.Users.All.Adapters.SolvedProblemAdapter
 
 class SolvedProblemFragment(
     private val problemClicked: DataProblem

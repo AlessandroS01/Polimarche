@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
-import com.example.polimarche.Users.Managers.Adapters.DeleteSetupAdapter
 import com.example.polimarche.Users.All.Menu.Setup.SetupViewModel
 
 class VisualizeSetupFragment(
