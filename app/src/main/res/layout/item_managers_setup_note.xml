@@ -81,7 +81,7 @@
                         android:text="Remove note"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView71"
+                        android:id="@+id/textViewChangeableTracks"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textColor="#FFFFFF"
@@ -93,7 +93,7 @@
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/remove_setup_note_icon"
+                        app:srcCompat="@drawable/remove_general_small_icon"
                         android:id="@+id/imageViewRemoveNote"
                         android:layout_weight="1" />
             </LinearLayout>

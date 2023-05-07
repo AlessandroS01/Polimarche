@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.Data.DataOccurringProblem
 import com.example.polimarche.Data.DataProblem
-import com.example.polimarche.Data.DataSolvedProblem
 import com.example.polimarche.Users.All.Menu.Setup.Problem.OccurringProblemViewModel
-import com.example.polimarche.Users.All.Menu.Setup.Problem.SolvedProblemViewModel
 import com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity
 /*
 Passes directly the list of problems that matches with the problem clicked
@@ -87,7 +85,7 @@ class OccurringProblemAdapter(
                 holder.apply {
                     setupCode.text = "Setup ${ listOfItems?.get(position)?.setupCode.toString() }"
                     description.setText(listOfItems?.get(position)?.description)
-                    removeProblem.setImageResource(R.drawable.remove_setup_note_icon)
+                    removeProblem.setImageResource(R.drawable.remove_general_small_icon)
                     visualizeProblem.setImageResource(R.drawable.visibility_icon)
 
                     visualizeProblem.setOnClickListener {

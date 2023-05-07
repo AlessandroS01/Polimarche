@@ -8,12 +8,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/create_tracks"
-        android:title="Create"
-        android:icon="@drawable/create_icon"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/delete_tracks"
         android:title="Delete"
         android:icon="@drawable/delete_icon"

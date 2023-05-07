@@ -51,13 +51,11 @@ class ManagersTracksActivity : AppCompatActivity(){
         right below the bottomNavigationBar
         */
         val seeTracksFragment = SeeTracksFragment()
-        val createTracksFragment = CreateTrackFragment()
         val deleteTracksFragment = DeleteTrackFragment()
         setCurrentFragment(seeTracksFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.see_tracks -> setCurrentFragment(seeTracksFragment)
-                R.id.create_tracks -> setCurrentFragment(createTracksFragment)
                 R.id.delete_tracks -> setCurrentFragment(deleteTracksFragment)
             }
             true

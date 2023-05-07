@@ -1,5 +1,6 @@
 package com.example.polimarche.Users.All.Menu.Tracks
 
+import android.provider.ContactsContract.Data
 import androidx.lifecycle.MutableLiveData
 import com.example.polimarche.Data.DataOccurringProblem
 import com.example.polimarche.Data.DataTrack
@@ -32,5 +33,12 @@ object TracksRepository {
     fun addNewTrack(newTrack: DataTrack){
         _listTracks.value =
             _listTracks.value?.plus(newTrack) as MutableList<DataTrack>?
+    }
+
+    /*
+    Removes an existing track from the list
+     */
+    fun removeTrack(trackToDelete: DataTrack){
+        _listTracks.value?.remove(trackToDelete)
     }
 }

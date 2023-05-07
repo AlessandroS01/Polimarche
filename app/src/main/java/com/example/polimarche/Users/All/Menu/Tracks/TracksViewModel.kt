@@ -42,5 +42,12 @@ class TracksViewModel: ViewModel() {
         TracksRepository.addNewTrack(newTrack)
     }
 
+    /*
+    Recalls directly the repository to delete a track given
+     */
+    fun removeTrack(trackToDelete: DataTrack){
+        TracksRepository.removeTrack(trackToDelete)
+    }
+
 
 }

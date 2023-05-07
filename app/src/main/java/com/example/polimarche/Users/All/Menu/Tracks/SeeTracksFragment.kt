@@ -35,8 +35,6 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
     private lateinit var seeTracksRecyclerView: RecyclerView
     private lateinit var seeTracksAdapter: SeeTracksAdapter
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

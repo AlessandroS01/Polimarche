@@ -1,10 +1,6 @@
 package com.example.polimarche.Users.All.Adapters
 
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +8,6 @@ import android.widget.*
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.Data.DataOccurringProblem
 import com.example.polimarche.Data.DataProblem
 import com.example.polimarche.Data.DataSolvedProblem
 import com.example.polimarche.Users.All.Menu.Setup.Problem.SolvedProblemViewModel
@@ -87,7 +82,7 @@ class SolvedProblemAdapter(
                 holder.apply {
                     setupCode.text = "Setup ${ listOfItems?.get(position)?.setupCode.toString() }"
                     description.setText(listOfItems?.get(position)?.description)
-                    reappearedProblem.setImageResource(R.drawable.remove_setup_note_icon)
+                    reappearedProblem.setImageResource(R.drawable.remove_general_small_icon)
                     visualizeProblem.setImageResource(R.drawable.visibility_icon)
 
                     visualizeProblem.setOnClickListener {

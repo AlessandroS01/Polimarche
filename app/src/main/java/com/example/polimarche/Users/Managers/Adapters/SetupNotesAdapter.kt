@@ -54,7 +54,7 @@ class SetupNotesAdapter(
                 holder.apply {
                     note.setText(newSetup.notes[position])
                     add.setImageResource(R.drawable.create_note_setup_icon)
-                    remove.setImageResource(R.drawable.remove_setup_note_icon)
+                    remove.setImageResource(R.drawable.remove_general_small_icon)
                     /*
                     Creates a new note after the click on the imageView
                     that is linked to "add" attribute of the viewHolder.
