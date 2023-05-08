@@ -100,36 +100,6 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         }
 
         /*
-        Shows and hides the layout used to choose the front wring hole of the new setup.
-         */
-        binding.chooseFrontWingHoleCreateSetup.setOnClickListener {
-            changeVisibilityViews(binding.layoutFrontWingHole)
-        }
-
-        /*
-        Shows and hides the layout used to choose the preferred event types
-        for which the setup was made for.
-         */
-        binding.chooseSetupPreferredEvents.setOnClickListener {
-            changeVisibilityViews(binding.layoutSetupPreferredEvents)
-        }
-
-        /*
-        Shows and hides the layout used to choose the setup code of the new setup.
-         */
-        binding.chooseSetupCodeCreateSetup.setOnClickListener { 
-            changeVisibilityViews(binding.layoutSetupCode)
-        }
-
-        /*
-        Shows and hides the recycler view used to add notes to the
-        newest setup.
-         */
-        binding.addNotesCreateSetup.setOnClickListener {
-            changeVisibilityViews(binding.listNotesNewSetup)
-        }
-
-        /*
         Setting up the recycler view containing the notes of the newest setup
          */
         recyclerViewSetupNotes = binding.listNotesNewSetup
@@ -139,14 +109,6 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         recyclerViewSetupNotes.adapter = adapterSetupNotes
 
 
-    }
-
-    /*
-    Changes the visibility of a layout containing an edit Text used
-    to set a particular parameter for a new setup.
-     */
-    private fun changeVisibilityViews(view: View){
-        view.isVisible = !view.isVisible
     }
 
 }

@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.Data.DataPracticeSession
 
 class SeePracticeSessionAdapter(
     private val practiceSessionViewModel: PracticeSessionViewModel
@@ -82,9 +84,42 @@ class SeePracticeSessionAdapter(
     }
 
     /*
-    fun setNewList(newList: MutableLiveData<MutableList<DataOccurringProblem>>){
+    Restores the default list of the recyclerView.
+     */
+    fun restoreListToDefault(){
+        setNewList(practiceSessionViewModel.listPracticeSession)
+    }
+
+    /*
+    Filter the list of practice session the one that occurred on the day
+    given as input and in which the event was the one selected trough the
+    radioButton.
+     */
+    fun filterListByEventChecked(query: String, eventType: String){
+        listPracticeSession = practiceSessionViewModel.listPracticeSession
+        val listFiltered = MutableLiveData(listPracticeSession.value?.filter {
+            it.date.toString() == query && it.eventType.lowercase() == eventType.lowercase()
+        }?.toMutableList()!!)
+        setNewList(listFiltered)
+    }
+
+    /*
+    Filter the list of practice session the one that occurred on the day
+    given as input.
+     */
+    fun filterListWithoutEvents(query: String){
+        listPracticeSession = practiceSessionViewModel.listPracticeSession
+        val listFiltered = MutableLiveData(listPracticeSession.value?.filter {
+            it.date.toString() == query
+        }?.toMutableList()!!)
+        setNewList(listFiltered)
+    }
+
+    /*
+    Refresh the list of items inside the recyclerView.
+     */
+    private fun setNewList(newList: MutableLiveData<MutableList<DataPracticeSession>>){
         listPracticeSession = newList
         notifyDataSetChanged()
     }
-     */
 }

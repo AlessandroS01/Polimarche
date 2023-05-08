@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <TextView
-            android:text="*You can search a practice session of a particular event by checking the check box right below and specifying the event type.\nOtherwise uncheck the checkbox below."
+            android:text="*You can search a practice session of a particular event by checking the check box right below and specifying the event type.\nOtherwise uncheck the checkbox below.\nThe date should be formatted like 2023-08-12 -> YYYY-MM--DD "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView10"

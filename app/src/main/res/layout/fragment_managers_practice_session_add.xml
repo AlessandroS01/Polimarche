@@ -1,32 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
 
-    <TextView
-            android:text="AGGIUNGERE LA POSSIBILITA' DI AGGIUNGERE SIA IL TIPO DI EVENTO, SIA IL TRACCIATO E TUTTE LE VARIE INFORMAZIONI DELLA SESSIONE"
-            android:layout_width="wrap_content"
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            android:scrollbars="none">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+            <TextView
+                    android:text="*You can scroll to visualize every information needed to create a new practice session.\nYou can also decide to set the date automatically, clicking on the button, or manually."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView14"
+                    android:layout_weight="1"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textColor="#FFFFFF" />
+
+            <TextView
+                    android:text="Set track"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setTrackPS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/listTracksAddPS"
+                    android:layout_marginTop="5dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                    android:text="Set event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setEventPS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/radioGroupEventCategories"
+                    android:weightSum="4"
+                    android:checkedButton="@id/radioButtonEndurance"
+                    android:layout_marginTop="5dp">
+
+                <RadioButton
+                        android:text="Endurance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonEndurance"
+                        android:textSize="10sp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF" />
+
+                <RadioButton
+                        android:text="Acceleration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonAcceleration"
+                        android:textSize="10sp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF" />
+
+                <RadioButton
+                        android:text="Skidpad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonSkidpad"
+                        android:textSize="10sp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF" />
+
+                <RadioButton
+                        android:text="Autocross"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonAutocross"
+                        android:textSize="10sp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF" />
+
+            </RadioGroup>
+
+            <TextView
+                    android:text="Set date YYYY-MM-DD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setDatePS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/linearLayout11">
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="date"
+                        android:ems="10"
+                        android:id="@+id/setDatePSEditText"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:hint="Set date manually"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_marginEnd="5dp" />
+
+                <Button
+                        android:text="Calculate date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setDatePSButton"
+                        android:layout_gravity="center"
+                        android:backgroundTint="#9A9A9A"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/aldrich"
+                        app:rippleColor="#5C5C5C"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp" />
+
+            </LinearLayout>
+
+            <TextView
+                    android:text="Set time HH:MM:SS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setTimePS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/linearLayout12">
+
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/setStartingTimePS"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:hint="Set starting time"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich" />
+
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="time"
+                        android:ems="10"
+                        android:id="@+id/setEndingTimePS"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:hint="Set ending time"
+                        android:fontFamily="@font/aldrich"
+                        android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                    android:text="Set weather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setWeatherPS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/setWeatherEditTextPS"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/aldrich"
+                    android:hint="Weather"
+                    android:layout_marginTop="5dp" />
+
+            <TextView
+                    android:text="Set track information"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setTrackInformationPS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout13"
+                    android:layout_marginTop="5dp">
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:ems="10"
+                        android:id="@+id/setTrackConditionEditTextPS"
+                        app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:hint="Track condition" />
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/setTrackTemperatureEditTextPS"
+                        app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:hint="Track temperature"
+                        android:layout_marginTop="5dp" />
+            </LinearLayout>
+
+            <TextView
+                    android:text="Set ambient information"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/setAmbientInformationPS"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aldrich"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="10dp" />
+
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/setAmbientInformationPS"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"
-            android:background="#000000" />
+            android:layout_marginTop="5dp">
 
-    <TextView
-            android:text="IMMETTERE ANCHE CHI HA FATTO LA PROVA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView14"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:textColor="#FFFFFF"
-            android:background="#000000"
-            app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/setAmbientPressureEditTextPS"
+                        app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:hint="Ambient pressure" />
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/setAirTemperatureEditTextPS"
+                        app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/aldrich"
+                        android:hint="Air temperature"
+                        android:layout_marginTop="5dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:id="@+id/linearLayoutCreatePS"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:text="Create new session"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView57"
+                        android:layout_weight="1.5"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/aldrich"
+                        android:gravity="center" />
+
+                <ImageView
+                        android:layout_width="199dp"
+                        android:layout_height="23dp"
+                        app:srcCompat="@drawable/create_setup_icon"
+                        android:id="@+id/imageViewCreatePS"
+                        android:layout_weight="0.5" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
