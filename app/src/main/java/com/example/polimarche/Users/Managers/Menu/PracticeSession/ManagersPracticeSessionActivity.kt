@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.polimarche.Users.All.Menu.Main.MainActivity
 import com.example.polimarche.Users.All.Menu.PracticeSession.SeePracticeSessionFragment
+import com.example.polimarche.Users.Managers.Menu.PracticeSession.Create.AddPracticeSessionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 

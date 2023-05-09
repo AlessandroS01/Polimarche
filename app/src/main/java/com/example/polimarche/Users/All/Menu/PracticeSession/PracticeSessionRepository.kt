@@ -30,4 +30,9 @@ object PracticeSessionRepository {
             )
         )
     val listPracticeSession get() = _listPracticeSessions
+
+    fun addNewPracticeSession(newSession: DataPracticeSession){
+        _listPracticeSessions.value =
+            _listPracticeSessions.value?.plus(newSession) as MutableList<DataPracticeSession>?
+    }
 }

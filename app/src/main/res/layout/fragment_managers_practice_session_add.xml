@@ -144,7 +144,8 @@
                         android:hint="Set date manually"
                         android:textSize="12sp"
                         android:fontFamily="@font/aldrich"
-                        android:layout_marginEnd="5dp" />
+                        android:layout_marginEnd="5dp"
+                        android:maxLength="10" />
 
                 <Button
                         android:text="Calculate date"
@@ -193,7 +194,8 @@
                         android:layout_marginEnd="5dp"
                         android:hint="Set starting time"
                         android:textSize="12sp"
-                        android:fontFamily="@font/aldrich" />
+                        android:fontFamily="@font/aldrich"
+                        android:maxLength="8" />
 
                 <EditText
                         android:layout_width="wrap_content"
@@ -205,7 +207,8 @@
                         android:layout_marginStart="5dp"
                         android:hint="Set ending time"
                         android:fontFamily="@font/aldrich"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:maxLength="8" />
             </LinearLayout>
 
             <TextView
@@ -267,7 +270,7 @@
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
+                        android:inputType="number|numberDecimal"
                         android:ems="10"
                         android:id="@+id/setTrackTemperatureEditTextPS"
                         app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
@@ -276,8 +279,9 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textSize="12sp"
                         android:fontFamily="@font/aldrich"
-                        android:hint="Track temperature"
-                        android:layout_marginTop="5dp" />
+                        android:hint="Track temperature ( °C ) "
+                        android:layout_marginTop="5dp"
+                        android:maxLength="5" />
             </LinearLayout>
 
             <TextView
@@ -306,7 +310,7 @@
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
+                        android:inputType="number|numberDecimal"
                         android:ems="10"
                         android:id="@+id/setAmbientPressureEditTextPS"
                         app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
@@ -315,12 +319,12 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textSize="12sp"
                         android:fontFamily="@font/aldrich"
-                        android:hint="Ambient pressure" />
+                        android:hint="Ambient pressure ( bar )" />
 
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
+                        android:inputType="number|numberDecimal"
                         android:ems="10"
                         android:id="@+id/setAirTemperatureEditTextPS"
                         app:layout_constraintTop_toBottomOf="@+id/setWeatherPS"
@@ -329,8 +333,9 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textSize="12sp"
                         android:fontFamily="@font/aldrich"
-                        android:hint="Air temperature"
-                        android:layout_marginTop="5dp"/>
+                        android:hint="Air temperature ( °C )"
+                        android:layout_marginTop="5dp"
+                        android:maxLength="5" />
 
             </LinearLayout>
 
@@ -341,8 +346,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:weightSum="2"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1">
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:padding="10dp">
 
                 <TextView
                         android:text="Create new session"

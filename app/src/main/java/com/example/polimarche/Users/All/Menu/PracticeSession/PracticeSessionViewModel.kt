@@ -12,5 +12,8 @@ class PracticeSessionViewModel: ViewModel() {
         PracticeSessionRepository.listPracticeSession
     val listPracticeSession get() = _listPracticeSessions
 
+    fun addNewPracticeSession(newSession: DataPracticeSession){
+        PracticeSessionRepository.addNewPracticeSession(newSession)
+    }
 
 }
