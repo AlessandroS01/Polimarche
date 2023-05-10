@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="setupClicked"
+                type="com.example.polimarche.data_container.setup.DataSetup" />
+        <variable
+                name="notesSetupClicked"
+                type="String" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black">
@@ -32,7 +41,7 @@
 
             <TextView
                     android:textColor="@color/white"
-                    android:text="Setup Code"
+                    android:text="@{String.valueOf(setupClicked.code)}"
                     android:layout_width="111dp"
                     android:layout_height="34dp"
                     android:id="@+id/deleteSetupCode"
@@ -94,7 +103,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.frontLeftWheel.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontLeftWheelCode"
@@ -103,7 +112,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Codification:"
+                                android:text="@{setupClicked.frontLeftWheel.codification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontLeftWheelCodification"
@@ -112,7 +121,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Pressure:"
+                                android:text="@{setupClicked.frontLeftWheel.pressure}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontLeftWheelPressure"
@@ -121,7 +130,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Camber:"
+                                android:text="@{setupClicked.frontLeftWheel.camber}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontLeftWheelCamber"
@@ -130,7 +139,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Toe:"
+                                android:text="@{setupClicked.frontLeftWheel.toe}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontLeftWheelToe"
@@ -158,7 +167,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.frontRightWheel.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontRightWheelCode"
@@ -168,7 +177,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Codification:"
+                                android:text="@{setupClicked.frontRightWheel.codification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontRightWheelCodification"
@@ -177,7 +186,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Pressure:"
+                                android:text="@{setupClicked.frontRightWheel.pressure}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontRightWheelPressure"
@@ -186,7 +195,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Camber:"
+                                android:text="@{setupClicked.frontRightWheel.camber}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontRightWheelCamber"
@@ -195,7 +204,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Toe:"
+                                android:text="@{setupClicked.frontRightWheel.toe}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontRightWheelToe"
@@ -229,7 +238,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.rearLeftWheel.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearLeftWheelCode"
@@ -238,7 +247,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Codification:"
+                                android:text="@{setupClicked.rearLeftWheel.codification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearLeftWheelCodification"
@@ -247,7 +256,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Pressure:"
+                                android:text="@{setupClicked.rearLeftWheel.pressure}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearLeftWheelPressure"
@@ -256,7 +265,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Camber:"
+                                android:text="@{setupClicked.rearLeftWheel.camber}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearLeftWheelCamber"
@@ -265,7 +274,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Toe:"
+                                android:text="@{setupClicked.rearLeftWheel.toe}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearLeftWheelToe"
@@ -293,7 +302,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.rearRightWheel.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearRightWheelCode"
@@ -302,7 +311,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Codification:"
+                                android:text="@{setupClicked.rearRightWheel.codification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearRightWheelCodification"
@@ -311,7 +320,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Pressure:"
+                                android:text="@{setupClicked.rearRightWheel.pressure}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearRightWheelPressure"
@@ -320,7 +329,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Camber:"
+                                android:text="@{setupClicked.rearRightWheel.camber}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearRightWheelCamber"
@@ -329,7 +338,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Toe:"
+                                android:text="@{setupClicked.rearRightWheel.toe}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupRearRightWheelToe"
@@ -372,7 +381,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.frontDamper.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontDamperCode"
@@ -381,7 +390,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Hsr:"
+                                android:text="@{String.valueOf(setupClicked.frontDamper.hsr)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontDamperHsr"
@@ -390,7 +399,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Hsc:"
+                                android:text="@{String.valueOf(setupClicked.frontDamper.hsc)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontDamperHsc"
@@ -399,7 +408,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Lsr:"
+                                android:text="@{String.valueOf(setupClicked.frontDamper.lsr)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontDamperLsr"
@@ -408,7 +417,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Lsc:"
+                                android:text="@{String.valueOf(setupClicked.frontDamper.lsc)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontDamperLsc"
@@ -436,7 +445,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.backDamper.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackDamperCode"
@@ -445,7 +454,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Hsr:"
+                                android:text="@{String.valueOf(setupClicked.backDamper.hsr)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackDamperHsr"
@@ -454,7 +463,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Hsc:"
+                                android:text="@{String.valueOf(setupClicked.backDamper.hsc)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackDamperHsc"
@@ -463,7 +472,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Lsr:"
+                                android:text="@{String.valueOf(setupClicked.backDamper.lsr)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackDamperLsr"
@@ -472,7 +481,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Lsc:"
+                                android:text="@{String.valueOf(setupClicked.backDamper.lsc)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackDamperLsc"
@@ -516,7 +525,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.frontSpring.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontSpringCode"
@@ -525,7 +534,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Codification:"
+                                android:text="@{setupClicked.frontSpring.codification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontSpringCodification"
@@ -534,7 +543,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Height:"
+                                android:text="@{String.valueOf(setupClicked.frontSpring.height)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontSpringHeight"
@@ -543,7 +552,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Arb stiffness:"
+                                android:text="@{setupClicked.frontSpring.arb_stiffness}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontSpringArbStiff"
@@ -552,7 +561,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Arb position:"
+                                android:text="@{setupClicked.frontSpring.arb_position}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontSpringArbPos"
@@ -580,7 +589,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.backSpring.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackSpringCode"
@@ -589,7 +598,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Codification:"
+                                android:text="@{setupClicked.backSpring.codification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackSpringCodification"
@@ -598,7 +607,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Height:"
+                                android:text="@{String.valueOf(setupClicked.backSpring.height)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackSpringHeight"
@@ -607,7 +616,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Arb stiffness:"
+                                android:text="@{setupClicked.backSpring.arb_stiffness}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackSpringArbStiff"
@@ -616,7 +625,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Arb position:"
+                                android:text="@{setupClicked.backSpring.arb_position}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackSpringArbPos"
@@ -660,7 +669,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.frontBalance.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontBalanceCode"
@@ -669,7 +678,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Brake:"
+                                android:text="@{String.valueOf(setupClicked.frontBalance.brake)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontBalanceBrake"
@@ -678,7 +687,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Weight:"
+                                android:text="@{String.valueOf(setupClicked.frontBalance.weight)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupFrontBalanceWeight"
@@ -707,7 +716,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Code:"
+                                android:text="@{String.valueOf(setupClicked.backBalance.code)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackBalanceCode"
@@ -716,7 +725,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Brake:"
+                                android:text="@{String.valueOf(setupClicked.backBalance.brake)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackBalanceBrake"
@@ -725,7 +734,7 @@
 
                         <TextView
                                 android:textColor="@color/white"
-                                android:text="Weight:"
+                                android:text="@{String.valueOf(setupClicked.backBalance.weight)}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/deleteSetupBackBalanceWeight"
@@ -747,7 +756,7 @@
 
                 <TextView
                         android:textColor="@color/white"
-                        android:text="Front wing hole:"
+                        android:text="@{setupClicked.frontWingHole}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/deleteSetupFrontWingHole"
@@ -767,7 +776,7 @@
 
                 <TextView
                         android:textColor="@color/white"
-                        android:text="Event types :"
+                        android:text="@{setupClicked.preferredEvent}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/deleteSetupPreferredEventTypes"
@@ -787,14 +796,15 @@
 
                 <TextView
                         android:textColor="@color/white"
-                        android:text="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                        android:text="@{notesSetupClicked}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/deleteSetupNotes"
                         android:textSize="12sp"
                         android:fontFamily="@font/aldrich"
                         android:layout_margin="3dp"
-                        android:background="@drawable/border_notes_setup" />
+                        android:background="@drawable/border_notes_setup"
+                        android:padding="2dp" />
 
                 <LinearLayout
                         android:orientation="horizontal"
@@ -829,3 +839,4 @@
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

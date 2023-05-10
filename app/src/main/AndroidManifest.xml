@@ -15,66 +15,66 @@
             android:theme="@style/Theme.MobileProgramming"
             tools:targetApi="31">
 
-        <activity android:name="com.example.polimarche.Users.All.Menu.Main.MainActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.main.MainActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.Setup.ManagersSetupActivity"
+        <activity android:name="com.example.polimarche.users.managers.menu.setup.ManagersSetupActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name="com.example.polimarche.Users.DepartmentHead.Menu.Setup.DepartmentHeadsSetupActivity"
+        <activity android:name="com.example.polimarche.users.department_head.menu.setup.DepartmentHeadsSetupActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.Tracks.ManagersTracksActivity"
+        <activity android:name="com.example.polimarche.users.managers.menu.tracks.ManagersTracksActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name="com.example.polimarche.Users.DepartmentHead.Menu.Tracks.DepartmentHeadsTracksActivity"
+        <activity android:name="com.example.polimarche.users.department_head.menu.tracks.DepartmentHeadsTracksActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.PracticeSession.ManagersPracticeSessionActivity"
+        <activity android:name="com.example.polimarche.users.managers.menu.practice_session.ManagersPracticeSessionActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name="com.example.polimarche.Users.DepartmentHead.Menu.PracticeSession.DepartmentHeadsPracticeSessionActivity"
+        <activity android:name="com.example.polimarche.users.department_head.menu.practice_session.DepartmentHeadsPracticeSessionActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name="com.example.polimarche.Users.All.Menu.Setup.See.DetailsMemberActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.main.DetailsMemberActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Users.All.Menu.Setup.See.DetailsSetupActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Users.All.Menu.Setup.See.DetailsWheelActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsWheelActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Users.All.Menu.Setup.See.DetailsDamperActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsDamperActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Users.All.Menu.Setup.See.DetailsSpringActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsSpringActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingWheels.ChooseWheelsMain"
+        <activity android:name="com.example.polimarche.users.managers.menu.setup.create.choosing_wheels.ChooseWheelsMain"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingDampers.ChooseDampersMain"
+        <activity android:name="com.example.polimarche.users.managers.menu.setup.create.choosing_dampers.ChooseDampersMain"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingSprings.ChooseSpringsMain"
+        <activity android:name="com.example.polimarche.users.managers.menu.setup.create.choosing_springs.ChooseSpringsMain"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name="com.example.polimarche.Users.Managers.Menu.Setup.Create.ChoosingBalance.ChooseBalanceMain"
+        <activity android:name="com.example.polimarche.users.managers.menu.setup.create.choosing_balance.ChooseBalanceMain"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize"/>
 
         <activity
-                android:name="com.example.polimarche.Login.LoginActivity"
+                android:name="com.example.polimarche.login.LoginActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
