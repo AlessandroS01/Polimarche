@@ -3,12 +3,13 @@ package com.example.polimarche.users.managers.menu.setup.create.choosing_balance
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseBalanceCreateSetupBinding
-import com.example.polimarche.data_container.balance.DataBalance
+import com.example.polimarche.data_container.balance.BalanceViewModel
 
 /*
 Class used for the selection of the dampers used in a new setup
@@ -17,15 +18,12 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
 
     private lateinit var binding : ActivityManagersChooseBalanceCreateSetupBinding
 
-    private lateinit var searchView: SearchView
+    private val balanceViewModel: BalanceViewModel by viewModels()
 
-    private var balanceCodeList: MutableList<Int> = insertBalanceCode()
+    private lateinit var searchView: SearchView
 
     private lateinit var adapterBalanceCode: BalanceCodeAdapter
     private lateinit var recyclerViewBalanceCode: RecyclerView
-
-    private var frontBalance: MutableList<DataBalance> = initializeFrontBalance()
-    private var backBalance: MutableList<DataBalance> = initializeBackBalance()
 
     private lateinit var adapterFrontBalance: BalanceAdapter
     private lateinit var adapterBackBalance: BalanceAdapter
@@ -56,7 +54,7 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         Initialize the adapter and the recycler view that allows the user
         to search for every balance code stocked inside the storage.
          */
-        adapterBalanceCode = BalanceCodeAdapter(balanceCodeList, this)
+        adapterBalanceCode = BalanceCodeAdapter(balanceViewModel, this)
         recyclerViewBalanceCode = binding.listBalanceCode
         val layoutManagerCodificationDampers = LinearLayoutManager(this)
         recyclerViewBalanceCode.layoutManager = layoutManagerCodificationDampers
@@ -67,7 +65,7 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         Initialize the adapter and the recycler view that allows the user
         to see all the front end balance parameters stocked inside the storage.
          */
-        adapterFrontBalance = BalanceAdapter(frontBalance)
+        adapterFrontBalance = BalanceAdapter("Front", balanceViewModel)
         recyclerViewFrontBalance= binding.listFrontEndBalance
         val layoutManagerFrontDampers = LinearLayoutManager(this)
         recyclerViewFrontBalance.layoutManager = layoutManagerFrontDampers
@@ -77,7 +75,7 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         Initialize the adapter and the recycler view that allows the user
         to see all the back end dampers parameters stocked inside the storage.
          */
-        adapterBackBalance = BalanceAdapter(backBalance)
+        adapterBackBalance = BalanceAdapter("Back", balanceViewModel)
         recyclerViewBackBalance = binding.listBackEndBalance
         val layoutManagerBackDampers = LinearLayoutManager(this)
         recyclerViewBackBalance.layoutManager = layoutManagerBackDampers
@@ -159,8 +157,10 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
      */
     private fun filterList(query: String?) {
         if(query != null){
-            val filteredList = balanceCodeList.filter { query in it.toString() }
-            adapterBalanceCode.setFilteredList(filteredList.toMutableList())
+            val filteredList = balanceViewModel.getBalanceCodes().filter {
+                query.lowercase() in it.toString().lowercase()
+            }.toMutableList()
+            adapterBalanceCode.setNewList(filteredList)
         }
     }
 
@@ -168,46 +168,26 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
     Change the behaviour of the layout on an item click of the recycler view
     containing every balance code.
      */
-    override fun onCodificationClick(code: Int) {
+    override fun onCodeClick(code: Int) {
         searchView.queryHint = "Code : $code"
         recyclerViewBalanceCode.visibility = View.GONE
         searchView.clearFocus()
 
-        binding.frontEndBalanceCode.text = "Front end : $code"
-        binding.backEndBalanceCode.text = "Back end : $code"
 
-        frontBalance = listBalance().filter { it.end == "Front" && it.code == code }.toMutableList()
-        backBalance = listBalance().filter { it.end == "Back" && it.code == code }.toMutableList()
+        val frontBalance = balanceViewModel.getFrontBalanceList().filter {
+            it.end == "Front" && it.code == code
+        }.toMutableList()
 
-        adapterFrontBalance.setFilteredList(frontBalance)
-        adapterBackBalance.setFilteredList(backBalance)
-    }
+        val backBalance = balanceViewModel.getFrontBalanceList().filter {
+            it.end == "Back" && it.code == code
+        }.toMutableList()
 
-    private fun insertBalanceCode(): MutableList<Int> {
-        val balanceList = emptyList<Int>().toMutableList()
-        for ( element in listBalance()){
-            if ( ! balanceList.contains(element.code) )
-                balanceList.add(element.code)
-        }
-        return balanceList
+        adapterFrontBalance.setNewList(frontBalance)
+        adapterBackBalance.setNewList(backBalance)
     }
 
 
-    private fun listBalance(): MutableList<DataBalance>{
-        return mutableListOf(
-            DataBalance(1, "Front", 44.0, 56.0),
-            DataBalance(2, "Front", 44.0, 56.0),
-            DataBalance(9, "Back", 44.0, 56.0),
-            DataBalance(10, "Back", 44.0, 56.0)
-        )
-    }
 
-    private fun initializeFrontBalance(): MutableList<DataBalance>{
-        return listBalance().filter { it.end == "Front" }.toMutableList()
-    }
-    private fun initializeBackBalance(): MutableList<DataBalance>{
-        return listBalance().filter { it.end == "Back" }.toMutableList()
-    }
 
 
 }

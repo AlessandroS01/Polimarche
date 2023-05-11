@@ -8,11 +8,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.data_container.damper.DamperViewModel
 import com.example.polimarche.data_container.damper.DataDamper
 
 class DampersAdapter(
-    private var elementList: MutableList<DataDamper>
+    private val position: String, //used to get on what it should filter the entire list of dampers
+    private var damperViewModel: DamperViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var damperList = if(
+        position == "Front"
+    ) damperViewModel.getFrontDampers()
+    else damperViewModel.getEndDampers()
 
     inner class ViewHolderDamper(damperView : View) : RecyclerView.ViewHolder(damperView){
         val damperCode: TextView = damperView.findViewById(R.id.damperCode)
@@ -22,36 +29,41 @@ class DampersAdapter(
         val damperLSC: TextView = damperView.findViewById(R.id.lscDamper)
 
         val linearLayout = damperView.findViewById<LinearLayout>(R.id.linearLayoutExpandableDamper)
-        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = damperView.findViewById(R.id.costraintLayoutDamper)
+        val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout =
+            damperView.findViewById(R.id.costraintLayoutDamper)
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_dampers, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_managers_dampers,
+            parent,
+            false
+        )
         return ViewHolderDamper(view)
     }
 
     override fun getItemCount(): Int {
-        return elementList.size
+        return damperList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderDamper ->{
                 holder.apply {
-                    damperCode.text = elementList[position].code.toString()
-                    damperHSR.text = elementList[position].hsr.toString()
-                    damperHSC.text = elementList[position].hsc.toString()
-                    damperLSR.text = elementList[position].lsr.toString()
-                    damperLSC.text = elementList[position].lsc.toString()
+                    damperCode.text = damperList[position].code.toString()
+                    damperHSR.text = damperList[position].hsr.toString()
+                    damperHSC.text = damperList[position].hsc.toString()
+                    damperLSR.text = damperList[position].lsr.toString()
+                    damperLSC.text = damperList[position].lsc.toString()
 
-                    val expansion = elementList[position].expansion
+                    val expansion = damperList[position].expansion
 
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    costraintLayout.setOnClickListener {
-                        elementList[position].expansion = !elementList[position].expansion
+                    constraintLayout.setOnClickListener {
+                        damperList[position].expansion = !damperList[position].expansion
                         notifyItemChanged(position)
                     }
                 }
@@ -64,8 +76,8 @@ class DampersAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataDamper>){
-        this.elementList = filteredList
+    fun setNewList(newListDampers: MutableList<DataDamper>){
+        this.damperList = newListDampers
         notifyDataSetChanged()
     }
 

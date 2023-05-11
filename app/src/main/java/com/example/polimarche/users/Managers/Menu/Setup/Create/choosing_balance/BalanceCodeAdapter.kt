@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.data_container.balance.BalanceViewModel
 
 class BalanceCodeAdapter(
-    private var balanceCodeList: MutableList<Int>,
+    private val balanceViewModel: BalanceViewModel,
     private val listener: OnBalanceCodeClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var balanceListCodes = balanceViewModel.getBalanceCodes()
+
     interface OnBalanceCodeClickListener{
-        fun onCodificationClick(codification: Int)
+        fun onCodeClick(code: Int)
     }
 
     inner class ViewHolderBalanceCode(balanceCodeView : View) : RecyclerView.ViewHolder(balanceCodeView), View.OnClickListener {
@@ -25,7 +28,7 @@ class BalanceCodeAdapter(
         override fun onClick(v: View?) {
             val position : Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onCodificationClick(balanceCodeList[position])
+                listener.onCodeClick(balanceListCodes[position])
             }
         }
     }
@@ -37,14 +40,14 @@ class BalanceCodeAdapter(
     }
 
     override fun getItemCount(): Int {
-        return balanceCodeList.size
+        return balanceListCodes.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderBalanceCode ->{
                 holder.apply {
-                    code.text = "Cod: ${balanceCodeList[position]}"
+                    code.text = "Code: ${balanceListCodes[position]}"
                 }
             }
         }
@@ -55,8 +58,8 @@ class BalanceCodeAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<Int>){
-        this.balanceCodeList = filteredList
+    fun setNewList(newList: MutableList<Int>){
+        this.balanceListCodes = newList
         notifyDataSetChanged()
     }
 }

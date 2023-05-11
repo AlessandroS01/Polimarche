@@ -9,10 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.data_container.spring.DataSpring
+import com.example.polimarche.data_container.spring.SpringViewModel
 
 class SpringsAdapter(
-    private var elementList: MutableList<DataSpring>
+    private val position: String,
+    private val springViewModel: SpringViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var listSpring = if(
+        position == "Front"
+    ) springViewModel.getFrontSpringList()
+    else springViewModel.getBackSpringList()
 
     inner class ViewHolderSpring(springView : View) : RecyclerView.ViewHolder(springView){
         val springCode: TextView = springView.findViewById(R.id.springCode)
@@ -22,7 +29,7 @@ class SpringsAdapter(
         val springArbPosition: TextView = springView.findViewById(R.id.arbPositionSprings)
 
         val linearLayout = springView.findViewById<LinearLayout>(R.id.linearLayoutExpandableSpring)
-        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = springView.findViewById(R.id.costraintLayoutSpring)
+        val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = springView.findViewById(R.id.costraintLayoutSpring)
     }
 
 
@@ -32,26 +39,26 @@ class SpringsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return elementList.size
+        return listSpring.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderSpring ->{
                 holder.apply {
-                    springCode.text = elementList[position].code.toString()
-                    springCodification.text = elementList[position].codification
-                    springHeight.text = elementList[position].height.toString()
-                    springArbStiffness.text = elementList[position].arb_stiffness
-                    springArbPosition.text = elementList[position].arb_position
+                    springCode.text = listSpring[position].code.toString()
+                    springCodification.text = listSpring[position].codification
+                    springHeight.text = listSpring[position].height.toString()
+                    springArbStiffness.text = listSpring[position].arb_stiffness
+                    springArbPosition.text = listSpring[position].arb_position
 
-                    val expansion = elementList[position].expansion
+                    val expansion = listSpring[position].expansion
 
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    costraintLayout.setOnClickListener {
-                        elementList[position].expansion = !elementList[position].expansion
+                    constraintLayout.setOnClickListener {
+                        listSpring[position].expansion = !listSpring[position].expansion
                         notifyItemChanged(position)
                     }
                 }
@@ -64,8 +71,8 @@ class SpringsAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataSpring>){
-        this.elementList = filteredList
+    fun setNewList(newList: MutableList<DataSpring>){
+        this.listSpring = newList
         notifyDataSetChanged()
     }
 

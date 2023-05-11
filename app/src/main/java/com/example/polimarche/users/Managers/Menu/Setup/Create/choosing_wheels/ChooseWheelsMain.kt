@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseWheelsCreateSetupBinding
-import com.example.polimarche.data_container.wheel.DataWheel
+import com.example.polimarche.data_container.wheel.WheelViewModel
 
 
 /*
@@ -24,21 +25,13 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
 
     private lateinit var binding : ActivityManagersChooseWheelsCreateSetupBinding
 
+    private val wheelViewModel: WheelViewModel by viewModels()
+
     private lateinit var searchView: SearchView
 
-    /*
-    Search inside the different wheels object the different codifications
-    and then the wheel's quantity that has a particular codifation.
-     */
-    private var codificationWheelList: MutableList<String> = listCodification()
-    private var codificationWheelQuantity: MutableList<Int> = listQuantityCodification(codificationWheelList)
+
     private lateinit var adapterWheelsCodification: WheelsCodificationAdapter
     private lateinit var recyclerViewWheelsCodification: RecyclerView
-
-    private var frontRightWheels: MutableList<DataWheel> = initializeFrontRight()
-    private var frontLeftWheels: MutableList<DataWheel> = initializeFrontLeft()
-    private var rearRightWheels: MutableList<DataWheel> = initializeRearRight()
-    private var rearLeftWheels: MutableList<DataWheel> = initializeRearLeft()
 
     private lateinit var adapterFrontRightWheel: WheelsAdapter
     private lateinit var adapterFrontLeftWheel: WheelsAdapter
@@ -67,7 +60,7 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         Initialize the adapter and the recycler view that allows the user
         to search for every wheel codification stocked inside the storage.
          */
-        adapterWheelsCodification = WheelsCodificationAdapter(codificationWheelList, codificationWheelQuantity, this)
+        adapterWheelsCodification = WheelsCodificationAdapter(wheelViewModel, this)
         recyclerViewWheelsCodification = binding.listWheelsCodification
         val layoutManagerCodificationWheel = LinearLayoutManager(this)
         recyclerViewWheelsCodification.layoutManager = layoutManagerCodificationWheel
@@ -77,7 +70,7 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         Initialize the adapter and the recycler view that allows the user
         to see all the front right wheels stocked inside the storage.
          */
-        adapterFrontRightWheel = WheelsAdapter(frontRightWheels)
+        adapterFrontRightWheel = WheelsAdapter("Front right", wheelViewModel)
         recyclerViewFrontRightWheel = binding.listFrontRightWheel
         val layoutManagerFrontRightWheel = LinearLayoutManager(this)
         recyclerViewFrontRightWheel.layoutManager = layoutManagerFrontRightWheel
@@ -86,7 +79,7 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         Initialize the adapter and the recycler view that allows the user
         to see all the front left wheels stocked inside the storage.
          */
-        adapterFrontLeftWheel = WheelsAdapter(frontLeftWheels)
+        adapterFrontLeftWheel = WheelsAdapter("Front left", wheelViewModel)
         recyclerViewFrontLeftWheel = binding.listFrontLeftWheel
         val layoutManagerFrontLeftWheel = LinearLayoutManager(this)
         recyclerViewFrontLeftWheel.layoutManager = layoutManagerFrontLeftWheel
@@ -95,7 +88,7 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         Initialize the adapter and the recycler view that allows the user
         to see all the rear right wheels stocked inside the storage.
          */
-        adapterRearRightWheel = WheelsAdapter(rearRightWheels)
+        adapterRearRightWheel = WheelsAdapter("Rear right", wheelViewModel)
         recyclerViewRearRightWheel = binding.listRearRightWheel
         val layoutManagerRearRightWheel = LinearLayoutManager(this)
         recyclerViewRearRightWheel.layoutManager = layoutManagerRearRightWheel
@@ -104,7 +97,7 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         Initialize the adapter and the recycler view that allows the user
         to see all the rear left wheels stocked inside the storage.
          */
-        adapterRearLeftWheel = WheelsAdapter(rearLeftWheels)
+        adapterRearLeftWheel = WheelsAdapter("Rear left", wheelViewModel)
         recyclerViewRearLeftWheel = binding.listRearLeftWheel
         val layoutManagerRearLeftWheel = LinearLayoutManager(this)
         recyclerViewRearLeftWheel.layoutManager = layoutManagerRearLeftWheel
@@ -193,15 +186,23 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         binding.rearRightWheelCodification.text = "Rear Right : $codification"
         binding.rearLeftWheelCodification.text = "Rear left : $codification"
 
-        frontRightWheels = listWheels().filter { it.position == "Front right" && it.codification == codification }.toMutableList()
-        frontLeftWheels = listWheels().filter { it.position == "Front left" && it.codification == codification }.toMutableList()
-        rearRightWheels = listWheels().filter { it.position == "Rear right" && it.codification == codification }.toMutableList()
-        rearLeftWheels = listWheels().filter { it.position == "Rear left" && it.codification == codification }.toMutableList()
+        val frontRightWheels = wheelViewModel.getFrontRightWheels().filter {
+            it.position == "Front right" && it.codification == codification
+        }.toMutableList()
+        val frontLeftWheels = wheelViewModel.getFrontLeftWheels().filter {
+            it.position == "Front left" && it.codification == codification
+        }.toMutableList()
+        val rearRightWheels = wheelViewModel.getRearRightWheels().filter {
+            it.position == "Rear right" && it.codification == codification
+        }.toMutableList()
+        val rearLeftWheels = wheelViewModel.getRearLeftWheels().filter {
+            it.position == "Rear left" && it.codification == codification
+        }.toMutableList()
 
-        adapterFrontRightWheel.setFilteredList(frontRightWheels)
-        adapterFrontLeftWheel.setFilteredList(frontLeftWheels)
-        adapterRearRightWheel.setFilteredList(rearRightWheels)
-        adapterRearLeftWheel.setFilteredList(rearLeftWheels)
+        adapterFrontRightWheel.setNewList(frontRightWheels)
+        adapterFrontLeftWheel.setNewList(frontLeftWheels)
+        adapterRearRightWheel.setNewList(rearRightWheels)
+        adapterRearLeftWheel.setNewList(rearLeftWheels)
     }
 
     /*
@@ -210,67 +211,11 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
      */
     private fun filterList(query: String?) {
         if(query != null){
-            val filteredList = codificationWheelList.filter { query in it }
-            adapterWheelsCodification.setFilteredList(filteredList.toMutableList())
+            val filteredMap = wheelViewModel.mapQuantityCodification().filterKeys {
+                query.lowercase() in it.lowercase()
+            }.toMutableMap()
+            adapterWheelsCodification.setNewMap(filteredMap)
         }
-    }
-
-    /*
-    Return a list of all the different wheel's codification.
-     */
-    private fun listCodification(): MutableList<String>{
-        val list: MutableList<String> = emptyList<String>().toMutableList()
-        for ( element in listWheels()){
-            if ( ! list.contains(element.codification) )
-                list.add(element.codification)
-        }
-        return list
-    }
-
-    /*
-    Return a list of int that in position j contains the number of wheels
-    that has the codification contained inside "codificationList" in position
-    j.
-     */
-    private fun listQuantityCodification(codificationList: MutableList<String>): MutableList<Int>{
-        val list: MutableList<Int> = emptyList<Int>().toMutableList()
-        for ( string in codificationList){
-            list.add( listWheels().filter { it.codification == string }.size)
-        }
-        return list
-    }
-
-    private fun listWheels(): MutableList<DataWheel>{
-        return mutableListOf(
-            DataWheel(1, "Front right", "A", "1", "-1+2piastrini", "1"),
-            DataWheel(2, "Front left", "A", "1", "-1+2piastrini", "1"),
-            DataWheel(3, "Rear right", "A", "1", "-1+2piastrini", "1"),
-            DataWheel(4, "Rear left", "A", "1", "-1+2piastrini", "1"),
-            DataWheel(5, "Front right", "B", "1", "-1+2piastrini", "1"),
-            DataWheel(6, "Front left", "B", "1", "-1+2piastrini", "1"),
-            DataWheel(7, "Rear right", "B", "1", "-1+2piastrini", "1"),
-            DataWheel(8, "Rear left", "B", "1", "-1+2piastrini", "1"),
-            DataWheel(9, "Front right", "C", "1", "-1+2piastrini", "1"),
-            DataWheel(10, "Front left", "C", "1", "-1+2piastrini", "1"),
-            DataWheel(11, "Rear right", "C", "1", "-1+2piastrini", "1"),
-            DataWheel(12, "Rear left", "C", "1", "-1+2piastrini", "1"),
-            DataWheel(13, "Front right", "D", "1", "-1+2piastrini", "1"),
-            DataWheel(14, "Front left", "D", "1", "-1+2piastrini", "1"),
-            DataWheel(15, "Rear right", "D", "1", "-1+2piastrini", "1"),
-            DataWheel(16, "Rear left", "D", "1", "-1+2piastrini", "1"),
-        )
-    }
-    private fun initializeFrontRight(): MutableList<DataWheel>{
-        return listWheels().filter { it.position == "Front right" }.toMutableList()
-    }
-    private fun initializeFrontLeft(): MutableList<DataWheel>{
-        return listWheels().filter { it.position == "Front left" }.toMutableList()
-    }
-    private fun initializeRearRight(): MutableList<DataWheel>{
-        return listWheels().filter { it.position == "Rear right" }.toMutableList()
-    }
-    private fun initializeRearLeft(): MutableList<DataWheel>{
-        return listWheels().filter { it.position == "Rear left" }.toMutableList()
     }
 
     /*

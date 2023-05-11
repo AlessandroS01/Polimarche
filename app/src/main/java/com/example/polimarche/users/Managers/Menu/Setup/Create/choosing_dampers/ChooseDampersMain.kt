@@ -3,29 +3,28 @@ package com.example.polimarche.users.managers.menu.setup.create.choosing_dampers
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseDampersCreateSetupBinding
-import com.example.polimarche.data_container.damper.DataDamper
+import com.example.polimarche.data_container.damper.DamperViewModel
 
 /*
 Class used for the selection of the dampers used in a new setup
  */
-class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampersCodificationClickListener {
+class ChooseDampersMain: AppCompatActivity(), DampersCodeAdapter.OnDampersCodeClickListener {
 
     private lateinit var binding : ActivityManagersChooseDampersCreateSetupBinding
 
+    private val damperViewModel: DamperViewModel by viewModels()
+
     private lateinit var searchView: SearchView
 
-    private var dampersCodificationList: MutableList<Int> = insertDampersCodification()
 
-    private lateinit var adapterDampersCodification: DampersCodificationAdapter
+    private lateinit var adapterDampersCodification: DampersCodeAdapter
     private lateinit var recyclerViewDampersCodification: RecyclerView
-
-    private var frontDampers: MutableList<DataDamper> = initializeFrontDampers()
-    private var backDampers: MutableList<DataDamper> = initializeBackDampers()
 
     private lateinit var adapterFrontDampers: DampersAdapter
     private lateinit var adapterBackDampers: DampersAdapter
@@ -52,7 +51,7 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
         Initialize the adapter and the recycler view that allows the user
         to search for every damper codification stocked inside the storage.
          */
-        adapterDampersCodification = DampersCodificationAdapter(dampersCodificationList, this)
+        adapterDampersCodification = DampersCodeAdapter(damperViewModel, this)
         recyclerViewDampersCodification = binding.listDampersCode
         val layoutManagerCodificationDampers = LinearLayoutManager(this)
         recyclerViewDampersCodification.layoutManager = layoutManagerCodificationDampers
@@ -63,7 +62,7 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
         Initialize the adapter and the recycler view that allows the user
         to see all the front end dampers stocked inside the storage.
          */
-        adapterFrontDampers = DampersAdapter(frontDampers)
+        adapterFrontDampers = DampersAdapter("Front", damperViewModel)
         recyclerViewFrontDampers = binding.listFrontEndDampers
         val layoutManagerFrontDampers = LinearLayoutManager(this)
         recyclerViewFrontDampers.layoutManager = layoutManagerFrontDampers
@@ -73,7 +72,7 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
         Initialize the adapter and the recycler view that allows the user
         to see all the back end dampers stocked inside the storage.
          */
-        adapterBackDampers = DampersAdapter(backDampers)
+        adapterBackDampers = DampersAdapter("End", damperViewModel)
         recyclerViewBackDampers = binding.listBackEndDampers
         val layoutManagerBackDampers = LinearLayoutManager(this)
         recyclerViewBackDampers.layoutManager = layoutManagerBackDampers
@@ -153,8 +152,10 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
      */
     private fun filterList(query: String?) {
         if(query != null){
-            val filteredList = dampersCodificationList.filter { query in it.toString() }
-            adapterDampersCodification.setFilteredList(filteredList.toMutableList())
+            val filteredList = damperViewModel.getDampersCode().filter {
+                query.lowercase() in it.toString().lowercase()
+            }.toMutableList()
+            adapterDampersCodification.setNewList(filteredList)
         }
     }
 
@@ -162,47 +163,26 @@ class ChooseDampersMain: AppCompatActivity(), DampersCodificationAdapter.OnDampe
     Change the behaviour of the layout on an item click of the recycler view
     containing every wheel codifications.
      */
-    override fun onCodificationClick(codification: Int) {
-        searchView.queryHint = "Codification : $codification"
+    override fun onCodeClick(code: Int) {
+        searchView.queryHint = "Code : $code"
         recyclerViewDampersCodification.visibility = View.GONE
         searchView.clearFocus()
 
-        binding.frontEndDampersCodification.text = "Front end : $codification"
-        binding.backEndDampersCodification.text = "Back end : $codification"
+        binding.frontEndDampersCodification.text = "Front end : $code"
+        binding.backEndDampersCodification.text = "Back end : $code"
 
-        frontDampers = listDampers().filter { it.end == "Front" && it.code == codification }.toMutableList()
-        backDampers = listDampers().filter { it.end == "End" && it.code == codification }.toMutableList()
+        val frontDampers = damperViewModel.getFrontDampers().filter {
+            it.code == code
+        }.toMutableList()
 
-        adapterFrontDampers.setFilteredList(frontDampers)
-        adapterBackDampers.setFilteredList(backDampers)
+        val endDampers = damperViewModel.getEndDampers().filter {
+            it.code == code
+        }.toMutableList()
+
+        adapterFrontDampers.setNewList(frontDampers)
+        adapterBackDampers.setNewList(endDampers)
     }
 
-
-    private fun listDampers(): MutableList<DataDamper>{
-        return mutableListOf(
-            DataDamper(1, "Front", 1.3, 1.2, 4.1, 1.7),
-            DataDamper(2, "Front", 1.3, 1.2, 4.1, 1.7),
-            DataDamper(10, "End", 1.3, 1.2, 4.1, 1.7),
-            DataDamper(11, "End", 1.3, 1.2, 4.1, 1.7),
-        )
-    }
-
-    private fun initializeFrontDampers(): MutableList<DataDamper>{
-        return listDampers().filter { it.end == "Front" }.toMutableList()
-    }
-    private fun initializeBackDampers(): MutableList<DataDamper>{
-        return listDampers().filter { it.end == "End" }.toMutableList()
-    }
-
-
-    private fun insertDampersCodification(): MutableList<Int> {
-        val codificationList: MutableList<Int> = emptyList<Int>().toMutableList()
-        for ( element in listDampers()){
-            if ( ! codificationList.contains(element.code) )
-                codificationList.add(element.code)
-        }
-        return codificationList
-    }
 
 
 

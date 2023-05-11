@@ -3,13 +3,14 @@ package com.example.polimarche.users.managers.menu.setup.create.choosing_springs
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.databinding.ActivityManagersChooseSpringsCreateSetupBinding
-import com.example.polimarche.data_container.spring.DataSpring
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingDampers.FirstSpringsFragment
+import com.example.polimarche.data_container.spring.SpringViewModel
 
 /*
 Class used for the selection of the springs used in a new setup
@@ -18,15 +19,12 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
 
     private lateinit var binding : ActivityManagersChooseSpringsCreateSetupBinding
 
-    private lateinit var searchView: SearchView
+    private val springViewModel: SpringViewModel by viewModels()
 
-    private var springCodificationList: MutableList<String> = insertCodification()
+    private lateinit var searchView: SearchView
 
     private lateinit var adapterSpringsCodification: SpringsCodificationAdapter
     private lateinit var recyclerViewSpringsCodification: RecyclerView
-
-    private var frontSprings: MutableList<DataSpring> = initializeFrontSprings()
-    private var backSprings: MutableList<DataSpring> = initializeBackSprings()
 
     private lateinit var adapterFrontSprings: SpringsAdapter
     private lateinit var adapterBackSprings: SpringsAdapter
@@ -53,7 +51,7 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         Initialize the adapter and the recycler view that allows the user
         to search for every spring codification stocked inside the storage.
          */
-        adapterSpringsCodification = SpringsCodificationAdapter(springCodificationList, this)
+        adapterSpringsCodification = SpringsCodificationAdapter(springViewModel, this)
         recyclerViewSpringsCodification = binding.listSpringsCodification
         val layoutManagerCodificationSprings = LinearLayoutManager(this)
         recyclerViewSpringsCodification.layoutManager = layoutManagerCodificationSprings
@@ -64,7 +62,7 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         Initialize the adapter and the recycler view that allows the user
         to see all the front end springs stocked inside the storage.
          */
-        adapterFrontSprings = SpringsAdapter(frontSprings)
+        adapterFrontSprings = SpringsAdapter("Front", springViewModel)
         recyclerViewFrontSprings = binding.listFrontEndSprings
         val layoutManagerFrontDampers = LinearLayoutManager(this)
         recyclerViewFrontSprings.layoutManager = layoutManagerFrontDampers
@@ -74,7 +72,7 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         Initialize the adapter and the recycler view that allows the user
         to see all the back end springs stocked inside the storage.
          */
-        adapterBackSprings = SpringsAdapter(backSprings)
+        adapterBackSprings = SpringsAdapter("End", springViewModel)
         recyclerViewBackSprings = binding.listBackEndSprings
         val layoutManagerBackDampers = LinearLayoutManager(this)
         recyclerViewBackSprings.layoutManager = layoutManagerBackDampers
@@ -154,8 +152,10 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
      */
     private fun filterList(query: String?) {
         if(query != null){
-            val filteredList = springCodificationList.filter { query in it }
-            adapterSpringsCodification.setFilteredList(filteredList.toMutableList())
+            val filteredList = springViewModel.getCodificationList().filter {
+                query.lowercase() in it.lowercase()
+            }
+            adapterSpringsCodification.setNewList(filteredList.toMutableList())
         }
     }
 
@@ -171,39 +171,15 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         binding.frontEndSpringsCodification.text = "Front end : $codification"
         binding.backEndSpringsCodification.text = "Back end : $codification"
 
-        frontSprings = listSprings().filter { it.end == "Front" && it.codification == codification }.toMutableList()
-        backSprings = listSprings().filter { it.end == "End" && it.codification == codification }.toMutableList()
+        val frontSprings = springViewModel.getFrontSpringList().filter {
+            it.end == "Front" && it.codification == codification
+        }.toMutableList()
+        val backSprings = springViewModel.getBackSpringList().filter {
+            it.end == "End" && it.codification == codification
+        }.toMutableList()
 
-        adapterFrontSprings.setFilteredList(frontSprings)
-        adapterBackSprings.setFilteredList(backSprings)
+        adapterFrontSprings.setNewList(frontSprings)
+        adapterBackSprings.setNewList(backSprings)
     }
-
-
-    private fun listSprings(): MutableList<DataSpring>{
-        return mutableListOf(
-            DataSpring(1, "A", "Front", 1.21, "12.4", "Center"),
-            DataSpring(2, "B", "Front", 1.21, "12.4", "Center"),
-            DataSpring(8, "H", "End", 1.21, "12.4", "Center"),
-            DataSpring(9, "I", "End", 1.21, "12.4", "Center"),
-        )
-    }
-
-    private fun initializeFrontSprings(): MutableList<DataSpring> {
-        return listSprings().filter { it.end == "Front" }.toMutableList()
-    }
-    private fun initializeBackSprings(): MutableList<DataSpring> {
-        return listSprings().filter { it.end == "End" }.toMutableList()
-    }
-
-
-    private fun insertCodification(): MutableList<String> {
-        val list: MutableList<String> = emptyList<String>().toMutableList()
-        for ( element in listSprings()){
-            if ( ! list.contains(element.codification) )
-                list.add(element.codification)
-        }
-        return list
-    }
-
 
 }

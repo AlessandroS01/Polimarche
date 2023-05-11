@@ -8,11 +8,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.data_container.balance.BalanceViewModel
 import com.example.polimarche.data_container.balance.DataBalance
 
 class BalanceAdapter(
-    private var elementList: MutableList<DataBalance>
+    private val position: String,
+    private val balanceViewModel: BalanceViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var balanceParametersList = if(
+        position == "Front"
+    ) balanceViewModel.getFrontBalanceList()
+    else balanceViewModel.getBackBalanceList()
 
     inner class ViewHolderBalance(balanceView : View) : RecyclerView.ViewHolder(balanceView){
         val balanceCode: TextView = balanceView.findViewById(R.id.balanceCode)
@@ -20,7 +27,7 @@ class BalanceAdapter(
         val balanceWeight: TextView = balanceView.findViewById(R.id.weightBalance)
 
         val linearLayout: LinearLayout = balanceView.findViewById(R.id.linearLayoutExpandableBalance)
-        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = balanceView.findViewById(R.id.costraintLayoutBalance)
+        val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = balanceView.findViewById(R.id.costraintLayoutBalance)
     }
 
 
@@ -30,24 +37,24 @@ class BalanceAdapter(
     }
 
     override fun getItemCount(): Int {
-        return elementList.size
+        return balanceParametersList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderBalance ->{
                 holder.apply {
-                    balanceCode.text = elementList[position].code.toString()
-                    balanceBrake.text = elementList[position].brake.toString()
-                    balanceWeight.text = elementList[position].weight.toString()
+                    balanceCode.text = balanceParametersList[position].code.toString()
+                    balanceBrake.text = balanceParametersList[position].brake.toString()
+                    balanceWeight.text = balanceParametersList[position].weight.toString()
 
-                    val expansion = elementList[position].expansion
+                    val expansion = balanceParametersList[position].expansion
 
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    costraintLayout.setOnClickListener {
-                        elementList[position].expansion = !elementList[position].expansion
+                    constraintLayout.setOnClickListener {
+                        balanceParametersList[position].expansion = !balanceParametersList[position].expansion
                         notifyItemChanged(position)
                     }
                 }
@@ -60,8 +67,8 @@ class BalanceAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataBalance>){
-        this.elementList = filteredList
+    fun setNewList(newList: MutableList<DataBalance>){
+        this.balanceParametersList = newList
         notifyDataSetChanged()
     }
 

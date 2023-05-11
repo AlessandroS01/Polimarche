@@ -93,7 +93,6 @@
                                 app:queryHint="Enter wheels codification"
                                 android:background="@drawable/search_bar_shape"
                                 app:iconifiedByDefault="false"
-                                android:layout_marginTop="10dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginBottom="10dp"
@@ -136,7 +135,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/front_right_wheel_codification"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="20sp"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -145,8 +144,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp" />
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginTop="5dp" />
 
 
                             <TextView
@@ -155,7 +154,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/front_left_wheel_codification"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="20sp"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -164,8 +163,8 @@
                                     android:id="@+id/listFrontLeftWheel"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp" />
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginTop="5dp" />
 
                             <TextView
                                     android:text="Rear Right : Codification"
@@ -173,7 +172,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/rear_right_wheel_codification"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="20sp"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -182,8 +181,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp" />
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginTop="5dp" />
 
                             <TextView
                                     android:text="Rear Left : Codification"
@@ -191,7 +190,7 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/rear_left_wheel_codification"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="20sp"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -200,8 +199,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp" />
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginTop="5dp" />
 
                         </LinearLayout>
                     </ScrollView>

@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.data_container.spring.SpringViewModel
 
 class SpringsCodificationAdapter(
-    private var elementList: MutableList<String>,
+    private val springViewModel: SpringViewModel,
     private val listener: OnSpringsCodificationClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var springCodificationList = springViewModel.getCodificationList()
 
     interface OnSpringsCodificationClickListener{
         fun onCodificationClick(codification: String)
@@ -27,26 +30,30 @@ class SpringsCodificationAdapter(
         override fun onClick(v: View?) {
             val position : Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onCodificationClick(elementList[position])
+                listener.onCodificationClick(springCodificationList[position])
             }
         }
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_managers_springs_codification, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_managers_springs_codification,
+            parent,
+            false
+        )
         return ViewHolderSpringsCodification(view)
     }
 
     override fun getItemCount(): Int {
-        return elementList.size
+        return springCodificationList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderSpringsCodification ->{
                 holder.apply {
-                    codification.text = "Cod: ${elementList[position]}"
+                    codification.text = "Cod: ${springCodificationList[position]}"
                 }
             }
         }
@@ -57,8 +64,8 @@ class SpringsCodificationAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<String>){
-        this.elementList = filteredList
+    fun setNewList(newList: MutableList<String>){
+        this.springCodificationList = newList
         notifyDataSetChanged()
     }
 }

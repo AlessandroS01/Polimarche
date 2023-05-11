@@ -7,19 +7,17 @@
         android:layout_marginBottom="5dp">
 
     <TextView
-            android:text="Codification :"
+            android:text="Code :"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dampersCodification"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:fontFamily="@font/aldrich"
-            android:layout_weight="0.4"
             android:textColor="#FFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="5dp" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
