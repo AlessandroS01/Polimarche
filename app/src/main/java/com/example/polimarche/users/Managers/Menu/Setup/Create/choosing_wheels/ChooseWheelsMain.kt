@@ -52,6 +52,9 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
         binding.backButtonChooseWheels.setOnClickListener {
+            // if the parameters of the wheels are stocked whenever
+            // the user closes this fragment, they'll be erased.
+            wheelViewModel.clearStockedParameters()
             finish()
         }
 
@@ -163,7 +166,7 @@ class ChooseWheelsMain: AppCompatActivity(), WheelsCodificationAdapter.OnWheelsC
         bottom of the layout containing and letting the user to decide whether
         to add a new set of parameters for the wheels or to use an existing one.
          */
-        val firstWheel = FirstWheelFragment()
+        val firstWheel = FirstWheelFragment(this)
         supportFragmentManager.beginTransaction().apply {
             replace(binding.layoutChooseWheels.id, firstWheel).commit()
             setReorderingAllowed(true)

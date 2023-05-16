@@ -1,6 +1,7 @@
 package com.example.polimarche.data_container.wheel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.polimarche.data_container.balance.DataBalance
 
 object WheelRepository {
 
@@ -26,4 +27,57 @@ object WheelRepository {
             )
         )
     val listWheel get() = _listWheel
+
+
+    private var stockedFrontRightWheelParameters: MutableLiveData<DataWheel>? = null
+    fun setFrontRightWheelParameters(wheelParameters: DataWheel){
+        if (stockedFrontRightWheelParameters == null) {
+            stockedFrontRightWheelParameters = MutableLiveData()
+        }
+        stockedFrontRightWheelParameters?.value = wheelParameters
+    }
+    fun getFrontRightParametersStocked(): MutableLiveData<DataWheel>?{
+        return stockedFrontRightWheelParameters
+    }
+
+    private var stockedFrontLeftWheelParameters: MutableLiveData<DataWheel>? = null
+    fun setFrontLeftWheelParameters(wheelParameters: DataWheel){
+        if (stockedFrontLeftWheelParameters == null) {
+            stockedFrontLeftWheelParameters = MutableLiveData()
+        }
+        stockedFrontLeftWheelParameters?.value = wheelParameters
+    }
+    fun getFrontLeftParametersStocked(): MutableLiveData<DataWheel>?{
+        return stockedFrontLeftWheelParameters
+    }
+
+    private var stockedRearRightWheelParameters: MutableLiveData<DataWheel>? = null
+    fun setRearRightWheelParameters(wheelParameters: DataWheel){
+        if (stockedRearRightWheelParameters == null) {
+            stockedRearRightWheelParameters = MutableLiveData()
+        }
+        stockedRearRightWheelParameters?.value = wheelParameters
+    }
+    fun getRearRightParametersStocked(): MutableLiveData<DataWheel>?{
+        return stockedRearRightWheelParameters
+    }
+
+    private var stockedRearLeftWheelParameters: MutableLiveData<DataWheel>? = null
+    fun setRearLeftWheelParameters(wheelParameters: DataWheel){
+        if (stockedRearLeftWheelParameters == null) {
+            stockedRearLeftWheelParameters = MutableLiveData()
+        }
+        stockedRearLeftWheelParameters?.value = wheelParameters
+    }
+    fun getRearLeftParametersStocked(): MutableLiveData<DataWheel>?{
+        return stockedRearLeftWheelParameters
+    }
+
+
+    fun clearStockedParameters(){
+        stockedFrontRightWheelParameters = null
+        stockedFrontLeftWheelParameters = null
+        stockedRearRightWheelParameters = null
+        stockedRearLeftWheelParameters = null
+    }
 }

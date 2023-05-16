@@ -58,6 +58,33 @@
                     android:weightSum="2">
 
                 <TextView
+                        android:text="Codification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView71"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wheelCodificationItem"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                <TextView
                         android:text="Pressure"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -130,6 +157,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/wheelToe"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="2"
+                    android:layout_marginTop="5dp">
+
+                <TextView
+                        android:text="Position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView91"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wheelPosition"
                         android:gravity="center"
                         android:textColor="@color/white"
                         android:fontFamily="@font/aldrich"

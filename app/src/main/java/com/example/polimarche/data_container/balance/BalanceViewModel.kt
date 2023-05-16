@@ -49,6 +49,7 @@ class BalanceViewModel: ViewModel() {
     fun clearStockedParameters(){
         BalanceRepository.clearStockedParameters()
     }
+
     fun getStockedParameters(): MutableList<DataBalance>{
         val listBalanceStockedParameters = emptyList<DataBalance>().toMutableList()
         return if(

@@ -61,6 +61,35 @@
                     android:layout_marginTop="2dp">
 
                 <TextView
+                        android:text="Set wheel codification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView78"
+                        android:textSize="14sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/aldrich" />
+
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="5"
+                        android:id="@+id/inputWheelCodification"
+                        android:textSize="14sp"
+                        android:hint="Pressure"
+                        android:imeOptions="actionDone"
+                        android:maxLines="1"
+                        android:layout_marginLeft="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp">
+
+                <TextView
                         android:text="Set wheel pressure"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
