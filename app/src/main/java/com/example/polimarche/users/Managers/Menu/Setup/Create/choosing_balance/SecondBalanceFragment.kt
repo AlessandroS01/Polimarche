@@ -37,12 +37,18 @@ class SecondBalanceFragment: Fragment(R.layout.fragment_managers_choose_second_b
             parentFragmentManager.beginTransaction().replace(R.id.layoutChooseBalance, firstBalance).commit()
         }
 
+        // sets the parameters to be passed to ExistingBalanceParameters or AddBalanceParameters
+        // fragments in order to know whether it's referring to front or back balance.
+        val bundle = Bundle()
+        bundle.putString("BALANCE_POSITION", "Back")
+        val existingParameters = ExistingBalanceParameters(binding.uploadBalances, binding.previousBalanceSecondBalance)
+        val addParameters = AddBalanceParameters(binding.uploadBalances, binding.previousBalanceSecondBalance)
+        existingParameters.arguments = bundle
+        addParameters.arguments = bundle
         /*
         Changes the view that provides the user to change the inserting method of the dampers
         parameters.
          */
-        val existingParameters = ExistingBalanceParameters(binding.uploadBalances, binding.previousBalanceSecondBalance)
-        val addParameters = AddBalanceParameters(binding.uploadBalances, binding.previousBalanceSecondBalance)
         parentFragmentManager.beginTransaction().replace(binding.frameLayoutChoiceChooseBalance.id, existingParameters).commit()
         binding.radioGroupSecondBalance.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == binding.radioButtonAddBalanceParameters.id){

@@ -16,4 +16,26 @@ object BalanceRepository {
             )
         )
     val balanceList get() = _balanceList
+
+    private var stockedFrontBalanceParameters: MutableLiveData<DataBalance>? = null
+    fun setFrontBalanceParameters(balanceParameters: DataBalance){
+        if (stockedFrontBalanceParameters == null) {
+            stockedFrontBalanceParameters = MutableLiveData()
+        }
+        stockedFrontBalanceParameters?.value = balanceParameters
+    }
+    fun getFrontBalanceParameters(): MutableLiveData<DataBalance>?{
+        return stockedFrontBalanceParameters
+    }
+
+    private var stockedBackBalanceParameters: MutableLiveData<DataBalance>? = null
+    fun setBackBalanceParameters(balanceParameters: DataBalance){
+        if (stockedBackBalanceParameters == null) {
+            stockedBackBalanceParameters = MutableLiveData()
+        }
+        stockedBackBalanceParameters?.value = balanceParameters
+    }
+    fun getBackBalanceParameters(): MutableLiveData<DataBalance>?{
+        return stockedBackBalanceParameters
+    }
 }

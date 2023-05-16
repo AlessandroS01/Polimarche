@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
+import com.example.polimarche.data_container.wheel.WheelViewModel
 
 class WheelsCodificationAdapter(
-    private var codificationList: MutableList<String>,
-    private var quantityCodification: MutableList<Int>,
+    private val wheelViewModel: WheelViewModel,
     private val listener: OnWheelsCodificationClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var mappingCodificationQuantityWheel = wheelViewModel.mapQuantityCodification()
 
     interface OnWheelsCodificationClickListener{
         fun onCodificationClick(codification: String)
@@ -27,7 +29,7 @@ class WheelsCodificationAdapter(
         override fun onClick(v: View?) {
             val position : Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onCodificationClick(codificationList[position])
+                listener.onCodificationClick(mappingCodificationQuantityWheel.keys.elementAt(position))
             }
         }
     }
@@ -39,15 +41,17 @@ class WheelsCodificationAdapter(
     }
 
     override fun getItemCount(): Int {
-        return codificationList.size
+        return mappingCodificationQuantityWheel.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderWheelCodification ->{
                 holder.apply {
-                    codification.text = "Cod: ${codificationList[position]}"
-                    quantity.text = "Q: ${quantityCodification[position]}"
+                    val codificationMapped = mappingCodificationQuantityWheel.keys.elementAt(position)
+                    val quantityMapped = mappingCodificationQuantityWheel[codificationMapped]
+                    codification.text = "Cod: ${codificationMapped}"
+                    quantity.text = "Q: ${quantityMapped}"
                 }
             }
         }
@@ -58,8 +62,8 @@ class WheelsCodificationAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<String>){
-        this.codificationList = filteredList
+    fun setNewMap(newMap: MutableMap<String, Int>){
+        this.mappingCodificationQuantityWheel = newMap
         notifyDataSetChanged()
     }
 }

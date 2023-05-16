@@ -32,4 +32,20 @@ class BalanceViewModel: ViewModel() {
         }?.toMutableList()!!
     }
 
+    fun setFrontBalanceParameters(balanceParameters: DataBalance){
+        BalanceRepository.setFrontBalanceParameters(balanceParameters)
+    }
+    fun getFrontBalanceParameters(): MutableLiveData<DataBalance>?{
+        return BalanceRepository.getFrontBalanceParameters()
+    }
+
+    fun setBackBalanceParameters(balanceParameters: DataBalance){
+        BalanceRepository.setBackBalanceParameters(balanceParameters)
+    }
+    fun getBackBalanceParameters(): MutableLiveData<DataBalance>?{
+        return BalanceRepository.getBackBalanceParameters()
+    }
+
+
+
 }

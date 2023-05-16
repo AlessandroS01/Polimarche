@@ -61,7 +61,7 @@
                     android:layout_marginTop="2dp">
 
                 <TextView
-                        android:text="Set brake balance"
+                        android:text="Set brake balance ( % )"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView67"
@@ -73,7 +73,7 @@
                 <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number|numberDecimal"
                         android:ems="5"
                         android:id="@+id/inputBrakeBalance"
                         android:textSize="14sp"
@@ -90,7 +90,7 @@
                     android:layout_marginTop="2dp">
 
                 <TextView
-                        android:text="Set weight balance"
+                        android:text="Set weight balance ( % )"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView68"
@@ -102,7 +102,7 @@
                 <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number|numberDecimal"
                         android:ems="5"
                         android:id="@+id/inputWeightBalance"
                         android:textSize="14sp"

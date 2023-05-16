@@ -9,10 +9,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.polimarche.data_container.wheel.DataWheel
+import com.example.polimarche.data_container.wheel.WheelViewModel
 
 class WheelsAdapter(
-    private var elementList: MutableList<DataWheel>
+    private val position: String,
+    private val wheelViewModel: WheelViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var wheelList =
+        when(position){
+            "Front right"-> wheelViewModel.getFrontRightWheels()
+            "Front left" -> wheelViewModel.getFrontLeftWheels()
+            "Rear left" -> wheelViewModel.getRearLeftWheels()
+            else -> wheelViewModel.getRearRightWheels()
+        }
 
     inner class ViewHolderWheel(wheelView : View) : RecyclerView.ViewHolder(wheelView){
         val wheelCode: TextView = wheelView.findViewById(R.id.wheelCode)
@@ -21,7 +31,7 @@ class WheelsAdapter(
         val wheelToe: TextView = wheelView.findViewById(R.id.wheelToe)
 
         val linearLayout = wheelView.findViewById<LinearLayout>(R.id.linearLayoutExpandable)
-        val costraintLayout: androidx.constraintlayout.widget.ConstraintLayout = wheelView.findViewById(R.id.costraintLayout)
+        val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = wheelView.findViewById(R.id.costraintLayout)
     }
 
 
@@ -31,25 +41,25 @@ class WheelsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return elementList.size
+        return wheelList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ViewHolderWheel ->{
                 holder.apply {
-                    wheelCode.text = elementList[position].code.toString()
-                    wheelPressure.text = "${elementList[position].pressure} bar"
-                    wheelCamber.text = elementList[position].camber
-                    wheelToe.text = elementList[position].toe
+                    wheelCode.text = wheelList[position].code.toString()
+                    wheelPressure.text = "${wheelList[position].pressure} bar"
+                    wheelCamber.text = wheelList[position].camber
+                    wheelToe.text = wheelList[position].toe
 
-                    val expansion = elementList[position].expansion
+                    val expansion = wheelList[position].expansion
 
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    costraintLayout.setOnClickListener {
-                        elementList[position].expansion = !elementList[position].expansion
+                    constraintLayout.setOnClickListener {
+                        wheelList[position].expansion = !wheelList[position].expansion
                         notifyItemChanged(position)
                     }
                 }
@@ -62,8 +72,8 @@ class WheelsAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: MutableList<DataWheel>){
-        this.elementList = filteredList
+    fun setNewList(newList: MutableList<DataWheel>){
+        this.wheelList = newList
         notifyDataSetChanged()
     }
 
