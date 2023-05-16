@@ -11,7 +11,9 @@ import com.example.mobileprogramming.databinding.FragmentManagersChooseFirstBala
 import com.example.polimarche.data_container.balance.BalanceViewModel
 import com.example.polimarche.users.managers.menu.setup.delete.VisualizeSetupFragment
 
-class FirstBalanceFragment: Fragment(R.layout.fragment_managers_choose_first_balance){
+class FirstBalanceFragment(
+    private val chooseBalanceMain: ChooseBalanceMain
+): Fragment(R.layout.fragment_managers_choose_first_balance){
 
     private var _binding: FragmentManagersChooseFirstBalanceBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +38,7 @@ class FirstBalanceFragment: Fragment(R.layout.fragment_managers_choose_first_bal
         Allow the user to navigate through the different dampers view fragment
         clicking on the image view positioned at the bottom of the page
          */
-        val secondBalance = SecondBalanceFragment()
+        val secondBalance = SecondBalanceFragment(chooseBalanceMain)
         binding.nextBalanceFirstBalance.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.layoutChooseBalance, secondBalance).commit()
         }

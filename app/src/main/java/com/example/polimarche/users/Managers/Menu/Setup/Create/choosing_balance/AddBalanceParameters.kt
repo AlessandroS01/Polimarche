@@ -57,8 +57,8 @@ class AddBalanceParameters(
                  Sets the value of parameterStocked if inside the repository there is already
                  a set of parameter set.
                  */
-                if( balanceViewModel.getFrontBalanceParameters() != null ){
-                    parametersStocked = balanceViewModel.getFrontBalanceParameters()
+                if( balanceViewModel.getFrontBalanceParametersStocked() != null ){
+                    parametersStocked = balanceViewModel.getFrontBalanceParametersStocked()
                     /*
                     Checks if the code of the parameters already stocked is referring to
                     a set of parameters that are already stored inside the list of parameters.
@@ -75,8 +75,8 @@ class AddBalanceParameters(
                 }
             }
             else -> {
-                if( balanceViewModel.getBackBalanceParameters() != null ){
-                    parametersStocked = balanceViewModel.getBackBalanceParameters()!!
+                if( balanceViewModel.getBackBalanceParametersStocked() != null ){
+                    parametersStocked = balanceViewModel.getBackBalanceParametersStocked()!!
                     if(
                         balanceViewModel.balanceList.value?.none {
                             it.code == parametersStocked!!.value?.code
@@ -341,7 +341,7 @@ class AddBalanceParameters(
                     binding.inputBrakeBalance.text.toString().toDouble(),
                     binding.inputWeightBalance.text.toString().toDouble()
                 )
-                balanceViewModel.setFrontBalanceParameters(newBalance)
+                balanceViewModel.setFrontBalanceParametersStocked(newBalance)
             }
             else -> {
                 val newBalance = DataBalance(
@@ -350,7 +350,7 @@ class AddBalanceParameters(
                     binding.inputBrakeBalance.text.toString().toDouble(),
                     binding.inputWeightBalance.text.toString().toDouble()
                 )
-                balanceViewModel.setBackBalanceParameters(newBalance)
+                balanceViewModel.setBackBalanceParametersStocked(newBalance)
             }
         }
     }

@@ -45,6 +45,9 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         setContentView(binding.root)
 
         binding.backButtonChooseBalance.setOnClickListener {
+            // if the parameters of the dampers are stocked whenever
+            // the user closes this fragment, they'll be erased.
+            balanceViewModel.clearStockedParameters()
             finish()
         }
 
@@ -110,7 +113,7 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         bottom of the layout containing and letting the user to decide whether
         to add a new set of parameters for the balance or to use an existing one.
          */
-        val firstDamper = FirstBalanceFragment()
+        val firstDamper = FirstBalanceFragment(this)
         supportFragmentManager.beginTransaction().apply {
             replace(binding.layoutChooseBalance.id, firstDamper).commit()
             setReorderingAllowed(true)

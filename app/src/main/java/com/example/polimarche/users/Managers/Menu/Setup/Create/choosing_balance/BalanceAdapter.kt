@@ -16,15 +16,33 @@ class BalanceAdapter(
     private val balanceViewModel: BalanceViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var balanceParametersList = if(
-        position == "Front"
-    ) balanceViewModel.getFrontBalanceList()
-    else balanceViewModel.getBackBalanceList()
+
+    private var balanceParametersList = when(position){
+        "Front" -> {
+            balanceViewModel.getFrontBalanceList()
+        }
+        "Back" -> {
+            balanceViewModel.getBackBalanceList()
+        }
+        else -> {
+            if (
+                balanceViewModel.getFrontBalanceParametersStocked() != null
+                &&
+                balanceViewModel.getBackBalanceParametersStocked() != null
+            ){
+                 balanceViewModel.getStockedParameters()
+            }
+            else
+                null
+        }
+    }
+
 
     inner class ViewHolderBalance(balanceView : View) : RecyclerView.ViewHolder(balanceView){
         val balanceCode: TextView = balanceView.findViewById(R.id.balanceCode)
         val balanceBrake: TextView = balanceView.findViewById(R.id.brakeBalance)
         val balanceWeight: TextView = balanceView.findViewById(R.id.weightBalance)
+        val balanceEnd: TextView = balanceView.findViewById(R.id.balanceEnd)
 
         val linearLayout: LinearLayout = balanceView.findViewById(R.id.linearLayoutExpandableBalance)
         val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = balanceView.findViewById(R.id.costraintLayoutBalance)
@@ -37,29 +55,35 @@ class BalanceAdapter(
     }
 
     override fun getItemCount(): Int {
-        return balanceParametersList.size
+        return if (balanceParametersList != null)
+            balanceParametersList?.size!!
+        else 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is ViewHolderBalance ->{
-                holder.apply {
-                    balanceCode.text = balanceParametersList[position].code.toString()
-                    balanceBrake.text = balanceParametersList[position].brake.toString()
-                    balanceWeight.text = balanceParametersList[position].weight.toString()
+        if( balanceParametersList != null){
+            when(holder){
+                is ViewHolderBalance ->{
+                    holder.apply {
+                        balanceCode.text = balanceParametersList!![position].code.toString()
+                        balanceBrake.text = balanceParametersList!![position].brake.toString()
+                        balanceWeight.text = balanceParametersList!![position].weight.toString()
+                        balanceEnd.text = balanceParametersList!![position].end
 
-                    val expansion = balanceParametersList[position].expansion
+                        val expansion = balanceParametersList!![position].expansion
 
 
-                    linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
+                        linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    constraintLayout.setOnClickListener {
-                        balanceParametersList[position].expansion = !balanceParametersList[position].expansion
-                        notifyItemChanged(position)
+                        constraintLayout.setOnClickListener {
+                            balanceParametersList!![position].expansion = !balanceParametersList!![position].expansion
+                            notifyItemChanged(position)
+                        }
                     }
                 }
             }
         }
+
     }
 
     /*
@@ -68,8 +92,14 @@ class BalanceAdapter(
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setNewList(newList: MutableList<DataBalance>){
-        this.balanceParametersList = newList
-        notifyDataSetChanged()
+        if (newList.isNotEmpty()){
+            this.balanceParametersList = newList
+            notifyDataSetChanged()
+        }
+        else{
+            this.balanceParametersList = null
+            notifyDataSetChanged()
+        }
     }
 
 
