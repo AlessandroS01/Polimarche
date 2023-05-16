@@ -50,16 +50,14 @@ class ExistingBalanceParameters(
         when(arguments?.getString("BALANCE_POSITION")){
             "Front"-> {
                 // Checks if a set of parameters is already stored.
-                if( balanceViewModel.getFrontBalanceParameters() != null ){
-                    parametersStocked = balanceViewModel.getFrontBalanceParameters()
+                if( balanceViewModel.getFrontBalanceParametersStocked() != null ){
+                    parametersStocked = balanceViewModel.getFrontBalanceParametersStocked()
                     // If the code of the parameters stocked is the same as the code of one
-                    // element's of the list of different balance parameters, then it sets the
-                    // text value inside the edit text equals to the code of the parameters stocked.
+                    // element of the list of different balance parameters, then it sets the
+                    // text value inside the edit text equals to the code of the set stocked.
                     if (
-                        balanceViewModel.balanceList.value?.none{
+                        balanceViewModel.balanceList.value?.any{
                             it.code == parametersStocked?.value?.code!!
-                                    &&
-                            it.end == "Front"
                         }!!
                     )
                     {
@@ -70,8 +68,8 @@ class ExistingBalanceParameters(
                 }
             }
             else -> {
-                if( balanceViewModel.getBackBalanceParameters() != null ){
-                    parametersStocked = balanceViewModel.getBackBalanceParameters()!!
+                if( balanceViewModel.getBackBalanceParametersStocked() != null ){
+                    parametersStocked = balanceViewModel.getBackBalanceParametersStocked()!!
                     if (
                         balanceViewModel.balanceList.value?.filter{
                             it.code == parametersStocked?.value?.code!!
@@ -124,7 +122,7 @@ class ExistingBalanceParameters(
                                 setup as the same of the set of parameters that has the code equals
                                 to the one given by the user as input.
                                  */
-                                balanceViewModel.setFrontBalanceParameters(
+                                balanceViewModel.setFrontBalanceParametersStocked(
                                     balanceViewModel.getFrontBalanceList().filter {
                                         it.code == s.toString().toInt()
                                     }[0]
@@ -150,7 +148,7 @@ class ExistingBalanceParameters(
                                         R.color.white
                                     )
                                 )
-                                balanceViewModel.setBackBalanceParameters(
+                                balanceViewModel.setBackBalanceParametersStocked(
                                     balanceViewModel.getBackBalanceList().filter {
                                         it.code == s.toString().toInt()
                                     }[0]

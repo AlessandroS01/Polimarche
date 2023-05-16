@@ -97,7 +97,8 @@ It's not compulsory to specify the setup code or to add notes."
 
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/listBalanceParameters">
 
             </androidx.recyclerview.widget.RecyclerView>
 
