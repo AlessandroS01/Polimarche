@@ -1,6 +1,8 @@
 package com.example.polimarche.data_container.damper
 
 import androidx.lifecycle.MutableLiveData
+import com.example.polimarche.data_container.wheel.DataWheel
+import com.example.polimarche.data_container.wheel.WheelRepository
 
 object DamperRepository {
 
@@ -16,6 +18,13 @@ object DamperRepository {
             )
         )
     val listDampers get() = _listDampers
+
+    fun addNewDamperParameters(listDamperStocked: MutableList<DataDamper>){
+        listDamperStocked.forEach {
+            _listDampers.value =
+                _listDampers.value?.plus(it) as MutableList<DataDamper>?
+        }
+    }
 
 
     private var stockedFrontDamperParameters: MutableLiveData<DataDamper>? = null

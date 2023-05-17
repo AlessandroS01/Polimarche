@@ -289,7 +289,7 @@ It's not compulsory to specify the setup code or to add notes."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView57"
-                        android:layout_weight="1.5"
+                        android:layout_weight="0.5"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:textSize="16sp"
@@ -297,11 +297,11 @@ It's not compulsory to specify the setup code or to add notes."
                         android:gravity="center" />
 
                 <ImageView
-                        android:layout_width="199dp"
-                        android:layout_height="23dp"
                         app:srcCompat="@drawable/create_setup_icon"
                         android:id="@+id/createSetup"
-                        android:layout_weight="0.5" />
+                        android:layout_weight="1.5"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent" />
             </LinearLayout>
 
         </LinearLayout>

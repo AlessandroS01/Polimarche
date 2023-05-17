@@ -108,4 +108,10 @@ class WheelViewModel: ViewModel() {
             listWheelStockedParameters
         } else listWheelStockedParameters
     }
+
+    fun addNewWheelParameters(){
+        WheelRepository.addNewWheelParameters(
+            getStockedParameters()
+        )
+    }
 }

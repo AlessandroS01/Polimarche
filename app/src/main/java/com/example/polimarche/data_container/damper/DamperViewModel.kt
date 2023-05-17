@@ -71,4 +71,10 @@ class DamperViewModel: ViewModel() {
             listBalanceStockedParameters
         } else listBalanceStockedParameters
     }
+
+    fun addNewDamperParameters(){
+        DamperRepository.addNewDamperParameters(
+            getStockedParameters()
+        )
+    }
 }

@@ -2,6 +2,7 @@ package com.example.polimarche.data_container.spring
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.polimarche.data_container.wheel.WheelRepository
 
 class SpringViewModel: ViewModel() {
 
@@ -63,4 +64,10 @@ class SpringViewModel: ViewModel() {
         } else listSpringStockedParameters
     }
 
+
+    fun addNewSpringParameters(){
+        SpringRepository.addNewSpringParameters(
+            getStockedParameters()
+        )
+    }
 }

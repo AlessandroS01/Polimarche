@@ -1,6 +1,8 @@
 package com.example.polimarche.data_container.balance
 
 import androidx.lifecycle.MutableLiveData
+import com.example.polimarche.data_container.damper.DamperRepository
+import com.example.polimarche.data_container.damper.DataDamper
 
 object BalanceRepository {
 
@@ -16,6 +18,13 @@ object BalanceRepository {
             )
         )
     val balanceList get() = _balanceList
+
+    fun addNewBalanceParameters(listBalanceStocked: MutableList<DataBalance>) {
+        listBalanceStocked.forEach {
+            _balanceList.value =
+                _balanceList.value?.plus(it) as MutableList<DataBalance>?
+        }
+    }
 
 
     private var stockedFrontBalanceParameters: MutableLiveData<DataBalance>? = null

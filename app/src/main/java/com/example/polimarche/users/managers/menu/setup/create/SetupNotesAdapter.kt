@@ -1,5 +1,6 @@
 package com.example.polimarche.users.managers.menu.setup.create
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -9,24 +10,20 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
-import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
 
 class SetupNotesAdapter(
-    private val setupViewModel: SetupViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /*
     Create the at least one element of the list
      */
-    private val setupNoteList: MutableList<String> = mutableListOf("")
+    private var setupNoteList: MutableList<String> = mutableListOf("")
 
     inner class ViewHolderNotes(noteView : View) : RecyclerView.ViewHolder(noteView){
         var note: EditText = noteView.findViewById(R.id.editTextNotes)
         var add: ImageView = noteView.findViewById(R.id.imageViewAddNote)
         var remove: ImageView = noteView.findViewById(R.id.imageViewRemoveNote)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -38,7 +35,7 @@ class SetupNotesAdapter(
         return setupNoteList.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         when(holder){
             is ViewHolderNotes ->{
                 holder.apply {
@@ -63,8 +60,40 @@ class SetupNotesAdapter(
                             notifyDataSetChanged()
                         }
                     }
+
+                    note.addTextChangedListener(object: TextWatcher{
+                        override fun beforeTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
+                        ) {
+                        }
+
+                        override fun onTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            before: Int,
+                            count: Int
+                        ) {
+                            setupNoteList[position] = s.toString().trim()
+                        }
+
+                        override fun afterTextChanged(s: Editable?) {
+                        }
+
+                    })
                 }
             }
         }
+    }
+
+    fun retrieveNoteList(): MutableList<String>{
+        return setupNoteList
+    }
+
+    fun clearNoteList(){
+        setupNoteList = mutableListOf("")
+        notifyDataSetChanged()
     }
 }

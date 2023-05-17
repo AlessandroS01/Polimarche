@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupCreateSetupBinding
 import com.example.polimarche.data_container.balance.BalanceViewModel
 import com.example.polimarche.data_container.damper.DamperViewModel
+import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
 import com.example.polimarche.data_container.spring.SpringViewModel
 import com.example.polimarche.data_container.wheel.WheelViewModel
@@ -171,10 +173,154 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         Setting up the recycler view containing the notes of the newest setup
          */
         recyclerViewSetupNotes = binding.listNotesNewSetup
-        adapterSetupNotes = SetupNotesAdapter(setupViewModel)
+        adapterSetupNotes = SetupNotesAdapter()
         val layoutManagerSetupNotes = LinearLayoutManager(this.context)
         recyclerViewSetupNotes.layoutManager = layoutManagerSetupNotes
         recyclerViewSetupNotes.adapter = adapterSetupNotes
 
+        // starts the process to create a new setup
+        binding.createSetup.setOnClickListener {
+            // checks if all the parameters are given
+            if(
+                adapterWheelParameters.itemCount != 0
+                &&
+                adapterDamperParameters.itemCount != 0
+                &&
+                adapterSpringParameters.itemCount != 0
+                &&
+                adapterBalanceParameters.itemCount != 0
+            ) {
+                // checks if the front wing hole is set
+               if(
+                   binding.editTextFrontWing.text.isNotEmpty()
+               ){
+                   // whenever it passes all the verification it can start the cretion of the newest
+                   // setup
+                   createSetup()
+
+               }else{
+                   Toast.makeText(
+                       requireContext(),
+                       "Provide front wing hole",
+                       Toast.LENGTH_SHORT
+                   ).show()
+               }
+
+            }else{
+                Toast.makeText(
+                    requireContext(),
+                    "Provide wheel, damper, spring and balance parameters.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun createSetup(){
+        if(binding.editTextSetupCode.text.isNotEmpty()){
+            val newSetupCode = binding.editTextSetupCode.text.toString().toInt()
+
+            if ( setupViewModel.setupList.none{
+                    it.code == newSetupCode
+                }
+            ){
+                generateSetup(newSetupCode)
+            }
+        }else{
+            var newSetupCode = 1
+            while (
+                setupViewModel.setupList.any{
+                    it.code == newSetupCode
+                }
+            ){
+                newSetupCode++
+            }
+            generateSetup(newSetupCode)
+        }
+    }
+
+
+    private fun generateSetup(newSetupCode: Int){
+        var preferredEvents = ""
+
+        if ( binding.checkBoxAcceleration.isChecked )
+            preferredEvents += binding.checkBoxAcceleration.text.toString() + "\n"
+        if ( binding.checkBoxAutocross.isChecked )
+            preferredEvents += binding.checkBoxAutocross.text.toString() + "\n"
+        if ( binding.checkBoxEndurance.isChecked )
+            preferredEvents += binding.checkBoxEndurance.text.toString() + "\n"
+        if ( binding.checkBoxSkidpad.isChecked )
+            preferredEvents += binding.checkBoxSkidpad.text.toString()
+
+        val setupNotes = adapterSetupNotes.retrieveNoteList()
+
+        val newSetup = DataSetup(
+            newSetupCode,
+
+            wheelViewModel.getFrontRightParametersStocked()?.value!!,
+            wheelViewModel.getFrontLeftParametersStocked()?.value!!,
+            wheelViewModel.getRearRightParametersStocked()?.value!!,
+            wheelViewModel.getRearLeftParametersStocked()?.value!!,
+
+            damperViewModel.getFrontDamperParametersStocked()?.value!!,
+            damperViewModel.getBackDamperParametersStocked()?.value!!,
+
+            springViewModel.getFrontSpringParametersStocked()?.value!!,
+            springViewModel.getBackSpringParametersStocked()?.value!!,
+
+            balanceViewModel.getFrontBalanceParametersStocked()?.value!!,
+            balanceViewModel.getBackBalanceParametersStocked()?.value!!,
+
+            preferredEvents,
+
+            binding.editTextFrontWing.text.toString(),
+
+            setupNotes
+        )
+
+        // adds the new setup created to the repository
+        setupViewModel.addNewSetup(newSetup)
+
+        // updates the various list of parameters
+        wheelViewModel.addNewWheelParameters()
+        damperViewModel.addNewDamperParameters()
+        springViewModel.addNewSpringParameters()
+        balanceViewModel.addNewBalanceParameters()
+
+        Toast.makeText(
+            requireContext(),
+            "Setup created. All input cleared.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        // after the creation of the setup it should clear all the inputs inside the view
+        clearInput()
+    }
+
+    private fun clearInput(){
+        // clear all the inputs inside the view
+        wheelViewModel.clearStockedParameters()
+        adapterWheelParameters.setNewList(wheelViewModel.getStockedParameters())
+        damperViewModel.clearStockedParameters()
+        adapterDamperParameters.setNewList(damperViewModel.getStockedParameters())
+        springViewModel.clearStockedParameters()
+        adapterSpringParameters.setNewList(springViewModel.getStockedParameters())
+        balanceViewModel.clearStockedParameters()
+        adapterBalanceParameters.setNewList(balanceViewModel.getStockedParameters())
+
+        binding.editTextFrontWing.text.clear()
+
+        if ( binding.checkBoxAcceleration.isChecked )
+            binding.checkBoxAcceleration.isChecked = false
+        if ( binding.checkBoxAutocross.isChecked )
+            binding.checkBoxAutocross.isChecked = false
+        if ( binding.checkBoxEndurance.isChecked )
+            binding.checkBoxEndurance.isChecked = false
+        if ( binding.checkBoxSkidpad.isChecked )
+            binding.checkBoxSkidpad.isChecked = false
+
+        binding.editTextSetupCode.text.clear()
+
+        adapterSetupNotes.clearNoteList()
     }
 }

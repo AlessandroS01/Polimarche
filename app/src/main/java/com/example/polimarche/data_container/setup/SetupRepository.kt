@@ -84,4 +84,8 @@ object SetupRepository {
         _setupListData.remove(setup)
     }
 
+    fun addNewSetup(newSetup: DataSetup){
+        _setupListData.add(newSetup)
+    }
+
 }

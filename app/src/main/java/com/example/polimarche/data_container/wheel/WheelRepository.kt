@@ -2,6 +2,8 @@ package com.example.polimarche.data_container.wheel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.polimarche.data_container.balance.DataBalance
+import com.example.polimarche.data_container.problem.DataProblem
+import com.example.polimarche.data_container.problem.ProblemsRepository
 
 object WheelRepository {
 
@@ -27,6 +29,13 @@ object WheelRepository {
             )
         )
     val listWheel get() = _listWheel
+
+    fun addNewWheelParameters(listWheelStocked: MutableList<DataWheel>){
+        listWheelStocked.forEach {
+            _listWheel.value =
+                _listWheel.value?.plus(it) as MutableList<DataWheel>?
+        }
+    }
 
 
     private var stockedFrontRightWheelParameters: MutableLiveData<DataWheel>? = null

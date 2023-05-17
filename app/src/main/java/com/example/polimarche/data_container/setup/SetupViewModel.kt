@@ -26,4 +26,8 @@ class SetupViewModel: ViewModel() {
         SetupRepository.removeSetup(setup)
     }
 
+    fun addNewSetup(newSetup: DataSetup){
+        SetupRepository.addNewSetup(newSetup)
+    }
+
 }

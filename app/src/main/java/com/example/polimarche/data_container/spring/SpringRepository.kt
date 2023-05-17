@@ -1,6 +1,8 @@
 package com.example.polimarche.data_container.spring
 
 import androidx.lifecycle.MutableLiveData
+import com.example.polimarche.data_container.damper.DamperRepository
+import com.example.polimarche.data_container.damper.DataDamper
 
 object SpringRepository {
 
@@ -16,6 +18,13 @@ object SpringRepository {
             )
         )
     val listSpring get() = _listSpring
+
+    fun addNewSpringParameters(listSpringStocked: MutableList<DataSpring>){
+        listSpringStocked.forEach {
+            _listSpring.value =
+                _listSpring.value?.plus(it) as MutableList<DataSpring>?
+        }
+    }
 
 
     private var stockedFrontSpringParameters: MutableLiveData<DataSpring>? = null

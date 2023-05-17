@@ -2,6 +2,7 @@ package com.example.polimarche.data_container.balance
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.polimarche.data_container.spring.SpringRepository
 
 class BalanceViewModel: ViewModel() {
 
@@ -63,6 +64,12 @@ class BalanceViewModel: ViewModel() {
         } else listBalanceStockedParameters
     }
 
+
+    fun addNewBalanceParameters(){
+        BalanceRepository.addNewBalanceParameters(
+            getStockedParameters()
+        )
+    }
 
 
 }
