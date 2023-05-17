@@ -46,6 +46,7 @@ class AddWheelsParameters(
         super.onViewCreated(view, savedInstanceState)
 
         setViewVisibility(binding.inputWheelCode)
+        setViewVisibility(binding.inputWheelCodification)
         setViewVisibility(binding.inputWheelPressure)
         setViewVisibility(binding.inputWheelCamber)
         setViewVisibility(binding.inputWheelToe)
@@ -216,7 +217,7 @@ class AddWheelsParameters(
                 }
                 override fun afterTextChanged(s: Editable?) {}
             })
-        // The operations of the following parts are similar to the previous one.
+        // The operations of the following code is similar to the previous one.
         binding.inputWheelPressure.addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

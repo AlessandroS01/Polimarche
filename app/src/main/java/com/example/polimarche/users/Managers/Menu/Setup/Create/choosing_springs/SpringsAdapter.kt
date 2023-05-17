@@ -16,10 +16,26 @@ class SpringsAdapter(
     private val springViewModel: SpringViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listSpring = if(
-        position == "Front"
-    ) springViewModel.getFrontSpringList()
-    else springViewModel.getBackSpringList()
+
+    private var listSpring = when(position){
+        "Front" -> {
+            springViewModel.getFrontSpringList()
+        }
+        "End" -> {
+            springViewModel.getBackSpringList()
+        }
+        else -> {
+            if (
+                springViewModel.getFrontSpringParametersStocked() != null
+                &&
+                springViewModel.getBackSpringParametersStocked() != null
+            ){
+                 springViewModel.getStockedParameters()
+            }
+            else
+                null
+        }
+    }
 
     inner class ViewHolderSpring(springView : View) : RecyclerView.ViewHolder(springView){
         val springCode: TextView = springView.findViewById(R.id.springCode)
@@ -27,6 +43,7 @@ class SpringsAdapter(
         val springHeight: TextView = springView.findViewById(R.id.heightSprings)
         val springArbStiffness: TextView = springView.findViewById(R.id.arbStiffnessSprings)
         val springArbPosition: TextView = springView.findViewById(R.id.arbPositionSprings)
+        val springPosition: TextView = springView.findViewById(R.id.positionSprings)
 
         val linearLayout = springView.findViewById<LinearLayout>(R.id.linearLayoutExpandableSpring)
         val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = springView.findViewById(R.id.costraintLayoutSpring)
@@ -39,27 +56,32 @@ class SpringsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listSpring.size
+        return if (listSpring != null)
+            listSpring?.size!!
+        else 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is ViewHolderSpring ->{
-                holder.apply {
-                    springCode.text = listSpring[position].code.toString()
-                    springCodification.text = listSpring[position].codification
-                    springHeight.text = listSpring[position].height.toString()
-                    springArbStiffness.text = listSpring[position].arb_stiffness
-                    springArbPosition.text = listSpring[position].arb_position
+        if( listSpring != null) {
+            when (holder) {
+                is ViewHolderSpring -> {
+                    holder.apply {
+                        springCode.text = listSpring!![position].code.toString()
+                        springCodification.text = listSpring!![position].codification
+                        springHeight.text = listSpring!![position].height.toString()
+                        springArbStiffness.text = listSpring!![position].arb_stiffness
+                        springArbPosition.text = listSpring!![position].arb_position
+                        springPosition.text = listSpring!![position].end
 
-                    val expansion = listSpring[position].expansion
+                        val expansion = listSpring!![position].expansion
 
 
-                    linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
+                        linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    constraintLayout.setOnClickListener {
-                        listSpring[position].expansion = !listSpring[position].expansion
-                        notifyItemChanged(position)
+                        constraintLayout.setOnClickListener {
+                            listSpring!![position].expansion = !listSpring!![position].expansion
+                            notifyItemChanged(position)
+                        }
                     }
                 }
             }
@@ -72,8 +94,14 @@ class SpringsAdapter(
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setNewList(newList: MutableList<DataSpring>){
-        this.listSpring = newList
-        notifyDataSetChanged()
+        if (newList.isNotEmpty()){
+            this.listSpring = newList
+            notifyDataSetChanged()
+        }
+        else{
+            this.listSpring = null
+            notifyDataSetChanged()
+        }
     }
 
 

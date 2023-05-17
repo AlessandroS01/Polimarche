@@ -7,8 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersChooseFirstSpringBinding
+import com.example.polimarche.users.managers.menu.setup.create.choosing_balance.AddBalanceParameters
+import com.example.polimarche.users.managers.menu.setup.create.choosing_balance.ExistingBalanceParameters
+import com.example.polimarche.users.managers.menu.setup.create.choosing_springs.ChooseSpringsMain
 
-class FirstSpringsFragment: Fragment(R.layout.fragment_managers_choose_first_spring){
+class FirstSpringsFragment(
+    private val chooseSpringsMain: ChooseSpringsMain
+): Fragment(R.layout.fragment_managers_choose_first_spring){
 
     private var _binding: FragmentManagersChooseFirstSpringBinding? = null
     private val binding get() = _binding!!
@@ -32,17 +37,26 @@ class FirstSpringsFragment: Fragment(R.layout.fragment_managers_choose_first_spr
         Allow the user to navigate through the different dampers view fragment
         clicking on the image view positioned at the bottom of the page
          */
-        val secondDamper = SecondSpringsFragment()
+        val secondDamper = SecondSpringsFragment(chooseSpringsMain)
         binding.nextSpringFirstSpring.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.layoutChooseSprings, secondDamper).commit()
         }
+
+
+        // sets the parameters to be passed to ExistingBalanceParameters or AddBalanceParameters
+        // fragments in order to know whether it's referring to front or back balance.
+        val bundle = Bundle()
+        bundle.putString("SPRING_POSITION", "Front")
+        val existingParameters = ExistingSpringsParameters(binding.nextSpringFirstSpring, null)
+        val addParameters = AddSpringsParameters(binding.nextSpringFirstSpring, null)
+        existingParameters.arguments = bundle
+        addParameters.arguments = bundle
+
 
         /*
         Changes the view that provides the user to change the inserting method of the dampers
         parameters.
          */
-        val existingParameters = ExistingSpringsParameters(binding.nextSpringFirstSpring, null)
-        val addParameters = AddSpringsParameters(binding.nextSpringFirstSpring, null)
         parentFragmentManager.beginTransaction().replace(R.id.frameLayoutChoiceChooseSprings, existingParameters).commit()
         binding.radioGroupFirstSpring.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == binding.radioButtonAddSpringParameters.id){

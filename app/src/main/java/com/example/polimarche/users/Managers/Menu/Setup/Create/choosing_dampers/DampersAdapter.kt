@@ -16,10 +16,26 @@ class DampersAdapter(
     private var damperViewModel: DamperViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var damperList = if(
-        position == "Front"
-    ) damperViewModel.getFrontDampers()
-    else damperViewModel.getEndDampers()
+
+    private var damperList = when(position){
+        "Front" -> {
+            damperViewModel.getFrontDampers()
+        }
+        "End" -> {
+            damperViewModel.getEndDampers()
+        }
+        else -> {
+            if (
+                damperViewModel.getFrontDamperParametersStocked() != null
+                &&
+                damperViewModel.getBackDamperParametersStocked() != null
+            ){
+                 damperViewModel.getStockedParameters()
+            }
+            else
+                null
+        }
+    }
 
     inner class ViewHolderDamper(damperView : View) : RecyclerView.ViewHolder(damperView){
         val damperCode: TextView = damperView.findViewById(R.id.damperCode)
@@ -27,6 +43,7 @@ class DampersAdapter(
         val damperHSC: TextView = damperView.findViewById(R.id.hscDamper)
         val damperLSR: TextView = damperView.findViewById(R.id.lsrDamper)
         val damperLSC: TextView = damperView.findViewById(R.id.lscDamper)
+        val damperPosition: TextView = damperView.findViewById(R.id.positionDamper)
 
         val linearLayout = damperView.findViewById<LinearLayout>(R.id.linearLayoutExpandableDamper)
         val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout =
@@ -44,27 +61,32 @@ class DampersAdapter(
     }
 
     override fun getItemCount(): Int {
-        return damperList.size
+        return if (damperList != null)
+            damperList?.size!!
+        else 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is ViewHolderDamper ->{
-                holder.apply {
-                    damperCode.text = damperList[position].code.toString()
-                    damperHSR.text = damperList[position].hsr.toString()
-                    damperHSC.text = damperList[position].hsc.toString()
-                    damperLSR.text = damperList[position].lsr.toString()
-                    damperLSC.text = damperList[position].lsc.toString()
+        if( damperList != null) {
+            when (holder) {
+                is ViewHolderDamper -> {
+                    holder.apply {
+                        damperCode.text = damperList!![position].code.toString()
+                        damperHSR.text = damperList!![position].hsr.toString()
+                        damperHSC.text = damperList!![position].hsc.toString()
+                        damperLSR.text = damperList!![position].lsr.toString()
+                        damperLSC.text = damperList!![position].lsc.toString()
+                        damperPosition.text = damperList!![position].end
 
-                    val expansion = damperList[position].expansion
+                        val expansion = damperList!![position].expansion
 
 
-                    linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
+                        linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    constraintLayout.setOnClickListener {
-                        damperList[position].expansion = !damperList[position].expansion
-                        notifyItemChanged(position)
+                        constraintLayout.setOnClickListener {
+                            damperList!![position].expansion = !damperList!![position].expansion
+                            notifyItemChanged(position)
+                        }
                     }
                 }
             }
@@ -76,9 +98,15 @@ class DampersAdapter(
     at the change of the text inserted inside the SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewList(newListDampers: MutableList<DataDamper>){
-        this.damperList = newListDampers
-        notifyDataSetChanged()
+    fun setNewList(newList: MutableList<DataDamper>){
+        if (newList.isNotEmpty()){
+            this.damperList = newList
+            notifyDataSetChanged()
+        }
+        else{
+            this.damperList = null
+            notifyDataSetChanged()
+        }
     }
 
 

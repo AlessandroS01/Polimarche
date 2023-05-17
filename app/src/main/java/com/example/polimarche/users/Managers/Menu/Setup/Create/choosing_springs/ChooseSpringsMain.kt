@@ -42,6 +42,9 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         setContentView(binding.root)
 
         binding.backButtonChooseSprings.setOnClickListener {
+            // if the parameters of the springs are stocked whenever
+            // the user closes this fragment, they'll be erased.
+            springViewModel.clearStockedParameters()
             finish()
         }
 
@@ -107,7 +110,7 @@ class ChooseSpringsMain: AppCompatActivity(), SpringsCodificationAdapter.OnSprin
         bottom of the layout containing and letting the user to decide whether
         to add a new set of parameters for the springs or to use an existing one.
          */
-        val firstSpring = FirstSpringsFragment()
+        val firstSpring = FirstSpringsFragment(this)
         supportFragmentManager.beginTransaction().apply {
             replace(binding.layoutChooseSprings.id, firstSpring).commit()
             setReorderingAllowed(true)

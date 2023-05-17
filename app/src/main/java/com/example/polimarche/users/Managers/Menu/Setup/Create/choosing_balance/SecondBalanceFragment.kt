@@ -45,7 +45,7 @@ class SecondBalanceFragment(
         }
 
         /*
-        The upload will submit the result only when
+        The upload will submit the result only when a list of checks will be passed
          */
         binding.uploadBalances.setOnClickListener {
             if (balanceViewModel.getFrontBalanceParametersStocked() != null &&
@@ -89,7 +89,7 @@ class SecondBalanceFragment(
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    // if it the parameters pass all the validation point then it closes the fragment
+                    // if it the parameters pass all the validation checks then it closes the fragment
                     chooseBalanceMain.finish()
                 }
             } else {
