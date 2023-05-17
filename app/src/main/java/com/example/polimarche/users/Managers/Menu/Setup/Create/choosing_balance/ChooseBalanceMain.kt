@@ -45,7 +45,7 @@ class ChooseBalanceMain: AppCompatActivity(), BalanceCodeAdapter.OnBalanceCodeCl
         setContentView(binding.root)
 
         binding.backButtonChooseBalance.setOnClickListener {
-            // if the parameters of the dampers are stocked whenever
+            // if the parameters of the balance are stocked whenever
             // the user closes this fragment, they'll be erased.
             balanceViewModel.clearStockedParameters()
             finish()

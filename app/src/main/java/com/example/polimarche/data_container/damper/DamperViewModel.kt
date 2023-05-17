@@ -39,4 +39,36 @@ class DamperViewModel: ViewModel() {
             it.end == "End"
         }?.toMutableList()!!
     }
+
+
+    fun setFrontDamperParametersStocked(damperParameters: DataDamper){
+        DamperRepository.setFrontDamperParametersStocked(damperParameters)
+    }
+    fun getFrontDamperParametersStocked(): MutableLiveData<DataDamper>?{
+        return DamperRepository.getFrontDamperParametersStocked()
+    }
+
+    fun setBackDamperParametersStocked(damperParameters: DataDamper){
+        DamperRepository.setBackDamperParametersStocked(damperParameters)
+    }
+    fun getBackDamperParametersStocked(): MutableLiveData<DataDamper>?{
+        return DamperRepository.getBackDamperParametersStocked()
+    }
+
+    fun clearStockedParameters(){
+        DamperRepository.clearStockedParameters()
+    }
+
+    fun getStockedParameters(): MutableList<DataDamper>{
+        val listBalanceStockedParameters = emptyList<DataDamper>().toMutableList()
+        return if(
+            DamperRepository.getFrontDamperParametersStocked()?.value != null
+            &&
+            DamperRepository.getBackDamperParametersStocked()?.value != null
+        ){
+            listBalanceStockedParameters.add(DamperRepository.getFrontDamperParametersStocked()?.value!!)
+            listBalanceStockedParameters.add(DamperRepository.getBackDamperParametersStocked()?.value!!)
+            listBalanceStockedParameters
+        } else listBalanceStockedParameters
+    }
 }

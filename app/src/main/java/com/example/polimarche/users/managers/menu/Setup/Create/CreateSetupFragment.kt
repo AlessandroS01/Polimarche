@@ -12,12 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileprogramming.R
 import com.example.mobileprogramming.databinding.FragmentManagersSetupCreateSetupBinding
 import com.example.polimarche.data_container.balance.BalanceViewModel
-import com.example.polimarche.data_container.balance.DataBalance
-import com.example.polimarche.data_container.damper.DataDamper
-import com.example.polimarche.data_container.setup.DataSetup
+import com.example.polimarche.data_container.damper.DamperViewModel
 import com.example.polimarche.data_container.setup.SetupViewModel
-import com.example.polimarche.data_container.spring.DataSpring
-import com.example.polimarche.data_container.wheel.DataWheel
+import com.example.polimarche.data_container.spring.SpringViewModel
+import com.example.polimarche.data_container.wheel.WheelViewModel
 import com.example.polimarche.users.managers.menu.setup.create.choosing_balance.BalanceAdapter
 import com.example.polimarche.users.managers.menu.setup.create.choosing_balance.ChooseBalanceMain
 import com.example.polimarche.users.managers.menu.setup.create.choosing_dampers.ChooseDampersMain
@@ -33,7 +31,11 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
     private val binding get() = _binding!!
 
     private val setupViewModel: SetupViewModel by viewModels()
+    private val wheelViewModel: WheelViewModel by viewModels()
+    private val damperViewModel: DamperViewModel by viewModels()
+    private val springViewModel: SpringViewModel by viewModels()
     private val balanceViewModel: BalanceViewModel by viewModels()
+
 
     private lateinit var adapterWheelParameters: WheelsAdapter
 
@@ -65,6 +67,28 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         return binding.root
     }
 
+    override fun onResume() {
+        // everytime the fragment resume it should refresh the adapters of all the different
+        // recyclerViews
+        super.onResume()
+
+        adapterBalanceParameters.setNewList(
+            balanceViewModel.getStockedParameters()
+        )
+
+        adapterWheelParameters.setNewList(
+            wheelViewModel.getStockedParameters()
+        )
+
+        adapterDamperParameters.setNewList(
+            damperViewModel.getStockedParameters()
+        )
+
+        adapterSpringParameters.setNewList(
+            springViewModel.getStockedParameters()
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -72,28 +96,58 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         Opens the layout used to choose the wheels of the new setup.
          */
         binding.chooseWheelsCreateSetup.setOnClickListener {
+            // when the user wants to change the parameters it would be required
+            // to add the parameters again
+            wheelViewModel.clearStockedParameters()
+            adapterWheelParameters.setNewList(wheelViewModel.getStockedParameters())
             Intent(it.context, ChooseWheelsMain::class.java).apply{
                 startActivity(this)
             }
         }
+        val recyclerViewWheelParameters = binding.listWheelParameters
+        adapterWheelParameters = WheelsAdapter("Stocked", wheelViewModel)
+        val linearLayoutManagerWheelParameters = LinearLayoutManager(requireContext())
+        recyclerViewWheelParameters.layoutManager = linearLayoutManagerWheelParameters
+        recyclerViewWheelParameters.adapter = adapterWheelParameters
+
 
         /*
         Opens the layout used to choose the dampers of the new setup.
          */
         binding.chooseDampersCreateSetup.setOnClickListener {
+            // when the user wants to change the parameters it would be required
+            // to add the parameters again
+            damperViewModel.clearStockedParameters()
+            adapterDamperParameters.setNewList(damperViewModel.getStockedParameters())
             Intent(it.context, ChooseDampersMain::class.java).apply{
                 startActivity(this)
             }
         }
+        val recyclerViewDamperParameters = binding.listDamperParameters
+        adapterDamperParameters = DampersAdapter("Stocked", damperViewModel)
+        val linearLayoutManagerDamperParameters = LinearLayoutManager(requireContext())
+        recyclerViewDamperParameters.layoutManager = linearLayoutManagerDamperParameters
+        recyclerViewDamperParameters.adapter = adapterDamperParameters
+
 
         /*
         Opens the layout used to choose the springs of the new setup.
          */
         binding.chooseSpringsCreateSetup.setOnClickListener {
+            // when the user wants to change the parameters it would be required
+            // to add the parameters again
+            springViewModel.clearStockedParameters()
+            adapterSpringParameters.setNewList(springViewModel.getStockedParameters())
             Intent(it.context, ChooseSpringsMain::class.java).apply{
                 startActivity(this)
             }
         }
+        val recyclerViewSpringParameters = binding.listSpringParameters
+        adapterSpringParameters = SpringsAdapter("Stocked", springViewModel)
+        val linearLayoutManagerSpringParameters = LinearLayoutManager(requireContext())
+        recyclerViewSpringParameters.layoutManager = linearLayoutManagerSpringParameters
+        recyclerViewSpringParameters.adapter = adapterSpringParameters
+
 
         /*
         Opens the layout used to choose the balance of the new setup.
@@ -109,8 +163,8 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         }
         val recyclerViewBalanceParameters = binding.listBalanceParameters
         adapterBalanceParameters = BalanceAdapter("Stocked", balanceViewModel)
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        recyclerViewBalanceParameters.layoutManager = linearLayoutManager
+        val linearLayoutManagerBalanceParameters = LinearLayoutManager(requireContext())
+        recyclerViewBalanceParameters.layoutManager = linearLayoutManagerBalanceParameters
         recyclerViewBalanceParameters.adapter = adapterBalanceParameters
 
         /*
@@ -122,15 +176,5 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         recyclerViewSetupNotes.layoutManager = layoutManagerSetupNotes
         recyclerViewSetupNotes.adapter = adapterSetupNotes
 
-    }
-
-    override fun onResume() {
-        // everytime the fragment resume it should refresh the adapters of all the different
-        // recyclerViews
-        super.onResume()
-
-        adapterBalanceParameters.setNewList(
-            balanceViewModel.getStockedParameters()
-        )
     }
 }

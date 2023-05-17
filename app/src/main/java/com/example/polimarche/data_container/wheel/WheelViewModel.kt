@@ -87,7 +87,7 @@ class WheelViewModel: ViewModel() {
 
 
     fun clearStockedParameters(){
-        BalanceRepository.clearStockedParameters()
+        WheelRepository.clearStockedParameters()
     }
 
     fun getStockedParameters(): MutableList<DataWheel>{

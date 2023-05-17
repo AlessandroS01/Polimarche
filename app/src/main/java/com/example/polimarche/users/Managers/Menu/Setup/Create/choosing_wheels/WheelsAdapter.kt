@@ -21,14 +21,31 @@ class WheelsAdapter(
             "Front right"-> wheelViewModel.getFrontRightWheels()
             "Front left" -> wheelViewModel.getFrontLeftWheels()
             "Rear left" -> wheelViewModel.getRearLeftWheels()
-            else -> wheelViewModel.getRearRightWheels()
+            "Rear right" -> wheelViewModel.getRearRightWheels()
+            else ->{
+                if (
+                    wheelViewModel.getFrontRightParametersStocked() != null
+                    &&
+                    wheelViewModel.getFrontLeftParametersStocked() != null
+                    &&
+                    wheelViewModel.getRearRightParametersStocked() != null
+                    &&
+                    wheelViewModel.getRearLeftParametersStocked() != null
+                ){
+                     wheelViewModel.getStockedParameters()
+                }
+                else
+                    null
+            }
         }
 
     inner class ViewHolderWheel(wheelView : View) : RecyclerView.ViewHolder(wheelView){
         val wheelCode: TextView = wheelView.findViewById(R.id.wheelCode)
+        val wheelCodification: TextView = wheelView.findViewById(R.id.wheelCodificationItem)
         val wheelPressure: TextView = wheelView.findViewById(R.id.wheelPressure)
         val wheelCamber: TextView = wheelView.findViewById(R.id.wheelCamber)
         val wheelToe: TextView = wheelView.findViewById(R.id.wheelToe)
+        val wheelPosition: TextView = wheelView.findViewById(R.id.wheelPosition)
 
         val linearLayout = wheelView.findViewById<LinearLayout>(R.id.linearLayoutExpandable)
         val constraintLayout: androidx.constraintlayout.widget.ConstraintLayout = wheelView.findViewById(R.id.costraintLayout)
@@ -41,26 +58,32 @@ class WheelsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return wheelList.size
+        return if (wheelList != null)
+            wheelList?.size!!
+        else 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is ViewHolderWheel ->{
-                holder.apply {
-                    wheelCode.text = wheelList[position].code.toString()
-                    wheelPressure.text = "${wheelList[position].pressure} bar"
-                    wheelCamber.text = wheelList[position].camber
-                    wheelToe.text = wheelList[position].toe
+        if( wheelList != null) {
+            when (holder) {
+                is ViewHolderWheel -> {
+                    holder.apply {
+                        wheelCode.text = wheelList!![position].code.toString()
+                        wheelCodification.text = wheelList!![position].codification
+                        wheelPressure.text = "${wheelList!![position].pressure} bar"
+                        wheelCamber.text = wheelList!![position].camber
+                        wheelToe.text = wheelList!![position].toe
+                        wheelPosition.text = wheelList!![position].position
 
-                    val expansion = wheelList[position].expansion
+                        val expansion = wheelList!![position].expansion
 
 
-                    linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
+                        linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
-                    constraintLayout.setOnClickListener {
-                        wheelList[position].expansion = !wheelList[position].expansion
-                        notifyItemChanged(position)
+                        constraintLayout.setOnClickListener {
+                            wheelList!![position].expansion = !wheelList!![position].expansion
+                            notifyItemChanged(position)
+                        }
                     }
                 }
             }
@@ -73,8 +96,14 @@ class WheelsAdapter(
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setNewList(newList: MutableList<DataWheel>){
-        this.wheelList = newList
-        notifyDataSetChanged()
+        if (newList.isNotEmpty()){
+            this.wheelList = newList
+            notifyDataSetChanged()
+        }
+        else{
+            this.wheelList = null
+            notifyDataSetChanged()
+        }
     }
 
 

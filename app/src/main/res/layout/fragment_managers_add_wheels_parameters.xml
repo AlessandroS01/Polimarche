@@ -74,10 +74,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:ems="5"
                         android:id="@+id/inputWheelCodification"
                         android:textSize="14sp"
-                        android:hint="Pressure"
+                        android:hint="Codification"
                         android:imeOptions="actionDone"
                         android:maxLines="1"
                         android:layout_marginLeft="5dp" />
@@ -90,7 +89,7 @@
                     android:layout_marginTop="2dp">
 
                 <TextView
-                        android:text="Set wheel pressure"
+                        android:text="Set wheel pressure ( bar )"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView67"
@@ -102,7 +101,7 @@
                 <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number|numberDecimal"
                         android:ems="5"
                         android:id="@+id/inputWheelPressure"
                         android:textSize="14sp"

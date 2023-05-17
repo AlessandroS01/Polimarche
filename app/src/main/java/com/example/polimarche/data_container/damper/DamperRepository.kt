@@ -18,4 +18,33 @@ object DamperRepository {
     val listDampers get() = _listDampers
 
 
+    private var stockedFrontDamperParameters: MutableLiveData<DataDamper>? = null
+    fun setFrontDamperParametersStocked(damperParameters: DataDamper){
+        if (stockedFrontDamperParameters == null) {
+            stockedFrontDamperParameters = MutableLiveData()
+        }
+        stockedFrontDamperParameters?.value = damperParameters
+    }
+    fun getFrontDamperParametersStocked(): MutableLiveData<DataDamper>?{
+        return stockedFrontDamperParameters
+    }
+
+    private var stockedBackDamperParameters: MutableLiveData<DataDamper>? = null
+    fun setBackDamperParametersStocked(balanceParameters: DataDamper){
+        if (stockedBackDamperParameters == null) {
+            stockedBackDamperParameters = MutableLiveData()
+        }
+        stockedBackDamperParameters?.value = balanceParameters
+    }
+    fun getBackDamperParametersStocked(): MutableLiveData<DataDamper>?{
+        return stockedBackDamperParameters
+    }
+
+
+    fun clearStockedParameters(){
+        stockedFrontDamperParameters = null
+        stockedBackDamperParameters = null
+    }
+
+
 }

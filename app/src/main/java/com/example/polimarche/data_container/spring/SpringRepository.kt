@@ -16,4 +16,33 @@ object SpringRepository {
             )
         )
     val listSpring get() = _listSpring
+
+
+    private var stockedFrontSpringParameters: MutableLiveData<DataSpring>? = null
+    fun setFrontSpringParametersStocked(balanceParameters: DataSpring){
+        if (stockedFrontSpringParameters == null) {
+            stockedFrontSpringParameters = MutableLiveData()
+        }
+        stockedFrontSpringParameters?.value = balanceParameters
+    }
+    fun getFrontSpringParametersStocked(): MutableLiveData<DataSpring>?{
+        return stockedFrontSpringParameters
+    }
+
+    private var stockedBackSpringParameters: MutableLiveData<DataSpring>? = null
+    fun setBackSpringParametersStocked(balanceParameters: DataSpring){
+        if (stockedBackSpringParameters == null) {
+            stockedBackSpringParameters = MutableLiveData()
+        }
+        stockedBackSpringParameters?.value = balanceParameters
+    }
+    fun getBackSpringParametersStocked(): MutableLiveData<DataSpring>?{
+        return stockedBackSpringParameters
+    }
+
+
+    fun clearStockedParameters(){
+        stockedFrontSpringParameters = null
+        stockedBackSpringParameters = null
+    }
 }

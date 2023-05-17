@@ -164,6 +164,35 @@
                         android:fontFamily="@font/aldrich"
                         android:layout_weight="1" />
             </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="2"
+                    android:layout_marginTop="5dp">
+
+                <TextView
+                        android:text="Position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView15"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_weight="1" />
+
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/positionDamper"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/aldrich"
+                        android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
