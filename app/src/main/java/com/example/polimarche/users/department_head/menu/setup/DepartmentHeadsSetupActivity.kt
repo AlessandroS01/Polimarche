@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.ActivityDepartmentHeadsSetupBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.ActivityDepartmentHeadsSetupBinding
 import com.example.polimarche.users.all.menu.setup.problem.ProblemsSetupFragment
 import com.example.polimarche.users.all.menu.setup.see.SeeSetupFragment
 

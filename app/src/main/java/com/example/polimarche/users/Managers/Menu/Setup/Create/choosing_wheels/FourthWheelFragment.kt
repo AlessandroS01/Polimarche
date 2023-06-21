@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersChooseFourthWheelBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersChooseFourthWheelBinding
 import com.example.polimarche.data_container.wheel.WheelViewModel
 
 class FourthWheelFragment(

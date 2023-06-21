@@ -10,8 +10,8 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
 

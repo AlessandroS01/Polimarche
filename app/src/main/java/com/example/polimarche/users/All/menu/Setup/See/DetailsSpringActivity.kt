@@ -7,7 +7,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.databinding.ActivityGeneralDetailsSpringBinding
+import com.example.polimarche.databinding.ActivityGeneralDetailsSpringBinding
 import com.example.polimarche.data_container.setup.SetupViewModel
 import com.example.polimarche.data_container.spring.DataSpring
 

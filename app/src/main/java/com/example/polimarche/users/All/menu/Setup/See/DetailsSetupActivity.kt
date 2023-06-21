@@ -7,10 +7,9 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.databinding.ActivityGeneralDetailsSetupBinding
+import com.example.polimarche.databinding.ActivityGeneralDetailsSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
 

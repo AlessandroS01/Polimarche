@@ -6,7 +6,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 
 class DetailsMemberActivity: AppCompatActivity() {
 

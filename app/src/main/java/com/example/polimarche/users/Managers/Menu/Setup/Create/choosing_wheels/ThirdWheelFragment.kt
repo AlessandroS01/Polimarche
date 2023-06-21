@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersChooseThirdWheelBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersChooseThirdWheelBinding
 
 class ThirdWheelFragment(
     private val chooseWheelActivity: ChooseWheelsMain

@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersSetupCreateSetupBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersSetupCreateSetupBinding
 import com.example.polimarche.data_container.balance.BalanceViewModel
 import com.example.polimarche.data_container.damper.DamperViewModel
 import com.example.polimarche.data_container.setup.DataSetup

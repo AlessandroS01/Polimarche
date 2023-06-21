@@ -8,7 +8,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.users.all.menu.main.MainActivity
 import com.example.polimarche.users.all.menu.setup.problem.ProblemsSetupFragment
 import com.example.polimarche.users.all.menu.setup.see.SeeSetupFragment

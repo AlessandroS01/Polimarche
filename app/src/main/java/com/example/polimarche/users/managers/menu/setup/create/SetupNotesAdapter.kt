@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
-import com.example.polimarche.data_container.setup.SetupViewModel
+import com.example.polimarche.R
 
 class SetupNotesAdapter(
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {

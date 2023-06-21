@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentGeneralMainHomeBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentGeneralMainHomeBinding
 import com.example.polimarche.users.managers.menu.practice_session.ManagersPracticeSessionActivity
 import com.example.polimarche.users.managers.menu.setup.ManagersSetupActivity
 import com.example.polimarche.users.managers.menu.tracks.ManagersTracksActivity

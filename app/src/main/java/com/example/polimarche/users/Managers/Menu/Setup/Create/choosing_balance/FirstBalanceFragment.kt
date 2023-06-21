@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersChooseFirstBalanceBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersChooseFirstBalanceBinding
 import com.example.polimarche.data_container.balance.BalanceViewModel
-import com.example.polimarche.users.managers.menu.setup.delete.VisualizeSetupFragment
 
 class FirstBalanceFragment(
     private val chooseBalanceMain: ChooseBalanceMain

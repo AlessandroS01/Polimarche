@@ -6,9 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentLoginBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentLoginBinding
+import com.example.polimarche.data_container.balance.DataBalance
 import com.example.polimarche.users.all.menu.main.MainActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.security.MessageDigest
 
 class LoginFragment: Fragment(R.layout.fragment_login) {
@@ -26,6 +34,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,12 +45,24 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             }
         }
 
+
+        val tutorialDocument = Firebase.firestore.collection("Balance")
+            .document("1")
+        val balance = DataBalance(5, "Front", 44.0, 56.0)
+        GlobalScope.launch(Dispatchers.IO){
+            tutorialDocument.set(balance).await()
+            val prova = tutorialDocument.get().await().toObject(DataBalance::class.java)
+            withContext(Dispatchers.Main){
+                binding.signUpFromLogin.text = prova.toString()
+            }
+        }
+
+
         binding.signInButton.setOnClickListener {
             /*
             This section acquire the text written in
-            the 2 different boxes of the activity_login_interface
-            that, inside the OnClickListener method of the button,
-            will compare with the values saved inside the database
+            the 2 different boxes of activity_login_interface
+            that will be compared with the values saved inside the database
              */
             val matriculation: String = binding.MatricolaInput.text.toString()
             val password: String = binding.PasswordInput.text.toString()

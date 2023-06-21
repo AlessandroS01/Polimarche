@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.setup.DataSetup
 
 class DeleteSetupAdapter (

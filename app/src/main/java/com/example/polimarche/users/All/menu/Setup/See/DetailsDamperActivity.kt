@@ -7,10 +7,9 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.databinding.ActivityGeneralDetailsDamperBinding
+import com.example.polimarche.databinding.ActivityGeneralDetailsDamperBinding
 import com.example.polimarche.data_container.damper.DataDamper
 import com.example.polimarche.data_container.setup.SetupViewModel
-import com.example.polimarche.data_container.wheel.DataWheel
 
 class DetailsDamperActivity: AppCompatActivity() {
 

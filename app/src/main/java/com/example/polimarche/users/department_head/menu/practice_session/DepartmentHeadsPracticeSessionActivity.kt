@@ -3,7 +3,7 @@ package com.example.polimarche.users.department_head.menu.practice_session
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.databinding.ActivityDepartmentHeadsPracticeSessionBinding
+import com.example.polimarche.databinding.ActivityDepartmentHeadsPracticeSessionBinding
 import com.example.polimarche.users.all.menu.practice_session.SeePracticeSessionFragment
 
 class DepartmentHeadsPracticeSessionActivity: AppCompatActivity() {

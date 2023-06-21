@@ -3,7 +3,7 @@ package com.example.polimarche.users.department_head.menu.tracks
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.databinding.ActivityDepartmentHeadsTracksBinding
+import com.example.polimarche.databinding.ActivityDepartmentHeadsTracksBinding
 import com.example.polimarche.users.all.menu.tracks.SeeTracksFragment
 
 class DepartmentHeadsTracksActivity: AppCompatActivity() {

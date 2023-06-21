@@ -15,8 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersAddDampersParametersBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersAddDampersParametersBinding
 import com.example.polimarche.data_container.damper.DamperViewModel
 import com.example.polimarche.data_container.damper.DataDamper
 

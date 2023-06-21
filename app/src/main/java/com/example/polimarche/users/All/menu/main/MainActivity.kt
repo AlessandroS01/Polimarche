@@ -13,7 +13,7 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.login.LoginActivity
 import com.example.polimarche.users.managers.menu.practice_session.ManagersPracticeSessionActivity
 import com.example.polimarche.users.managers.menu.setup.ManagersSetupActivity

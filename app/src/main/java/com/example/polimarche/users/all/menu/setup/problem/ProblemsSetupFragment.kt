@@ -17,8 +17,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentGeneralSetupProblemsSetupBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentGeneralSetupProblemsSetupBinding
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.ProblemsViewModel
 

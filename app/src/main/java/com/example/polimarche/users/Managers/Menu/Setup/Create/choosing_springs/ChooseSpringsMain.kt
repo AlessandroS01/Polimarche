@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.databinding.ActivityManagersChooseSpringsCreateSetupBinding
+import com.example.polimarche.databinding.ActivityManagersChooseSpringsCreateSetupBinding
 import com.example.polimarche.Managers.Menu.Setup.Create.ChoosingDampers.FirstSpringsFragment
 import com.example.polimarche.data_container.spring.SpringViewModel
 

@@ -14,7 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.track.TracksViewModel
 

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 
 
 class LoginActivity : AppCompatActivity(){

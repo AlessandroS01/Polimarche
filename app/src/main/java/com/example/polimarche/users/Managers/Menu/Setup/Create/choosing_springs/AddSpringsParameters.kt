@@ -15,8 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersAddSpringsParametersBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersAddSpringsParametersBinding
 import com.example.polimarche.data_container.spring.DataSpring
 import com.example.polimarche.data_container.spring.SpringViewModel
 

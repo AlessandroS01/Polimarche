@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.setup.SetupViewModel
 
 class SeeSetupAdapter (

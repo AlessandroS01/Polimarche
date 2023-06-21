@@ -13,8 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersPracticeSessionAddBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersPracticeSessionAddBinding
 import com.example.polimarche.data_container.practice_session.DataPracticeSession
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.practice_session.PracticeSessionViewModel

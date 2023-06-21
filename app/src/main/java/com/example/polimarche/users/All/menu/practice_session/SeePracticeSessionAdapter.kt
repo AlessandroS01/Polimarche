@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.practice_session.DataPracticeSession
 import com.example.polimarche.data_container.practice_session.PracticeSessionViewModel
 

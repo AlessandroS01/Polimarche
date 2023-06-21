@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentGeneralSetupSeeSetupBinding
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentGeneralSetupSeeSetupBinding
 import com.example.polimarche.data_container.setup.SetupViewModel
 
 class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){

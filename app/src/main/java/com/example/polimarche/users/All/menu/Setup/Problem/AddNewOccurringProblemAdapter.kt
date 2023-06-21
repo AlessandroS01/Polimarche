@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.team_members_workshop.DataTeamMember
 import com.example.polimarche.data_container.team_members_workshop.DataWorkshopArea
 import com.example.polimarche.data_container.team_members_workshop.TeamViewModel

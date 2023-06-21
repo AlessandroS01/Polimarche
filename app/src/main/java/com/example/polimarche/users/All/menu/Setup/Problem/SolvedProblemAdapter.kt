@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.data_container.problem.solved_problem.SolvedProblemViewModel

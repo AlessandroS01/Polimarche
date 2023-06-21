@@ -4,10 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mobileprogramming.databinding.ActivityGeneralDetailsWheelBinding
+import com.example.polimarche.databinding.ActivityGeneralDetailsWheelBinding
 import com.example.polimarche.data_container.setup.SetupViewModel
 import com.example.polimarche.data_container.wheel.DataWheel
 

@@ -8,7 +8,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
+import com.example.polimarche.R
 import com.example.polimarche.users.all.menu.main.MainActivity
 import com.example.polimarche.users.all.menu.practice_session.SeePracticeSessionFragment
 import com.example.polimarche.users.managers.menu.practice_session.Create.AddPracticeSessionFragment

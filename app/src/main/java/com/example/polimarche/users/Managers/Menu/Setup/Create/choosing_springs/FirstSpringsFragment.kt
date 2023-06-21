@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mobileprogramming.R
-import com.example.mobileprogramming.databinding.FragmentManagersChooseFirstSpringBinding
-import com.example.polimarche.users.managers.menu.setup.create.choosing_balance.AddBalanceParameters
-import com.example.polimarche.users.managers.menu.setup.create.choosing_balance.ExistingBalanceParameters
+import com.example.polimarche.R
+import com.example.polimarche.databinding.FragmentManagersChooseFirstSpringBinding
 import com.example.polimarche.users.managers.menu.setup.create.choosing_springs.ChooseSpringsMain
 
 class FirstSpringsFragment(

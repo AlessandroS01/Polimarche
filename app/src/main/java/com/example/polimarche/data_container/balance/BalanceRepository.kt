@@ -1,8 +1,6 @@
 package com.example.polimarche.data_container.balance
 
 import androidx.lifecycle.MutableLiveData
-import com.example.polimarche.data_container.damper.DamperRepository
-import com.example.polimarche.data_container.damper.DataDamper
 
 object BalanceRepository {
 
@@ -54,4 +52,6 @@ object BalanceRepository {
         stockedFrontBalanceParameters = null
         stockedBackBalanceParameters = null
     }
+
+
 }
