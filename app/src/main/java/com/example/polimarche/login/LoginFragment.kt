@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentLoginBinding
+import com.example.polimarche.users.all.menu.main.HomeFragment
 import com.example.polimarche.users.all.menu.main.MainActivity
 import java.security.MessageDigest
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment: Fragment(R.layout.fragment_login) {
 
@@ -30,26 +32,29 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val firebaseAuth = FirebaseAuth.getInstance()
+
         val signUpFragment = SignUpFragment()
         binding.signUpFromLogin.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.frameLayoutLoginSignIn, signUpFragment).commit()
             }
         }
+        val errorMessageTextView = binding.errorMessageTextView
 
-/*
-        val tutorialDocument = Firebase.firestore.collection("Balance")
-            .document("1")
-        val balance = DataBalance(5, "Front", 44.0, 56.0)
-        GlobalScope.launch(Dispatchers.IO){
-            tutorialDocument.set(balance).await()
-            val prova = tutorialDocument.get().await().toObject(DataBalance::class.java)
-            withContext(Dispatchers.Main){
-                binding.signUpFromLogin.text = prova.toString()
-            }
-        }
+        /*
+                val tutorialDocument = Firebase.firestore.collection("Balance")
+                    .document("1")
+                val balance = DataBalance(5, "Front", 44.0, 56.0)
+                GlobalScope.launch(Dispatchers.IO){
+                    tutorialDocument.set(balance).await()
+                    val prova = tutorialDocument.get().await().toObject(DataBalance::class.java)
+                    withContext(Dispatchers.Main){
+                        binding.signUpFromLogin.text = prova.toString()
+                    }
+                }
 
- */
+         */
 
 
         binding.signInButton.setOnClickListener {
@@ -61,16 +66,33 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             val matriculation: String = binding.MatricolaInput.text.toString()
             val password: String = binding.PasswordInput.text.toString()
 
-            val passwordEncrypted = enctyptSha256(password)
+            /* val passwordEncrypted = enctyptSha256(password) */
             /*
              TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
              TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
              */
-            Intent(this.context, MainActivity::class.java).also {
-                it.putExtra("EXTRA_MATRICULATION", matriculation)
-                it.putExtra("EXTRA_PASSWORD", passwordEncrypted)
-                startActivity(it)
-            }
+            // Effettua il login con Firebase Authentication
+            firebaseAuth.signInWithEmailAndPassword(matriculation, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Login avvenuto con successo
+                        val user = firebaseAuth.currentUser
+                        // Esegui l'azione desiderata dopo il login
+                        // ad esempio, apri una nuova activity
+                        Intent(context, MainActivity::class.java).also {
+                            it.putExtra("EXTRA_MATRICULATION", matriculation)
+                            it.putExtra("EXTRA_PASSWORD", password)
+                            parentFragmentManager.beginTransaction().apply {
+                                replace(R.id.frameLayoutLoginSignIn, HomeFragment()).commit()
+                            }
+                        }
+                    } else {
+                        // Login fallito
+                        val errorMessage = "Login fallito. Riprova."
+                        errorMessageTextView.text = errorMessage
+                        errorMessageTextView.visibility = View.VISIBLE
+                    }
+                }
 
         }
     }

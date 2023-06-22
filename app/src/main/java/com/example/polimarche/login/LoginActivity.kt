@@ -6,12 +6,15 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.polimarche.R
+import com.google.firebase.FirebaseApp
 
 
 class LoginActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Inizializza Firebase
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_login)
 
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
