@@ -8,15 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentLoginBinding
-import com.example.polimarche.data_container.balance.DataBalance
 import com.example.polimarche.users.all.menu.main.MainActivity
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import java.security.MessageDigest
 
 class LoginFragment: Fragment(R.layout.fragment_login) {
@@ -45,7 +37,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             }
         }
 
-
+/*
         val tutorialDocument = Firebase.firestore.collection("Balance")
             .document("1")
         val balance = DataBalance(5, "Front", 44.0, 56.0)
@@ -56,6 +48,8 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                 binding.signUpFromLogin.text = prova.toString()
             }
         }
+
+ */
 
 
         binding.signInButton.setOnClickListener {
