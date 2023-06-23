@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentLoginBinding
 import com.example.polimarche.users.all.menu.main.HomeFragment
@@ -77,15 +78,12 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                     if (task.isSuccessful) {
                         // Login avvenuto con successo
                         val user = firebaseAuth.currentUser
-                        // Esegui l'azione desiderata dopo il login
-                        // ad esempio, apri una nuova activity
-                        Intent(context, MainActivity::class.java).also {
-                            it.putExtra("EXTRA_MATRICULATION", matriculation)
-                            it.putExtra("EXTRA_PASSWORD", password)
-                            parentFragmentManager.beginTransaction().apply {
-                                replace(R.id.frameLayoutLoginSignIn, HomeFragment()).commit()
-                            }
-                        }
+                        // Avvia MainActivity
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.putExtra("EXTRA_MATRICULATION", matriculation)
+                        intent.putExtra("EXTRA_PASSWORD", password)
+                        startActivity(intent)
+                        requireActivity().finish()
                     } else {
                         // Login fallito
                         val errorMessage = "Login fallito. Riprova."
