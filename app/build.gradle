@@ -62,4 +62,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx' // Firebase Authentication
     implementation 'com.google.firebase:firebase-firestore-ktx' // Cloud Firestore
 }
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.google.firebase:firebase-database:21.0.1'
 
+
+
+}
