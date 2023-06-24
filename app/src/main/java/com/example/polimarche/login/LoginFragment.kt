@@ -64,7 +64,8 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             the 2 different boxes of activity_login_interface
             that will be compared with the values saved inside the database
              */
-            val matriculation: String = binding.MatricolaInput.text.toString()
+            val matricola: String = binding.MatricolaInput.text.toString()
+            val matriculation = "$matricola@polimarche.com"
             val password: String = binding.PasswordInput.text.toString()
 
             /* val passwordEncrypted = enctyptSha256(password) */

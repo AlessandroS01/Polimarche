@@ -1,5 +1,6 @@
 package com.example.polimarche.users.all.menu.main
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.example.polimarche.users.managers.menu.practice_session.ManagersPract
 import com.example.polimarche.users.managers.menu.setup.ManagersSetupActivity
 import com.example.polimarche.users.managers.menu.tracks.ManagersTracksActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment(R.layout.fragment_general_main_home){
@@ -20,7 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
     private var _binding: FragmentGeneralMainHomeBinding? = null
     private val binding get() = _binding!!
 
-    private var matriculation: String = ""
+
 
 
     override fun onCreateView(
@@ -35,24 +37,44 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // Recupera l'ID dell'utente autenticato
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-        Log.d("HomeFragment", "Document exists. Matriculation: $userId")
-        // Ottieni un'istanza del Firestore
-        val db = FirebaseFirestore.getInstance()
+        val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+        Log.e("ciao", "userID: $currentUser")
 
-        val usersCollection = FirebaseFirestore.getInstance().collection("Users")
-        userId?.let { uid ->
-            usersCollection.document(uid).get().addOnSuccessListener { document ->
-                if (document.exists()) {
-                    matriculation = document.getString("matriculation") ?: ""
-                    // Imposta la matricola nel TextView
-                    binding.textView24.text = matriculation
+        if (currentUser != null) {
+            // L'utente è autenticato, puoi accedere alle sue informazioni
 
+            val matricola: String? = currentUser.email
+            val matriculation = matricola!!.split("@")[0]
+            // Ora puoi utilizzare il valore di "matriculation" come desideri
+            binding.textView24.text = matriculation
+
+            // L'utente è autenticato, puoi accedere alle sue informazioni
+            val userId: String = currentUser.uid
+            Log.e("ciao", "userID: $userId")
+            // Ottieni un'istanza di FirebaseFirestore
+            val db = FirebaseFirestore.getInstance()
+
+            // Esegui la query per ottenere il valore dell'attributo "role" della tabella "users"
+            db.collection("Users")
+                .document(userId)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val role: String? = documentSnapshot.getString("role")
+                        Log.e("ciao", "ruolo: $role")
+                        // Ora puoi utilizzare il valore di "role" come desideri
+                        binding.textView80.text = role
+                    }
                 }
-            }
+                .addOnFailureListener { e ->
+                    // Gestisci l'eventuale errore nella query
+                    Log.e(TAG, "Errore durante la query: ${e.message}")
+                }
         }
+
+
+
         /*
         Allows the user to navigate through the menu by clicking
         on the frame layout positioned in the Home.
@@ -72,9 +94,6 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
                 startActivity(this)
             }
         }
-
-        // Imposta il testo della matricola
-        binding.textView24.text = matriculation
     }
 
 }
