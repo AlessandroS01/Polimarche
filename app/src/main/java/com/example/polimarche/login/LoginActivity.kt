@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inizializza Firebase
-        FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_login)
 
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)

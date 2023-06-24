@@ -59,39 +59,52 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
 
         binding.signInButton.setOnClickListener {
-            /*
+
+            if ( binding.MatricolaInput.text?.isNotEmpty()!!
+                &&
+                    binding.PasswordInput.text?.isNotEmpty()!!
+            )
+            {
+                /*
             This section acquire the text written in
             the 2 different boxes of activity_login_interface
             that will be compared with the values saved inside the database
              */
-            val matricola: String = binding.MatricolaInput.text.toString()
-            val matriculation = "$matricola@polimarche.com"
-            val password: String = binding.PasswordInput.text.toString()
+                val matricola: String = binding.MatricolaInput.text.toString()
+                val matriculation = "$matricola@polimarche.com"
+                val password: String = binding.PasswordInput.text.toString()
 
-            /* val passwordEncrypted = enctyptSha256(password) */
-            /*
-             TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
-             TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
-             */
-            // Effettua il login con Firebase Authentication
-            firebaseAuth.signInWithEmailAndPassword(matriculation, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Login avvenuto con successo
-                        val user = firebaseAuth.currentUser
-                        // Avvia MainActivity
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.putExtra("EXTRA_MATRICULATION", matriculation)
-                        intent.putExtra("EXTRA_PASSWORD", password)
-                        startActivity(intent)
-                        requireActivity().finish()
-                    } else {
-                        // Login fallito
-                        val errorMessage = "Login fallito. Riprova."
-                        errorMessageTextView.text = errorMessage
-                        errorMessageTextView.visibility = View.VISIBLE
-                    }
+                /* val passwordEncrypted = enctyptSha256(password) */
+                /*
+                 TODO: CREARE LA CONNESSIONE AL DATABASE PER CONFRONTARE I MEMBRI
+                 TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
+                 */
+                // Effettua il login con Firebase Authentication
+                firebaseAuth.signInWithEmailAndPassword(matriculation, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Login avvenuto con successo
+                            val user = firebaseAuth.currentUser
+                            // Avvia MainActivity
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            intent.putExtra("EXTRA_MATRICULATION", matriculation)
+                            intent.putExtra("EXTRA_PASSWORD", password)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        } else {
+                            // Login fallito
+                            val errorMessage = "Login fallito. Riprova."
+                            errorMessageTextView.text = errorMessage
+                            errorMessageTextView.visibility = View.VISIBLE
+                        }
                 }
+            }
+            else{
+                val errorMessage = "Inserire le credenziali"
+                errorMessageTextView.text = errorMessage
+                errorMessageTextView.visibility = View.VISIBLE
+            }
+
 
         }
     }
