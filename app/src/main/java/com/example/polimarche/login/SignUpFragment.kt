@@ -43,7 +43,10 @@ class SignUpFragment: Fragment(R.layout.fragment_sign_up) {
         binding.signUpButton.setOnClickListener {
             val auth = FirebaseAuth.getInstance()
             val matricola: String = binding.MatricolaInput.text.toString()
-            val matriculation = "$matricola@polimarche.com"
+            val matriculation = "s$matricola@studenti.univpm.it"
+            Log.e(TAG, "Matricola: $matriculation")
+            Log.d(TAG, "Eseguito il codice all'interno del setOnClickListener")
+
             val password: String = binding.PasswordInput.text.toString()
             val confirmPassword: String = binding.ConfirmPasswordInput.text.toString()
 

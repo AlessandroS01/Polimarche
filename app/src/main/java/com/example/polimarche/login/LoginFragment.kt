@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.polimarche.R
@@ -70,9 +71,9 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             the 2 different boxes of activity_login_interface
             that will be compared with the values saved inside the database
              */
-                val matricola: String = binding.MatricolaInput.text.toString()
-                val matriculation = "$matricola@polimarche.com"
-                val password: String = binding.PasswordInput.text.toString()
+            val matricola: String = binding.MatricolaInput.text.toString()
+            val matriculation = "s$matricola@studenti.univpm.it"
+            val password: String = binding.PasswordInput.text.toString()
 
                 /* val passwordEncrypted = enctyptSha256(password) */
                 /*
@@ -107,7 +108,27 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
 
         }
+
+        binding.passwordRecoveryFromLogin.setOnClickListener {
+            val auth = FirebaseAuth.getInstance()
+            val matricola: String = binding.MatricolaInput.text.toString()
+            val matriculation = "s$matricola@studenti.univpm.it"
+
+            auth.sendPasswordResetEmail(matriculation)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Email di recupero password inviata con successo
+                        Toast.makeText(requireContext(), "Email di recupero password inviata", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // Gestione dell'errore durante l'invio dell'email di recupero password
+                        val errorMessage = task.exception?.message
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+        }
     }
+
 
 
     /*

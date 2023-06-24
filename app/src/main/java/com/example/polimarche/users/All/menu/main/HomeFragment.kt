@@ -45,7 +45,7 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
             // L'utente è autenticato, puoi accedere alle sue informazioni
 
             val matricola: String? = currentUser.email
-            val matriculation = matricola!!.split("@")[0]
+            val matriculation = matricola!!.split("@")[0]?.substring(1, matricola.indexOf("@"))
             // Ora puoi utilizzare il valore di "matriculation" come desideri
             binding.textView24.text = matriculation
 
