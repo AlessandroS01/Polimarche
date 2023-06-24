@@ -31,8 +31,6 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
 
         _binding = FragmentGeneralMainHomeBinding.inflate(inflater, container, false)
         return binding.root
-        var matriculation: String = ""
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,17 +38,18 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
 
         // Recupera l'ID dell'utente autenticato
         val userId = FirebaseAuth.getInstance().currentUser?.uid
-
+        Log.d("HomeFragment", "Document exists. Matriculation: $userId")
         // Ottieni un'istanza del Firestore
         val db = FirebaseFirestore.getInstance()
 
-        val usersCollection = FirebaseFirestore.getInstance().collection("users")
+        val usersCollection = FirebaseFirestore.getInstance().collection("Users")
         userId?.let { uid ->
             usersCollection.document(uid).get().addOnSuccessListener { document ->
                 if (document.exists()) {
-                    val matricola = document.getString("matriculation")
+                    matriculation = document.getString("matriculation") ?: ""
                     // Imposta la matricola nel TextView
                     binding.textView24.text = matriculation
+
                 }
             }
         }
