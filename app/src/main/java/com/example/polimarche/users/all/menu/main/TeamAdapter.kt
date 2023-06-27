@@ -13,6 +13,7 @@ import com.example.polimarche.R
 import com.example.polimarche.data_container.team_members_workshop.DataTeamMember
 import com.example.polimarche.data_container.team_members_workshop.DataWorkshopArea
 import com.example.polimarche.data_container.team_members_workshop.TeamViewModel
+import java.io.Serializable
 
 
 class TeamAdapter (
@@ -102,6 +103,13 @@ class TeamAdapter (
 
             detailsView.setOnClickListener {
                 Intent(it.context, DetailsMemberActivity::class.java).apply {
+                    this.putExtra("MATRICULATION" , teamMember.matriculationNumber)
+                    this.putExtra("WORKSHOP_AREA" , teamMember.workshopArea)
+                    this.putExtra("FIRST_NAME" , teamMember.firstName)
+                    this.putExtra("LAST_NAME" , teamMember.lastName)
+                    this.putExtra("DOB" , teamMember.dateOfBirth)
+                    this.putExtra("EMAIL" , teamMember.email)
+                    this.putExtra("NUMBER" , teamMember.cellNumber)
                     it.context.startActivity(this)
                 }
             }
