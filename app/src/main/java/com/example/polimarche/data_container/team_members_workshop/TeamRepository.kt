@@ -2,12 +2,26 @@ package com.example.polimarche.data_container.team_members_workshop
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.polimarche.data_container.spring.DataSpring
+import com.example.polimarche.data_container.spring.SpringRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
-object TeamRepository {
+class TeamRepository {
+
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            fetchDataFromFirestore()
+        }
+    }
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -17,42 +31,75 @@ object TeamRepository {
     private val _listDepartments: MutableLiveData<MutableList<DataWorkshopArea>> = MutableLiveData()
     val listDepartments get() = _listDepartments
 
+
     suspend fun fetchDataFromFirestore() {
 
-        withContext(Dispatchers.IO) {
-            Log.d("TeamRepository", "Fetching data from Firestore")
-            try {
-                // Esegui la query per ottenere i dati dei membri del team
-                val membersQuerySnapshot = db.collection("Users").get().await()
-                val membersList = mutableListOf<DataTeamMember>()
-                for (document in membersQuerySnapshot.documents) {
-                    val matriculation = document.getString("matriculation")
-                    val firstName = document.getString("firstName")
-                    val lastName = document.getString("lastName")
-                    val dateOfBirth = document.getString("dateOfBirth")
-                    val email = document.getString("email")
-                    val cellNumber = document.getString("cellNumber")
-                    val workshopArea = document.getString("workshopArea")
-                    val member = DataTeamMember(matriculation, firstName, lastName, dateOfBirth, email, cellNumber, workshopArea)
-                    membersList.add(member)
-                    // Stampa il log dei dati del membro del team
-                    Log.d("TeamRepository", "Membro del team: $matriculation, $firstName, $lastName, $dateOfBirth, $email, $cellNumber, $workshopArea")
-                }
-                _listMembers.postValue(membersList)
+        val teamMembersCollection = db.collection("team_members")
 
-                // Esegui la query per ottenere i dati dei dipartimenti
-                val departmentsQuerySnapshot = db.collection("departments").get().await()
-                val departmentsList = mutableListOf<DataWorkshopArea>()
-                for (document in departmentsQuerySnapshot.documents) {
-                    val departmentName = document.getString("department")
-                    val departmentHead = document.getString("departmentHead")
-                    val department = DataWorkshopArea(departmentName, departmentHead)
-                    departmentsList.add(department)
+        val teamMembersSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
+            teamMembersCollection.get()
+                .addOnSuccessListener { querySnapshot ->
+                    continuation.resume(querySnapshot)
                 }
-                _listDepartments.postValue(departmentsList)
-            } catch (e: Exception) {
-                // Gestisci l'errore nella query
-            }
+                .addOnFailureListener { exception ->
+                    continuation.resumeWithException(exception)
+                }
         }
+
+        val membersList = mutableListOf<DataTeamMember>() // Initialize with an empty list
+
+        for (document in teamMembersSnapshot) {
+
+            val matriculation = document.getString("matriculation").toString().toLong()
+            val firstName = document.getString("firstName")!!
+            val lastName = document.getString("lastName")!!
+            val dateOfBirth = document.getString("dateOfBirth")!!
+            val email = document.getString("email")!!
+            val cellNumber = document.getString("cellNumber")!!
+            val workshopArea = document.getString("workshopArea")!!
+            val member = DataTeamMember(
+                matriculation,
+                firstName,
+                lastName,
+                dateOfBirth,
+                email,
+                cellNumber,
+                workshopArea
+            )
+
+            membersList.add(member)
+        }
+        withContext(Dispatchers.Main) {
+            _listMembers.value = membersList // Use postValue to update MutableLiveData on the main thread
+        }
+
+        val departmentsCollection = db.collection("departments")
+
+        val departmentsSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
+            departmentsCollection.get()
+                .addOnSuccessListener { querySnapshot ->
+                    continuation.resume(querySnapshot)
+                }
+                .addOnFailureListener { exception ->
+                    continuation.resumeWithException(exception)
+                }
+        }
+
+        val departmentList = mutableListOf<DataWorkshopArea>() // Initialize with an empty list
+
+        for (document in departmentsSnapshot) {
+            val departmentName = document.getString("department")!!
+            val departmentHead = document.getString("departmentHead").toString().toLong()
+            val department = DataWorkshopArea(departmentName, departmentHead)
+
+            departmentList.add(department)
+
+
+        }
+        withContext(Dispatchers.Main) {
+            _listDepartments.value = departmentList // Use postValue to update MutableLiveData on the main thread
+        }
+
+
     }
 }

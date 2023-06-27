@@ -16,7 +16,7 @@ import com.example.polimarche.data_container.team_members_workshop.TeamViewModel
 
 
 class TeamAdapter (
-    private val teamViewModel: TeamViewModel,
+    teamViewModel: TeamViewModel,
     private val listener: OnWorkshopAreaClickListener
 ) : RecyclerView.Adapter<ViewHolder>() {
 
