@@ -44,9 +44,6 @@ class SignUpFragment: Fragment(R.layout.fragment_sign_up) {
             val auth = FirebaseAuth.getInstance()
             val matricola: String = binding.MatricolaInput.text.toString()
             val matriculation = "s$matricola@studenti.univpm.it"
-            Log.e(TAG, "Matricola: $matriculation")
-            Log.d(TAG, "Eseguito il codice all'interno del setOnClickListener")
-
             val password: String = binding.PasswordInput.text.toString()
             val confirmPassword: String = binding.ConfirmPasswordInput.text.toString()
 
@@ -77,8 +74,6 @@ class SignUpFragment: Fragment(R.layout.fragment_sign_up) {
                                 // Salvataggio dei dettagli dell'utente completato con successo
                                 binding.registrationSuccessTextView.visibility = View.VISIBLE
                                 binding.registrationSuccessTextView.text = "Registrazione avvenuta con successo"
-                                // Reindirizzamento all'fragment di login
-
                                 // Ritarda la transizione al fragment di login
                                 Handler().postDelayed({
                                     val loginFragment = LoginFragment()
