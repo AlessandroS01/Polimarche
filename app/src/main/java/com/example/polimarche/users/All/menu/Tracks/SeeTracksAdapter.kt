@@ -34,7 +34,7 @@ class SeeTracksAdapter(
     /*
     Contains the complete list of tracks of the viewModel
      */
-    private var listTracks : MutableLiveData<MutableList<DataTrack>> = tracksViewModel.listTracks
+    private val listTracks : MutableList<DataTrack> = tracksViewModel.listTracks.value!!
 
     inner class ViewHolderTracks(
         tracksView: View
@@ -48,6 +48,8 @@ class SeeTracksAdapter(
             R.id.constraintLayoutAllUsesTracks
         )
         val linearLayout: LinearLayout = tracksView.findViewById(R.id.linearLayoutExpandableTracks)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -60,24 +62,24 @@ class SeeTracksAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listTracks.value?.size!!
+        return listTracks.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder){
             is ViewHolderTracks -> {
                 holder.apply {
-                    trackName.text = listTracks.value?.get(position)?.name
-                    trackLength.text = "${listTracks.value?.get(position)?.length.toString()} km"
+                    trackName.text = listTracks.get(position)?.name
+                    trackLength.text = "${listTracks.get(position)?.length.toString()} km"
                     modifyTrackLength.setImageResource(R.drawable.modify_icon)
 
-                    val expansion = listTracks.value?.get(position)?.expansion!!
+                    val expansion = listTracks.get(position)?.expansion!!
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
                     constraintLayout.setOnClickListener {
-                        listTracks.value?.get(position)?.expansion =
-                            ! listTracks.value?.get(position)?.expansion!!
+                        listTracks.get(position)?.expansion =
+                            ! listTracks.get(position)?.expansion!!
                         notifyItemChanged(position)
                     }
 
@@ -141,16 +143,18 @@ class SeeTracksAdapter(
             DataTrack that was touched getting the element at the position clicked,
             even though the list can be different.
              */
+            /*
             else{
                 tracksViewModel.modifyTrackLength(
                     tracksViewModel.filterTracksByName(
                         inputQuery.value.toString()
-                    ).value?.get(position)!!,
+                    ).get(position)!!,
                     modifyLengthEditText.text.toString().toDouble()
                 )
                 notifyItemChanged(position)
                 dialog.dismiss()
             }
+            */
         }
         cancelFrame.setOnClickListener {
             dialog.dismiss()
@@ -169,10 +173,11 @@ class SeeTracksAdapter(
     Inflate inside listTracks a newList in which all the elements' name
     contain inputQuery.
      */
-    private fun setNewList(newList: MutableLiveData<MutableList<DataTrack>>){
-        listTracks = newList
+    private fun setNewList(newList: MutableLiveData<MutableList<DataTrack>>) {
+        newList.value?.let { listTracks.addAll(it) }
         notifyDataSetChanged()
     }
+
 
 
     fun addNewTrack(newTrack: DataTrack){

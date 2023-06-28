@@ -59,11 +59,12 @@
                 android:textSize="16sp" />
 
         <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/create_icon"
-                android:id="@+id/imageButtonAddTrack"
-                android:backgroundTint="@color/transparent"
-                app:tint="#FFFFFF" />
+            android:id="@+id/imageButtonAddTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/create_icon"
+            app:tint="#FFFFFF" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

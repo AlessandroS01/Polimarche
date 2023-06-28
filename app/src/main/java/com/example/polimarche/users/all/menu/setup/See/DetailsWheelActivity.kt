@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.polimarche.databinding.ActivityGeneralDetailsWheelBinding
 import com.example.polimarche.data_container.setup.SetupViewModel
 import com.example.polimarche.data_container.wheel.DataWheel
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FirebaseFirestore
 
 class DetailsWheelActivity: AppCompatActivity() {
 
@@ -20,12 +22,14 @@ class DetailsWheelActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //FirebaseApp.initializeApp(this)
         binding = ActivityGeneralDetailsWheelBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
+        //val db = FirebaseFirestore.getInstance()
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
         val wheelPosition = intent.getStringExtra("WHEEL_POSITION")
         val setup = setupViewModel.setupList.filter { it.code == setupCode  }[0]

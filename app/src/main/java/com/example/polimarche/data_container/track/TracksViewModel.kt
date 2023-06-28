@@ -2,11 +2,24 @@ package com.example.polimarche.data_container.track
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.polimarche.data_container.track.DataTrack
+import com.example.polimarche.data_container.track.TracksRepository
+import kotlinx.coroutines.launch
 
 class TracksViewModel: ViewModel() {
 
+    private val tracksRepository: TracksRepository = TracksRepository()
+
+    init {
+        viewModelScope.launch {
+            tracksRepository.fetchTracksFromFirestore()
+        }
+    }
+
+
     private val _listTracks: MutableLiveData<MutableList<DataTrack>> =
-        TracksRepository.listTracks
+        tracksRepository.listTracks
     val listTracks get() = _listTracks
 
     /*
@@ -31,21 +44,21 @@ class TracksViewModel: ViewModel() {
     Recalls directly the repository to change the length of a track given
      */
     fun modifyTrackLength(track: DataTrack, newLength: Double){
-        TracksRepository.modifyTrackLength(track, newLength)
+        tracksRepository.modifyTrackLength(track, newLength)
     }
 
     /*
     Recalls directly the repository to change the length of a track given
      */
     fun addNewTrack(newTrack: DataTrack){
-        TracksRepository.addNewTrack(newTrack)
+        tracksRepository.addNewTrack(newTrack)
     }
 
     /*
     Recalls directly the repository to delete a track given
      */
     fun removeTrack(trackToDelete: DataTrack){
-        TracksRepository.removeTrack(trackToDelete)
+        tracksRepository.removeTrack(trackToDelete)
     }
 
 
