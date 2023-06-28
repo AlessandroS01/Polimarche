@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.data_container.track.DataTrack
@@ -21,6 +22,19 @@ import com.example.polimarche.data_container.track.TracksViewModel
 class SeeTracksAdapter(
     private val tracksViewModel: TracksViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+
+    /*
+    Contains the complete list of tracks of the viewModel
+     */
+    private val listTracks: MutableList<DataTrack> = mutableListOf()
+    init {
+        tracksViewModel.listTracks.observeForever { tracks ->
+            listTracks.clear()
+            listTracks.addAll(tracks)
+            notifyDataSetChanged()
+        }
+    }
 
     /*
     Used to keep an eye on the value of the query created by the searchView when
@@ -31,10 +45,7 @@ class SeeTracksAdapter(
         inputQuery.value = query
     }
 
-    /*
-    Contains the complete list of tracks of the viewModel
-     */
-    private val listTracks : MutableList<DataTrack> = tracksViewModel.listTracks.value!!
+
 
     inner class ViewHolderTracks(
         tracksView: View
@@ -148,7 +159,7 @@ class SeeTracksAdapter(
                 tracksViewModel.modifyTrackLength(
                     tracksViewModel.filterTracksByName(
                         inputQuery.value.toString()
-                    ).get(position)!!,
+                    ).value?.get(position)!!,
                     modifyLengthEditText.text.toString().toDouble()
                 )
                 notifyItemChanged(position)
