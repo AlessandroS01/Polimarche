@@ -16,6 +16,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
@@ -50,12 +51,14 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
         searchView = binding.searchViewSeeTracks
 
-        seeTracksAdapter = SeeTracksAdapter(tracksViewModel)
+        tracksViewModel.listTracks.observe(viewLifecycleOwner, Observer { tracks ->
+            seeTracksAdapter = SeeTracksAdapter(tracksViewModel)
 
-        seeTracksRecyclerView = binding.listTracks
-        val linearLayoutManager = LinearLayoutManager(this.context)
-        seeTracksRecyclerView.layoutManager = linearLayoutManager
-        seeTracksRecyclerView.adapter = seeTracksAdapter
+            seeTracksRecyclerView = binding.listTracks
+            val linearLayoutManager = LinearLayoutManager(this.context)
+            seeTracksRecyclerView.layoutManager = linearLayoutManager
+            seeTracksRecyclerView.adapter = seeTracksAdapter
+        })
 
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{

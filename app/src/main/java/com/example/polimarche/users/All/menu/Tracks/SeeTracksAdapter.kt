@@ -143,7 +143,7 @@ class SeeTracksAdapter(
             DataTrack that was touched getting the element at the position clicked,
             even though the list can be different.
              */
-            /*
+
             else{
                 tracksViewModel.modifyTrackLength(
                     tracksViewModel.filterTracksByName(
@@ -154,7 +154,7 @@ class SeeTracksAdapter(
                 notifyItemChanged(position)
                 dialog.dismiss()
             }
-            */
+
         }
         cancelFrame.setOnClickListener {
             dialog.dismiss()

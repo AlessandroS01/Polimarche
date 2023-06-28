@@ -28,6 +28,9 @@ class TracksRepository {
     val listTracks get() = _listTracks
 
 
+    private var trackIds: MutableList<String> = mutableListOf()
+
+
     suspend fun fetchTracksFromFirestore() {
         val tracksCollection = db.collection("track")
 
@@ -42,8 +45,11 @@ class TracksRepository {
         }
 
         val trackList = mutableListOf<DataTrack>() // Initialize with an empty list
+        val trackIdList = mutableListOf<String>() // Initialize with an empty list for IDs
 
         for (document in trackSnapshot) {
+            val documentId = document.id // Get the document ID
+            trackIdList.add(documentId)
 
             val name = document.getString("name")!!
             val length = document.getString("length").toString().toDouble()
@@ -54,36 +60,72 @@ class TracksRepository {
 
             trackList.add(track)
         }
+
         withContext(Dispatchers.Main) {
             _listTracks.value = trackList // Use postValue to update MutableLiveData on the main thread
         }
-    trackList.forEach {
-        Log.d("TrackRepository", it.name)
+
+        // Process the trackIdList as needed
+        // ...
     }
 
-    }
-        /*
+    /*
     Modifies the length of a track given
      */
-        fun modifyTrackLength(track: DataTrack, newLength: Double) {
-            _listTracks.value?.forEach {
-                if (it.name == track.name)
-                    it.length = newLength
+    fun modifyTrackLength(track: DataTrack, newLength: Double) {
+        val trackIndex = _listTracks.value?.indexOfFirst { it.name == track.name }
+
+        if (trackIndex != null) {
+            val trackId = trackIds.getOrNull(trackIndex)
+
+            if (trackId != null) {
+                val trackData = hashMapOf(
+                    "length" to newLength
+                )
+
+                val trackRef = db.collection("track").document(trackId)
+                trackRef.update(trackData as Map<String, Any>)
+                    .addOnSuccessListener {
+                        Log.e("TracksRepository", "Track length updated successfully")
+
+                        // Update the track length in the local list
+                        _listTracks.value?.get(trackIndex)?.length = newLength
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.e("TracksRepository", "Failed to update track length", exception)
+                    }
             }
         }
+    }
 
-        /*
-    Adds a new track to the list
-     */
-        fun addNewTrack(newTrack: DataTrack) {
-            _listTracks.value =
-                _listTracks.value?.plus(newTrack) as MutableList<DataTrack>?
-        }
 
-        /*
-    Removes an existing track from the list
-     */
-        fun removeTrack(trackToDelete: DataTrack) {
-            _listTracks.value?.remove(trackToDelete)
-        }
+    fun addNewTrack(newTrack: DataTrack) {
+        // Add the new track to the Firestore database
+        val trackRef = db.collection("track").document()
+        newTrack.name = trackRef.id
+        trackRef.set(newTrack)
+            .addOnSuccessListener {
+                // Add the new track to the local list
+                _listTracks.value?.add(newTrack)
+            }
+            .addOnFailureListener { exception ->
+                // Handle the error
+            }
+    }
+
+    fun removeTrack(trackToDelete: DataTrack) {
+        // Delete the track from the Firestore database
+        val trackRef = db.collection("track").document(trackToDelete.name)
+        trackRef.delete()
+            .addOnSuccessListener {
+                // Remove the track from the local list
+                _listTracks.value?.remove(trackToDelete)
+            }
+            .addOnFailureListener { exception ->
+                // Handle the error
+            }
+    }
+
+
+
 }

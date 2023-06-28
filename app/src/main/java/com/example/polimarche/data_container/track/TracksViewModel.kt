@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.track.TracksRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 class TracksViewModel: ViewModel() {
 
     private val tracksRepository: TracksRepository = TracksRepository()
 
+    private val db = FirebaseFirestore.getInstance()
     init {
         viewModelScope.launch {
             tracksRepository.fetchTracksFromFirestore()
@@ -43,9 +45,12 @@ class TracksViewModel: ViewModel() {
     /*
     Recalls directly the repository to change the length of a track given
      */
-    fun modifyTrackLength(track: DataTrack, newLength: Double){
+    fun modifyTrackLength(track: DataTrack, newLength: Double) {
+        track.length = newLength
         tracksRepository.modifyTrackLength(track, newLength)
     }
+
+
 
     /*
     Recalls directly the repository to change the length of a track given
@@ -60,6 +65,22 @@ class TracksViewModel: ViewModel() {
     fun removeTrack(trackToDelete: DataTrack){
         tracksRepository.removeTrack(trackToDelete)
     }
+
+    fun updateTrack(track: DataTrack) {
+        val trackRef = db.collection("track").document(track.name)
+        val trackData = hashMapOf(
+            "name" to track.name,
+            "length" to track.length
+        )
+        trackRef.update(trackData as Map<String, Any>)
+            .addOnSuccessListener {
+                // Aggiornamento della traccia completato con successo
+            }
+            .addOnFailureListener { e ->
+                // Gestisci l'errore durante l'aggiornamento della traccia
+            }
+    }
+
 
 
 }
