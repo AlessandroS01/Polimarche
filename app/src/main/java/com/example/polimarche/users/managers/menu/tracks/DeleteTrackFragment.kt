@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentManagersTracksDeleteTrackBinding
 import com.example.polimarche.data_container.track.TracksViewModel
+import com.example.polimarche.users.all.menu.tracks.SeeTracksAdapter
 
 class DeleteTrackFragment : Fragment(R.layout.fragment_managers_tracks_delete_track){
 
@@ -40,11 +42,14 @@ class DeleteTrackFragment : Fragment(R.layout.fragment_managers_tracks_delete_tr
 
         searchViewDeleteTrack = binding.searchViewDeleteTracks
 
-        recyclerViewDeleteTracks = binding.listTracks
-        val linearLayoutManager = LinearLayoutManager(this.context)
-        recyclerViewDeleteTracks.layoutManager = linearLayoutManager
-        adapterDeleteTrack = DeleteTracksAdapter(tracksViewModel)
-        recyclerViewDeleteTracks.adapter = adapterDeleteTrack
+        tracksViewModel.listTracks.observe(viewLifecycleOwner, Observer { tracks ->
+            recyclerViewDeleteTracks = binding.listTracks
+            val linearLayoutManager = LinearLayoutManager(this.context)
+            recyclerViewDeleteTracks.layoutManager = linearLayoutManager
+            adapterDeleteTrack = DeleteTracksAdapter(tracksViewModel)
+            recyclerViewDeleteTracks.adapter = adapterDeleteTrack
+        })
+
 
 
         searchViewDeleteTrack.setOnQueryTextListener(object : SearchView.OnQueryTextListener{

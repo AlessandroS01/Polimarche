@@ -51,14 +51,14 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
         searchView = binding.searchViewSeeTracks
 
-        tracksViewModel.listTracks.observe(viewLifecycleOwner, Observer { tracks ->
+        tracksViewModel.listTracks.observe(viewLifecycleOwner) {
             seeTracksAdapter = SeeTracksAdapter(tracksViewModel)
 
             seeTracksRecyclerView = binding.listTracks
             val linearLayoutManager = LinearLayoutManager(this.context)
             seeTracksRecyclerView.layoutManager = linearLayoutManager
             seeTracksRecyclerView.adapter = seeTracksAdapter
-        })
+        }
 
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{

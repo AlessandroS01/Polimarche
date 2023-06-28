@@ -28,9 +28,6 @@ class TracksRepository {
     val listTracks get() = _listTracks
 
 
-    private var trackIds: MutableList<String> = mutableListOf()
-
-
     suspend fun fetchTracksFromFirestore() {
         val tracksCollection = db.collection("track")
 
@@ -73,29 +70,32 @@ class TracksRepository {
     Modifies the length of a track given
      */
     fun modifyTrackLength(track: DataTrack, newLength: Double) {
-        val trackIndex = _listTracks.value?.indexOfFirst { it.name == track.name }
 
-        if (trackIndex != null) {
-            val trackId = trackIds.getOrNull(trackIndex)
+        val collectionRef = db.collection("track")
+        val query = collectionRef.whereEqualTo("name", track.name)
 
-            if (trackId != null) {
-                val trackData = hashMapOf(
-                    "length" to newLength
-                )
+        query.get().addOnSuccessListener { querySnapshot ->
+            if (!querySnapshot.isEmpty) {
+                val documentSnapshot = querySnapshot.documents[0]
+                val documentId = documentSnapshot.id
 
-                val trackRef = db.collection("track").document(trackId)
-                trackRef.update(trackData as Map<String, Any>)
+                // Update the value
+                val newData = hashMapOf<String, Any>("length" to newLength.toString())
+                collectionRef.document(documentId).update(newData)
                     .addOnSuccessListener {
                         Log.e("TracksRepository", "Track length updated successfully")
 
-                        // Update the track length in the local list
-                        _listTracks.value?.get(trackIndex)?.length = newLength
+                        // Update the track length in the local list or perform any other necessary actions
                     }
                     .addOnFailureListener { exception ->
                         Log.e("TracksRepository", "Failed to update track length", exception)
                     }
+            } else {
+                Log.e("TracksRepository", "No matching document found")
             }
         }
+
+
     }
 
 
