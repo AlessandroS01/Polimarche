@@ -27,6 +27,7 @@ class DeleteTrackFragment : Fragment(R.layout.fragment_managers_tracks_delete_tr
     private lateinit var recyclerViewDeleteTracks: RecyclerView
     private lateinit var adapterDeleteTrack: DeleteTracksAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationBarView
 
 class ManagersTracksActivity : AppCompatActivity(){
 
+
     override fun onBackPressed(){
         moveTaskToBack(false);
     }

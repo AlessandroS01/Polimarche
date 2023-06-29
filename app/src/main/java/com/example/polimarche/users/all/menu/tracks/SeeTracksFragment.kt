@@ -95,6 +95,13 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
             showAddTrackDialog()
         }
 
+        tracksViewModel.listTracks.observe(viewLifecycleOwner) { newList ->
+            originalTrackList = newList
+            trackList.value = originalTrackList.toMutableList()
+            (originalTrackList as MutableList<DataTrack>?)?.let { seeTracksAdapter.setNewList(it) }
+        }
+
+
     }
 
     private fun setQuery(query: String) {

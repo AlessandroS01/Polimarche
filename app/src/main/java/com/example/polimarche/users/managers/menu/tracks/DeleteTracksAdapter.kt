@@ -123,14 +123,12 @@ class DeleteTracksAdapter(
         Confirm to modify the length of the track
          */
         confirmFrame.setOnClickListener {
-            tracksViewModel.removeTrack(
-                tracksViewModel.filterList(
-                    inputQuery.value.toString()
-                ).value?.get(position)!!
-            )
+            val track = tracksViewModel.filterList(inputQuery.value.toString()).value?.get(position)
+            if (track != null) {
+                tracksViewModel.removeTrack(track)
+            }
             setNewList(tracksViewModel.listTracks)
             dialog.dismiss()
-
         }
         cancelFrame.setOnClickListener {
             dialog.dismiss()
