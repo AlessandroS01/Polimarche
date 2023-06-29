@@ -190,6 +190,7 @@ class SeeTracksAdapter(
     }
 
 
+     @SuppressLint("SuspiciousIndentation")
      fun addNewTrack(newTrack: DataTrack) {
     tracksViewModel.addNewTrack(newTrack)
     val filteredList = tracksViewModel.filterList(inputQuery.value.toString()).value
