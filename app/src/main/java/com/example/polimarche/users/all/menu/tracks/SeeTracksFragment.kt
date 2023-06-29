@@ -16,6 +16,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,7 @@ import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentGeneralTracksSeeTracksBinding
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.track.TracksViewModel
+
 
 class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
@@ -35,6 +37,11 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
     private lateinit var seeTracksRecyclerView: RecyclerView
     private lateinit var seeTracksAdapter: SeeTracksAdapter
+
+    private val trackList: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
+    private val inputQuery: MutableLiveData<String?> = MutableLiveData("")
+    private var originalTrackList: List<DataTrack> = emptyList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,18 +68,24 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         }
 
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        tracksViewModel.listTracks.observe(viewLifecycleOwner) { newList ->
+            originalTrackList = newList
+            trackList.value = originalTrackList.toMutableList()
+        }
+
+        trackList.observe(viewLifecycleOwner, Observer { tracks ->
+            seeTracksAdapter.setNewList(tracks)
+        })
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query != null){
-                    setQuery(query)
-                }
                 searchView.clearFocus()
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(newText != null){
+                if (newText != null) {
                     setQuery(newText)
-                    filterList()
                 }
                 return true
             }
@@ -81,15 +94,28 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         binding.imageButtonAddTrack.setOnClickListener {
             showAddTrackDialog()
         }
+
     }
 
-    private fun setQuery(query: String?){
-        seeTracksAdapter.setQuery(query!!)
+    private fun setQuery(query: String) {
+        inputQuery.value = query
+        filterList()
     }
 
-    private fun filterList(){
-        seeTracksAdapter.filterNameByQuery()
+
+    private fun filterList() {
+        val query = inputQuery.value.toString().trim() // Rimuovi eventuali spazi bianchi prima e dopo la query
+        if (query.isNotBlank()) {
+            val filteredList = originalTrackList.filter { track ->
+                track.name.contains(query, ignoreCase = true) // Filtra in base al nome della traccia ignorando maiuscole/minuscole
+            }
+            trackList.value = filteredList.toMutableList()
+        } else {
+            trackList.value = originalTrackList.toMutableList()
+        }
     }
+
+
 
     private fun showAddTrackDialog(){
         val dialog = Dialog(requireContext())
@@ -155,7 +181,7 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
                     trackName,
                     newTrackLength.text.toString().toDouble()
                 )
-                seeTracksAdapter.addNewTrack(newTrack)
+               // seeTracksAdapter.addNewTrack(newTrack)
                 dialog.dismiss()
             }
         }

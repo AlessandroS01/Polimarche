@@ -124,7 +124,7 @@ class DeleteTracksAdapter(
          */
         confirmFrame.setOnClickListener {
             tracksViewModel.removeTrack(
-                tracksViewModel.filterTracksByName(
+                tracksViewModel.filterList(
                     inputQuery.value.toString()
                 ).value?.get(position)!!
             )
@@ -142,7 +142,7 @@ class DeleteTracksAdapter(
     Calls a method which allows the dynamic change of the list of the recyclerView.
      */
     fun filterNameByQuery(){
-        setNewList(tracksViewModel.filterTracksByName(inputQuery.value.toString()))
+        setNewList(tracksViewModel.filterList(inputQuery.value.toString()))
     }
 
     /*
