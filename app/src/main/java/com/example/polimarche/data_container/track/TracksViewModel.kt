@@ -12,8 +12,13 @@ class TracksViewModel: ViewModel() {
 
     private val tracksRepository: TracksRepository = TracksRepository()
 
-
     init {
+        viewModelScope.launch {
+            tracksRepository.fetchTracksFromFirestore()
+        }
+    }
+
+    fun initialize(){
         viewModelScope.launch {
             tracksRepository.fetchTracksFromFirestore()
         }

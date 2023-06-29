@@ -32,7 +32,14 @@ class DeleteTracksAdapter(
     /*
     Contains the complete list of tracks of the viewModel
      */
-    private var listTracks : MutableLiveData<MutableList<DataTrack>> = tracksViewModel.listTracks
+    private var listTracks: MutableList<DataTrack> = mutableListOf()
+    init {
+        tracksViewModel.listTracks.observeForever { tracks ->
+            listTracks.clear()
+            listTracks.addAll(tracks)
+            notifyDataSetChanged()
+        }
+    }
 
     inner class ViewHolderTracks(
         tracksView: View
@@ -59,25 +66,25 @@ class DeleteTracksAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listTracks.value?.size!!
+        return listTracks.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder){
             is ViewHolderTracks -> {
                 holder.apply {
-                    trackName.text = listTracks.value?.get(position)?.name
-                    trackLength.text = "${listTracks.value?.get(position)?.length.toString()} km"
+                    trackName.text = listTracks.get(position)?.name
+                    trackLength.text = "${listTracks.get(position)?.length.toString()} km"
                     removeTrack.setImageResource(R.drawable.remove_general_small_icon)
                     textView.text = "Remove track"
 
-                    val expansion = listTracks.value?.get(position)?.expansion!!
+                    val expansion = listTracks.get(position)?.expansion!!
 
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
                     constraintLayout.setOnClickListener {
-                        listTracks.value?.get(position)?.expansion =
-                            ! listTracks.value?.get(position)?.expansion!!
+                        listTracks.get(position)?.expansion =
+                            ! listTracks.get(position)?.expansion!!
                         notifyItemChanged(position)
                     }
 
@@ -127,7 +134,7 @@ class DeleteTracksAdapter(
             if (track != null) {
                 tracksViewModel.removeTrack(track)
             }
-            setNewList(tracksViewModel.listTracks)
+            setNewList(tracksViewModel.listTracks.value?.toMutableList()!!)
             dialog.dismiss()
         }
         cancelFrame.setOnClickListener {
@@ -140,15 +147,16 @@ class DeleteTracksAdapter(
     Calls a method which allows the dynamic change of the list of the recyclerView.
      */
     fun filterNameByQuery(){
-        setNewList(tracksViewModel.filterList(inputQuery.value.toString()))
+        setNewList(tracksViewModel.filterList(inputQuery.value.toString()).value?.toMutableList()!!)
     }
 
     /*
     Inflate inside listTracks a newList in which all the elements' name
     contain inputQuery.
      */
-    private fun setNewList(newList: MutableLiveData<MutableList<DataTrack>>){
-        listTracks = newList
+    fun setNewList(newList: MutableList<DataTrack>){
+        listTracks.clear()
+        listTracks.addAll(newList)
         notifyDataSetChanged()
     }
 
