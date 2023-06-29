@@ -1,5 +1,6 @@
 package com.example.polimarche.users.all.menu.practice_session
 
+import PracticeSessionRepository.listPracticeSession
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentGeneralPracticeSessionSeePracticeSessionBinding
 import com.example.polimarche.data_container.practice_session.PracticeSessionViewModel
+import com.example.polimarche.data_container.track.DataTrack
+import com.example.polimarche.users.all.menu.tracks.SeeTracksAdapter
 
 class SeePracticeSessionFragment : Fragment(
     R.layout.fragment_general_practice_session_see_practice_session
@@ -54,6 +59,14 @@ class SeePracticeSessionFragment : Fragment(
          */
         searchView.queryHint = setQueryHintSearchView(0)
 
+        practiceSessionViewModel.listPracticeSession.observe(viewLifecycleOwner) {
+            adapterPracticeSession = SeePracticeSessionAdapter(practiceSessionViewModel)
+
+            recyclerViewSeePracticeSession = binding.listPracticeSession
+            val linearLayoutManager = LinearLayoutManager(this.requireContext())
+            recyclerViewSeePracticeSession.layoutManager = linearLayoutManager
+            recyclerViewSeePracticeSession.adapter = adapterPracticeSession
+        }
 
         /*
         Sets the visibility of the radio group to NONE whenever the checked box is unchecked.
@@ -88,11 +101,6 @@ class SeePracticeSessionFragment : Fragment(
             }
         }
 
-        recyclerViewSeePracticeSession = binding.listPracticeSession
-        val linearLayoutManager = LinearLayoutManager(this.requireContext())
-        recyclerViewSeePracticeSession.layoutManager = linearLayoutManager
-        adapterPracticeSession = SeePracticeSessionAdapter(practiceSessionViewModel)
-        recyclerViewSeePracticeSession.adapter = adapterPracticeSession
 
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{

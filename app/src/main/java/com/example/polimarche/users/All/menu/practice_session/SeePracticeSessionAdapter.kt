@@ -11,14 +11,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.data_container.practice_session.DataPracticeSession
 import com.example.polimarche.data_container.practice_session.PracticeSessionViewModel
+import java.time.format.DateTimeFormatter
+
 
 class SeePracticeSessionAdapter(
     private val practiceSessionViewModel: PracticeSessionViewModel
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    private var listPracticeSession = practiceSessionViewModel.listPracticeSession
+    private var listPracticeSession: MutableList<DataPracticeSession> = mutableListOf()
 
+    init {
+        practiceSessionViewModel.listPracticeSession.observeForever { session ->
+            listPracticeSession.clear()
+            listPracticeSession.addAll(session)
+            notifyDataSetChanged()
+        }
+    }
 
     inner class ViewHolderPracticeSession(
         practiceSessionView : View
@@ -51,32 +60,32 @@ class SeePracticeSessionAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listPracticeSession.value?.size!!
+        return listPracticeSession.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listOfItems = listPracticeSession.value?.toMutableList()
-
         when(holder){
             is ViewHolderPracticeSession ->{
                 holder.apply {
-                    eventType.text = "Event: ${listOfItems?.get(position)?.eventType}"
-                    date.text = "Date: ${listOfItems?.get(position)?.date.toString()}"
-                    startingTime.text = "Starting time: ${listOfItems?.get(position)?.startingTime.toString()}"
-                    endingTime.text = "Ending time: ${listOfItems?.get(position)?.endingTime.toString()}"
-                    trackName.text = "Track: ${listOfItems?.get(position)?.trackName}"
-                    weather.text = "Weather: ${listOfItems?.get(position)?.weather}"
-                    trackCondition.text = "Track condition: ${listOfItems?.get(position)?.trackCondition}"
-                    trackTemperature.text = "Track temperature: ${listOfItems?.get(position)?.trackTemperature.toString()}"
-                    ambientPressure.text = "Ambient pressure: ${listOfItems?.get(position)?.ambientPressure.toString()}"
-                    airTemperature.text = "Air temperature: ${listOfItems?.get(position)?.airTemperature.toString()}"
+                    eventType.text = "Event: ${listPracticeSession?.get(position)?.eventType}"
+                    date.text = "Date: ${listPracticeSession?.get(position)?.date?.format(
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd"))}"
 
-                    val expansion = listOfItems?.get(position)?.expansion
-                    linearLayoutExpandable.visibility = if (expansion!!) View.VISIBLE else View.GONE
+                    startingTime.text = "Starting time: ${listPracticeSession?.get(position)?.startingTime.toString()}"
+                    endingTime.text = "Ending time: ${listPracticeSession?.get(position)?.endingTime.toString()}"
+                    trackName.text = "Track: ${listPracticeSession?.get(position)?.trackName}"
+                    weather.text = "Weather: ${listPracticeSession?.get(position)?.weather}"
+                    trackCondition.text = "Track condition: ${listPracticeSession?.get(position)?.trackCondition}"
+                    trackTemperature.text = "Track temperature: ${listPracticeSession?.get(position)?.trackTemperature.toString()}"
+                    ambientPressure.text = "Ambient pressure: ${listPracticeSession?.get(position)?.ambientPressure.toString()}"
+                    airTemperature.text = "Air temperature: ${listPracticeSession?.get(position)?.airTemperature.toString()}"
+
+                    val expansion = listPracticeSession.get(position)?.expansion!!
+                    linearLayoutExpandable.visibility = if (expansion) View.VISIBLE else View.GONE
 
                     constraintTouchable.setOnClickListener{
-                        listOfItems[position].expansion =
-                            !listOfItems[position].expansion
+                        listPracticeSession.get(position)?.expansion =
+                            ! listPracticeSession.get(position)?.expansion!!
                         notifyItemChanged(position)
                     }
                 }
@@ -87,40 +96,47 @@ class SeePracticeSessionAdapter(
     /*
     Restores the default list of the recyclerView.
      */
+
     fun restoreListToDefault(){
-        setNewList(practiceSessionViewModel.listPracticeSession)
+        setNewList(practiceSessionViewModel.listPracticeSession.value?.toMutableList()!!)
     }
+
+
 
     /*
     Filter the list of practice session the one that occurred on the day
     given as input and in which the event was the one selected trough the
     radioButton.
      */
-    fun filterListByEventChecked(query: String, eventType: String){
-        listPracticeSession = practiceSessionViewModel.listPracticeSession
-        val listFiltered = MutableLiveData(listPracticeSession.value?.filter {
+
+    fun filterListByEventChecked(query: String, eventType: String) {
+        listPracticeSession = practiceSessionViewModel.listPracticeSession.value?.toMutableList()!!
+        val listFiltered = listPracticeSession.filter {
             it.date.toString() == query && it.eventType.lowercase() == eventType.lowercase()
-        }?.toMutableList()!!)
+        }.toMutableList()
         setNewList(listFiltered)
     }
+
 
     /*
     Filter the list of practice session the one that occurred on the day
     given as input.
      */
+
     fun filterListWithoutEvents(query: String){
-        listPracticeSession = practiceSessionViewModel.listPracticeSession
-        val listFiltered = MutableLiveData(listPracticeSession.value?.filter {
+        listPracticeSession = practiceSessionViewModel.listPracticeSession.value?.toMutableList()!!
+        val listFiltered = listPracticeSession.filter {
             it.date.toString() == query
-        }?.toMutableList()!!)
+        }.toMutableList()
         setNewList(listFiltered)
     }
 
     /*
     Refresh the list of items inside the recyclerView.
      */
-    private fun setNewList(newList: MutableLiveData<MutableList<DataPracticeSession>>){
-        listPracticeSession = newList
+    fun setNewList(newList: MutableList<DataPracticeSession>){
+        listPracticeSession.clear()
+        listPracticeSession.addAll(newList)
         notifyDataSetChanged()
     }
 }
