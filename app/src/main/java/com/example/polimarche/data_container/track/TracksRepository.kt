@@ -49,7 +49,7 @@ class TracksRepository {
             trackIdList.add(documentId)
 
             val name = document.getString("name")!!
-            val length = document.getString("length").toString().toDouble()
+            val length = document.getString("length")!!
             val track = DataTrack(
                 name,
                 length
@@ -100,18 +100,27 @@ class TracksRepository {
 
 
     fun addNewTrack(newTrack: DataTrack) {
-        // Add the new track to the Firestore database
-        val trackRef = db.collection("track").document()
-        newTrack.name = trackRef.id
+        Log.d("SUCA", "SUCA:${newTrack.name}")
+        val collectionRef = db.collection("track")
+        val trackRef = collectionRef.document()
+
         trackRef.set(newTrack)
             .addOnSuccessListener {
                 // Add the new track to the local list
                 _listTracks.value?.add(newTrack)
+
+                // Update the value of listTracks to trigger observers
+                _listTracks.value = _listTracks.value
+
+                Log.e("TracksRepository", "New track added successfully")
             }
             .addOnFailureListener { exception ->
-                // Handle the error
+                Log.e("TracksRepository", "Failed to add new track", exception)
             }
     }
+
+
+
 
     fun removeTrack(trackToDelete: DataTrack) {
         // Delete the track from the Firestore database

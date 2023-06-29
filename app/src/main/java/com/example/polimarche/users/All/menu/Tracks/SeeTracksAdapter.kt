@@ -181,8 +181,7 @@ class SeeTracksAdapter(
     } */
 
     /*
-    Inflate inside listTracks a newList in which all the elements' name
-    contain inputQuery.
+    This function is used for filtering the list of tracks based on a search query.
      */
     fun setNewList(newList: MutableList<DataTrack>) {
         listTracks.clear()
@@ -191,13 +190,15 @@ class SeeTracksAdapter(
     }
 
 
+     fun addNewTrack(newTrack: DataTrack) {
+    tracksViewModel.addNewTrack(newTrack)
+    val filteredList = tracksViewModel.filterList(inputQuery.value.toString()).value
+        if (filteredList != null) {
+            setNewList(filteredList)
+        }
+    }
 
 
-    /*
-        fun addNewTrack(newTrack: DataTrack){
-            tracksViewModel.addNewTrack(newTrack)
-            setNewList(tracksViewModel.filterTracksByName(inputQuery.value.toString()))
-        } */
 
 
 

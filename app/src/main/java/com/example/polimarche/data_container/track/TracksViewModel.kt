@@ -46,7 +46,7 @@ class TracksViewModel: ViewModel() {
     Recalls directly the repository to change the length of a track given
      */
     fun modifyTrackLength(track: DataTrack, newLength: Double) {
-        track.length = newLength
+        track.length = newLength.toString()
         tracksRepository.modifyTrackLength(track, newLength)
     }
 
@@ -65,22 +65,5 @@ class TracksViewModel: ViewModel() {
     fun removeTrack(trackToDelete: DataTrack){
         tracksRepository.removeTrack(trackToDelete)
     }
-
-    fun updateTrack(track: DataTrack) {
-        val trackRef = db.collection("track").document(track.name)
-        val trackData = hashMapOf(
-            "name" to track.name,
-            "length" to track.length
-        )
-        trackRef.update(trackData as Map<String, Any>)
-            .addOnSuccessListener {
-                // Aggiornamento della traccia completato con successo
-            }
-            .addOnFailureListener { e ->
-                // Gestisci l'errore durante l'aggiornamento della traccia
-            }
-    }
-
-
 
 }
