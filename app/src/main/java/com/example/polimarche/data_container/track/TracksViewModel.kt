@@ -12,7 +12,7 @@ class TracksViewModel: ViewModel() {
 
     private val tracksRepository: TracksRepository = TracksRepository()
 
-    private val db = FirebaseFirestore.getInstance()
+
     init {
         viewModelScope.launch {
             tracksRepository.fetchTracksFromFirestore()

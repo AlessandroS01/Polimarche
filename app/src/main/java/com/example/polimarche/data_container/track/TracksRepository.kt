@@ -59,7 +59,8 @@ class TracksRepository {
         }
 
         withContext(Dispatchers.Main) {
-            _listTracks.value = trackList // Use postValue to update MutableLiveData on the main thread
+            _listTracks.value =
+                trackList // Use postValue to update MutableLiveData on the main thread
         }
 
         // Process the trackIdList as needed
@@ -120,21 +121,38 @@ class TracksRepository {
     }
 
 
+    fun removeTrack(track: DataTrack) {
+        val collectionRef = db.collection("track")
 
+        collectionRef.whereEqualTo("name", track.name)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val documentSnapshot = querySnapshot.documents[0]
+                    val documentId = documentSnapshot.id
 
-    fun removeTrack(trackToDelete: DataTrack) {
-        // Delete the track from the Firestore database
-        val trackRef = db.collection("track").document(trackToDelete.name)
-        trackRef.delete()
-            .addOnSuccessListener {
-                // Remove the track from the local list
-                _listTracks.value?.remove(trackToDelete)
+                    collectionRef.document(documentId).delete()
+                        .addOnSuccessListener {
+                            // Rimuovi la traccia dalla lista locale
+                            _listTracks.value?.remove(track)
+
+                            // Aggiorna il valore di listTracks per attivare gli osservatori
+                            _listTracks.value = _listTracks.value
+
+                            Log.e("TracksViewModel", "Traccia eliminata con successo")
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e("TracksViewModel", "Impossibile eliminare la traccia", exception)
+                        }
+                } else {
+                    Log.e("TracksRepository", "Nessun documento corrispondente trovato")
+                }
             }
             .addOnFailureListener { exception ->
-                // Handle the error
+                Log.e("TracksRepository", "Errore durante la ricerca del documento", exception)
             }
     }
 
-
-
 }
+
+
