@@ -179,9 +179,9 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
                 val newTrack = DataTrack(
                     trackName,
-                    newTrackLength.text.toString().toDouble()
+                    newTrackLength.text.toString()
                 )
-               // seeTracksAdapter.addNewTrack(newTrack)
+               seeTracksAdapter.addNewTrack(newTrack)
                 dialog.dismiss()
             }
         }
