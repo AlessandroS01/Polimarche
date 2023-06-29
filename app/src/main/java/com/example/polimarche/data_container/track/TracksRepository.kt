@@ -22,6 +22,12 @@ class TracksRepository {
         }
     }
 
+    fun initialize() {
+        CoroutineScope(Dispatchers.IO).launch {
+            fetchTracksFromFirestore()
+        }
+    }
+
     private val db = FirebaseFirestore.getInstance()
 
     private val _listTracks: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
@@ -101,18 +107,17 @@ class TracksRepository {
 
 
     fun addNewTrack(newTrack: DataTrack) {
-        Log.d("SUCA", "SUCA:${newTrack.name}")
+
         val collectionRef = db.collection("track")
         val trackRef = collectionRef.document()
 
         trackRef.set(newTrack)
             .addOnSuccessListener {
-                // Add the new track to the local list
-                _listTracks.value?.add(newTrack)
+                val updatedList = _listTracks.value ?: mutableListOf() // Get the current list or initialize an empty list
 
-                // Update the value of listTracks to trigger observers
-                _listTracks.value = _listTracks.value
-
+                updatedList.add(newTrack) // Add the new track to the updated list
+                _listTracks.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
+                println(listTracks.value)
                 Log.e("TracksRepository", "New track added successfully")
             }
             .addOnFailureListener { exception ->

@@ -24,6 +24,7 @@ import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentGeneralTracksSeeTracksBinding
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.track.TracksViewModel
+import com.example.polimarche.users.managers.menu.tracks.DeleteTracksAdapter
 
 
 class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
@@ -48,7 +49,6 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentGeneralTracksSeeTracksBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,19 +58,25 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
         searchView = binding.searchViewSeeTracks
 
-        tracksViewModel.listTracks.observe(viewLifecycleOwner) {
+        tracksViewModel.initialize()
+
+        tracksViewModel.listTracks.observe(viewLifecycleOwner) {tracks ->
             seeTracksAdapter = SeeTracksAdapter(tracksViewModel)
 
             seeTracksRecyclerView = binding.listTracks
             val linearLayoutManager = LinearLayoutManager(this.context)
             seeTracksRecyclerView.layoutManager = linearLayoutManager
             seeTracksRecyclerView.adapter = seeTracksAdapter
+
+            // Notify the adapter when the list of tracks changes
+            seeTracksAdapter.setNewList(tracks)
         }
 
 
         tracksViewModel.listTracks.observe(viewLifecycleOwner) { newList ->
             originalTrackList = newList
             trackList.value = originalTrackList.toMutableList()
+            (originalTrackList as MutableList<DataTrack>?)?.let { seeTracksAdapter.setNewList(it) }
         }
 
         trackList.observe(viewLifecycleOwner, Observer { tracks ->
@@ -95,11 +101,6 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
             showAddTrackDialog()
         }
 
-        tracksViewModel.listTracks.observe(viewLifecycleOwner) { newList ->
-            originalTrackList = newList
-            trackList.value = originalTrackList.toMutableList()
-            (originalTrackList as MutableList<DataTrack>?)?.let { seeTracksAdapter.setNewList(it) }
-        }
 
 
     }
@@ -188,7 +189,8 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
                     trackName,
                     newTrackLength.text.toString()
                 )
-               seeTracksAdapter.addNewTrack(newTrack)
+
+                seeTracksAdapter.addNewTrack(newTrack)
                 dialog.dismiss()
             }
         }
@@ -197,5 +199,4 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         }
         dialog.show()
     }
-
 }

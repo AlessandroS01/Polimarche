@@ -6,16 +6,18 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.polimarche.R
+import com.example.polimarche.data_container.track.TracksViewModel
 import com.example.polimarche.users.all.menu.main.MainActivity
 import com.example.polimarche.users.all.menu.tracks.SeeTracksFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
 class ManagersTracksActivity : AppCompatActivity(){
-
 
     override fun onBackPressed(){
         moveTaskToBack(false);

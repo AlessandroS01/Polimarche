@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
+import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.databinding.FragmentManagersTracksDeleteTrackBinding
 import com.example.polimarche.data_container.track.TracksViewModel
 import com.example.polimarche.users.all.menu.tracks.SeeTracksAdapter
@@ -43,13 +44,18 @@ class DeleteTrackFragment : Fragment(R.layout.fragment_managers_tracks_delete_tr
 
         searchViewDeleteTrack = binding.searchViewDeleteTracks
 
-        tracksViewModel.listTracks.observe(viewLifecycleOwner, Observer { tracks ->
+        tracksViewModel.initialize()
+
+        tracksViewModel.listTracks.observe(viewLifecycleOwner) { tracks ->
             recyclerViewDeleteTracks = binding.listTracks
             val linearLayoutManager = LinearLayoutManager(this.context)
             recyclerViewDeleteTracks.layoutManager = linearLayoutManager
             adapterDeleteTrack = DeleteTracksAdapter(tracksViewModel)
             recyclerViewDeleteTracks.adapter = adapterDeleteTrack
-        })
+
+            // Notify the adapter when the list of tracks changes
+            adapterDeleteTrack.setNewList(tracks)
+        }
 
 
 
