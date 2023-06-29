@@ -13,7 +13,6 @@ import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.data_container.track.DataTrack
@@ -157,7 +156,7 @@ class SeeTracksAdapter(
 
             else{
                 tracksViewModel.modifyTrackLength(
-                    tracksViewModel.filterTracksByName(
+                    tracksViewModel.filterList(
                         inputQuery.value.toString()
                     ).value?.get(position)!!,
                     modifyLengthEditText.text.toString().toDouble()
@@ -176,25 +175,29 @@ class SeeTracksAdapter(
     /*
     Calls a method which allows the dynamic change of the list of the recyclerView.
      */
+    /*
     fun filterNameByQuery(){
-        setNewList(tracksViewModel.filterTracksByName(inputQuery.value.toString()))
-    }
+        setNewList(tracksViewModel.filterList(inputQuery.value.toString()))
+    } */
 
     /*
     Inflate inside listTracks a newList in which all the elements' name
     contain inputQuery.
      */
-    private fun setNewList(newList: MutableLiveData<MutableList<DataTrack>>) {
-        newList.value?.let { listTracks.addAll(it) }
+    fun setNewList(newList: MutableList<DataTrack>) {
+        listTracks.clear()
+        listTracks.addAll(newList)
         notifyDataSetChanged()
     }
 
 
 
-    fun addNewTrack(newTrack: DataTrack){
-        tracksViewModel.addNewTrack(newTrack)
-        setNewList(tracksViewModel.filterTracksByName(inputQuery.value.toString()))
-    }
+
+    /*
+        fun addNewTrack(newTrack: DataTrack){
+            tracksViewModel.addNewTrack(newTrack)
+            setNewList(tracksViewModel.filterTracksByName(inputQuery.value.toString()))
+        } */
 
 
 

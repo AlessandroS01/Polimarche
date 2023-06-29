@@ -28,7 +28,7 @@ class TracksViewModel: ViewModel() {
     Returns a new list of MutableLiveData<MutableList<DataTrack>> in which all elements
     have a name that contains a created by a search view.
      */
-    fun filterTracksByName(query: String): MutableLiveData<MutableList<DataTrack>> {
+    fun filterList(query: String): MutableLiveData<MutableList<DataTrack>> {
         val mutableLiveData: MutableLiveData<MutableList<DataTrack>> =
             MutableLiveData<MutableList<DataTrack>>().apply {
                 value= emptyList<DataTrack>().toMutableList()
