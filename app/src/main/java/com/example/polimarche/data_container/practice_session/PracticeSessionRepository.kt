@@ -86,7 +86,7 @@ object PracticeSessionRepository {
 
 
         // Creazione di un nuovo documento con un ID generato automaticamente
-        val newDocumentRef = db.collection("practice_sessions").document()
+        val newDocumentRef = db.collection("practiceSessions").document()
 
         // Creazione di un oggetto mappa contenente i dati della nuova sessione di pratica
         val practiceSessionData = hashMapOf(
