@@ -41,7 +41,7 @@ class VisualizeSetupFragment(
         super.onViewCreated(view, savedInstanceState)
 
         val setupCode = arguments?.getInt("SETUP_CODE")
-        setupClicked = setupViewModel.setupList.filter { it.code == setupCode }[0]
+        setupClicked = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0)!!
         var notes = ""
         setupClicked.notes.forEachIndexed { index, s ->
             notes += if(index == setupClicked.notes.size - 1 ) s else "${s}\n"
@@ -90,7 +90,7 @@ class VisualizeSetupFragment(
          */
         confirmDeletion.setOnClickListener {
             setupViewModel.deleteSetup(setupClicked)
-            adapter.setNewList(setupViewModel.setupList)
+            adapter.setNewList(setupViewModel.setupList.value?.toMutableList()!!)
             parentFragmentManager.beginTransaction().remove(this).commit()
             dialog.dismiss()
         }

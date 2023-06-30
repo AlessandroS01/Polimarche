@@ -8,11 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.data_container.setup.DataSetup
+import com.example.polimarche.data_container.setup.SetupViewModel
 
 class DeleteSetupAdapter (
-    private var setupList : MutableList<DataSetup>,
+    private val setupViewModel: SetupViewModel,
     private val listener: OnSetupCodeClickListener
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    var setupList = setupViewModel.setupList.value!!
 
     interface OnSetupCodeClickListener{
         fun onSetupCodeClickListener(setupClicked: DataSetup)
