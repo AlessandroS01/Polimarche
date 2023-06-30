@@ -58,12 +58,14 @@ class AddPracticeSessionFragment : Fragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerViewSeeTracks = binding.listTracksAddPS
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        adapterSeeTracks = UseTrackNewPracticeSessionAdapter(tracksViewModel, this)
-        recyclerViewSeeTracks.layoutManager = linearLayoutManager
-        recyclerViewSeeTracks.adapter = adapterSeeTracks
-
+        tracksViewModel.initialize()
+        tracksViewModel.listTracks.observe(viewLifecycleOwner) {
+            recyclerViewSeeTracks = binding.listTracksAddPS
+            val linearLayoutManager = LinearLayoutManager(requireContext())
+            adapterSeeTracks = UseTrackNewPracticeSessionAdapter(tracksViewModel, this)
+            recyclerViewSeeTracks.layoutManager = linearLayoutManager
+            recyclerViewSeeTracks.adapter = adapterSeeTracks
+        }
         setDate()
         setTime()
 

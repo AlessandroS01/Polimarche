@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
+import com.example.polimarche.data_container.practice_session.DataPracticeSession
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.track.TracksViewModel
 
@@ -15,7 +16,7 @@ class UseTrackNewPracticeSessionAdapter(
     private val listener: OnTrackClickListener
 ):  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listTracks = tracksViewModel.listTracks
+    private var listTracks: MutableList<DataTrack> = mutableListOf()
 
     interface OnTrackClickListener{
         fun onTrackClickListener(trackClicked: DataTrack)
@@ -35,7 +36,7 @@ class UseTrackNewPracticeSessionAdapter(
             val position : Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onTrackClickListener(
-                    listTracks.value?.get(position)!!
+                    listTracks.get(position)!!
                 )
             }
         }
@@ -49,17 +50,15 @@ class UseTrackNewPracticeSessionAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listTracks.value?.size!!
+        return listTracks.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listOfItems = listTracks.value?.toMutableList()
-
         when(holder){
             is ViewHolderTracksCreatePracticeSession ->{
                 holder.apply {
-                    trackName.text = "${listOfItems?.get(position)?.name}"
-                    trackLength.text = "${listOfItems?.get(position)?.length} km"
+                    trackName.text = "${listTracks?.get(position)?.name}"
+                    trackLength.text = "${listTracks?.get(position)?.length} km"
                 }
             }
         }
@@ -68,9 +67,10 @@ class UseTrackNewPracticeSessionAdapter(
     /*
     Sets the new list to be shown inside the recyclerView.
      */
-    fun changeListTracksOnClick(newList: MutableLiveData<MutableList<DataTrack>>){
-        listTracks = newList
+    fun changeListTracksOnClick(newList: MutableLiveData<MutableList<DataTrack>>) {
+        listTracks.clear()
+        newList.value?.let { listTracks.addAll(it) }
         notifyDataSetChanged()
-
     }
+
 }

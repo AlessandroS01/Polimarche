@@ -101,8 +101,6 @@ class SeePracticeSessionAdapter(
         setNewList(practiceSessionViewModel.listPracticeSession.value?.toMutableList()!!)
     }
 
-
-
     /*
     Filter the list of practice session the one that occurred on the day
     given as input and in which the event was the one selected trough the

@@ -39,7 +39,6 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
         super.onViewCreated(view, savedInstanceState)
         // Recupera l'ID dell'utente autenticato
         val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-        Log.e("ciao", "userID: $currentUser")
 
         if (currentUser != null) {
             // L'utente è autenticato, puoi accedere alle sue informazioni
@@ -51,7 +50,6 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
 
             // L'utente è autenticato, puoi accedere alle sue informazioni
             val userId: String = currentUser.uid
-            Log.e("ciao", "userID: $userId")
             // Ottieni un'istanza di FirebaseFirestore
             val db = FirebaseFirestore.getInstance()
 
@@ -62,7 +60,6 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home){
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
                         val role: String? = documentSnapshot.getString("role")
-                        Log.e("ciao", "ruolo: $role")
                         // Ora puoi utilizzare il valore di "role" come desideri
                         binding.textView80.text = role
                     }
