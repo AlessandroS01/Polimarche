@@ -19,8 +19,11 @@ import com.example.polimarche.data_container.practice_session.DataPracticeSessio
 import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.practice_session.PracticeSessionViewModel
 import com.example.polimarche.data_container.track.TracksViewModel
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class AddPracticeSessionFragment : Fragment(
     R.layout.fragment_managers_practice_session_add
@@ -40,6 +43,7 @@ class AddPracticeSessionFragment : Fragment(
     These variables controls if the values inserted as date and time are correct or not.
      */
     private var correctnessDate = false
+    private var correctnessTime = false
     private var correctnessStartingTime = false
     private var correctnessEndingTime = false
     // Variable in which we will store the name of the track selected by the user
@@ -79,6 +83,7 @@ class AddPracticeSessionFragment : Fragment(
              */
             if(trackName != ""
                 && correctnessDate
+                && correctnessTime
                 && correctnessStartingTime
                 && correctnessEndingTime
                 && binding.setWeatherEditTextPS.text.isNotEmpty()
@@ -189,25 +194,22 @@ class AddPracticeSessionFragment : Fragment(
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(s?.length == 10){
-                    val year = s.subSequence(0, 4)
-                    val month = s.subSequence(5, 7)
-                    val day = s.subSequence(8, 10)
-
                     /*
                     Sets the text to red when the date inserted is not valid.
                      */
-                    if (year.toString().toInt() != LocalDate.now().year ||
-                        month.toString().toInt() > 12 || month.toString().toInt() == 0 ||
-                        day.toString().toInt() > 31 || day.toString().toInt() == 0  ) {
+                    correctnessDate = if (isValidDate(s.toString(), "yyyy-MM-dd")) {
+                        true
+                    } else {
+
                         binding.setDatePSEditText.setTextColor(
                             ContextCompat.getColor(
                                 requireContext(),
                                 R.color.red_700
                             )
                         )
-                        correctnessDate = false
+                        false
                     }
-                    else correctnessDate = true
+
                 }
             }
             override fun afterTextChanged(s: Editable?) {
@@ -242,6 +244,17 @@ class AddPracticeSessionFragment : Fragment(
         })
     }
 
+    fun isValidDate(dateStr: String, format: String): Boolean {
+        val sdf = SimpleDateFormat(format, Locale.ENGLISH)
+        sdf.isLenient = false
+        return try {
+            sdf.parse(dateStr)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     /*
     Used to control the input of the time
      */
@@ -258,26 +271,21 @@ class AddPracticeSessionFragment : Fragment(
                 Checks if the time inserted is valid or not.
                  */
                 if(s?.length == 8){
-                    val hours = s.subSequence(0, 2)
-                    val minutes = s.subSequence(3, 5)
-                    val seconds = s.subSequence(6, 8)
-
                     /*
                     Sets the text to red when the time inserted is not valid.
                      */
-                    if (hours.toString().toInt() > 24 ||
-                        minutes.toString().toInt() > 60 ||
-                        seconds.toString().toInt() > 60 ) {
-                            binding.setStartingTimePS.setTextColor(
+                    if (isValidTime(s.toString(), "HH:mm:ss")) {
+                        correctnessStartingTime = true
+                        controlOverTimeSubmitted(correctnessStartingTime, correctnessEndingTime)
+                    } else {
+                        binding.setStartingTimePS.setTextColor(
                                 ContextCompat.getColor(
                                     requireContext(),
                                     R.color.red_700
                                 )
                             )
-                            correctnessStartingTime = false
+                        correctnessStartingTime = false
                     }
-                    else correctnessStartingTime = true
-                    controlOverTimeSubmitted(correctnessStartingTime, correctnessEndingTime)
                 }
             }
 
@@ -313,26 +321,21 @@ class AddPracticeSessionFragment : Fragment(
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(s?.length == 8){
-                    val hours = s.subSequence(0, 2)
-                    val minutes = s.subSequence(3, 5)
-                    val seconds = s.subSequence(6, 8)
-
                     /*
                     Sets the text to red when the time inserted is not valid.
                      */
-                    if (hours.toString().toInt() > 24 ||
-                        minutes.toString().toInt() > 60 ||
-                        seconds.toString().toInt() > 60 ) {
-                            binding.setEndingTimePS.setTextColor(
+                    if (isValidTime(s.toString(), "HH:mm:ss")) {
+                        correctnessEndingTime = true
+                        controlOverTimeSubmitted(correctnessStartingTime, correctnessEndingTime)
+                    } else {
+                        binding.setStartingTimePS.setTextColor(
                                 ContextCompat.getColor(
                                     requireContext(),
                                     R.color.red_700
                                 )
                             )
-                            correctnessEndingTime = false
+                        correctnessEndingTime = false
                     }
-                    else correctnessEndingTime = true
-                    controlOverTimeSubmitted(correctnessStartingTime, correctnessEndingTime)
                 }
             }
 
@@ -362,6 +365,16 @@ class AddPracticeSessionFragment : Fragment(
         })
 
     }
+
+    fun isValidTime(timeStr: String, format: String): Boolean {
+        return try {
+            val formatter = DateTimeFormatter.ofPattern(format)
+            LocalTime.parse(timeStr, formatter)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
     /*
     Parse the string created as input by the user and controls if the starting time
     is before the ending time.
@@ -381,13 +394,17 @@ class AddPracticeSessionFragment : Fragment(
                         R.color.red_700
                     )
                 )
+                correctnessTime = false
             }
-            else binding.setTimePS.setTextColor(
+            else {
+                binding.setTimePS.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.white
                     )
                 )
+                correctnessTime = true
+            }
         }
     }
 
