@@ -35,14 +35,18 @@ class DetailsDamperActivity: AppCompatActivity() {
 
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
         val damperPosition = intent.getStringExtra("DAMPER_POSITION")
-        val setup = setupViewModel.setupList.filter { it.code == setupCode  }[0]
+        val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)
 
         when(damperPosition){
             "Front" ->{
-                damperDetails = setup.frontDamper
+                if (setup != null) {
+                    damperDetails = setup.frontDamper
+                }
             }
             "Back" ->{
-                damperDetails = setup.backDamper
+                if (setup != null) {
+                    damperDetails = setup.backDamper
+                }
             }
         }
 

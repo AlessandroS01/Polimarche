@@ -227,7 +227,7 @@ class OccurringProblemFragment(
     private fun findSetupsWithoutProblem(): MutableList<DataSetup>{
         val listSetupsWithoutProblem= mutableListOf<DataSetup>()
 
-        setupViewModel.setupList.forEachIndexed { _, dataSetup ->
+        setupViewModel.setupList.value?.forEachIndexed { _, dataSetup ->
             if(occurringProblemViewModel.listOccurringProblem.value?.filter {
                     dataSetup.code == it.setupCode &&
                             it.problemCode == problemClicked.code
