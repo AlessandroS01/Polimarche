@@ -1,6 +1,7 @@
 package com.example.polimarche.data_container.practice_session
 
 
+
 import PracticeSessionRepository
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +10,14 @@ import kotlinx.coroutines.launch
 
 class PracticeSessionViewModel: ViewModel() {
 
-    private val practiceSessionRepository: PracticeSessionRepository = PracticeSessionRepository
+    private val practiceSessionRepository: PracticeSessionRepository = PracticeSessionRepository()
 
     init {
+        viewModelScope.launch {
+            practiceSessionRepository.fetchSessionFromFirestore()
+        }
+    }
+    fun initialize(){
         viewModelScope.launch {
             practiceSessionRepository.fetchSessionFromFirestore()
         }

@@ -14,9 +14,15 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-object PracticeSessionRepository {
+class PracticeSessionRepository {
 
     init {
+        CoroutineScope(Dispatchers.IO).launch {
+            fetchSessionFromFirestore()
+        }
+    }
+
+    fun initialize() {
         CoroutineScope(Dispatchers.IO).launch {
             fetchSessionFromFirestore()
         }
@@ -56,10 +62,10 @@ object PracticeSessionRepository {
                     val date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
                     val startingTimeStr = document.getString("startingTime") ?: ""
-                    val startingTime = LocalTime.parse(startingTimeStr, DateTimeFormatter.ofPattern("HH:mm"))
+                    val startingTime = LocalTime.parse(startingTimeStr, DateTimeFormatter.ofPattern("HH:mm:ss"))
 
                     val endingTimeStr = document.getString("endingTime") ?: ""
-                    val endingTime = LocalTime.parse(endingTimeStr, DateTimeFormatter.ofPattern("HH:mm"))
+                    val endingTime = LocalTime.parse(endingTimeStr, DateTimeFormatter.ofPattern("HH:mm:ss"))
 
                     val trackName = document.getString("trackName") ?: ""
                     val weather = document.getString("weather") ?: ""

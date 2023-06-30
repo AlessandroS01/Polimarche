@@ -1,6 +1,6 @@
 package com.example.polimarche.users.all.menu.practice_session
 
-import PracticeSessionRepository.listPracticeSession
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,6 +59,7 @@ class SeePracticeSessionFragment : Fragment(
          */
         searchView.queryHint = setQueryHintSearchView(0)
 
+        practiceSessionViewModel.initialize()
         practiceSessionViewModel.listPracticeSession.observe(viewLifecycleOwner) {
             adapterPracticeSession = SeePracticeSessionAdapter(practiceSessionViewModel)
 
