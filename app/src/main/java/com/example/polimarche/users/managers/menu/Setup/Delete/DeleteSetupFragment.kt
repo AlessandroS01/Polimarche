@@ -52,7 +52,7 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
         val layoutManager = LinearLayoutManager(context)
 
         recyclerViewDeleteSetup.layoutManager = layoutManager
-        adapter = DeleteSetupAdapter(setupViewModel.setupList, this)
+        adapter = DeleteSetupAdapter(setupViewModel, this)
         recyclerViewDeleteSetup.adapter = adapter
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -75,7 +75,7 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
      */
     private fun filterList(query: String?){
         if(query != null){
-            val filteredList = setupViewModel.setupList.filter { query in it.code.toString() }
+            val filteredList = setupViewModel.setupList.value?.filter { query in it.code.toString() }!!
             adapter.setNewList(filteredList.toMutableList())
         }
     }

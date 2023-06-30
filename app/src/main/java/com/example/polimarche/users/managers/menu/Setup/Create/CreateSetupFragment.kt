@@ -220,18 +220,18 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         if(binding.editTextSetupCode.text.isNotEmpty()){
             val newSetupCode = binding.editTextSetupCode.text.toString().toInt()
 
-            if ( setupViewModel.setupList.none{
+            if ( setupViewModel.setupList.value?.none{
                     it.code == newSetupCode
-                }
+                }!!
             ){
                 generateSetup(newSetupCode)
             }
         }else{
             var newSetupCode = 1
             while (
-                setupViewModel.setupList.any{
+                setupViewModel.setupList.value?.any{
                     it.code == newSetupCode
-                }
+                }!!
             ){
                 newSetupCode++
             }

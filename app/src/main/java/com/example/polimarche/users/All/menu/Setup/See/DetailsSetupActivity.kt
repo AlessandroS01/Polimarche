@@ -33,7 +33,7 @@ class DetailsSetupActivity: AppCompatActivity() {
 
         if(setupCode != -1){
             // Entire setup data found from the setup code
-            setup = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0) ?:
+            setup = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0) !!
 
             binding.setupCodeSeeSetup.text = "Setup code: ${setup.code}"
 

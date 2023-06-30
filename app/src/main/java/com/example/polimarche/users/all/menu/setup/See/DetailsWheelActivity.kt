@@ -32,7 +32,7 @@ class DetailsWheelActivity: AppCompatActivity() {
         //val db = FirebaseFirestore.getInstance()
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
         val wheelPosition = intent.getStringExtra("WHEEL_POSITION")
-        val setup = setupViewModel.setupList.filter { it.code == setupCode  }[0]
+        val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)!!
 
         when(wheelPosition){
             "Front right" -> {
