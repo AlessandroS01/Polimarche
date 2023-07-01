@@ -48,5 +48,9 @@ class LoginActivity : AppCompatActivity(){
         win.attributes = winParams
     }
 
+    override fun onBackPressed(){
+        moveTaskToBack(false);
+    }
+
 
 }

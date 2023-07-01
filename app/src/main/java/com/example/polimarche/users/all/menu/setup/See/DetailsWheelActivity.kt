@@ -33,25 +33,27 @@ class DetailsWheelActivity: AppCompatActivity() {
         //val db = FirebaseFirestore.getInstance()
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
         val wheelPosition = intent.getStringExtra("WHEEL_POSITION")
-        val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)!!
 
-        when(wheelPosition){
-            "Front right" -> {
-                wheelDetails = setup.frontRightWheel
-            }
-            "Front left" -> {
-                wheelDetails = setup.frontLeftWheel
-            }
-            "Rear right" -> {
-                wheelDetails = setup.rearRightWheel
-            }
-            "Rear left" -> {
-                wheelDetails = setup.rearLeftWheel
-            }
-        }
 
         // set data inside the layout
         setupViewModel.setupList.observe(this) { setup ->
+            val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)!!
+
+            when(wheelPosition){
+                "Front right" -> {
+                    wheelDetails = setup.frontRightWheel
+                }
+                "Front left" -> {
+                    wheelDetails = setup.frontLeftWheel
+                }
+                "Rear right" -> {
+                    wheelDetails = setup.rearRightWheel
+                }
+                "Rear left" -> {
+                    wheelDetails = setup.rearLeftWheel
+                }
+            }
+
             binding.wheelCodeDetailsWheel.text = "Wheel code: ${wheelDetails.code}"
             Log.d("wheelDetails","wheelDetails:$wheelDetails")
             binding.codificationDetailsWheel.text = wheelDetails.codification

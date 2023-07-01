@@ -35,18 +35,20 @@ class DetailsSpringActivity: AppCompatActivity() {
 
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
         val springPosition = intent.getStringExtra("SPRING_POSITION")
-        val setup = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0)!!
 
-        when(springPosition){
-            "Front" ->{
-                springDetails = setup.frontSpring
-            }
-            "Back" ->{
-                springDetails = setup.backSpring
-            }
-        }
 
         setupViewModel.setupList.observe(this) { setup ->
+            val setup = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0)!!
+
+            when(springPosition){
+                "Front" ->{
+                    springDetails = setup.frontSpring
+                }
+                "Back" ->{
+                    springDetails = setup.backSpring
+                }
+            }
+
             binding.springCodeDetailsSpring.text = "Spring code: ${springDetails.code}"
 
             binding.codificationDetailsSpring.text = springDetails.codification
