@@ -17,6 +17,7 @@ import com.example.polimarche.users.managers.menu.setup.delete.DeleteSetupFragme
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
+
 class ManagersSetupActivity : AppCompatActivity(){
 
     override fun onBackPressed(){

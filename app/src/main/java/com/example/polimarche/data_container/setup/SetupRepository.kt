@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.polimarche.data_container.balance.DataBalance
 import com.example.polimarche.data_container.damper.DataDamper
 import com.example.polimarche.data_container.spring.DataSpring
-import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.data_container.wheel.DataWheel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -16,8 +15,15 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+import com.google.firebase.firestore.DocumentReference
+import kotlinx.coroutines.tasks.await
+import com.google.firebase.firestore.CollectionReference
 
 class SetupRepository {
+
+    init {
+        initialize()
+    }
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
@@ -38,7 +44,6 @@ class SetupRepository {
 
     suspend fun fetchSetupFromFirestore() {
         val setupCollection = db.collection("setup")
-
         val setupSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
             setupCollection.get()
                 .addOnSuccessListener { querySnapshot ->
@@ -55,18 +60,49 @@ class SetupRepository {
         for (document in setupSnapshot) {
             val documentId = document.id // Get the document ID
             setupIdList.add(documentId)
-
+            Log.d("IDSETUP", "IDSETUP:$documentId")
             val code = document.getLong("code")?.toInt() ?: 0
-            val frontRightWheel = document.get("frontRightWheel") as DataWheel
-            val frontLeftWheel = document.get("frontLeftWheel") as DataWheel
-            val rearRightWheel = document.get("rearRightWheel") as DataWheel
-            val rearLeftWheel = document.get("rearLeftWheel") as DataWheel
-            val frontDamper = document.get("frontDamper") as DataDamper
-            val backDamper = document.get("backDamper") as DataDamper
-            val frontSpring = document.get("frontSpring") as DataSpring
-            val backSpring = document.get("backSpring") as DataSpring
-            val frontBalance = document.get("frontBalance") as DataBalance
-            val backBalance = document.get("backBalance") as DataBalance
+            val frontRightWheelRef = document.getDocumentReference("frontRightWheel")
+            val frontRightWheelDocument = frontRightWheelRef?.get()?.await()
+
+            val frontRightWheel = frontRightWheelDocument?.toObject(DataWheel::class.java)
+
+            val frontLeftWheelRef = document.getDocumentReference("frontLeftWheel")
+            val frontLeftWheelDocument = frontLeftWheelRef?.get()?.await()
+            val frontLeftWheel = frontLeftWheelDocument?.toObject(DataWheel::class.java)
+
+            val rearRightWheelRef = document.getDocumentReference("rearRightWheel")
+            val rearRightWheelDocument = rearRightWheelRef?.get()?.await()
+            val rearRightWheel = rearRightWheelDocument?.toObject(DataWheel::class.java)
+
+            val rearLeftWheelRef = document.getDocumentReference("rearLeftWheel")
+            val rearLeftWheelDocument = rearLeftWheelRef?.get()?.await()
+            val rearLeftWheel = rearLeftWheelDocument?.toObject(DataWheel::class.java)
+
+            val frontDamperRef = document.getDocumentReference("frontDamper")
+            val frontDamperDocument = frontDamperRef?.get()?.await()
+            val frontDamper = frontDamperDocument?.toObject(DataDamper::class.java)
+
+            val backDamperRef = document.getDocumentReference("backDamper")
+            val backDamperDocument = backDamperRef?.get()?.await()
+            val backDamper = backDamperDocument?.toObject(DataDamper::class.java)
+
+            val frontSpringRef = document.getDocumentReference("frontSpring")
+            val frontSpringDocument = frontSpringRef?.get()?.await()
+            val frontSpring = frontSpringDocument?.toObject(DataSpring::class.java)
+
+            val backSpringRef = document.getDocumentReference("backSpring")
+            val backSpringDocument = backSpringRef?.get()?.await()
+            val backSpring = backSpringDocument?.toObject(DataSpring::class.java)
+
+            val frontBalanceRef = document.getDocumentReference("frontBalance")
+            val frontBalanceDocument = frontBalanceRef?.get()?.await()
+            val frontBalance = frontBalanceDocument?.toObject(DataBalance::class.java)
+
+            val backBalanceRef = document.getDocumentReference("backBalance")
+            val backBalanceDocument = backBalanceRef?.get()?.await()
+            val backBalance = backBalanceDocument?.toObject(DataBalance::class.java)
+
             val preferredEvent = document.getString("preferredEvent") ?: ""
             val frontWingHole = document.getString("frontWingHole") ?: ""
             val notes = mutableListOf<String>() // Initialize an empty list for notes
@@ -77,34 +113,51 @@ class SetupRepository {
                 notes.addAll(notesArray)
             }
 
-            val setup = DataSetup(
-                code,
-                frontRightWheel,
-                frontLeftWheel,
-                rearRightWheel,
-                rearLeftWheel,
-                frontDamper,
-                backDamper,
-                frontSpring,
-                backSpring,
-                frontBalance,
-                backBalance,
-                preferredEvent,
-                frontWingHole,
-                notes
-            )
+            val setup = frontRightWheel?.let { frontRightWheel ->
+                frontLeftWheel?.let { frontLeftWheel ->
+                    rearRightWheel?.let { rearRightWheel ->
+                        rearLeftWheel?.let { rearLeftWheel ->
+                            frontDamper?.let { frontDamper ->
+                                backDamper?.let { backDamper ->
+                                    frontSpring?.let { frontSpring ->
+                                        backSpring?.let { backSpring ->
+                                            frontBalance?.let { frontBalance ->
+                                                backBalance?.let { backBalance ->
+                                                    DataSetup(
+                                                        code,
+                                                        frontRightWheel,
+                                                        frontLeftWheel,
+                                                        rearRightWheel,
+                                                        rearLeftWheel,
+                                                        frontDamper,
+                                                        backDamper,
+                                                        frontSpring,
+                                                        backSpring,
+                                                        frontBalance,
+                                                        backBalance,
+                                                        preferredEvent,
+                                                        frontWingHole,
+                                                        notes
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-            setupList.add(setup)
+            setup?.let { setupList.add(it) }
+            Log.d("DatiSETUP", "DatiSETUP:$setup")
         }
 
         withContext(Dispatchers.Main) {
             _listSetup.value = setupList // Use postValue to update MutableLiveData on the main thread
         }
-
-        // Process the trackIdList as needed
-        // ...
     }
-
 
     fun removeSetup(setup: DataSetup) {
         val collectionRef = db.collection("setup")
@@ -138,14 +191,14 @@ class SetupRepository {
             }
     }
 
-
     fun addNewSetup(newSetup: DataSetup) {
         val collectionRef = db.collection("setup")
         val setupRef = collectionRef.document()
 
         setupRef.set(newSetup)
             .addOnSuccessListener {
-                val updatedList = _listSetup.value ?: mutableListOf() // Get the current list or initialize an empty list
+                val updatedList = _listSetup.value
+                    ?: mutableListOf() // Get the current list or initialize an empty list
 
                 updatedList.add(newSetup) // Add the new setup to the updated list
                 _listSetup.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
@@ -156,6 +209,4 @@ class SetupRepository {
                 Log.e("SetupRepository", "Impossibile aggiungere il nuovo setup", exception)
             }
     }
-
-
 }

@@ -8,4 +8,7 @@ data class DataSpring(
     val arb_stiffness: String,
     val arb_position: String,
     var expansion: Boolean = false
-)
+) {
+    // Costruttore senza argomenti
+    constructor() : this(0, "", "", 0.0, "", "", false)
+}

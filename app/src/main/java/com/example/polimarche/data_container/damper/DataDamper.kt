@@ -8,4 +8,7 @@ data class DataDamper(
     val lsr: Double,
     val lsc: Double,
     var expansion: Boolean = false
-)
+) {
+    // Costruttore senza argomenti
+    constructor() : this(0, "", 0.0, 0.0, 0.0, 0.0, false)
+}

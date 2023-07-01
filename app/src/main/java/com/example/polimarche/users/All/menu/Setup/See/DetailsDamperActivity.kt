@@ -50,7 +50,7 @@ class DetailsDamperActivity: AppCompatActivity() {
             }
         }
 
-        if(setupCode != -1){
+        setupViewModel.setupList.observe(this) { setup ->
             binding.damperCodeDetailsDamper.text = "Damper code: ${damperDetails.code}"
 
             binding.endDetailsDamper.text = damperPosition

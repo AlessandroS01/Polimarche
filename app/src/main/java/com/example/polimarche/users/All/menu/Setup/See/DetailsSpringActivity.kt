@@ -46,7 +46,7 @@ class DetailsSpringActivity: AppCompatActivity() {
             }
         }
 
-        if(setupCode != -1){
+        setupViewModel.setupList.observe(this) { setup ->
             binding.springCodeDetailsSpring.text = "Spring code: ${springDetails.code}"
 
             binding.codificationDetailsSpring.text = springDetails.codification

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.polimarche.databinding.ActivityGeneralDetailsSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
-
+import androidx.lifecycle.Observer
 class DetailsSetupActivity: AppCompatActivity() {
 
     private val setupViewModel: SetupViewModel by viewModels()
@@ -31,42 +31,45 @@ class DetailsSetupActivity: AppCompatActivity() {
 
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
 
-        if(setupCode != -1){
-            // Entire setup data found from the setup code
-            setup = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0) !!
 
-            binding.setupCodeSeeSetup.text = "Setup code: ${setup.code}"
+            setupViewModel.setupList.observe(this) { setup ->
+                // Entire setup data found from the setup code
+                val filteredList = setupViewModel.setupList.value?.filter { it.code == setupCode }
+                    ?.toMutableList()!!
 
-            binding.frontRightWheelCodeSeeSetup.text = setup.frontRightWheel.code.toString()
-            binding.frontLeftWheelCodeSeeSetup.text = setup.frontLeftWheel.code.toString()
-            binding.rearRightWheelCodeSeeSetup.text = setup.rearRightWheel.code.toString()
-            binding.rearLeftWheelCodeSeeSetup.text = setup.rearLeftWheel.code.toString()
+                this.setup = filteredList?.get(0)!!
+                binding.setupCodeSeeSetup.text = "Setup code: ${this.setup.code}"
 
-            binding.frontEndBalanceBrake.text = setup.frontBalance.brake.toString()
-            binding.frontEndBalanceWeight.text = setup.frontBalance.weight.toString()
+                binding.frontRightWheelCodeSeeSetup.text = this.setup.frontRightWheel.code.toString()
+                binding.frontLeftWheelCodeSeeSetup.text = this.setup.frontLeftWheel.code.toString()
+                binding.rearRightWheelCodeSeeSetup.text = this.setup.rearRightWheel.code.toString()
+                binding.rearLeftWheelCodeSeeSetup.text = this.setup.rearLeftWheel.code.toString()
 
-            binding.backEndBalanceBrake.text = setup.backBalance.brake.toString()
-            binding.backEndBalanceWeight.text = setup.backBalance.weight.toString()
+                binding.frontEndBalanceBrake.text = this.setup.frontBalance.brake.toString()
+                binding.frontEndBalanceWeight.text = this.setup.frontBalance.weight.toString()
 
-            binding.frontWingHoleSeeSetup.text = setup.frontWingHole
+                binding.backEndBalanceBrake.text = this.setup.backBalance.brake.toString()
+                binding.backEndBalanceWeight.text = this.setup.backBalance.weight.toString()
 
-            binding.frontDamperCodeSeeSetup.text = setup.frontDamper.code.toString()
-            binding.backDamperCodeSeeSetup.text = setup.backDamper.code.toString()
+                binding.frontWingHoleSeeSetup.text = this.setup.frontWingHole
 
-            binding.frontSpringCodeSeeSetup.text = setup.frontSpring.code.toString()
-            binding.backSpringCodeSeeSetup.text = setup.backSpring.code.toString()
+                binding.frontDamperCodeSeeSetup.text = this.setup.frontDamper.code.toString()
+                binding.backDamperCodeSeeSetup.text = this.setup.backDamper.code.toString()
 
-            binding.eventPreferredSeeSetup.text = setup.preferredEvent
+                binding.frontSpringCodeSeeSetup.text = this.setup.frontSpring.code.toString()
+                binding.backSpringCodeSeeSetup.text = this.setup.backSpring.code.toString()
 
-            var notes = ""
+                binding.eventPreferredSeeSetup.text = this.setup.preferredEvent
 
-            setup.notes.forEachIndexed { index, s ->
-                notes += if(index == setup.notes.size - 1 ) s else "${s}\n"
+                var notes = ""
+
+                this.setup.notes.forEachIndexed { index, s ->
+                    notes += if (index == this.setup.notes.size - 1) s else "${s}\n"
+                }
+
+                binding.notesSeeSetup.text = notes
+
             }
-
-            binding.notesSeeSetup.text = notes
-
-        }
 
         val backButton : ImageButton = binding.backButtonDetailSetup
         backButton.setOnClickListener {

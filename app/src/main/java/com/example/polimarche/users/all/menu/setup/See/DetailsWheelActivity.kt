@@ -2,6 +2,7 @@ package com.example.polimarche.users.all.menu.setup.see
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -50,9 +51,9 @@ class DetailsWheelActivity: AppCompatActivity() {
         }
 
         // set data inside the layout
-        if(setupCode != -1){
+        setupViewModel.setupList.observe(this) { setup ->
             binding.wheelCodeDetailsWheel.text = "Wheel code: ${wheelDetails.code}"
-
+            Log.d("wheelDetails","wheelDetails:$wheelDetails")
             binding.codificationDetailsWheel.text = wheelDetails.codification
 
             binding.positionDetailsWheel.text = wheelPosition

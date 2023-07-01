@@ -41,13 +41,18 @@ class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
         super.onViewCreated(view, savedInstanceState)
 
         searchView = binding.searchViewSetupSee
-        recyclerView = binding.seeSetupList
 
-        val layoutManager = LinearLayoutManager(context)
+        setupViewModel.initialize()
 
-        recyclerView.layoutManager = layoutManager
-        adapter = SeeSetupAdapter(setupViewModel)
-        recyclerView.adapter = adapter
+        setupViewModel.setupList.observe(viewLifecycleOwner) { setup ->
+            recyclerView = binding.seeSetupList
+
+            val layoutManager = LinearLayoutManager(context)
+
+            recyclerView.layoutManager = layoutManager
+            adapter = SeeSetupAdapter(setupViewModel)
+            recyclerView.adapter = adapter
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
