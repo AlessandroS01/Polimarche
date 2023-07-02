@@ -1,4 +1,4 @@
-package com.example.polimarche.data_container.team_members_workshop.setup.see
+package com.example.polimarche.users.all.menu.setup.see
 
 import android.content.Intent
 import android.graphics.Color

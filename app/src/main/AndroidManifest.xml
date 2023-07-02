@@ -45,16 +45,16 @@
         <activity android:name="com.example.polimarche.users.all.menu.main.DetailsMemberActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.data_container.team_members_workshop.setup.see.DetailsSetupActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.data_container.team_members_workshop.setup.see.DetailsWheelActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsWheelActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.data_container.team_members_workshop.setup.see.DetailsDamperActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsDamperActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name="com.example.polimarche.data_container.team_members_workshop.setup.see.DetailsSpringActivity"
+        <activity android:name="com.example.polimarche.users.all.menu.setup.see.DetailsSpringActivity"
                   android:screenOrientation="portrait"/>
 
         <activity android:name="com.example.polimarche.users.managers.menu.setup.create.choosing_wheels.ChooseWheelsMain"

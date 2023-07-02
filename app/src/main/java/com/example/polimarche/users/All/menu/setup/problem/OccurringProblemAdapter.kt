@@ -1,4 +1,4 @@
-package com.example.polimarche.data_container.team_members_workshop.setup.problem
+package com.example.polimarche.users.all.menu.setup.problem
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.example.polimarche.R
 import com.example.polimarche.data_container.problem.occurring_problem.DataOccurringProblem
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.occurring_problem.OccurringProblemViewModel
-import com.example.polimarche.data_container.team_members_workshop.setup.see.DetailsSetupActivity
+import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 /*
 Passes directly the list of problems that matches with the problem clicked
 on ProblemsSetupFragment and then the viewModel to

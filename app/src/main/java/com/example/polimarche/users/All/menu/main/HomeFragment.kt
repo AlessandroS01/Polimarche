@@ -19,6 +19,9 @@ import com.example.polimarche.users.managers.menu.tracks.ManagersTracksActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
 
@@ -43,13 +46,14 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
 
         if (currentUser != null) {
             val matricola: String? = currentUser.email
-            val matriculation = matricola!!.split("@")[0]?.substring(1, matricola.indexOf("@"))
+            val matriculation = matricola!!.split("@")[0].substring(1, matricola.indexOf("@"))
             binding.textView24.text = matriculation
 
             val userId: String = currentUser.uid
             val db = FirebaseFirestore.getInstance()
 
-            db.collection("Users")
+            CoroutineScope(Dispatchers.IO).launch {
+                db.collection("Users")
                 .document(userId)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
@@ -97,6 +101,8 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
                 .addOnFailureListener { e ->
                     Log.e(TAG, "Errore durante la query: ${e.message}")
                 }
+            }
+
         }
     }
 }

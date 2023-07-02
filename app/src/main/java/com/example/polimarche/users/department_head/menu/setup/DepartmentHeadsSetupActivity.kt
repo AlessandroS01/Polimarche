@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.polimarche.R
 import com.example.polimarche.databinding.ActivityDepartmentHeadsSetupBinding
-import com.example.polimarche.data_container.team_members_workshop.setup.problem.ProblemsSetupFragment
-import com.example.polimarche.data_container.team_members_workshop.setup.see.SeeSetupFragment
+import com.example.polimarche.users.all.menu.setup.problem.ProblemsSetupFragment
+import com.example.polimarche.users.all.menu.setup.see.SeeSetupFragment
 import com.example.polimarche.users.all.menu.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView

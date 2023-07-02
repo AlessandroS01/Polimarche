@@ -1,4 +1,4 @@
-package com.example.polimarche.data_container.team_members_workshop.setup.problem
+package com.example.polimarche.users.all.menu.setup.problem
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.data_container.setup.DataSetup
-import com.example.polimarche.data_container.team_members_workshop.setup.see.DetailsSetupActivity
+import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 
 /*
 Used to display all the setups in which the problem clicked
