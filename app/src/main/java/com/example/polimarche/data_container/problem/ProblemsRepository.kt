@@ -276,6 +276,7 @@ class ProblemsRepository {
         description: String
     ) {
         val collectionRef = db.collection("DataSolvedProblem")
+        val collectionRefOccurringProblem = db.collection("DataOccurringProblem")
 
         // Rimuovi l'elemento dalla lista _listSolvedProblemsData
         _listSolvedProblemsData.value?.remove(solvedProblem)
@@ -288,7 +289,7 @@ class ProblemsRepository {
         )
 
         // Aggiungi il nuovo problema in corso alla collezione DataOccurringProblem
-        collectionRef.add(newOccurringProblem)
+        collectionRefOccurringProblem.add(newOccurringProblem)
             .addOnSuccessListener {
                 Log.e("ProblemsRepository", "New occurring problem added successfully")
 
@@ -300,10 +301,10 @@ class ProblemsRepository {
     }
 
     fun addNewOccurringProblem(newOccurringProblem: DataOccurringProblem){
-        val collectionRef = db.collection("track")
-        val trackRef = collectionRef.document()
+        val collectionRef = db.collection("DataOccurringProblem")
+        val ProblemRef = collectionRef.document()
 
-        trackRef.set(newOccurringProblem)
+        ProblemRef.set(newOccurringProblem)
             .addOnSuccessListener {
                 val updatedList = _listOccurringProblemsData.value ?: mutableListOf() // Get the current list or initialize an empty list
 
