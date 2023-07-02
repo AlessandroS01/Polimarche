@@ -37,7 +37,7 @@ class SetupRepository {
         }
     }
 
-    private val db = FirebaseFirestore.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val _listSetup: MutableLiveData<MutableList<DataSetup>> = MutableLiveData()
     val listSetup get() = _listSetup
@@ -45,6 +45,7 @@ class SetupRepository {
     suspend fun fetchSetupFromFirestore() {
 
         val setupCollection = db.collection("setup")
+        Log.d("DB:", "DB:$setupCollection")
         val setupSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
             setupCollection.get()
                 .addOnSuccessListener { querySnapshot ->
@@ -59,9 +60,9 @@ class SetupRepository {
         val setupIdList = mutableListOf<String>() // Initialize with an empty list for IDs
 
         for (document in setupSnapshot) {
-            val documentId = document.id // Get the document ID
-            setupIdList.add(documentId)
-            Log.d("IDSETUP", "IDSETUP:$documentId")
+            //val documentId = document.id // Get the document ID
+            // setupIdList.add(documentId)
+            //Log.d("IDSETUP", "IDSETUP:$documentId")
             val code = document.getLong("code")?.toInt() ?: 0
             val frontRightWheelRef = document.getDocumentReference("frontRightWheel")
             val frontRightWheelDocument = frontRightWheelRef?.get()?.await()
@@ -105,7 +106,9 @@ class SetupRepository {
             val backBalance = backBalanceDocument?.toObject(DataBalance::class.java)
 
             val preferredEvent = document.getString("preferredEvent") ?: ""
+
             val frontWingHole = document.getString("frontWingHole") ?: ""
+
             val notes = mutableListOf<String>() // Initialize an empty list for notes
 
             // Recupera eventuali note e aggiungile alla lista
@@ -113,6 +116,7 @@ class SetupRepository {
                 val notesArray = document.get("notes") as ArrayList<String>
                 notes.addAll(notesArray)
             }
+            Log.d("notes", "notes:$notes")
 
             val setup = frontRightWheel?.let { frontRightWheel ->
                 frontLeftWheel?.let { frontLeftWheel ->
@@ -152,6 +156,20 @@ class SetupRepository {
             }
 
             setup?.let { setupList.add(it) }
+            Log.d("SetupRepository", "frontRightWheel: $frontRightWheel")
+            Log.d("SetupRepository", "frontLeftWheel: $frontLeftWheel")
+            Log.d("SetupRepository", "rearRightWheel: $rearRightWheel")
+            Log.d("SetupRepository", "rearLeftWheel: $rearLeftWheel")
+            Log.d("SetupRepository", "frontDamper: $frontDamper")
+            Log.d("SetupRepository", "backDamper: $backDamper")
+            Log.d("SetupRepository", "frontSpring: $frontSpring")
+            Log.d("SetupRepository", "backSpring: $backSpring")
+            Log.d("SetupRepository", "frontBalance: $frontBalance")
+            Log.d("SetupRepository", "backBalance: $backBalance")
+
+            Log.d("preferredEvent", "preferredEvent:$preferredEvent")
+            Log.d("frontWingHole", "frontWingHole:$frontWingHole")
+            Log.d("setup", "setup:$setup")
         }
 
         withContext(Dispatchers.Main) {

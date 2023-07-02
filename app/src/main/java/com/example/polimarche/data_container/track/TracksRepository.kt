@@ -28,7 +28,7 @@ class TracksRepository {
         }
     }
 
-    private val db = FirebaseFirestore.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val _listTracks: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
     val listTracks get() = _listTracks
