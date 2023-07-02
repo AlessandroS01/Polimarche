@@ -2,21 +2,38 @@ package com.example.polimarche.data_container.problem.solved_problem
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.polimarche.data_container.problem.ProblemsRepository
+import kotlinx.coroutines.launch
 
 class SolvedProblemViewModel: ViewModel() {
+
+    private val problemsRepository: ProblemsRepository = ProblemsRepository()
+
+    init {
+        viewModelScope.launch {
+            problemsRepository.fetchSolvedProblemFromFirestore()
+        }
+    }
+
+    fun initialize(){
+        viewModelScope.launch {
+            problemsRepository.fetchSolvedProblemFromFirestore()
+
+        }
+    }
 
     //private val problemsRepository = ProblemsRepository()
 
     private var _listSolvedProblemData: MutableLiveData<MutableList<DataSolvedProblem>> =
-        ProblemsRepository.listSolvedProblems
+        problemsRepository.listSolvedProblems
         //problemsRepository.listSolvedProblems
     val listSolvedProblem: MutableLiveData<MutableList<DataSolvedProblem>>
         get() = _listSolvedProblemData
 
 
     fun removeItemFromList(item: DataSolvedProblem, description: String){
-        ProblemsRepository.removeItemFromSolvedProblem(item, description)
+        problemsRepository.removeItemFromSolvedProblem(item, description)
     }
 
     /*

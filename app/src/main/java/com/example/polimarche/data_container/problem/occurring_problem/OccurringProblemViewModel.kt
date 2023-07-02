@@ -2,26 +2,43 @@ package com.example.polimarche.data_container.problem.occurring_problem
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.polimarche.data_container.problem.ProblemsRepository
+import kotlinx.coroutines.launch
 
 class OccurringProblemViewModel: ViewModel() {
+
+    private val problemsRepository: ProblemsRepository = ProblemsRepository()
+
+    init {
+        viewModelScope.launch {
+            problemsRepository.fetchOccurringProblemFromFirestore()
+        }
+    }
+
+    fun initialize(){
+        viewModelScope.launch {
+            problemsRepository.fetchOccurringProblemFromFirestore()
+
+        }
+    }
 
     //private val problemsRepository = ProblemsRepository()
 
     private var _listOccurringProblemData: MutableLiveData<MutableList<DataOccurringProblem>> =
-        ProblemsRepository.listOccurringProblems
+        problemsRepository.listOccurringProblems
         //problemsRepository.listOccurringsProblem
     val listOccurringProblem: MutableLiveData<MutableList<DataOccurringProblem>>
         get() = _listOccurringProblemData
 
 
     fun addNewOccurringProblem(problem: DataOccurringProblem){
-        ProblemsRepository.addNewOccurringProblem(problem)
+        problemsRepository.addNewOccurringProblem(problem)
         //problemsRepository.addNewOccurringProblem(problem)
     }
 
     fun removeItemFromList(item: DataOccurringProblem, newDescription: String){
-        ProblemsRepository.removeItemFromOccurringProblem(item, newDescription)
+        problemsRepository.removeItemFromOccurringProblem(item, newDescription)
         //problemsRepository.removeItemFromOccurringProblem(item, newDescription)
     }
 

@@ -11,13 +11,14 @@ import com.example.polimarche.R
 import com.example.polimarche.data_container.problem.DataProblem
 
 class ProblemAdapter(
-    private var problemList: MutableList<DataProblem>,
+    private var problemList: MutableList<DataProblem> = mutableListOf(),
     private val listener: OnManageProblemClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnManageProblemClick{
         fun onManageProblemClick(problemClicked: DataProblem)
     }
+
 
     inner class ViewHolderProblem(problemView : View) : RecyclerView.ViewHolder(problemView), View.OnClickListener{
         val problemCode: TextView = problemView.findViewById(R.id.problemCode)
@@ -52,7 +53,7 @@ class ProblemAdapter(
     }
 
     override fun getItemCount(): Int {
-        return problemList.size
+        return problemList.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

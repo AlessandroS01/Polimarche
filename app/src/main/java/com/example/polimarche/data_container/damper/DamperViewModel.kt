@@ -2,11 +2,28 @@ package com.example.polimarche.data_container.damper
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.polimarche.data_container.track.TracksRepository
+import kotlinx.coroutines.launch
 
 class DamperViewModel: ViewModel() {
 
+    private val damperRepository: DamperRepository = DamperRepository()
+
+    init {
+        viewModelScope.launch {
+            damperRepository.fetchDamperFromFirestore()
+        }
+    }
+
+    fun initialize(){
+        viewModelScope.launch {
+            damperRepository.fetchDamperFromFirestore()
+        }
+    }
+
     private val _listDampers: MutableLiveData<MutableList<DataDamper>> =
-        DamperRepository.listDampers
+        damperRepository.listDampers
     val listDampers get() = _listDampers
 
     /*
@@ -42,38 +59,38 @@ class DamperViewModel: ViewModel() {
 
 
     fun setFrontDamperParametersStocked(damperParameters: DataDamper){
-        DamperRepository.setFrontDamperParametersStocked(damperParameters)
+        damperRepository.setFrontDamperParametersStocked(damperParameters)
     }
     fun getFrontDamperParametersStocked(): MutableLiveData<DataDamper>?{
-        return DamperRepository.getFrontDamperParametersStocked()
+        return damperRepository.getFrontDamperParametersStocked()
     }
 
     fun setBackDamperParametersStocked(damperParameters: DataDamper){
-        DamperRepository.setBackDamperParametersStocked(damperParameters)
+        damperRepository.setBackDamperParametersStocked(damperParameters)
     }
     fun getBackDamperParametersStocked(): MutableLiveData<DataDamper>?{
-        return DamperRepository.getBackDamperParametersStocked()
+        return damperRepository.getBackDamperParametersStocked()
     }
 
     fun clearStockedParameters(){
-        DamperRepository.clearStockedParameters()
+        damperRepository.clearStockedParameters()
     }
 
     fun getStockedParameters(): MutableList<DataDamper>{
         val listBalanceStockedParameters = emptyList<DataDamper>().toMutableList()
         return if(
-            DamperRepository.getFrontDamperParametersStocked()?.value != null
+            damperRepository.getFrontDamperParametersStocked()?.value != null
             &&
-            DamperRepository.getBackDamperParametersStocked()?.value != null
+            damperRepository.getBackDamperParametersStocked()?.value != null
         ){
-            listBalanceStockedParameters.add(DamperRepository.getFrontDamperParametersStocked()?.value!!)
-            listBalanceStockedParameters.add(DamperRepository.getBackDamperParametersStocked()?.value!!)
+            listBalanceStockedParameters.add(damperRepository.getFrontDamperParametersStocked()?.value!!)
+            listBalanceStockedParameters.add(damperRepository.getBackDamperParametersStocked()?.value!!)
             listBalanceStockedParameters
         } else listBalanceStockedParameters
     }
 
     fun addNewDamperParameters(){
-        DamperRepository.addNewDamperParameters(
+        damperRepository.addNewDamperParameters(
             getStockedParameters()
         )
     }

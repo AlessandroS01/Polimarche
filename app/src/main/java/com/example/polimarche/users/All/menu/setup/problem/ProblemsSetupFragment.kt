@@ -51,15 +51,18 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
 
         searchView = binding.searchViewProblemSetup
 
-        problemAdapter = ProblemAdapter(
-            problemViewModel.listProblems.value?.toMutableList()!!,
-            this
-        )
-        recyclerView = binding.problemSetupList
-        val layoutManager = LinearLayoutManager(this.context)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = problemAdapter
+        problemViewModel.initialize()
 
+        problemViewModel.listProblems.observe(viewLifecycleOwner) {
+            problemAdapter = ProblemAdapter(
+                problemViewModel.listProblems.value?.toMutableList()!!,
+                this
+            )
+            recyclerView = binding.problemSetupList
+            val layoutManager = LinearLayoutManager(this.context)
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = problemAdapter
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {

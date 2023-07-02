@@ -2,12 +2,29 @@ package com.example.polimarche.data_container.balance
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.polimarche.data_container.spring.SpringRepository
+import com.example.polimarche.data_container.track.TracksRepository
+import kotlinx.coroutines.launch
 
 class BalanceViewModel: ViewModel() {
 
+    private val balanceRepository: BalanceRepository = BalanceRepository()
+
+    init {
+        viewModelScope.launch {
+            balanceRepository.fetchBalanceFromFirestore()
+        }
+    }
+
+    fun initialize(){
+        viewModelScope.launch {
+            balanceRepository.fetchBalanceFromFirestore()
+        }
+    }
+
     private val _balanceList: MutableLiveData<MutableList<DataBalance>> =
-        BalanceRepository.balanceList
+        balanceRepository.balanceList
     val balanceList get() = _balanceList
 
 
@@ -34,39 +51,39 @@ class BalanceViewModel: ViewModel() {
     }
 
     fun setFrontBalanceParametersStocked(balanceParameters: DataBalance){
-        BalanceRepository.setFrontBalanceParametersStocked(balanceParameters)
+        balanceRepository.setFrontBalanceParametersStocked(balanceParameters)
     }
     fun getFrontBalanceParametersStocked(): MutableLiveData<DataBalance>?{
-        return BalanceRepository.getFrontBalanceParametersStocked()
+        return balanceRepository.getFrontBalanceParametersStocked()
     }
 
     fun setBackBalanceParametersStocked(balanceParameters: DataBalance){
-        BalanceRepository.setBackBalanceParametersStocked(balanceParameters)
+        balanceRepository.setBackBalanceParametersStocked(balanceParameters)
     }
     fun getBackBalanceParametersStocked(): MutableLiveData<DataBalance>?{
-        return BalanceRepository.getBackBalanceParametersStocked()
+        return balanceRepository.getBackBalanceParametersStocked()
     }
 
     fun clearStockedParameters(){
-        BalanceRepository.clearStockedParameters()
+        balanceRepository.clearStockedParameters()
     }
 
     fun getStockedParameters(): MutableList<DataBalance>{
         val listBalanceStockedParameters = emptyList<DataBalance>().toMutableList()
         return if(
-            BalanceRepository.getFrontBalanceParametersStocked()?.value != null
+            balanceRepository.getFrontBalanceParametersStocked()?.value != null
             &&
-            BalanceRepository.getBackBalanceParametersStocked()?.value != null
+            balanceRepository.getBackBalanceParametersStocked()?.value != null
         ){
-            listBalanceStockedParameters.add(BalanceRepository.getFrontBalanceParametersStocked()?.value!!)
-            listBalanceStockedParameters.add(BalanceRepository.getBackBalanceParametersStocked()?.value!!)
+            listBalanceStockedParameters.add(balanceRepository.getFrontBalanceParametersStocked()?.value!!)
+            listBalanceStockedParameters.add(balanceRepository.getBackBalanceParametersStocked()?.value!!)
             listBalanceStockedParameters
         } else listBalanceStockedParameters
     }
 
 
     fun addNewBalanceParameters(){
-        BalanceRepository.addNewBalanceParameters(
+        balanceRepository.addNewBalanceParameters(
             getStockedParameters()
         )
     }
