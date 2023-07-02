@@ -25,12 +25,6 @@ class SetupRepository {
         initialize()
     }
 
-    init {
-        CoroutineScope(Dispatchers.IO).launch {
-            fetchSetupFromFirestore()
-        }
-    }
-
     fun initialize() {
         CoroutineScope(Dispatchers.IO).launch {
             fetchSetupFromFirestore()
@@ -175,6 +169,8 @@ class SetupRepository {
         withContext(Dispatchers.Main) {
             _listSetup.value = setupList // Use postValue to update MutableLiveData on the main thread
         }
+        Log.d("SetupRepository", "_listSetup: ${_listSetup.value}")
+
     }
 
     fun removeSetup(setup: DataSetup) {

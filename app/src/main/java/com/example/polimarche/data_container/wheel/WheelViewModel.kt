@@ -51,25 +51,26 @@ class WheelViewModel: ViewModel() {
         return mappingCodificationQuantity
     }
 
-    fun getFrontRightWheels(): MutableList<DataWheel>{
+    fun getFrontRightWheels(): MutableList<DataWheel> {
         return _listWheel.value?.filter {
             it.position == "Front right"
-        }?.toMutableList()!!
+        }?.toMutableList() ?: mutableListOf()
     }
+
     fun getFrontLeftWheels(): MutableList<DataWheel>{
         return _listWheel.value?.filter {
             it.position == "Front left"
-        }?.toMutableList()!!
+        }?.toMutableList() ?: mutableListOf()
     }
     fun getRearRightWheels(): MutableList<DataWheel>{
         return _listWheel.value?.filter {
             it.position == "Rear right"
-        }?.toMutableList()!!
+        }?.toMutableList() ?: mutableListOf()
     }
     fun getRearLeftWheels(): MutableList<DataWheel>{
         return _listWheel.value?.filter {
             it.position == "Rear left"
-        }?.toMutableList()!!
+        }?.toMutableList() ?: mutableListOf()
     }
 
 

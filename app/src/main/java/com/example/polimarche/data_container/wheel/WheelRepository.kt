@@ -17,9 +17,7 @@ import kotlin.coroutines.suspendCoroutine
 class WheelRepository {
 
     init {
-        CoroutineScope(Dispatchers.IO).launch {
-            fetchWheelFromFirestore()
-        }
+        initialize()
     }
 
     fun initialize() {
@@ -51,7 +49,7 @@ class WheelRepository {
         val dataIdList = mutableListOf<String>()
 
         for (document in wheelSnapshot.documents) {
-            val documentId = document.id // Get the document ID
+            val documentId = document.id // Ottieni l'ID del documento
             dataIdList.add(documentId)
 
             val camber = document.getString("camber").toString()!!
@@ -73,13 +71,11 @@ class WheelRepository {
             )
             dataList.add(dataWheel)
         }
-        _listWheel.value = dataList
-        withContext(Dispatchers.Main)
-        {
-            _listWheel.value =
-                dataList // Use postValue to update MutableLiveData on the main thread
+        withContext(Dispatchers.Main) {
+            _listWheel.value = dataList // Utilizza postValue per aggiornare MutableLiveData nel thread principale
         }
     }
+
 
 
 

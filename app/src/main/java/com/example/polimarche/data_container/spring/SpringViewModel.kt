@@ -12,9 +12,7 @@ class SpringViewModel: ViewModel() {
     private val springRepository: SpringRepository = SpringRepository()
 
     init {
-        viewModelScope.launch {
-            springRepository.fetchSpringFromFirestore()
-        }
+        initialize()
     }
 
     fun initialize(){
@@ -39,13 +37,13 @@ class SpringViewModel: ViewModel() {
     fun getFrontSpringList(): MutableList<DataSpring>{
         return _listSpring.value?.filter {
             it.end == "Front"
-        }?.toMutableList()!!
+        }?.toMutableList()?: mutableListOf()
     }
 
     fun getBackSpringList(): MutableList<DataSpring>{
         return _listSpring.value?.filter {
             it.end == "End"
-        }?.toMutableList()!!
+        }?.toMutableList() ?: mutableListOf()
     }
 
 

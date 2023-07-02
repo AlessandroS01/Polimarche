@@ -45,7 +45,7 @@ class DamperViewModel: ViewModel() {
     fun getFrontDampers(): MutableList<DataDamper>{
         return _listDampers.value?.filter {
             it.end == "Front"
-        }?.toMutableList()!!
+        }?.toMutableList() ?: mutableListOf()
     }
 
     /*
@@ -54,7 +54,7 @@ class DamperViewModel: ViewModel() {
     fun getEndDampers(): MutableList<DataDamper>{
         return _listDampers.value?.filter {
             it.end == "End"
-        }?.toMutableList()!!
+        }?.toMutableList()?: mutableListOf()
     }
 
 

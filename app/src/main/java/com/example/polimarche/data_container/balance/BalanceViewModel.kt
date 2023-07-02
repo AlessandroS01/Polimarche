@@ -12,9 +12,7 @@ class BalanceViewModel: ViewModel() {
     private val balanceRepository: BalanceRepository = BalanceRepository()
 
     init {
-        viewModelScope.launch {
-            balanceRepository.fetchBalanceFromFirestore()
-        }
+        initialize()
     }
 
     fun initialize(){
@@ -41,13 +39,13 @@ class BalanceViewModel: ViewModel() {
     fun getFrontBalanceList(): MutableList<DataBalance>{
         return _balanceList.value?.filter {
             it.end == "Front"
-        }?.toMutableList()!!
+        }?.toMutableList()?: mutableListOf()
     }
 
     fun getBackBalanceList(): MutableList<DataBalance>{
         return _balanceList.value?.filter {
             it.end == "Back"
-        }?.toMutableList()!!
+        }?.toMutableList()?: mutableListOf()
     }
 
     fun setFrontBalanceParametersStocked(balanceParameters: DataBalance){

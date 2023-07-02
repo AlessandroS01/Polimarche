@@ -69,17 +69,19 @@ class OccurringProblemFragment(
         Passes to the adapter the list of problems that matches with the problem code clicked
         on ProblemsSetupFragment.
          */
-        occurringProblemAdapter = OccurringProblemAdapter(
-            problemClicked,
-            occurringProblemViewModel,
-            this
-        )
 
-        recyclerViewOccurringProblem = binding.listOccurringProblemSetup
-        val linearLayoutManagerMain = LinearLayoutManager(this.context)
-        recyclerViewOccurringProblem.layoutManager = linearLayoutManagerMain
-        recyclerViewOccurringProblem.adapter = occurringProblemAdapter
+        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
+            occurringProblemAdapter = OccurringProblemAdapter(
+                problemClicked,
+                occurringProblemViewModel,
+                this
+            )
 
+            recyclerViewOccurringProblem = binding.listOccurringProblemSetup
+            val linearLayoutManagerMain = LinearLayoutManager(this.context)
+            recyclerViewOccurringProblem.layoutManager = linearLayoutManagerMain
+            recyclerViewOccurringProblem.adapter = occurringProblemAdapter
+        }
 
         binding.imageButtonAddOccurringProblem.setOnClickListener {
             showDialogAddOccurringProblem()
@@ -123,11 +125,13 @@ class OccurringProblemFragment(
             textView.text = "There isn't any setup left."
             confirmAddition.visibility = View.GONE
         }
-        adapterAddOccurringProblems = AddNewOccurringProblemAdapter(listSetupsWithoutProblem)
-        val linearLayoutManagerAddProblem = LinearLayoutManager(this.context)
-        recyclerViewAddOccurringProblem.layoutManager = linearLayoutManagerAddProblem
-        recyclerViewAddOccurringProblem.adapter = adapterAddOccurringProblems
 
+        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
+            adapterAddOccurringProblems = AddNewOccurringProblemAdapter(listSetupsWithoutProblem)
+            val linearLayoutManagerAddProblem = LinearLayoutManager(this.context)
+            recyclerViewAddOccurringProblem.layoutManager = linearLayoutManagerAddProblem
+            recyclerViewAddOccurringProblem.adapter = adapterAddOccurringProblems
+        }
 
         /*
         The confirm button check weather if a checkbox inside the recycler view
