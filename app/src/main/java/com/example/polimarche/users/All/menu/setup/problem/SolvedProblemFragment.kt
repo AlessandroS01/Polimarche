@@ -46,16 +46,19 @@ class SolvedProblemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        solvedProblemAdapter = SolvedProblemAdapter(
-            problemClicked,
-            solvedProblemViewModel,
-            this
-        )
-        recyclerView = binding.listSolvedProblemSetup
-        val linearLayoutManager = LinearLayoutManager(this.context)
-        recyclerView.adapter = solvedProblemAdapter
-        recyclerView.layoutManager = linearLayoutManager
+        solvedProblemViewModel.initialize()
 
+        solvedProblemViewModel.listSolvedProblem.observe(viewLifecycleOwner) {
+            solvedProblemAdapter = SolvedProblemAdapter(
+                problemClicked,
+                solvedProblemViewModel,
+                this
+            )
+            recyclerView = binding.listSolvedProblemSetup
+            val linearLayoutManager = LinearLayoutManager(this.context)
+            recyclerView.adapter = solvedProblemAdapter
+            recyclerView.layoutManager = linearLayoutManager
+        }
     }
 
 

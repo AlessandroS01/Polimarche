@@ -177,6 +177,7 @@ class ProblemsRepository {
                 expansion
             )
             solvedProblemList.add(dataSolvedProblem)
+            Log.d("PROBLEMREPO","dataSolvedProblem:$dataSolvedProblem")
         }
 
         withContext(Dispatchers.Main) {
@@ -221,6 +222,7 @@ class ProblemsRepository {
         description: String
     ) {
         val collectionRef = db.collection("DataOccurringProblem")
+        val solvedProblemRef = db.collection("DataSolvedProblem")
 
         // Rimuovi l'elemento dalla lista _listOccurringProblemsData
         _listOccurringProblemsData.value?.remove(occurredProblem)
@@ -233,7 +235,7 @@ class ProblemsRepository {
         )
 
         // Aggiungi il nuovo problema risolto alla collezione DataSolvedProblem
-        collectionRef.add(newSolvedProblem)
+        solvedProblemRef.add(newSolvedProblem)
             .addOnSuccessListener {
                 Log.e("ProblemsRepository", "New solved problem added successfully")
 
