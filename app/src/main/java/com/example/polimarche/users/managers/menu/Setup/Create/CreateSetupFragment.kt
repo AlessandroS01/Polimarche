@@ -95,7 +95,10 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         super.onViewCreated(view, savedInstanceState)
 
         setupViewModel.initialize()
-
+        adapterBalanceParameters = BalanceAdapter("Stocked", balanceViewModel)
+        adapterWheelParameters = WheelsAdapter("Stocked", wheelViewModel)
+        adapterDamperParameters = DampersAdapter("Stocked", damperViewModel)
+        adapterSpringParameters = SpringsAdapter("Stocked", springViewModel)
         /*
         Opens the layout used to choose the wheels of the new setup.
          */

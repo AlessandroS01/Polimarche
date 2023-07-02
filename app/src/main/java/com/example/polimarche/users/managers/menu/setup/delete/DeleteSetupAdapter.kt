@@ -15,7 +15,15 @@ class DeleteSetupAdapter (
     private val listener: OnSetupCodeClickListener
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    var setupList = setupViewModel.setupList.value!!
+    private var setupList: MutableList<DataSetup> = mutableListOf()
+
+    init {
+        setupViewModel.setupList.observeForever { setup ->
+            setupList.clear()
+            setupList.addAll(setup)
+            notifyDataSetChanged()
+        }
+    }
 
     interface OnSetupCodeClickListener{
         fun onSetupCodeClickListener(setupClicked: DataSetup)
@@ -41,7 +49,8 @@ class DeleteSetupAdapter (
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setNewList(filteredList: MutableList<DataSetup>){
-        this.setupList = filteredList
+        setupList.clear()
+        setupList.addAll(filteredList)
         notifyDataSetChanged()
     }
 

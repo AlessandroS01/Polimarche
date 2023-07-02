@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -40,16 +41,23 @@ class VisualizeSetupFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val setupCode = arguments?.getInt("SETUP_CODE")
-        setupClicked = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0)!!
-        var notes = ""
-        setupClicked.notes.forEachIndexed { index, s ->
-            notes += if(index == setupClicked.notes.size - 1 ) s else "${s}\n"
-        }
-        if ( notes == "") notes= "No notes"
-        binding.setupClicked = setupClicked
-        binding.notesSetupClicked = notes
+        setupViewModel.initialize()
 
+        val setupCode = arguments?.getInt("SETUP_CODE")
+        Log.d("VisualizeSetupFragment","setupCode:$setupCode")
+        setupViewModel.setupList.observe(viewLifecycleOwner) {
+            setupClicked =
+                setupViewModel.setupList.value?.filter { it.code == setupCode }?.toMutableList()
+                    ?.get(0)!!
+
+            var notes = ""
+            setupClicked.notes.forEachIndexed { index, s ->
+                notes += if (index == setupClicked.notes.size - 1) s else "${s}\n"
+            }
+            if (notes == "") notes = "No notes"
+            binding.setupClicked = setupClicked
+            binding.notesSetupClicked = notes
+        }
         /*
         Closes the fragment when a user click on the Image view positioned
         in the upper right corner.

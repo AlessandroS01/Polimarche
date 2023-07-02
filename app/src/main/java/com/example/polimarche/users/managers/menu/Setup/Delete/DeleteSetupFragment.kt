@@ -47,14 +47,17 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
         super.onViewCreated(view, savedInstanceState)
 
         searchView = binding.searchViewSetupDelete
-        recyclerViewDeleteSetup = binding.deleteSetupList
+        setupViewModel.initialize()
 
-        val layoutManager = LinearLayoutManager(context)
+        setupViewModel.setupList.observe(viewLifecycleOwner) {
+            recyclerViewDeleteSetup = binding.deleteSetupList
 
-        recyclerViewDeleteSetup.layoutManager = layoutManager
-        adapter = DeleteSetupAdapter(setupViewModel, this)
-        recyclerViewDeleteSetup.adapter = adapter
+            val layoutManager = LinearLayoutManager(context)
 
+            recyclerViewDeleteSetup.layoutManager = layoutManager
+            adapter = DeleteSetupAdapter(setupViewModel, this)
+            recyclerViewDeleteSetup.adapter = adapter
+        }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
