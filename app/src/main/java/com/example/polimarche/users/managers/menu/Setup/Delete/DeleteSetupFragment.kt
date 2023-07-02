@@ -49,7 +49,7 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
         searchView = binding.searchViewSetupDelete
         setupViewModel.initialize()
 
-        setupViewModel.setupList.observe(viewLifecycleOwner) {
+        setupViewModel.setupList.observe(viewLifecycleOwner) {problem ->
             recyclerViewDeleteSetup = binding.deleteSetupList
 
             val layoutManager = LinearLayoutManager(context)
@@ -57,6 +57,8 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
             recyclerViewDeleteSetup.layoutManager = layoutManager
             adapter = DeleteSetupAdapter(setupViewModel, this)
             recyclerViewDeleteSetup.adapter = adapter
+
+            adapter.setNewList(problem)
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
