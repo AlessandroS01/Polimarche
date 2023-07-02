@@ -94,6 +94,8 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupViewModel.initialize()
+
         /*
         Opens the layout used to choose the wheels of the new setup.
          */
@@ -106,12 +108,13 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
                 startActivity(this)
             }
         }
-        val recyclerViewWheelParameters = binding.listWheelParameters
-        adapterWheelParameters = WheelsAdapter("Stocked", wheelViewModel)
-        val linearLayoutManagerWheelParameters = LinearLayoutManager(requireContext())
-        recyclerViewWheelParameters.layoutManager = linearLayoutManagerWheelParameters
-        recyclerViewWheelParameters.adapter = adapterWheelParameters
-
+        wheelViewModel.listWheel.observe(viewLifecycleOwner) {
+            val recyclerViewWheelParameters = binding.listWheelParameters
+            adapterWheelParameters = WheelsAdapter("Stocked", wheelViewModel)
+            val linearLayoutManagerWheelParameters = LinearLayoutManager(requireContext())
+            recyclerViewWheelParameters.layoutManager = linearLayoutManagerWheelParameters
+            recyclerViewWheelParameters.adapter = adapterWheelParameters
+        }
 
         /*
         Opens the layout used to choose the dampers of the new setup.
@@ -125,12 +128,13 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
                 startActivity(this)
             }
         }
-        val recyclerViewDamperParameters = binding.listDamperParameters
-        adapterDamperParameters = DampersAdapter("Stocked", damperViewModel)
-        val linearLayoutManagerDamperParameters = LinearLayoutManager(requireContext())
-        recyclerViewDamperParameters.layoutManager = linearLayoutManagerDamperParameters
-        recyclerViewDamperParameters.adapter = adapterDamperParameters
-
+        damperViewModel.listDampers.observe(viewLifecycleOwner) {
+            val recyclerViewDamperParameters = binding.listDamperParameters
+            adapterDamperParameters = DampersAdapter("Stocked", damperViewModel)
+            val linearLayoutManagerDamperParameters = LinearLayoutManager(requireContext())
+            recyclerViewDamperParameters.layoutManager = linearLayoutManagerDamperParameters
+            recyclerViewDamperParameters.adapter = adapterDamperParameters
+        }
 
         /*
         Opens the layout used to choose the springs of the new setup.
@@ -144,12 +148,13 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
                 startActivity(this)
             }
         }
-        val recyclerViewSpringParameters = binding.listSpringParameters
-        adapterSpringParameters = SpringsAdapter("Stocked", springViewModel)
-        val linearLayoutManagerSpringParameters = LinearLayoutManager(requireContext())
-        recyclerViewSpringParameters.layoutManager = linearLayoutManagerSpringParameters
-        recyclerViewSpringParameters.adapter = adapterSpringParameters
-
+        springViewModel.listSpring.observe(viewLifecycleOwner) {
+            val recyclerViewSpringParameters = binding.listSpringParameters
+            adapterSpringParameters = SpringsAdapter("Stocked", springViewModel)
+            val linearLayoutManagerSpringParameters = LinearLayoutManager(requireContext())
+            recyclerViewSpringParameters.layoutManager = linearLayoutManagerSpringParameters
+            recyclerViewSpringParameters.adapter = adapterSpringParameters
+        }
 
         /*
         Opens the layout used to choose the balance of the new setup.
@@ -163,21 +168,23 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
                 startActivity(this)
             }
         }
-        val recyclerViewBalanceParameters = binding.listBalanceParameters
-        adapterBalanceParameters = BalanceAdapter("Stocked", balanceViewModel)
-        val linearLayoutManagerBalanceParameters = LinearLayoutManager(requireContext())
-        recyclerViewBalanceParameters.layoutManager = linearLayoutManagerBalanceParameters
-        recyclerViewBalanceParameters.adapter = adapterBalanceParameters
-
+        balanceViewModel.balanceList.observe(viewLifecycleOwner) {
+            val recyclerViewBalanceParameters = binding.listBalanceParameters
+            adapterBalanceParameters = BalanceAdapter("Stocked", balanceViewModel)
+            val linearLayoutManagerBalanceParameters = LinearLayoutManager(requireContext())
+            recyclerViewBalanceParameters.layoutManager = linearLayoutManagerBalanceParameters
+            recyclerViewBalanceParameters.adapter = adapterBalanceParameters
+        }
         /*
         Setting up the recycler view containing the notes of the newest setup
          */
-        recyclerViewSetupNotes = binding.listNotesNewSetup
-        adapterSetupNotes = SetupNotesAdapter()
-        val layoutManagerSetupNotes = LinearLayoutManager(this.context)
-        recyclerViewSetupNotes.layoutManager = layoutManagerSetupNotes
-        recyclerViewSetupNotes.adapter = adapterSetupNotes
-
+        setupViewModel.setupList.observe(viewLifecycleOwner) {
+            recyclerViewSetupNotes = binding.listNotesNewSetup
+            adapterSetupNotes = SetupNotesAdapter()
+            val layoutManagerSetupNotes = LinearLayoutManager(this.context)
+            recyclerViewSetupNotes.layoutManager = layoutManagerSetupNotes
+            recyclerViewSetupNotes.adapter = adapterSetupNotes
+        }
         // starts the process to create a new setup
         binding.createSetup.setOnClickListener {
             // checks if all the parameters are given

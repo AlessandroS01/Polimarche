@@ -44,20 +44,6 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         }
         val errorMessageTextView = binding.errorMessageTextView
 
-        /*
-                val tutorialDocument = Firebase.firestore.collection("Balance")
-                    .document("1")
-                val balance = DataBalance(5, "Front", 44.0, 56.0)
-                GlobalScope.launch(Dispatchers.IO){
-                    tutorialDocument.set(balance).await()
-                    val prova = tutorialDocument.get().await().toObject(DataBalance::class.java)
-                    withContext(Dispatchers.Main){
-                        binding.signUpFromLogin.text = prova.toString()
-                    }
-                }
-
-         */
-
 
         binding.signInButton.setOnClickListener {
 
@@ -128,6 +114,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
         }
     }
+
 
 
 

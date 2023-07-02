@@ -2,12 +2,29 @@ package com.example.polimarche.data_container.wheel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.polimarche.data_container.balance.BalanceRepository
+import com.example.polimarche.data_container.track.TracksRepository
+import kotlinx.coroutines.launch
 
 class WheelViewModel: ViewModel() {
 
+    private val wheelRepository: WheelRepository = WheelRepository()
+
+    init {
+        viewModelScope.launch {
+            wheelRepository.fetchWheelFromFirestore()
+        }
+    }
+
+    fun initialize(){
+        viewModelScope.launch {
+            wheelRepository.fetchWheelFromFirestore()
+        }
+    }
+
     private val _listWheel: MutableLiveData<MutableList<DataWheel>> =
-        WheelRepository.listWheel
+        wheelRepository.listWheel
     val listWheel get() = _listWheel
 
     private fun getCodificationList(): MutableList<String>{
@@ -58,59 +75,59 @@ class WheelViewModel: ViewModel() {
 
 
     fun setFrontRightWheelParameters(wheelParameters: DataWheel){
-        WheelRepository.setFrontRightWheelParameters(wheelParameters)
+        wheelRepository.setFrontRightWheelParameters(wheelParameters)
     }
     fun getFrontRightParametersStocked(): MutableLiveData<DataWheel>?{
-        return WheelRepository.getFrontRightParametersStocked()
+        return wheelRepository.getFrontRightParametersStocked()
     }
 
     fun setFrontLeftWheelParameters(wheelParameters: DataWheel){
-        WheelRepository.setFrontLeftWheelParameters(wheelParameters)
+        wheelRepository.setFrontLeftWheelParameters(wheelParameters)
     }
     fun getFrontLeftParametersStocked(): MutableLiveData<DataWheel>?{
-        return WheelRepository.getFrontLeftParametersStocked()
+        return wheelRepository.getFrontLeftParametersStocked()
     }
 
     fun setRearRightWheelParameters(wheelParameters: DataWheel){
-        WheelRepository.setRearRightWheelParameters(wheelParameters)
+        wheelRepository.setRearRightWheelParameters(wheelParameters)
     }
     fun getRearRightParametersStocked(): MutableLiveData<DataWheel>?{
-        return WheelRepository.getRearRightParametersStocked()
+        return wheelRepository.getRearRightParametersStocked()
     }
 
     fun setRearLeftWheelParameters(wheelParameters: DataWheel){
-        WheelRepository.setRearLeftWheelParameters(wheelParameters)
+        wheelRepository.setRearLeftWheelParameters(wheelParameters)
     }
     fun getRearLeftParametersStocked(): MutableLiveData<DataWheel>?{
-        return WheelRepository.getRearLeftParametersStocked()
+        return wheelRepository.getRearLeftParametersStocked()
     }
 
 
     fun clearStockedParameters(){
-        WheelRepository.clearStockedParameters()
+        wheelRepository.clearStockedParameters()
     }
 
     fun getStockedParameters(): MutableList<DataWheel>{
         val listWheelStockedParameters = emptyList<DataWheel>().toMutableList()
         return if(
-            WheelRepository.getFrontRightParametersStocked()?.value != null
+            wheelRepository.getFrontRightParametersStocked()?.value != null
             &&
-            WheelRepository.getFrontLeftParametersStocked()?.value != null
+            wheelRepository.getFrontLeftParametersStocked()?.value != null
             &&
-            WheelRepository.getRearRightParametersStocked()?.value != null
+            wheelRepository.getRearRightParametersStocked()?.value != null
             &&
-            WheelRepository.getRearLeftParametersStocked()?.value != null
+            wheelRepository.getRearLeftParametersStocked()?.value != null
         ){
-            listWheelStockedParameters.add(WheelRepository.getFrontRightParametersStocked()?.value !!)
-            listWheelStockedParameters.add(WheelRepository.getFrontLeftParametersStocked()?.value !!)
-            listWheelStockedParameters.add(WheelRepository.getRearRightParametersStocked()?.value !!)
-            listWheelStockedParameters.add(WheelRepository.getRearLeftParametersStocked()?.value !!)
+            listWheelStockedParameters.add(wheelRepository.getFrontRightParametersStocked()?.value !!)
+            listWheelStockedParameters.add(wheelRepository.getFrontLeftParametersStocked()?.value !!)
+            listWheelStockedParameters.add(wheelRepository.getRearRightParametersStocked()?.value !!)
+            listWheelStockedParameters.add(wheelRepository.getRearLeftParametersStocked()?.value !!)
             listWheelStockedParameters
         } else listWheelStockedParameters
     }
 
     fun addNewWheelParameters(){
-        WheelRepository.addNewWheelParameters(
+        wheelRepository.addNewWheelParameters(
             getStockedParameters()
         )
     }

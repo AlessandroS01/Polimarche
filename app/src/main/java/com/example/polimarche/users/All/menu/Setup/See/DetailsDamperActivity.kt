@@ -19,6 +19,7 @@ class DetailsDamperActivity: AppCompatActivity() {
 
     private lateinit var binding : ActivityGeneralDetailsDamperBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGeneralDetailsDamperBinding.inflate(layoutInflater)

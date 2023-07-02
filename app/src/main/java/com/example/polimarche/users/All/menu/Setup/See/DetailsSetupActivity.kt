@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.polimarche.databinding.ActivityGeneralDetailsSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
-import androidx.lifecycle.Observer
+
 class DetailsSetupActivity: AppCompatActivity() {
 
     private val setupViewModel: SetupViewModel by viewModels()

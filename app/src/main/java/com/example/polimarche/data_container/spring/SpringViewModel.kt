@@ -2,12 +2,28 @@ package com.example.polimarche.data_container.spring
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.polimarche.data_container.track.TracksRepository
 import com.example.polimarche.data_container.wheel.WheelRepository
+import kotlinx.coroutines.launch
 
 class SpringViewModel: ViewModel() {
 
+    private val springRepository: SpringRepository = SpringRepository()
+
+    init {
+        viewModelScope.launch {
+            springRepository.fetchSpringFromFirestore()
+        }
+    }
+
+    fun initialize(){
+        viewModelScope.launch {
+            springRepository.fetchSpringFromFirestore()
+        }
+    }
     private val _listSpring: MutableLiveData<MutableList<DataSpring>> =
-        SpringRepository.listSpring
+        springRepository.listSpring
     val listSpring get() = _listSpring
 
     fun getCodificationList(): MutableList<String>{
@@ -34,39 +50,39 @@ class SpringViewModel: ViewModel() {
 
 
     fun setFrontSpringParametersStocked(springParameters: DataSpring){
-        SpringRepository.setFrontSpringParametersStocked(springParameters)
+        springRepository.setFrontSpringParametersStocked(springParameters)
     }
     fun getFrontSpringParametersStocked(): MutableLiveData<DataSpring>?{
-        return SpringRepository.getFrontSpringParametersStocked()
+        return springRepository.getFrontSpringParametersStocked()
     }
 
     fun setBackSpringParametersStocked(springParameters: DataSpring){
-        SpringRepository.setBackSpringParametersStocked(springParameters)
+        springRepository.setBackSpringParametersStocked(springParameters)
     }
     fun getBackSpringParametersStocked(): MutableLiveData<DataSpring>?{
-        return SpringRepository.getBackSpringParametersStocked()
+        return springRepository.getBackSpringParametersStocked()
     }
 
     fun clearStockedParameters(){
-        SpringRepository.clearStockedParameters()
+        springRepository.clearStockedParameters()
     }
 
     fun getStockedParameters(): MutableList<DataSpring>{
         val listSpringStockedParameters = emptyList<DataSpring>().toMutableList()
         return if(
-            SpringRepository.getFrontSpringParametersStocked()?.value != null
+            springRepository.getFrontSpringParametersStocked()?.value != null
             &&
-            SpringRepository.getBackSpringParametersStocked()?.value != null
+            springRepository.getBackSpringParametersStocked()?.value != null
         ){
-            listSpringStockedParameters.add(SpringRepository.getFrontSpringParametersStocked()?.value!!)
-            listSpringStockedParameters.add(SpringRepository.getBackSpringParametersStocked()?.value!!)
+            listSpringStockedParameters.add(springRepository.getFrontSpringParametersStocked()?.value!!)
+            listSpringStockedParameters.add(springRepository.getBackSpringParametersStocked()?.value!!)
             listSpringStockedParameters
         } else listSpringStockedParameters
     }
 
 
     fun addNewSpringParameters(){
-        SpringRepository.addNewSpringParameters(
+        springRepository.addNewSpringParameters(
             getStockedParameters()
         )
     }

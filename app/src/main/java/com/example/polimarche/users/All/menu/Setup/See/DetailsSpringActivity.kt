@@ -19,6 +19,7 @@ class DetailsSpringActivity: AppCompatActivity() {
 
     private lateinit var binding : ActivityGeneralDetailsSpringBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGeneralDetailsSpringBinding.inflate(layoutInflater)
