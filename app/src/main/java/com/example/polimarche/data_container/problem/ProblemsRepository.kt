@@ -222,7 +222,7 @@ class ProblemsRepository {
         description: String
     ) {
         val collectionRef = db.collection("DataOccurringProblem")
-        val solvedProblemRef = db.collection("DataSolvedProblem")
+        val collectionRefSolvedProblem = db.collection("DataSolvedProblem")
 
         // Rimuovi l'elemento dalla lista _listOccurringProblemsData
         _listOccurringProblemsData.value?.remove(occurredProblem)
@@ -235,7 +235,7 @@ class ProblemsRepository {
         )
 
         // Aggiungi il nuovo problema risolto alla collezione DataSolvedProblem
-        solvedProblemRef.add(newSolvedProblem)
+        collectionRefSolvedProblem.add(newSolvedProblem)
             .addOnSuccessListener {
                 Log.e("ProblemsRepository", "New solved problem added successfully")
 
