@@ -1,4 +1,4 @@
-package com.example.polimarche.users.all.menu.setup.problem
+package com.example.polimarche.data_container.team_members_workshop.setup.problem
 
 import android.app.Dialog
 import android.graphics.Color
@@ -22,7 +22,8 @@ import com.example.polimarche.data_container.problem.solved_problem.SolvedProble
 
 class SolvedProblemFragment(
     private val problemClicked: DataProblem
-): Fragment(R.layout.fragment_general_setup_solved_problem), SolvedProblemAdapter.OnProblemReappearedClick {
+): Fragment(R.layout.fragment_general_setup_solved_problem),
+    SolvedProblemAdapter.OnProblemReappearedClick {
 
     private val solvedProblemViewModel: SolvedProblemViewModel by viewModels()
 

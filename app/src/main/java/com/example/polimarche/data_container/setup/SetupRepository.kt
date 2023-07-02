@@ -43,6 +43,7 @@ class SetupRepository {
     val listSetup get() = _listSetup
 
     suspend fun fetchSetupFromFirestore() {
+
         val setupCollection = db.collection("setup")
         val setupSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
             setupCollection.get()
@@ -151,7 +152,6 @@ class SetupRepository {
             }
 
             setup?.let { setupList.add(it) }
-            Log.d("DatiSETUP", "DatiSETUP:$setup")
         }
 
         withContext(Dispatchers.Main) {

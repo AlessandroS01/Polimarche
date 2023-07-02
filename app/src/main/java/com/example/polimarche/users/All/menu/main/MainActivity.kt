@@ -39,8 +39,6 @@ class MainActivity: AppCompatActivity(){
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-        val matriculation = intent.getStringExtra("EXTRA_MATRICULATION").toString()
-        val password = intent.getStringExtra("EXTRA_PASSWORD").toString()
 
         /*
         This part of the code deletes the background shadow

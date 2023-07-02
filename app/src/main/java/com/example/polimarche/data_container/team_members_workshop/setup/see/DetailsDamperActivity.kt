@@ -1,4 +1,4 @@
-package com.example.polimarche.users.all.menu.setup.see
+package com.example.polimarche.data_container.team_members_workshop.setup.see
 
 import android.graphics.Color
 import android.os.Bundle
@@ -47,7 +47,7 @@ class DetailsDamperActivity: AppCompatActivity() {
                         damperDetails = setup.frontDamper
                     }
                 }
-                "Back" ->{
+                "End" ->{
                     if (setup != null) {
                         damperDetails = setup.backDamper
                     }

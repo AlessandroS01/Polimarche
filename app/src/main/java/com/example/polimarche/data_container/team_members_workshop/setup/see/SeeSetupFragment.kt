@@ -1,4 +1,4 @@
-package com.example.polimarche.users.all.menu.setup.see
+package com.example.polimarche.data_container.team_members_workshop.setup.see
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -44,7 +44,7 @@ class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
 
         setupViewModel.initialize()
 
-        setupViewModel.setupList.observe(viewLifecycleOwner) { setup ->
+        setupViewModel.setupList.observe(viewLifecycleOwner) {
             recyclerView = binding.seeSetupList
 
             val layoutManager = LinearLayoutManager(context)

@@ -1,22 +1,56 @@
 package com.example.polimarche.users.department_head.menu.setup
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
+import android.view.WindowManager
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.polimarche.R
 import com.example.polimarche.databinding.ActivityDepartmentHeadsSetupBinding
-import com.example.polimarche.users.all.menu.setup.problem.ProblemsSetupFragment
-import com.example.polimarche.users.all.menu.setup.see.SeeSetupFragment
+import com.example.polimarche.data_container.team_members_workshop.setup.problem.ProblemsSetupFragment
+import com.example.polimarche.data_container.team_members_workshop.setup.see.SeeSetupFragment
+import com.example.polimarche.users.all.menu.main.MainActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class DepartmentHeadsSetupActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityDepartmentHeadsSetupBinding
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onBackPressed(){
+        moveTaskToBack(false);
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         binding = ActivityDepartmentHeadsSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
+        window.statusBarColor = Color.TRANSPARENT
+        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(binding.setupDHBottomNavigationView.id)
+        bottomNavigationView.setPadding(0, 0 , 0, 0)
+        bottomNavigationView.setOnApplyWindowInsetsListener(null)
+        bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
+        bottomNavigationView.background = null
+
+        /*
+        This part allows the user to go back at the main page
+        clicking on the back button at the top of the screen
+         */
+        val backButton = findViewById<ImageButton>(binding.backDHButtonSetup.id)
+        backButton.setOnClickListener {
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
 
         val seeSetupsFragment = SeeSetupFragment()
         val problemSetupFragment = ProblemsSetupFragment()
@@ -26,6 +60,8 @@ class DepartmentHeadsSetupActivity: AppCompatActivity() {
                 R.id.see_setup_dh -> setCurrentFragment(seeSetupsFragment)
                 R.id.problems_setup_dh -> setCurrentFragment(problemSetupFragment)
             }
+
+
             true
         }
 
@@ -45,5 +81,22 @@ class DepartmentHeadsSetupActivity: AppCompatActivity() {
             setReorderingAllowed(true)
             addToBackStack(null)
         }
+    }
+
+
+    /*
+        This method is used to set the status bar
+        completely transparent but keeping the icon at the top
+        of the layout
+     */
+    private fun setWindowFlag(bits: Int, on: Boolean) {
+        val win = window
+        val winParams = win.attributes
+        if (on) {
+            winParams.flags = winParams.flags or bits
+        } else {
+            winParams.flags = winParams.flags and bits.inv()
+        }
+        win.attributes = winParams
     }
 }
