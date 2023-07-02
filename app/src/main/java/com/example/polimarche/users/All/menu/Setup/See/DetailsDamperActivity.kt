@@ -36,7 +36,7 @@ class DetailsDamperActivity: AppCompatActivity() {
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
         val damperPosition = intent.getStringExtra("DAMPER_POSITION")
 
-        setupViewModel.setupList.observe(this) { setup ->
+        setupViewModel.setupList.observe(this) {
 
             val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)
 

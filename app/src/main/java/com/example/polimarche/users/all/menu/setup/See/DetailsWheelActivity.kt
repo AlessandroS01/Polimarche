@@ -36,7 +36,7 @@ class DetailsWheelActivity: AppCompatActivity() {
 
 
         // set data inside the layout
-        setupViewModel.setupList.observe(this) { setup ->
+        setupViewModel.setupList.observe(this) {
             val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)!!
 
             when(wheelPosition){

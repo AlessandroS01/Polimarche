@@ -37,7 +37,7 @@ class DetailsSpringActivity: AppCompatActivity() {
         val springPosition = intent.getStringExtra("SPRING_POSITION")
 
 
-        setupViewModel.setupList.observe(this) { setup ->
+        setupViewModel.setupList.observe(this) {
             val setup = setupViewModel.setupList.value?.filter { it.code == setupCode }?.get(0)!!
 
             when(springPosition){

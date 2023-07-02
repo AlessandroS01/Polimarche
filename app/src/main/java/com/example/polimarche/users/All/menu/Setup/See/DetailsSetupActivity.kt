@@ -32,8 +32,8 @@ class DetailsSetupActivity: AppCompatActivity() {
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
 
 
-            setupViewModel.setupList.observe(this) { setup ->
-                // Entire setup data found from the setup code
+        setupViewModel.setupList.observe(this) {
+            // Entire setup data found from the setup code
                 val filteredList = setupViewModel.setupList.value?.filter { it.code == setupCode }
                     ?.toMutableList()!!
 
