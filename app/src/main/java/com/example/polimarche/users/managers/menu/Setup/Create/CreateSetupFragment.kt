@@ -289,7 +289,7 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         )
 
         // adds the new setup created to the repository
-        setupViewModel.addNewSetup(newSetup)
+        //setupViewModel.addNewSetup(newSetup)
 
         // updates the various list of parameters
         wheelViewModel.addNewWheelParameters()

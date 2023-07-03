@@ -62,7 +62,7 @@ class ManagersSetupActivity : AppCompatActivity(){
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.see_setup -> setCurrentFragment(seeSetupFragment)
-                R.id.create_setup -> setCurrentFragment(createSetupFragment)
+                //R.id.create_setup -> setCurrentFragment(createSetupFragment)
                 R.id.delete_setup -> setCurrentFragment(deleteSetupFragment)
                 R.id.problems_setup -> setCurrentFragment(problemsSetupFragment)
             }
