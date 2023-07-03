@@ -167,7 +167,8 @@ class SetupRepository {
         }
 
         withContext(Dispatchers.Main) {
-            _listSetup.value = setupList // Use postValue to update MutableLiveData on the main thread
+            _listSetup.value =
+                setupList // Use postValue to update MutableLiveData on the main thread
         }
         Log.d("SetupRepository", "_listSetup: ${_listSetup.value}")
 
@@ -204,7 +205,8 @@ class SetupRepository {
                 Log.e("SetupRepository", "Errore durante la ricerca del documento", exception)
             }
     }
-
+}
+/*
     fun addNewSetup(newSetup: DataSetup) {
         val collectionRef = db.collection("setup")
         val setupRef = collectionRef.document()
@@ -224,3 +226,4 @@ class SetupRepository {
             }
     }
 }
+*/

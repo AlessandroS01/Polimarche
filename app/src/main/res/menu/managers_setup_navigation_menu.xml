@@ -6,13 +6,13 @@
         android:title="See"
         android:icon="@drawable/see_setup_icon"
         app:showAsAction="ifRoom"/>
-
+<!--
     <item
         android:id="@+id/create_setup"
         android:title="Create"
         android:icon="@drawable/create_icon"
         app:showAsAction="ifRoom"/>
-
+-->
     <item
         android:id="@+id/delete_setup"
         android:title="Delete"
