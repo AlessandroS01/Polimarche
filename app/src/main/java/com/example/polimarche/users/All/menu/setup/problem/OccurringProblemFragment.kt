@@ -235,25 +235,28 @@ class OccurringProblemFragment(
     the list mentioned 2 lines above. Moreover checks if the setup has already fixed the
     problem.
      */
-    private fun findSetupsWithoutProblem(): MutableList<DataSetup>{
-        val listSetupsWithoutProblem= mutableListOf<DataSetup>()
+    private fun findSetupsWithoutProblem(): MutableList<DataSetup> {
+        val listSetupsWithoutProblem = mutableListOf<DataSetup>()
 
-        setupViewModel.setupList.value?.forEachIndexed { _, dataSetup ->
-            if(occurringProblemViewModel.listOccurringProblem.value?.filter {
-                    dataSetup.code == it.setupCode &&
-                            it.problemCode == problemClicked.code
-                }?.size == 0 &&
-                    solvedProblemViewModel.listSolvedProblem.value?.filter {
-                        dataSetup.code == it.setupCode &&
-                                it.problemCode == problemClicked.code
-                    }?.size == 0) {
-                /*
-                Adds to the list the setups that are not currently linked to a solved and occurring
-                problem having problem code equals to the problem code of the clicked one.
-                 */
-                listSetupsWithoutProblem.add(dataSetup)
+        val listOccurringProblems = occurringProblemViewModel.listOccurringProblem.value
+        val listSolvedProblems = solvedProblemViewModel.listSolvedProblem.value
+
+        setupViewModel.setupList.observe(viewLifecycleOwner) { dataSetupList ->
+            dataSetupList.forEach { dataSetup ->
+                val isOccurringProblem = listOccurringProblems?.any {
+                    dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
+                } ?: false
+
+                val isSolvedProblem = listSolvedProblems?.any {
+                    dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
+                } ?: false
+
+                if (!isOccurringProblem && !isSolvedProblem) {
+                    listSetupsWithoutProblem.add(dataSetup)
+                }
             }
         }
+
         return listSetupsWithoutProblem
     }
 

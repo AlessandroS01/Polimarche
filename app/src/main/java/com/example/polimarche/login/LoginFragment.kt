@@ -94,21 +94,27 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         }
 
         binding.passwordRecoveryFromLogin.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            val matricola: String = binding.MatricolaInput.text.toString()
-            val matriculation = "s$matricola@studenti.univpm.it"
+            if ( binding.MatricolaInput.text?.isEmpty()!! ){
+                Toast.makeText(requireContext(), "Matricola is required", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val auth = FirebaseAuth.getInstance()
+                val matricola: String = binding.MatricolaInput.text.toString()
+                val matriculation = "s$matricola@studenti.univpm.it"
 
-            auth.sendPasswordResetEmail(matriculation)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Email di recupero password inviata con successo
-                        Toast.makeText(requireContext(), "Email di recupero password inviata", Toast.LENGTH_SHORT).show()
-                    } else {
-                        // Gestione dell'errore durante l'invio dell'email di recupero password
-                        val errorMessage = task.exception?.message
-                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                auth.sendPasswordResetEmail(matriculation)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Email di recupero password inviata con successo
+                            Toast.makeText(requireContext(), "Email di recupero password inviata", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // Gestione dell'errore durante l'invio dell'email di recupero password
+                            val errorMessage = task.exception?.message
+                            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
+
+            }
 
         }
     }

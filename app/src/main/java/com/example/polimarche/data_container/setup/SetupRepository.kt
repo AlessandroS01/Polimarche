@@ -185,6 +185,52 @@ class SetupRepository {
             .addOnFailureListener { exception ->
                 Log.e("SetupRepository", "Errore durante la ricerca del documento", exception)
             }
+
+        val collectionRefSolved = db.collection("DataSolvedProblem")
+        collectionRefSolved.whereEqualTo("setupCode", setup.code)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val documentSnapshot = querySnapshot.documents[0]
+                    val documentId = documentSnapshot.id
+
+                    collectionRefSolved.document(documentId).delete()
+                        .addOnSuccessListener {
+
+                        }
+                        .addOnFailureListener {
+
+                        }
+                } else {
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("SetupRepository", "Errore durante la ricerca del documento", exception)
+            }
+
+        val collectionRefOccurring = db.collection("DataOccurringProblem")
+        collectionRefOccurring.whereEqualTo("setupCode", setup.code)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val documentSnapshot = querySnapshot.documents[0]
+                    val documentId = documentSnapshot.id
+
+                    collectionRefOccurring.document(documentId).delete()
+                        .addOnSuccessListener {
+
+                        }
+                        .addOnFailureListener {
+
+                        }
+                } else {
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("SetupRepository", "Errore durante la ricerca del documento", exception)
+            }
     }
 }
 /*
