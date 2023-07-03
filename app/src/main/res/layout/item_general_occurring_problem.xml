@@ -42,7 +42,7 @@
             android:layout_marginTop="3dp">
 
 
-            <EditText
+        <EditText
                 android:hint="Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +52,8 @@
                 android:fontFamily="@font/aldrich"
                 android:background="@drawable/border_notes_setup"
                 android:textSize="16sp"
-                android:padding="5dp"/>
+                android:padding="5dp"
+                android:editable="false" />
 
         <LinearLayout
                 android:orientation="horizontal"

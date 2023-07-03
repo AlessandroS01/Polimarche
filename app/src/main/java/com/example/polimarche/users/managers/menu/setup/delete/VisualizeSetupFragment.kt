@@ -15,6 +15,10 @@ import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentManagersDeleteSetupVisualizeSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class VisualizeSetupFragment(
     val adapter: DeleteSetupAdapter
@@ -44,7 +48,6 @@ class VisualizeSetupFragment(
         setupViewModel.initialize()
 
         val setupCode = arguments?.getInt("SETUP_CODE")
-        Log.d("VisualizeSetupFragment","setupCode:$setupCode")
         setupViewModel.setupList.observe(viewLifecycleOwner) {
             setupClicked =
                 setupViewModel.setupList.value?.filter { it.code == setupCode }?.toMutableList()
@@ -80,6 +83,7 @@ class VisualizeSetupFragment(
     Create a dialog box that let the user cancel or confirm the
     setup deletion.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     private fun showDialog() {
         val dialog = Dialog(requireContext())
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -97,10 +101,15 @@ class VisualizeSetupFragment(
         adapter to let it know that the item was removed.
          */
         confirmDeletion.setOnClickListener {
-            setupViewModel.deleteSetup(setupClicked)
-            adapter.setNewList(setupViewModel.setupList.value?.toMutableList()!!)
-            parentFragmentManager.beginTransaction().remove(this).commit()
-            dialog.dismiss()
+            GlobalScope.launch(Dispatchers.Main) {
+                // Call the deleteSetup function and wait for it to finish
+                setupViewModel.deleteSetup(setupClicked)
+
+                // Continue with the remaining code after deletion is complete
+                adapter.setNewList(setupViewModel.setupList.value?.toMutableList()!!)
+                parentFragmentManager.beginTransaction().remove(this@VisualizeSetupFragment).commit()
+                dialog.dismiss()
+            }
         }
         cancelDeletion.setOnClickListener {
             dialog.dismiss()

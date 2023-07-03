@@ -130,7 +130,7 @@ class DetailsSetupActivity: AppCompatActivity() {
         }
         backDamper.setOnClickListener {
             Intent(this, DetailsDamperActivity::class.java).apply {
-                this.putExtra("DAMPER_POSITION", "Back")
+                this.putExtra("DAMPER_POSITION", "End")
                 this.putExtra("SETUP_CODE", setup.code)
                 startActivity(this)
             }

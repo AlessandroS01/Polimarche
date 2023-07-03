@@ -42,14 +42,11 @@ class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
 
         searchView = binding.searchViewSetupSee
 
-        setupViewModel.initialize()
-
+        recyclerView = binding.seeSetupList
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
         setupViewModel.setupList.observe(viewLifecycleOwner) {
-            recyclerView = binding.seeSetupList
 
-            val layoutManager = LinearLayoutManager(context)
-
-            recyclerView.layoutManager = layoutManager
             adapter = SeeSetupAdapter(setupViewModel)
             recyclerView.adapter = adapter
         }

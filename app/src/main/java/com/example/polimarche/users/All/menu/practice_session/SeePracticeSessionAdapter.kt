@@ -96,7 +96,6 @@ class SeePracticeSessionAdapter(
     /*
     Restores the default list of the recyclerView.
      */
-
     fun restoreListToDefault(){
         setNewList(practiceSessionViewModel.listPracticeSession.value?.toMutableList()!!)
     }

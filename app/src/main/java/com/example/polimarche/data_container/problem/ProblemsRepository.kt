@@ -119,7 +119,7 @@ class ProblemsRepository {
         val occurringProblemList = mutableListOf<DataOccurringProblem>()
         val occurringProblemIdList = mutableListOf<String>()
 
-        for (document in occurringProblemSnapshot.documents) {
+        for (document in occurringProblemSnapshot) {
 
             val documentId = document.id // Get the document ID
             occurringProblemIdList.add(documentId)
@@ -159,7 +159,7 @@ class ProblemsRepository {
         val solvedProblemList = mutableListOf<DataSolvedProblem>()
         val solvedProblemIdList = mutableListOf<String>()
 
-        for (document in solvedProblemSnapshot.documents) {
+        for (document in solvedProblemSnapshot) {
             val documentId = document.id // Get the document ID
             solvedProblemIdList.add(documentId)
 
@@ -175,7 +175,6 @@ class ProblemsRepository {
                 expansion
             )
             solvedProblemList.add(dataSolvedProblem)
-            Log.d("PROBLEMREPO","dataSolvedProblem:$dataSolvedProblem")
         }
 
         withContext(Dispatchers.Main) {

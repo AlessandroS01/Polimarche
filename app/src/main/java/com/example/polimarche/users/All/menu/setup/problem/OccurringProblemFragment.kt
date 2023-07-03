@@ -14,19 +14,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
-import com.example.polimarche.databinding.FragmentGeneralSetupOccurringProblemBinding
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.occurring_problem.DataOccurringProblem
 import com.example.polimarche.data_container.problem.occurring_problem.OccurringProblemViewModel
 import com.example.polimarche.data_container.problem.solved_problem.SolvedProblemViewModel
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
-import com.example.polimarche.data_container.track.DataTrack
+import com.example.polimarche.databinding.FragmentGeneralSetupOccurringProblemBinding
 import kotlinx.coroutines.launch
 
 class OccurringProblemFragment(
@@ -47,8 +45,6 @@ class OccurringProblemFragment(
     private lateinit var occurringProblemAdapter: OccurringProblemAdapter
     private lateinit var recyclerViewOccurringProblem: RecyclerView
 
-    private val occProbList: MutableLiveData<MutableList<DataOccurringProblem>> = MutableLiveData()
-    private var originaloccProbList: List<DataOccurringProblem> = emptyList()
     /*
     List of setups in which the problem clicked doesn't occur and it's not been solved.
      */
@@ -75,11 +71,8 @@ class OccurringProblemFragment(
         Passes to the adapter the list of problems that matches with the problem code clicked
         on ProblemsSetupFragment.
          */
-        setupViewModel.initialize()
-        occurringProblemViewModel.initialize()
-        solvedProblemViewModel.initialize()
 
-        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {problem ->
+        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
             occurringProblemAdapter = OccurringProblemAdapter(
                 problemClicked,
                 occurringProblemViewModel,
@@ -91,19 +84,8 @@ class OccurringProblemFragment(
             recyclerViewOccurringProblem.layoutManager = linearLayoutManagerMain
             recyclerViewOccurringProblem.adapter = occurringProblemAdapter
 
-            occurringProblemAdapter.setNewList(problem)
         }
 
-        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) { newList->
-            originaloccProbList = newList
-            occProbList.value = originaloccProbList.toMutableList()
-            (originaloccProbList as MutableList<DataOccurringProblem>?)?.let { occurringProblemAdapter.setNewList(it) }
-
-        }
-
-        occProbList.observe(viewLifecycleOwner) {problem ->
-            occurringProblemAdapter.setNewList(problem)
-        }
         binding.imageButtonAddOccurringProblem.setOnClickListener {
             showDialogAddOccurringProblem()
         }

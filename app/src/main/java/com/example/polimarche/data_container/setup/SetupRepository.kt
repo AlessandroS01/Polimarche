@@ -39,7 +39,6 @@ class SetupRepository {
     suspend fun fetchSetupFromFirestore() {
 
         val setupCollection = db.collection("setup")
-        Log.d("DB:", "DB:$setupCollection")
         val setupSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
             setupCollection.get()
                 .addOnSuccessListener { querySnapshot ->
@@ -51,7 +50,6 @@ class SetupRepository {
         }
 
         val setupList = mutableListOf<DataSetup>() // Initialize with an empty list
-        val setupIdList = mutableListOf<String>() // Initialize with an empty list for IDs
 
         for (document in setupSnapshot) {
             //val documentId = document.id // Get the document ID
@@ -110,7 +108,6 @@ class SetupRepository {
                 val notesArray = document.get("notes") as ArrayList<String>
                 notes.addAll(notesArray)
             }
-            Log.d("notes", "notes:$notes")
 
             val setup = frontRightWheel?.let { frontRightWheel ->
                 frontLeftWheel?.let { frontLeftWheel ->
@@ -150,27 +147,12 @@ class SetupRepository {
             }
 
             setup?.let { setupList.add(it) }
-            Log.d("SetupRepository", "frontRightWheel: $frontRightWheel")
-            Log.d("SetupRepository", "frontLeftWheel: $frontLeftWheel")
-            Log.d("SetupRepository", "rearRightWheel: $rearRightWheel")
-            Log.d("SetupRepository", "rearLeftWheel: $rearLeftWheel")
-            Log.d("SetupRepository", "frontDamper: $frontDamper")
-            Log.d("SetupRepository", "backDamper: $backDamper")
-            Log.d("SetupRepository", "frontSpring: $frontSpring")
-            Log.d("SetupRepository", "backSpring: $backSpring")
-            Log.d("SetupRepository", "frontBalance: $frontBalance")
-            Log.d("SetupRepository", "backBalance: $backBalance")
-
-            Log.d("preferredEvent", "preferredEvent:$preferredEvent")
-            Log.d("frontWingHole", "frontWingHole:$frontWingHole")
-            Log.d("setup", "setup:$setup")
         }
 
         withContext(Dispatchers.Main) {
             _listSetup.value =
                 setupList // Use postValue to update MutableLiveData on the main thread
         }
-        Log.d("SetupRepository", "_listSetup: ${_listSetup.value}")
 
     }
 
@@ -192,13 +174,12 @@ class SetupRepository {
                             // Aggiorna il valore di listSetup per attivare gli osservatori
                             _listSetup.value = _listSetup.value
 
-                            Log.e("SetupViewModel", "Setup eliminato con successo")
                         }
-                        .addOnFailureListener { exception ->
-                            Log.e("SetupViewModel", "Impossibile eliminare il setup", exception)
+                        .addOnFailureListener {
+
                         }
                 } else {
-                    Log.e("SetupRepository", "Nessun documento corrispondente trovato")
+
                 }
             }
             .addOnFailureListener { exception ->

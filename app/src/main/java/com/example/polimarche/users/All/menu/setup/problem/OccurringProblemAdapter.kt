@@ -24,16 +24,10 @@ class OccurringProblemAdapter(
     private val listener: OnProblemSolvedClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listOccurringProblem: MutableList<DataOccurringProblem> = mutableListOf()
 
-    init {
-        occurringProblemViewModel.listOccurringProblem.observeForever {
-            listOccurringProblem.clear()
-            listOccurringProblem =
-                occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
-            notifyDataSetChanged()
-        }
-    }
+    private var listOccurringProblem: MutableList<DataOccurringProblem> =
+        occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+
 
     interface OnProblemSolvedClick{
         fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View)
@@ -135,18 +129,21 @@ class OccurringProblemAdapter(
     that replaces the list of the adapter.
      */
     suspend fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
-        occurringProblemViewModel.removeItemFromList(item, descriptionSolvedProblem)
+        val newList = occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+
+        newList.removeIf { it.setupCode == item.setupCode }
+
         setNewList(
-            occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+            newList
         )
 
+        occurringProblemViewModel.removeItemFromList(item, descriptionSolvedProblem)
     }
 
 
      fun setNewList(newList: MutableList<DataOccurringProblem>){
         listOccurringProblem.clear()
         listOccurringProblem.addAll(newList)
-         Log.d("listanuova","listanuova:$listOccurringProblem")
         notifyDataSetChanged()
     }
 }

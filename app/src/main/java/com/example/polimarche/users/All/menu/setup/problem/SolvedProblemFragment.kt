@@ -20,6 +20,8 @@ import com.example.polimarche.databinding.FragmentGeneralSetupSolvedProblemBindi
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.data_container.problem.solved_problem.SolvedProblemViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SolvedProblemFragment(
@@ -48,7 +50,7 @@ class SolvedProblemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        solvedProblemViewModel.initialize()
+
 
         solvedProblemViewModel.listSolvedProblem.observe(viewLifecycleOwner) { solvedProblems ->
             solvedProblemAdapter = SolvedProblemAdapter(
@@ -60,8 +62,6 @@ class SolvedProblemFragment(
             val linearLayoutManager = LinearLayoutManager(this.context)
             recyclerView.adapter = solvedProblemAdapter
             recyclerView.layoutManager = linearLayoutManager
-
-            solvedProblemAdapter.setNewList(solvedProblems)
         }
     }
 
@@ -108,7 +108,7 @@ class SolvedProblemFragment(
             Calls the method removeItemFromList of the adapter and pass
             the element clicked and the description of the future problemSolved.
              */
-            viewLifecycleOwner.lifecycleScope.launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 solvedProblemAdapter.removeItemFromList(
                     element,
                     descriptionNewOccurringProblem.text.toString()

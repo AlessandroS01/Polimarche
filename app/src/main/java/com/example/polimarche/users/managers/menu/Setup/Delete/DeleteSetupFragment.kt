@@ -47,7 +47,6 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
         super.onViewCreated(view, savedInstanceState)
 
         searchView = binding.searchViewSetupDelete
-        setupViewModel.initialize()
 
         setupViewModel.setupList.observe(viewLifecycleOwner) {problem ->
             recyclerViewDeleteSetup = binding.deleteSetupList

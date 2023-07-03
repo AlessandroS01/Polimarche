@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.data_container.problem.solved_problem.SolvedProblemViewModel
-import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 
 class SolvedProblemAdapter(
@@ -20,16 +18,8 @@ class SolvedProblemAdapter(
     private val listener: OnProblemReappearedClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listSolvedProblem: MutableList<DataSolvedProblem> = mutableListOf()
-
-    init {
-        solvedProblemViewModel.listSolvedProblem.observeForever {
-        listSolvedProblem.clear()
-        listSolvedProblem =
-            solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
-        notifyDataSetChanged()
-    }
-}
+    private var listSolvedProblem: MutableList<DataSolvedProblem> =
+        solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
 
 
     interface OnProblemReappearedClick{
@@ -120,10 +110,15 @@ class SolvedProblemAdapter(
     that replaces the list of the adapter.
      */
     suspend fun removeItemFromList(item: DataSolvedProblem, description: String){
-        solvedProblemViewModel.removeItemFromList(item, description)
+        val newList = solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+
+        newList.removeIf { it.setupCode == item.setupCode }
+
         setNewList(
-            solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+            newList
         )
+
+        solvedProblemViewModel.removeItemFromList(item, description)
     }
 
     fun setNewList(newList: MutableList<DataSolvedProblem>){
