@@ -69,6 +69,7 @@ class OccurringProblemFragment(
         Passes to the adapter the list of problems that matches with the problem code clicked
         on ProblemsSetupFragment.
          */
+    occurringProblemViewModel.initialize()
 
         occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
             occurringProblemAdapter = OccurringProblemAdapter(

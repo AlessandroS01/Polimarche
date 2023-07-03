@@ -48,7 +48,7 @@ class SolvedProblemFragment(
 
         solvedProblemViewModel.initialize()
 
-        solvedProblemViewModel.listSolvedProblem.observe(viewLifecycleOwner) {
+        solvedProblemViewModel.listSolvedProblem.observe(viewLifecycleOwner) { solvedProblems ->
             solvedProblemAdapter = SolvedProblemAdapter(
                 problemClicked,
                 solvedProblemViewModel,
@@ -58,6 +58,8 @@ class SolvedProblemFragment(
             val linearLayoutManager = LinearLayoutManager(this.context)
             recyclerView.adapter = solvedProblemAdapter
             recyclerView.layoutManager = linearLayoutManager
+
+            solvedProblemAdapter.setNewList(solvedProblems)
         }
     }
 

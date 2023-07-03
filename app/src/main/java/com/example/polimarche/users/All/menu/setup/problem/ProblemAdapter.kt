@@ -15,6 +15,7 @@ class ProblemAdapter(
     private val listener: OnManageProblemClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
     interface OnManageProblemClick{
         fun onManageProblemClick(problemClicked: DataProblem)
     }

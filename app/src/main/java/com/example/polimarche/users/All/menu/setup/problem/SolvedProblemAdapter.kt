@@ -11,6 +11,7 @@ import com.example.polimarche.R
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.data_container.problem.solved_problem.SolvedProblemViewModel
+import com.example.polimarche.data_container.track.DataTrack
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 
 class SolvedProblemAdapter(
@@ -19,10 +20,14 @@ class SolvedProblemAdapter(
     private val listener: OnProblemReappearedClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listSolvedProblem =
-        solvedProblemViewModel.filterListByProblemCode(
-            problemClicked.code
-        )
+    private var listSolvedProblem: MutableList<DataSolvedProblem> = mutableListOf()
+
+    init {
+        listSolvedProblem.clear()
+        listSolvedProblem = solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+        notifyDataSetChanged()
+    }
+
 
     interface OnProblemReappearedClick{
         fun onProblemReappearedClick(element: DataSolvedProblem, itemView: View)
@@ -71,11 +76,11 @@ class SolvedProblemAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listSolvedProblem.value?.size!!
+        return listSolvedProblem.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listOfItems = listSolvedProblem.value?.toMutableList()
+        val listOfItems = listSolvedProblem.toMutableList()
 
         when(holder){
             is ViewHolderSolvedProblem ->{
@@ -116,12 +121,13 @@ class SolvedProblemAdapter(
     fun removeItemFromList(item: DataSolvedProblem, description: String){
         solvedProblemViewModel.removeItemFromList(item, description)
         setNewList(
-            solvedProblemViewModel.filterListByProblemCode(problemClicked.code)
+            solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
         )
     }
 
-    private fun setNewList(newList: MutableLiveData<MutableList<DataSolvedProblem>>){
-        listSolvedProblem = newList
+    fun setNewList(newList: MutableList<DataSolvedProblem>){
+        listSolvedProblem.clear()
+        listSolvedProblem.addAll(newList)
         notifyDataSetChanged()
     }
 

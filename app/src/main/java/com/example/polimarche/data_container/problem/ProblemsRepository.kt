@@ -247,15 +247,7 @@ class ProblemsRepository {
                                 description
                             )
 
-                            collectionRefSolvedProblem.add(newSolvedProblem)
-                                .addOnSuccessListener {
-                                    Log.e("ProblemsRepository", "New solved problem added successfully")
-
-                                    // Aggiorna la lista locale o esegui altre azioni necessarie
-                                }
-                                .addOnFailureListener { exception ->
-                                    Log.e("ProblemsRepository", "Failed to add new solved problem", exception)
-                                }
+                            addNewSolvedProblem(newSolvedProblem)
                         }
                         .addOnFailureListener { exception ->
                             Log.e("ProblemsRepository", "Failed to remove problem", exception)
@@ -270,7 +262,7 @@ class ProblemsRepository {
     }
 
 
-    private fun addNewSolvedProblem(newSolvedProblem: DataSolvedProblem){
+    fun addNewSolvedProblem(newSolvedProblem: DataSolvedProblem){
         val collectionRef = db.collection("DataSolvedProblem")
         val newSolvedProblemRef = collectionRef.document()
 
@@ -279,7 +271,8 @@ class ProblemsRepository {
                 val updatedList = _listSolvedProblemsData.value ?: mutableListOf() // Get the current list or initialize an empty list
 
                 updatedList.add(newSolvedProblem) // Add the new track to the updated list
-                _listSolvedProblemsData.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
+                _listSolvedProblemsData.postValue(updatedList)
+                listSolvedProblems.value = updatedList// Use postValue to update the MutableLiveData asynchronously
                 println(_listSolvedProblemsData.value)
                 Log.e("ProblemsRepository", "New problem added successfully")
             }
@@ -324,15 +317,7 @@ class ProblemsRepository {
                                 description
                             )
 
-                            collectionRefOccurringProblem.add(newOccurringProblem)
-                                .addOnSuccessListener {
-                                    Log.e("ProblemsRepository", "New occurring problem added successfully")
-
-                                    // Aggiorna la lista locale o esegui altre azioni necessarie
-                                }
-                                .addOnFailureListener { exception ->
-                                    Log.e("ProblemsRepository", "Failed to add new occurring problem", exception)
-                                }
+                            addNewOccurringProblem(newOccurringProblem)
                         }
                         .addOnFailureListener { exception ->
                             Log.e("ProblemsRepository", "Failed to remove solved problem", exception)
@@ -356,7 +341,8 @@ class ProblemsRepository {
                 val updatedList = _listOccurringProblemsData.value ?: mutableListOf() // Get the current list or initialize an empty list
 
                 updatedList.add(newOccurringProblem) // Add the new track to the updated list
-                _listOccurringProblemsData.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
+                _listOccurringProblemsData.postValue(updatedList)
+                listOccurringProblems.value = updatedList// Use postValue to update the MutableLiveData asynchronously
                 println(_listOccurringProblemsData.value)
                 Log.e("ProblemsRepository", "New problem added successfully")
             }

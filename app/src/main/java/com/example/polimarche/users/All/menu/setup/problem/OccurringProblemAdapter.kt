@@ -11,6 +11,7 @@ import com.example.polimarche.R
 import com.example.polimarche.data_container.problem.occurring_problem.DataOccurringProblem
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.occurring_problem.OccurringProblemViewModel
+import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 /*
 Passes directly the list of problems that matches with the problem clicked
@@ -22,10 +23,13 @@ class OccurringProblemAdapter(
     private val listener: OnProblemSolvedClick
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var listOccurringProblem: MutableList<DataOccurringProblem> = mutableListOf()
 
-    private var listOccurringProblem = occurringProblemViewModel.filterListByProblemCode(
-                                            problemClicked.code
-                                        )
+    init {
+        listOccurringProblem.clear()
+        listOccurringProblem = occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+        notifyDataSetChanged()
+    }
 
     interface OnProblemSolvedClick{
         fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View)
@@ -74,11 +78,11 @@ class OccurringProblemAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listOccurringProblem.value?.size!!
+        return listOccurringProblem.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listOfItems = listOccurringProblem.value?.toMutableList()
+        val listOfItems = listOccurringProblem.toMutableList()
 
         when(holder){
             is ViewHolderOccurringProblem ->{
@@ -116,7 +120,7 @@ class OccurringProblemAdapter(
     fun addItemToItemView(item: DataOccurringProblem){
         occurringProblemViewModel.addNewOccurringProblem(item)
         setNewList(
-            occurringProblemViewModel.filterListByProblemCode(problemClicked.code)
+            occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
         )
     }
 
@@ -131,13 +135,14 @@ class OccurringProblemAdapter(
     fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
         occurringProblemViewModel.removeItemFromList(item, descriptionSolvedProblem)
         setNewList(
-            occurringProblemViewModel.filterListByProblemCode(problemClicked.code)
+            occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
         )
     }
 
 
-    private fun setNewList(newList: MutableLiveData<MutableList<DataOccurringProblem>>){
-        listOccurringProblem = newList
+    private fun setNewList(newList: MutableList<DataOccurringProblem>){
+        listOccurringProblem.clear()
+        listOccurringProblem.addAll(newList)
         notifyDataSetChanged()
     }
 }
