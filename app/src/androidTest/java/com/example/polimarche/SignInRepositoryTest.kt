@@ -1,4 +1,4 @@
-package com.example.polimarche.login
+package com.example.polimarche
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -14,6 +14,7 @@ import org.junit.runner.RunWith
 class LoginFragmentTest {
 
     @get:Rule
+    @JvmField
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     private lateinit var firebaseAuth: FirebaseAuth

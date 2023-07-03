@@ -67,11 +67,9 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                  TODO: E DETERMINARE SE SI E' LOGGATO UN CAPOREPARTO O UN RESPONSABILE
                  */
                 // Effettua il login con Firebase Authentication
-                firebaseAuth.signInWithEmailAndPassword(matriculation, password)
+            firebaseAuth.signInWithEmailAndPassword(matriculation, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Login avvenuto con successo
-                            val user = firebaseAuth.currentUser
                             // Avvia MainActivity
                             val intent = Intent(requireContext(), MainActivity::class.java)
                             intent.putExtra("EXTRA_MATRICULATION", matriculation)
@@ -114,9 +112,6 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
         }
     }
-
-
-
 
     /*
         This method return the password used inside
