@@ -50,7 +50,11 @@ class SolvedProblemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        solvedProblemAdapter = SolvedProblemAdapter(
+                problemClicked,
+                solvedProblemViewModel,
+                this
+            )
 
         solvedProblemViewModel.listSolvedProblem.observe(viewLifecycleOwner) { solvedProblems ->
             solvedProblemAdapter = SolvedProblemAdapter(
@@ -120,6 +124,12 @@ class SolvedProblemFragment(
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        solvedProblemViewModel.initialize()
     }
 
 

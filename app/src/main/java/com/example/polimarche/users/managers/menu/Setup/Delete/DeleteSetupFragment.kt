@@ -14,6 +14,7 @@ import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentManagersSetupDeleteSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
+import com.example.polimarche.users.all.menu.setup.see.SeeSetupAdapter
 
 /*
     Fragment used to show all the setup and their parameters that, unlike
@@ -47,6 +48,8 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
         super.onViewCreated(view, savedInstanceState)
 
         searchView = binding.searchViewSetupDelete
+
+        adapter = DeleteSetupAdapter(setupViewModel, this)
 
         setupViewModel.setupList.observe(viewLifecycleOwner) {problem ->
             recyclerViewDeleteSetup = binding.deleteSetupList
@@ -102,6 +105,13 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
         parentFragmentManager.beginTransaction().apply{
             replace(binding.frameLayoutDeleteSetupVisualizeSetup.id, visualizeSetup).commit()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setupViewModel.initialize()
+
     }
 
 }

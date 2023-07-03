@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentGeneralManageProblemsSetupBinding
 import com.example.polimarche.data_container.problem.DataProblem
 
 class ManageProblemFragment(
-    private val problemClicked: DataProblem
+    private val problemClicked: DataProblem,
+    private val searchView: androidx.appcompat.widget.SearchView,
+    private val imageButton: ImageButton
 ) : Fragment(R.layout.fragment_general_manage_problems_setup){
 
     private var _binding: FragmentGeneralManageProblemsSetupBinding? = null
@@ -34,6 +37,8 @@ class ManageProblemFragment(
 
         binding.closeButtonManageProblemsSetup.setOnClickListener {
             parentFragmentManager.beginTransaction().remove(this).commit()
+            searchView.visibility = View.VISIBLE
+            imageButton.visibility = View.VISIBLE
         }
 
         /*

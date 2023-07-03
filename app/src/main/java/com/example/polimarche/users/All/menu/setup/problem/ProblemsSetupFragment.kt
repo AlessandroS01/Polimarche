@@ -50,7 +50,6 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
         super.onViewCreated(view, savedInstanceState)
 
         searchView = binding.searchViewProblemSetup
-
         problemViewModel.initialize()
 
         problemViewModel.listProblems.observe(viewLifecycleOwner) {problem ->
@@ -176,7 +175,10 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
     }
 
     override fun onManageProblemClick(problemClicked: DataProblem) {
-        val manageProblemFragment = ManageProblemFragment(problemClicked)
+        searchView.visibility = View.GONE
+
+        binding.imageButtonAddProblem.visibility = View.GONE
+        val manageProblemFragment = ManageProblemFragment(problemClicked, searchView, binding.imageButtonAddProblem)
         parentFragmentManager.beginTransaction().replace(binding.frameLayoutSetupManageProblemSetup.id,
             manageProblemFragment).commit()
 

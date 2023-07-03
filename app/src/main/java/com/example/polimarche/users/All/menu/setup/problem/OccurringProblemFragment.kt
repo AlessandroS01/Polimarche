@@ -72,6 +72,12 @@ class OccurringProblemFragment(
         on ProblemsSetupFragment.
          */
 
+        occurringProblemAdapter = OccurringProblemAdapter(
+                problemClicked,
+                occurringProblemViewModel,
+                this
+            )
+
         occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
             occurringProblemAdapter = OccurringProblemAdapter(
                 problemClicked,
@@ -258,6 +264,12 @@ class OccurringProblemFragment(
         }
 
         return listSetupsWithoutProblem
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        occurringProblemViewModel.initialize()
     }
 
 }
