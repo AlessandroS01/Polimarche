@@ -81,7 +81,7 @@ class SignUpFragment: Fragment(R.layout.fragment_sign_up) {
                                         replace(R.id.frameLayoutLoginSignIn, loginFragment)
                                         commit()
                                     }
-                                }, 2000) // Ritardo di 2000 millisecondi (2 secondi)
+                                }, 200)
                             }
                             .addOnFailureListener { e ->
                                 // Gestisci l'eventuale errore durante il salvataggio dei dettagli dell'utente
