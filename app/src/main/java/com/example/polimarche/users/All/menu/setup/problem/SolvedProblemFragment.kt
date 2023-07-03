@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
@@ -19,6 +20,7 @@ import com.example.polimarche.databinding.FragmentGeneralSetupSolvedProblemBindi
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.data_container.problem.solved_problem.SolvedProblemViewModel
+import kotlinx.coroutines.launch
 
 class SolvedProblemFragment(
     private val problemClicked: DataProblem
@@ -106,10 +108,12 @@ class SolvedProblemFragment(
             Calls the method removeItemFromList of the adapter and pass
             the element clicked and the description of the future problemSolved.
              */
-            solvedProblemAdapter.removeItemFromList(
-                element,
-                descriptionNewOccurringProblem.text.toString()
-            )
+            viewLifecycleOwner.lifecycleScope.launch {
+                solvedProblemAdapter.removeItemFromList(
+                    element,
+                    descriptionNewOccurringProblem.text.toString()
+                )
+            }
             dialog.dismiss()
         }
         cancelReappearedProblem.setOnClickListener {

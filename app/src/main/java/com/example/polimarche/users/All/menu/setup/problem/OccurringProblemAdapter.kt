@@ -1,6 +1,7 @@
 package com.example.polimarche.users.all.menu.setup.problem
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,9 +27,12 @@ class OccurringProblemAdapter(
     private var listOccurringProblem: MutableList<DataOccurringProblem> = mutableListOf()
 
     init {
-        listOccurringProblem.clear()
-        listOccurringProblem = occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
-        notifyDataSetChanged()
+        occurringProblemViewModel.listOccurringProblem.observeForever {
+            listOccurringProblem.clear()
+            listOccurringProblem =
+                occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+            notifyDataSetChanged()
+        }
     }
 
     interface OnProblemSolvedClick{
@@ -82,29 +86,27 @@ class OccurringProblemAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listOfItems = listOccurringProblem.toMutableList()
-
         when(holder){
             is ViewHolderOccurringProblem ->{
                 holder.apply {
-                    setupCode.text = "Setup ${ listOfItems?.get(position)?.setupCode.toString() }"
-                    description.setText(listOfItems?.get(position)?.description)
+                    setupCode.text = "Setup ${ listOccurringProblem?.get(position)?.setupCode.toString() }"
+                    description.setText(listOccurringProblem?.get(position)?.description)
                     removeProblem.setImageResource(R.drawable.remove_general_small_icon)
                     visualizeProblem.setImageResource(R.drawable.visibility_icon)
 
                     visualizeProblem.setOnClickListener {
                         Intent(it.context, DetailsSetupActivity::class.java).apply {
-                            this.putExtra("SETUP_CODE", listOfItems?.get(position)?.setupCode)
+                            this.putExtra("SETUP_CODE", listOccurringProblem?.get(position)?.setupCode)
                             itemView.context.startActivity(this)
                         }
                     }
 
-                    val expansion = listOfItems?.get(position)?.expansion
+                    val expansion = listOccurringProblem?.get(position)?.expansion
                     linearLayout.visibility = if (expansion!!) View.VISIBLE else View.GONE
 
                     linearLayoutTouchable.setOnClickListener{
-                        listOfItems[position].expansion =
-                            !listOfItems[position].expansion
+                        listOccurringProblem[position].expansion =
+                            !listOccurringProblem[position].expansion
                         notifyItemChanged(position)
                     }
                 }
@@ -132,17 +134,19 @@ class OccurringProblemAdapter(
     Then it calls directly a method of the adapter
     that replaces the list of the adapter.
      */
-    fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
+    suspend fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
         occurringProblemViewModel.removeItemFromList(item, descriptionSolvedProblem)
         setNewList(
             occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
         )
+
     }
 
 
      fun setNewList(newList: MutableList<DataOccurringProblem>){
         listOccurringProblem.clear()
         listOccurringProblem.addAll(newList)
+         Log.d("listanuova","listanuova:$listOccurringProblem")
         notifyDataSetChanged()
     }
 }

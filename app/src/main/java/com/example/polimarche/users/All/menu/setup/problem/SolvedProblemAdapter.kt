@@ -23,10 +23,13 @@ class SolvedProblemAdapter(
     private var listSolvedProblem: MutableList<DataSolvedProblem> = mutableListOf()
 
     init {
+        solvedProblemViewModel.listSolvedProblem.observeForever {
         listSolvedProblem.clear()
-        listSolvedProblem = solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
+        listSolvedProblem =
+            solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
         notifyDataSetChanged()
     }
+}
 
 
     interface OnProblemReappearedClick{
@@ -80,28 +83,26 @@ class SolvedProblemAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val listOfItems = listSolvedProblem.toMutableList()
-
         when(holder){
             is ViewHolderSolvedProblem ->{
                 holder.apply {
-                    setupCode.text = "Setup ${ listOfItems?.get(position)?.setupCode.toString() }"
-                    description.setText(listOfItems?.get(position)?.description)
+                    setupCode.text = "Setup ${ listSolvedProblem?.get(position)?.setupCode.toString() }"
+                    description.setText(listSolvedProblem?.get(position)?.description)
                     reappearedProblem.setImageResource(R.drawable.remove_general_small_icon)
                     visualizeProblem.setImageResource(R.drawable.visibility_icon)
 
                     visualizeProblem.setOnClickListener {
                         Intent(it.context, DetailsSetupActivity::class.java).apply {
-                            this.putExtra("SETUP_CODE", listOfItems?.get(position)?.setupCode)
+                            this.putExtra("SETUP_CODE", listSolvedProblem?.get(position)?.setupCode)
                             itemView.context.startActivity(this)
                         }
                     }
 
-                    val expansion = listOfItems?.get(position)?.expansion!!
+                    val expansion = listSolvedProblem?.get(position)?.expansion!!
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
                     linearLayoutTouchable.setOnClickListener{
-                        listOfItems[position].expansion = !listOfItems[position].expansion
+                        listSolvedProblem[position].expansion = !listSolvedProblem[position].expansion
                         notifyItemChanged(position)
                     }
 
@@ -118,7 +119,7 @@ class SolvedProblemAdapter(
     Then it calls directly a method of the adapter
     that replaces the list of the adapter.
      */
-    fun removeItemFromList(item: DataSolvedProblem, description: String){
+    suspend fun removeItemFromList(item: DataSolvedProblem, description: String){
         solvedProblemViewModel.removeItemFromList(item, description)
         setNewList(
             solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!

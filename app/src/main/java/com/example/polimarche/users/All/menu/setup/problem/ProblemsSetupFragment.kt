@@ -53,7 +53,7 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
 
         problemViewModel.initialize()
 
-        problemViewModel.listProblems.observe(viewLifecycleOwner) {
+        problemViewModel.listProblems.observe(viewLifecycleOwner) {problem ->
             problemAdapter = ProblemAdapter(
                 problemViewModel.listProblems.value?.toMutableList()!!,
                 this
@@ -62,6 +62,8 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
             val layoutManager = LinearLayoutManager(this.context)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = problemAdapter
+
+            problemAdapter.setList(problem)
         }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{

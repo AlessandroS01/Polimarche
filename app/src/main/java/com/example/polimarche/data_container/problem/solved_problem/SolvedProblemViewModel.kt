@@ -19,7 +19,6 @@ class SolvedProblemViewModel: ViewModel() {
     fun initialize(){
         viewModelScope.launch {
             problemsRepository.fetchSolvedProblemFromFirestore()
-
         }
     }
 
@@ -32,13 +31,13 @@ class SolvedProblemViewModel: ViewModel() {
         get() = _listSolvedProblemData
 
 
-    fun removeItemFromList(item: DataSolvedProblem, description: String){
+    suspend fun removeItemFromList(item: DataSolvedProblem, description: String){
         problemsRepository.removeItemFromSolvedProblem(item, description)
     }
 
     /*
     This method return a new MutableLiveData list in which all the elements
-    are an instance of DataOccurringProblem class having the attribute
+    are an instance of DataSolvedProblem class having the attribute
     problemCode set to the problemCode clicked on ProblemsSetupFragment.
      */
     fun filterListByProblemCode(problemSolvedCode: Int): MutableLiveData<MutableList<DataSolvedProblem>>{

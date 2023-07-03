@@ -38,8 +38,6 @@ class ProblemsRepository {
     }
 
 
-
-
     private val db = FirebaseFirestore.getInstance()
 
 
@@ -217,7 +215,7 @@ class ProblemsRepository {
     creates a new object of DataSolvedProblem to add to the list _listSolvedProblemsData.
     It calls a method in which the new element is formally added.
      */
-    fun removeItemFromOccurringProblem(
+    suspend fun removeItemFromOccurringProblem(
         occurredProblem: DataOccurringProblem,
         description: String
     ) {
@@ -288,7 +286,7 @@ class ProblemsRepository {
     to the list _listOccurringProblemsData.
     It calls a method in which the new element is formally added.
      */
-    fun removeItemFromSolvedProblem(
+    suspend fun removeItemFromSolvedProblem(
         solvedProblem: DataSolvedProblem,
         description: String
     ) {

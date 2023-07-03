@@ -45,7 +45,7 @@ class AddNewOccurringProblemAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listSetups.size
+        return listSetups.size!!
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

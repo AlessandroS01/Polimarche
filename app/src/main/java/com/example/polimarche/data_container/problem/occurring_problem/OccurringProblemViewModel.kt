@@ -37,7 +37,7 @@ class OccurringProblemViewModel: ViewModel() {
         //problemsRepository.addNewOccurringProblem(problem)
     }
 
-    fun removeItemFromList(item: DataOccurringProblem, newDescription: String){
+    suspend fun removeItemFromList(item: DataOccurringProblem, newDescription: String){
         problemsRepository.removeItemFromOccurringProblem(item, newDescription)
         //problemsRepository.removeItemFromOccurringProblem(item, newDescription)
     }
