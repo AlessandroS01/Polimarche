@@ -224,27 +224,51 @@ class ProblemsRepository {
         val collectionRef = db.collection("DataOccurringProblem")
         val collectionRefSolvedProblem = db.collection("DataSolvedProblem")
 
-        // Rimuovi l'elemento dalla lista _listOccurringProblemsData
-        _listOccurringProblemsData.value?.remove(occurredProblem)
+        // Crea una query per trovare il documento corrispondente a occurredProblem
+        collectionRef
+            .whereEqualTo("problemCode", occurredProblem.problemCode)
+            .whereEqualTo("setupCode", occurredProblem.setupCode)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val document = querySnapshot.documents[0]
+                    val documentId = document.id
 
-        // Crea un nuovo oggetto DataSolvedProblem
-        val newSolvedProblem = DataSolvedProblem(
-            occurredProblem.problemCode,
-            occurredProblem.setupCode,
-            description
-        )
+                    // Rimuovi l'elemento dalla collezione DataOccurringProblem
+                    collectionRef.document(documentId)
+                        .delete()
+                        .addOnSuccessListener {
+                            Log.e("ProblemsRepository", "Problem removed successfully")
 
-        // Aggiungi il nuovo problema risolto alla collezione DataSolvedProblem
-        collectionRefSolvedProblem.add(newSolvedProblem)
-            .addOnSuccessListener {
-                Log.e("ProblemsRepository", "New solved problem added successfully")
+                            // Aggiungi il nuovo problema risolto alla collezione DataSolvedProblem
+                            val newSolvedProblem = DataSolvedProblem(
+                                occurredProblem.problemCode,
+                                occurredProblem.setupCode,
+                                description
+                            )
 
-                // Aggiorna la lista locale o esegui altre azioni necessarie
+                            collectionRefSolvedProblem.add(newSolvedProblem)
+                                .addOnSuccessListener {
+                                    Log.e("ProblemsRepository", "New solved problem added successfully")
+
+                                    // Aggiorna la lista locale o esegui altre azioni necessarie
+                                }
+                                .addOnFailureListener { exception ->
+                                    Log.e("ProblemsRepository", "Failed to add new solved problem", exception)
+                                }
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e("ProblemsRepository", "Failed to remove problem", exception)
+                        }
+                } else {
+                    Log.e("ProblemsRepository", "Problem not found")
+                }
             }
             .addOnFailureListener { exception ->
-                Log.e("ProblemsRepository", "Failed to add new solved problem", exception)
+                Log.e("ProblemsRepository", "Failed to query problem", exception)
             }
     }
+
 
     private fun addNewSolvedProblem(newSolvedProblem: DataSolvedProblem){
         val collectionRef = db.collection("DataSolvedProblem")
@@ -278,27 +302,50 @@ class ProblemsRepository {
         val collectionRef = db.collection("DataSolvedProblem")
         val collectionRefOccurringProblem = db.collection("DataOccurringProblem")
 
-        // Rimuovi l'elemento dalla lista _listSolvedProblemsData
-        _listSolvedProblemsData.value?.remove(solvedProblem)
+        // Crea una query per trovare il documento corrispondente a solvedProblem
+        collectionRef
+            .whereEqualTo("problemCode", solvedProblem.problemCode)
+            .whereEqualTo("setupCode", solvedProblem.setupCode)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val document = querySnapshot.documents[0]
+                    val documentId = document.id
 
-        // Crea un nuovo oggetto DataOccurringProblem
-        val newOccurringProblem = DataOccurringProblem(
-            solvedProblem.problemCode,
-            solvedProblem.setupCode,
-            description
-        )
+                    // Rimuovi l'elemento dalla collezione DataSolvedProblem
+                    collectionRef.document(documentId)
+                        .delete()
+                        .addOnSuccessListener {
+                            Log.e("ProblemsRepository", "Solved problem removed successfully")
+                            // Aggiungi il nuovo problema in corso alla collezione DataOccurringProblem
+                            val newOccurringProblem = DataOccurringProblem(
+                                solvedProblem.problemCode,
+                                solvedProblem.setupCode,
+                                description
+                            )
 
-        // Aggiungi il nuovo problema in corso alla collezione DataOccurringProblem
-        collectionRefOccurringProblem.add(newOccurringProblem)
-            .addOnSuccessListener {
-                Log.e("ProblemsRepository", "New occurring problem added successfully")
+                            collectionRefOccurringProblem.add(newOccurringProblem)
+                                .addOnSuccessListener {
+                                    Log.e("ProblemsRepository", "New occurring problem added successfully")
 
-                // Aggiorna la lista locale o esegui altre azioni necessarie
+                                    // Aggiorna la lista locale o esegui altre azioni necessarie
+                                }
+                                .addOnFailureListener { exception ->
+                                    Log.e("ProblemsRepository", "Failed to add new occurring problem", exception)
+                                }
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e("ProblemsRepository", "Failed to remove solved problem", exception)
+                        }
+                } else {
+                    Log.e("ProblemsRepository", "Solved problem not found")
+                }
             }
             .addOnFailureListener { exception ->
-                Log.e("ProblemsRepository", "Failed to add new occurring problem", exception)
+                Log.e("ProblemsRepository", "Failed to query solved problem", exception)
             }
     }
+
 
     fun addNewOccurringProblem(newOccurringProblem: DataOccurringProblem){
         val collectionRef = db.collection("DataOccurringProblem")
