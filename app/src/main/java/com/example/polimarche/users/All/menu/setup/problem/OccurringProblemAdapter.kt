@@ -140,7 +140,7 @@ class OccurringProblemAdapter(
     }
 
 
-    private fun setNewList(newList: MutableList<DataOccurringProblem>){
+     fun setNewList(newList: MutableList<DataOccurringProblem>){
         listOccurringProblem.clear()
         listOccurringProblem.addAll(newList)
         notifyDataSetChanged()

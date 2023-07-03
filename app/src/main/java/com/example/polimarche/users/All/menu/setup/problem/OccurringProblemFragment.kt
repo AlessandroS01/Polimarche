@@ -71,7 +71,7 @@ class OccurringProblemFragment(
          */
     occurringProblemViewModel.initialize()
 
-        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
+        occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {problem ->
             occurringProblemAdapter = OccurringProblemAdapter(
                 problemClicked,
                 occurringProblemViewModel,
@@ -82,6 +82,8 @@ class OccurringProblemFragment(
             val linearLayoutManagerMain = LinearLayoutManager(this.context)
             recyclerViewOccurringProblem.layoutManager = linearLayoutManagerMain
             recyclerViewOccurringProblem.adapter = occurringProblemAdapter
+
+            occurringProblemAdapter.setNewList(problem)
         }
 
         binding.imageButtonAddOccurringProblem.setOnClickListener {
