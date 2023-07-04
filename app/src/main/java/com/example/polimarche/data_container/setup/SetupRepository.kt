@@ -157,6 +157,7 @@ class SetupRepository {
     }
 
     fun removeSetup(setup: DataSetup) {
+
         val collectionRef = db.collection("setup")
 
         collectionRef.whereEqualTo("code", setup.code)
@@ -187,50 +188,46 @@ class SetupRepository {
             }
 
         val collectionRefSolved = db.collection("DataSolvedProblem")
-        collectionRefSolved.whereEqualTo("setupCode", setup.code)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                if (!querySnapshot.isEmpty) {
-                    val documentSnapshot = querySnapshot.documents[0]
-                    val documentId = documentSnapshot.id
-
-                    collectionRefSolved.document(documentId).delete()
-                        .addOnSuccessListener {
-
-                        }
-                        .addOnFailureListener {
-
-                        }
-                } else {
-
-                }
+        
+        val queryRefSolved = collectionRefSolved.whereEqualTo("setupCode", setup.code)
+        queryRefSolved.get().addOnSuccessListener { querySnapshot ->
+            for (documentSnapshot in querySnapshot) {
+                // Delete each document in the query results
+                documentSnapshot.reference.delete()
+                    .addOnSuccessListener {
+                        // Document successfully deleted
+                    }
+                    .addOnFailureListener { exception ->
+                        // An error occurred while deleting the document
+                        // Handle the error accordingly
+                    }
             }
-            .addOnFailureListener { exception ->
-                Log.e("SetupRepository", "Errore durante la ricerca del documento", exception)
-            }
+        }.addOnFailureListener { exception ->
+            // An error occurred while executing the query
+            // Handle the error accordingly
+        }
+
 
         val collectionRefOccurring = db.collection("DataOccurringProblem")
-        collectionRefOccurring.whereEqualTo("setupCode", setup.code)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                if (!querySnapshot.isEmpty) {
-                    val documentSnapshot = querySnapshot.documents[0]
-                    val documentId = documentSnapshot.id
+        // Query the collection based on the parameter value
+        val query = collectionRefOccurring.whereEqualTo("setupCode", setup.code)
 
-                    collectionRefOccurring.document(documentId).delete()
-                        .addOnSuccessListener {
-
-                        }
-                        .addOnFailureListener {
-
-                        }
-                } else {
-
-                }
+        query.get().addOnSuccessListener { querySnapshot ->
+            for (documentSnapshot in querySnapshot) {
+                // Delete each document in the query results
+                documentSnapshot.reference.delete()
+                    .addOnSuccessListener {
+                        // Document successfully deleted
+                    }
+                    .addOnFailureListener { exception ->
+                        // An error occurred while deleting the document
+                        // Handle the error accordingly
+                    }
             }
-            .addOnFailureListener { exception ->
-                Log.e("SetupRepository", "Errore durante la ricerca del documento", exception)
-            }
+        }.addOnFailureListener { exception ->
+            // An error occurred while executing the query
+            // Handle the error accordingly
+        }
     }
 }
 /*

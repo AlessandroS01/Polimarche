@@ -30,11 +30,11 @@ class ProblemsRepository {
     }
 
     fun initialize() {
-        CoroutineScope(Dispatchers.IO).launch {
+        /*CoroutineScope(Dispatchers.IO).launch {
             fetchProblemFromFirestore()
             fetchOccurringProblemFromFirestore()
             fetchSolvedProblemFromFirestore()
-        }
+        }*/
     }
 
 
@@ -66,6 +66,7 @@ class ProblemsRepository {
             emptyList<DataSolvedProblem>().toMutableList()
         )
     val listSolvedProblems get() = _listSolvedProblemsData
+
     suspend fun fetchProblemFromFirestore() {
         val problemCollection = db.collection("DataProblem")
 
