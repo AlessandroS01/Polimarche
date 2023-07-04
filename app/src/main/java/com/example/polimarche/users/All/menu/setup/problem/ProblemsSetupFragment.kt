@@ -56,8 +56,6 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
         searchView = binding.searchViewProblemSetup
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
-        problemViewModel.initialize()
-
         problemViewModel.listProblems.observe(viewLifecycleOwner) {problem ->
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             problemAdapter = ProblemAdapter(

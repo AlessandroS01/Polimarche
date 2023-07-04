@@ -18,6 +18,34 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-25252549">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="OPPO&#10; CPH2091" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="fd945971" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="374885402">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="OPPO&#10; CPH2091" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="fd945971" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

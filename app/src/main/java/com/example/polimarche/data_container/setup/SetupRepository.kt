@@ -31,7 +31,7 @@ class SetupRepository {
         }
     }
 
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     private val _listSetup: MutableLiveData<MutableList<DataSetup>> = MutableLiveData()
     val listSetup get() = _listSetup
