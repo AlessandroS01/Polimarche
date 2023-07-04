@@ -8,11 +8,12 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.polimarche.R
@@ -25,7 +26,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SolvedProblemFragment(
-    private val problemClicked: DataProblem
+    private val problemClicked: DataProblem,
+    window: Window
 ): Fragment(R.layout.fragment_general_setup_solved_problem),
     SolvedProblemAdapter.OnProblemReappearedClick {
 
@@ -33,6 +35,8 @@ class SolvedProblemFragment(
 
     private var _binding: FragmentGeneralSetupSolvedProblemBinding? = null
     private val binding get() = _binding!!
+
+    private val window = window
 
     private lateinit var solvedProblemAdapter: SolvedProblemAdapter
     private lateinit var recyclerView: RecyclerView
@@ -50,13 +54,11 @@ class SolvedProblemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        solvedProblemAdapter = SolvedProblemAdapter(
-                problemClicked,
-                solvedProblemViewModel,
-                this
-            )
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
 
         solvedProblemViewModel.listSolvedProblem.observe(viewLifecycleOwner) { solvedProblems ->
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             solvedProblemAdapter = SolvedProblemAdapter(
                 problemClicked,
                 solvedProblemViewModel,

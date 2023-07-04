@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,9 +16,11 @@ import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentGeneralSetupSeeSetupBinding
 import com.example.polimarche.data_container.setup.SetupViewModel
 
-class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
+class SeeSetupFragment(window: Window) : Fragment(R.layout.fragment_general_setup_see_setup){
 
     private val setupViewModel: SetupViewModel by viewModels()
+
+    private val window = window
 
     private lateinit var searchView: SearchView
     private lateinit var adapter: SeeSetupAdapter
@@ -40,6 +44,8 @@ class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         searchView = binding.searchViewSetupSee
 
         adapter = SeeSetupAdapter(setupViewModel)
@@ -49,8 +55,11 @@ class SeeSetupFragment : Fragment(R.layout.fragment_general_setup_see_setup){
         recyclerView.layoutManager = layoutManager
         setupViewModel.setupList.observe(viewLifecycleOwner) {
 
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
             adapter = SeeSetupAdapter(setupViewModel)
             recyclerView.adapter = adapter
+
         }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{

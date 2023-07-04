@@ -29,10 +29,14 @@ class DetailsSetupActivity: AppCompatActivity() {
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
 
 
         setupViewModel.setupList.observe(this) {
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             // Entire setup data found from the setup code
                 val filteredList = setupViewModel.setupList.value?.filter { it.code == setupCode }
                     ?.toMutableList()!!

@@ -8,6 +8,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -22,13 +24,15 @@ import com.example.polimarche.databinding.FragmentGeneralSetupProblemsSetupBindi
 import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.ProblemsViewModel
 
-class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_setup),
+class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general_setup_problems_setup),
     ProblemAdapter.OnManageProblemClick {
 
     private val problemViewModel: ProblemsViewModel by viewModels()
 
     private var _binding: FragmentGeneralSetupProblemsSetupBinding? = null
     private val binding get() = _binding!!
+
+    private val window = window
 
     private lateinit var searchView: SearchView
 
@@ -50,9 +54,12 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
         super.onViewCreated(view, savedInstanceState)
 
         searchView = binding.searchViewProblemSetup
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         problemViewModel.initialize()
 
         problemViewModel.listProblems.observe(viewLifecycleOwner) {problem ->
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             problemAdapter = ProblemAdapter(
                 problemViewModel.listProblems.value?.toMutableList()!!,
                 this
@@ -178,7 +185,7 @@ class ProblemsSetupFragment : Fragment(R.layout.fragment_general_setup_problems_
         searchView.visibility = View.GONE
 
         binding.imageButtonAddProblem.visibility = View.GONE
-        val manageProblemFragment = ManageProblemFragment(problemClicked, searchView, binding.imageButtonAddProblem)
+        val manageProblemFragment = ManageProblemFragment(problemClicked, searchView, binding.imageButtonAddProblem, window)
         parentFragmentManager.beginTransaction().replace(binding.frameLayoutSetupManageProblemSetup.id,
             manageProblemFragment).commit()
 

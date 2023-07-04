@@ -3,7 +3,6 @@ package com.example.polimarche.users.department_head.menu.setup
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
@@ -52,8 +51,8 @@ class DepartmentHeadsSetupActivity: AppCompatActivity() {
         }
 
 
-        val seeSetupsFragment = SeeSetupFragment()
-        val problemSetupFragment = ProblemsSetupFragment()
+        val seeSetupsFragment = SeeSetupFragment(window)
+        val problemSetupFragment = ProblemsSetupFragment(window)
         setCurrentFragment(seeSetupsFragment)
         binding.setupDHBottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){

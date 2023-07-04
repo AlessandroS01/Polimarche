@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -21,12 +20,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class VisualizeSetupFragment(
-    val adapter: DeleteSetupAdapter
+    val adapter: DeleteSetupAdapter,
+    window: Window
 ) : Fragment(R.layout.fragment_managers_delete_setup_visualize_setup) {
 
     private val setupViewModel: SetupViewModel by viewModels()
 
     private lateinit var setupClicked: DataSetup
+
+    private val window = window
 
     private var _binding: FragmentManagersDeleteSetupVisualizeSetupBinding? = null
     private val binding get() = _binding!!
@@ -46,9 +48,12 @@ class VisualizeSetupFragment(
         super.onViewCreated(view, savedInstanceState)
 
         setupViewModel.initialize()
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
 
         val setupCode = arguments?.getInt("SETUP_CODE")
         setupViewModel.setupList.observe(viewLifecycleOwner) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             setupClicked =
                 setupViewModel.setupList.value?.filter { it.code == setupCode }?.toMutableList()
                     ?.get(0)!!

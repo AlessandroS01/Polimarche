@@ -12,7 +12,6 @@ import com.example.polimarche.R
 import com.example.polimarche.users.all.menu.main.MainActivity
 import com.example.polimarche.users.all.menu.setup.problem.ProblemsSetupFragment
 import com.example.polimarche.users.all.menu.setup.see.SeeSetupFragment
-import com.example.polimarche.users.managers.menu.setup.create.CreateSetupFragment
 import com.example.polimarche.users.managers.menu.setup.delete.DeleteSetupFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -48,16 +47,15 @@ class ManagersSetupActivity : AppCompatActivity(){
             }
         }
 
-
         /*
         Part that allow us to change the Fragments inside
         R.id.frameSetupManagers at the touch of the buttons
         right below the bottomNavigationBar
          */
-        val seeSetupFragment = SeeSetupFragment()
-        val createSetupFragment = CreateSetupFragment()
-        val problemsSetupFragment = ProblemsSetupFragment()
-        val deleteSetupFragment = DeleteSetupFragment()
+        val seeSetupFragment = SeeSetupFragment(window)
+        //val createSetupFragment = CreateSetupFragment(window)
+        val problemsSetupFragment = ProblemsSetupFragment(window)
+        val deleteSetupFragment = DeleteSetupFragment(window)
         setCurrentFragment(seeSetupFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){

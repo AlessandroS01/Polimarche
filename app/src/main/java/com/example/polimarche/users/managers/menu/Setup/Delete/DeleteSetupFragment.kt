@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,16 +16,17 @@ import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentManagersSetupDeleteSetupBinding
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
-import com.example.polimarche.users.all.menu.setup.see.SeeSetupAdapter
 
 /*
     Fragment used to show all the setup and their parameters that, unlike
     the fragment seeSetup, add the possibility to delete the setups.
  */
-class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_setup),
+class DeleteSetupFragment(window: Window) : Fragment(R.layout.fragment_managers_setup_delete_setup),
     DeleteSetupAdapter.OnSetupCodeClickListener{
 
     private val setupViewModel: SetupViewModel by viewModels()
+
+    private val window = window
 
     private lateinit var searchView: SearchView
     private lateinit var adapter: DeleteSetupAdapter
@@ -47,13 +50,15 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
         searchView = binding.searchViewSetupDelete
 
         adapter = DeleteSetupAdapter(setupViewModel, this)
 
         setupViewModel.setupList.observe(viewLifecycleOwner) {problem ->
             recyclerViewDeleteSetup = binding.deleteSetupList
-
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             val layoutManager = LinearLayoutManager(context)
 
             recyclerViewDeleteSetup.layoutManager = layoutManager
@@ -99,7 +104,7 @@ class DeleteSetupFragment : Fragment(R.layout.fragment_managers_setup_delete_set
          */
         val bundle = Bundle()
         bundle.putInt("SETUP_CODE", setupClicked.code)
-        val visualizeSetup = VisualizeSetupFragment(adapter)
+        val visualizeSetup = VisualizeSetupFragment(adapter, window)
         visualizeSetup.arguments = bundle
 
         parentFragmentManager.beginTransaction().apply{

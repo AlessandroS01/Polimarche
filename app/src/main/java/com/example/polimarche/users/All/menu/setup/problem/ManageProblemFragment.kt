@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ImageButton
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.example.polimarche.R
 import com.example.polimarche.databinding.FragmentGeneralManageProblemsSetupBinding
@@ -12,12 +14,15 @@ import com.example.polimarche.data_container.problem.DataProblem
 
 class ManageProblemFragment(
     private val problemClicked: DataProblem,
-    private val searchView: androidx.appcompat.widget.SearchView,
-    private val imageButton: ImageButton
+    private val searchView: SearchView,
+    private val imageButton: ImageButton,
+    window: Window
 ) : Fragment(R.layout.fragment_general_manage_problems_setup){
 
     private var _binding: FragmentGeneralManageProblemsSetupBinding? = null
     private val binding get() = _binding!!
+
+    private val window = window
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +49,8 @@ class ManageProblemFragment(
         /*
         Changes the fragment to visualize inside the frame of the current fragment.
          */
-        val occurringProblemFragment = OccurringProblemFragment(problemClicked)
-        val solvedProblemFragment = SolvedProblemFragment(problemClicked)
+        val occurringProblemFragment = OccurringProblemFragment(problemClicked, window)
+        val solvedProblemFragment = SolvedProblemFragment(problemClicked, window)
         parentFragmentManager.beginTransaction().replace(binding.frameLayoutManageProblem.id
             , occurringProblemFragment).commit()
         binding.radioGroupManageProblem.setOnCheckedChangeListener { _, checkedId ->

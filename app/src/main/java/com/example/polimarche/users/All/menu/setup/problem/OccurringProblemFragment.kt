@@ -8,6 +8,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -25,10 +27,15 @@ import com.example.polimarche.data_container.problem.solved_problem.SolvedProble
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupViewModel
 import com.example.polimarche.databinding.FragmentGeneralSetupOccurringProblemBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.Semaphore
 
 class OccurringProblemFragment(
-    private val problemClicked: DataProblem
+    private val problemClicked: DataProblem,
+    window: Window
 ): Fragment(R.layout.fragment_general_setup_occurring_problem),
     OccurringProblemAdapter.OnProblemSolvedClick
 {
@@ -40,6 +47,8 @@ class OccurringProblemFragment(
 
     private var _binding: FragmentGeneralSetupOccurringProblemBinding? = null
     private val binding get()= _binding!!
+
+    private val window = window
 
 
     private lateinit var occurringProblemAdapter: OccurringProblemAdapter
@@ -72,11 +81,8 @@ class OccurringProblemFragment(
         on ProblemsSetupFragment.
          */
 
-        occurringProblemAdapter = OccurringProblemAdapter(
-                problemClicked,
-                occurringProblemViewModel,
-                this
-            )
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
 
         occurringProblemViewModel.listOccurringProblem.observe(viewLifecycleOwner) {
             occurringProblemAdapter = OccurringProblemAdapter(
@@ -84,16 +90,25 @@ class OccurringProblemFragment(
                 occurringProblemViewModel,
                 this
             )
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             recyclerViewOccurringProblem = binding.listOccurringProblemSetup
             val linearLayoutManagerMain = LinearLayoutManager(this.context)
             recyclerViewOccurringProblem.layoutManager = linearLayoutManagerMain
             recyclerViewOccurringProblem.adapter = occurringProblemAdapter
-
         }
 
         binding.imageButtonAddOccurringProblem.setOnClickListener {
-            showDialogAddOccurringProblem()
+
+            // Fetch data and populate listSetupsWithoutProblem
+            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+            val listSetupsWithoutProblem = findSetupsWithoutProblem()
+
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+            showDialogAddOccurringProblem(listSetupsWithoutProblem)
+
+
         }
     }
 
@@ -101,7 +116,7 @@ class OccurringProblemFragment(
     Create a dialog box that let the user add a new setup in which the problem
     previously selected occurs.
      */
-    private fun showDialogAddOccurringProblem() {
+    private fun showDialogAddOccurringProblem(listSetupsWithoutProblem: MutableList<DataSetup>) {
         val dialog = Dialog(requireContext())
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -121,11 +136,6 @@ class OccurringProblemFragment(
         val recyclerViewAddOccurringProblem: RecyclerView = dialog.findViewById(
             R.id.listAddNewOccurringProblem
         )
-        /*
-        Create a list of setups in which all elements have a setupCode different from
-        the other setup codes stored inside listOccurringProblem.
-         */
-        val listSetupsWithoutProblem: MutableList<DataSetup> = findSetupsWithoutProblem()
         /*
         Check if there are other problems in which the problem can occur.
         If there aren't then a toast will be shown.
@@ -241,29 +251,35 @@ class OccurringProblemFragment(
     the list mentioned 2 lines above. Moreover checks if the setup has already fixed the
     problem.
      */
-    private fun findSetupsWithoutProblem(): MutableList<DataSetup> {
-        val listSetupsWithoutProblem = mutableListOf<DataSetup>()
+    private fun findSetupsWithoutProblem(): MutableList<DataSetup>{
+         val listSetupsWithoutProblem = mutableListOf<DataSetup>()
 
-        val listOccurringProblems = occurringProblemViewModel.listOccurringProblem.value
-        val listSolvedProblems = solvedProblemViewModel.listSolvedProblem.value
+         val listOccurringProblems = occurringProblemViewModel.listOccurringProblem.value
 
-        setupViewModel.setupList.observe(viewLifecycleOwner) { dataSetupList ->
-            dataSetupList.forEach { dataSetup ->
-                val isOccurringProblem = listOccurringProblems?.any {
-                    dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
-                } ?: false
+         val listSolvedProblems = solvedProblemViewModel.listSolvedProblem.value
 
-                val isSolvedProblem = listSolvedProblems?.any {
-                    dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
-                } ?: false
 
-                if (!isOccurringProblem && !isSolvedProblem) {
-                    listSetupsWithoutProblem.add(dataSetup)
-                }
-            }
-        }
+         // Execute the observation on the main thread
+         setupViewModel.setupList.observe(viewLifecycleOwner){listSetups ->
 
-        return listSetupsWithoutProblem
+             listSetups?.forEach { dataSetup ->
+                 val isOccurringProblem = listOccurringProblems?.any {
+                     dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
+                 } ?: false
+
+                 val isSolvedProblem = listSolvedProblems?.any {
+                     dataSetup.code == it.setupCode && it.problemCode == problemClicked.code
+                 } ?: false
+
+                 if (!isOccurringProblem && !isSolvedProblem) {
+                     listSetupsWithoutProblem.add(dataSetup)
+                 }
+             }
+         }
+
+         return listSetupsWithoutProblem
+
+
     }
 
     override fun onResume() {
