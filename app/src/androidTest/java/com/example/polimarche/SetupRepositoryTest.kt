@@ -1,5 +1,5 @@
 import androidx.lifecycle.LiveData
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.data_container.setup.SetupRepository
 import junit.framework.TestCase.assertNotNull

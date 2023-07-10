@@ -1,7 +1,8 @@
 package com.example.polimarche
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
+
+import androidx.test.runner.AndroidJUnit4
 import com.example.polimarche.users.all.menu.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import org.junit.After
