@@ -45,7 +45,7 @@ class LoginFragmentTest {
 
     @Test
     fun signInWithIncorrectCredentials() {
-        val matricola = "123456" // Inserisci una matricola valida
+        val matricola = "1099336" // Inserisci una matricola valida
         val matriculation = "s$matricola@studenti.univpm.it"
         val password = "wrongpassword" // Inserisci una password errata
 
