@@ -14,19 +14,18 @@ import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 
 /*
-Used to display all the setups in which the problem clicked
-is not currently occurring.
-Used for the recyclerView created after the user clicks on New
-Setup Facing The Problem inside ManageProblemsFragment.
+Utilizzato per visualizzare tutte i setup in cui si è verificato il problema
+non attualmente in corso.
+Utilizzato per recyclerView creato dopo che l'utente fa clic su New
+Setup Facing The Problem all'interno di ManageProblemsFragment.
  */
 class AddNewOccurringProblemAdapter(
     private val listSetups: MutableList<DataSetup>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /*
-    These 2 attributes are used to pass directly to the OccurringProblemFragment
-    the setups that are chosen from the entire list thanks to the isChecked method of
-    CheckBoxes.
+    Questi 2 attributi vengono utilizzati per passare direttamente a OccurringProblemFragment
+    i setup che vengono scelti dall'intero elenco grazie al metodo isChecked della Checkbox.
      */
     private val listCheckedElements = initializeMappingCheckedElements()
     private val listDescriptionElements = initializeMappingDescriptionElements()
@@ -63,13 +62,17 @@ class AddNewOccurringProblemAdapter(
                     }
 
                     /*
-                    Changes the values inside the 2 lists created as attributes
-                    of the adapter.
+                    Modifica i valori all'interno delle 2 liste create come attributi
+                    dell'adapter.
                      */
                     description.visibility = View.GONE
+                    // Quando il testo della descrizione cambia il valore viene memorizzato in listDescriptionElements
                     description.addTextChangedListener {
                         listDescriptionElements[listSetups[position]] = description.text.toString()
                     }
+
+                    // Quando lo stato di selezione di setupCode cambia, la visibilità di description viene regolata
+                    // e il valore di selezione viene memorizzato in listCheckedElements
                     setupCode.setOnCheckedChangeListener { _, isChecked ->
                         listCheckedElements[listSetups[position]] = isChecked
                         description.visibility = if (isChecked) View.VISIBLE else View.GONE
@@ -79,6 +82,9 @@ class AddNewOccurringProblemAdapter(
         }
     }
 
+    // Questa funzioni inizializzano le mappe listCheckedElements e listDescriptionElements
+    // associando ciascun elemento DataSetup a un valore di default (false per listCheckedElements e
+    // "" per listDescriptionElements)
     private fun initializeMappingCheckedElements(): MutableMap<DataSetup, Boolean> {
         val map = mutableMapOf<DataSetup, Boolean>()
         listSetups.forEach {

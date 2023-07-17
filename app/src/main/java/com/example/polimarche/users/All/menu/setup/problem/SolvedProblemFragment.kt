@@ -83,9 +83,9 @@ class SolvedProblemFragment(
 
 
     /*
-    If the users click on the imageVew, a dialog box pops up and, inside
-    the dialog, the user can put a description of the problem again.
-    Then if the user confirms the reappearance the element will be removed.
+    Se gli utenti fanno clic su imageVew, viene visualizzata una finestra di dialogo e, all'interno
+    finestra di dialogo, l'utente può inserire una nuova descrizione del problema.
+    Quindi, se l'utente conferma la ricomparsa del problema, l'elemento verrà rimosso.
     */
     private fun showReappearedProblemDialog(element: DataSolvedProblem, view: View) {
         val dialog = Dialog(view.context)
@@ -106,13 +106,11 @@ class SolvedProblemFragment(
         val confirmReappearedProblem = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
         val cancelReappearedProblem = dialog.findViewById(R.id.cancelFrameAllUses) as FrameLayout
 
-        /*
-        Confirm that the problem that was solved before reappeared on the same setup.
-         */
+
         confirmReappearedProblem.setOnClickListener {
             /*
-            Calls the method removeItemFromList of the adapter and pass
-            the element clicked and the description of the future problemSolved.
+            Chiama il metodo removeItemFromList dell'adattatore e passa
+            l'elemento cliccato e la descrizione del futuro problema risolto.
              */
             CoroutineScope(Dispatchers.Main).launch {
                 solvedProblemAdapter.removeItemFromList(

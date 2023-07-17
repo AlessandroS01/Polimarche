@@ -45,8 +45,6 @@ class SeeTracksAdapter(
         inputQuery.value = query
     }
 
-
-
     inner class ViewHolderTracks(
         tracksView: View
     ): RecyclerView.ViewHolder(tracksView){
@@ -56,7 +54,7 @@ class SeeTracksAdapter(
         val trackLength = tracksView.findViewById(R.id.trackLength) as TextView
         val modifyTrackLength = tracksView.findViewById(R.id.imageViewModifyAllUsesTracks) as ImageView
 
-        // Layout principale dell'elemento della traccia
+        // Layout principale dell'elemento della track
         val constraintLayout: ConstraintLayout = tracksView.findViewById(
             R.id.constraintLayoutAllUsesTracks
         )
@@ -65,6 +63,7 @@ class SeeTracksAdapter(
 
     }
 
+    // Viene effettuato l'inflate per ogni elemento della RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.item_general_all_uses_tracks,
@@ -79,8 +78,10 @@ class SeeTracksAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder){
+        when (holder){  // Controllo per verificare il tipo di ViewHolder
             is ViewHolderTracks -> {
+                /*Vengono popolate le diverse viste all'interno del ViewHolder
+           con i dati corrispondenti all'elemento nella posizione specificata */
                 holder.apply {
                     trackName.text = listTracks.get(position)?.name
                     trackLength.text = "${listTracks.get(position)?.length.toString()} km"
@@ -88,18 +89,27 @@ class SeeTracksAdapter(
 
                     val expansion = listTracks.get(position)?.expansion!!
 
+                    /* Imposta la visibilità di linearLayout in base allo stato di espansione ottenuto
+                       dalla lista listTracks nella posizione corrente.
+                       Se l'elemento è espanso, la visibilità viene impostata su View.VISIBLE,
+                       altrimenti viene impostata su View.GONE
+                   * */
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
+                    // Quando viene cliccato, inverte lo stato di espansione dell'elemento in listTracks
+                    // nella posizione corrente e notifica l'adapter
                     constraintLayout.setOnClickListener {
                         listTracks.get(position)?.expansion =
                             ! listTracks.get(position)?.expansion!!
                         notifyItemChanged(position)
                     }
 
+                    // Listener sul click del bottone modifyTrackLength, al click viene eseguito il metodo showDialogModifyTrackLength
+                    // passandogli l'item e la rispettiva posizione
                     modifyTrackLength.setOnClickListener {
                         /*
-                        Recalls a method in which the user can confirm or cancel the
-                        track length modification
+                        Richiama un metodo in cui l'utente può confermare o annullare la
+                        modifica della lunghezza della traccia
                          */
                         showDialogModifyTrackLength(holder.itemView, position)
                     }
@@ -108,19 +118,22 @@ class SeeTracksAdapter(
         }
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor") // indicare al compilatore di ignorare gli avvisi relativi all'uso di un colore come valore costante
     private fun showDialogModifyTrackLength(item: View, position: Int) {
-        val dialog = Dialog(item.context)
+        val dialog = Dialog(item.context) // Creazione oggetto Dialog
+        // Proprietà del Dialog
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        // Proprietà del Dialog
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_box_general_all_uses)
 
+        // Vengono ottenute le referenze alle diverse viste all'interno del layout del dialog
         val modifyLengthEditText = dialog.findViewById(R.id.editTextAllUses) as EditText
         val titleDialog = dialog.findViewById(R.id.textViewTitleAllUses) as TextView
         val confirmFrame = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
@@ -135,26 +148,26 @@ class SeeTracksAdapter(
         changeableText.text = "Inside the edit text only write a decimal number like 6.092 if the track length is 6.092km"
 
         /*
-        Confirm to modify the length of the track
+        Bottone di conferma per modificare la lunghezza della traccia
          */
         confirmFrame.setOnClickListener {
             /*
-            Whenever the user inserts a value that cannot be converted to a Double value,
-            the dialog won't be dismissed and changes also the color and the text of a textView
-            in which there's written what the error is.
+            Ogni volta che l'utente inserisce un valore che non può essere convertito in un valore Double,
+            la finestra di dialogo non verrà chiusa e cambia anche il colore e il testo di una textView
+            in cui c'è scritto qual è l'errore.
              */
             if(modifyLengthEditText.text.toString().toDoubleOrNull() == null){
                 changeableText.setTextColor(ContextCompat.getColor(item.context, R.color.red_700))
                 changeableText.text = "The value inside the edit text must be changed to confirm the modification. \nWrite a decimal number like 6.092 if the track length is 6.092km"
             }
             /*
-            When the user sets a proper value inside the edit text, the adapter recalls directly
-            modifyTrackLength method of the viewModel giving it a DataTrack and the new length.
-            The DataTrack given is found thanks to the use of an other method of the viewModel
-            called filterTracksByName that requires the string of the query.
-            So if filterTracksByName returns a list of DataTracks, it can find the exact
-            DataTrack that was touched getting the element at the position clicked,
-            even though the list can be different.
+            Quando l'utente imposta un valore appropriato all'interno dell'editText, l'adattatore richiama direttamente
+            modifyTrackLength del viewModel assegnandogli un DataTrack e la nuova lunghezza.
+            Il DataTrack specifico viene trovato grazie all'utilizzo di un altro metodo del viewModel
+            chiamato filterTracksByName che richiede la stringa della query.
+            Quindi, se filterTracksByName restituisce un elenco di DataTracks, può trovare il
+            DataTrack che è stato cliccato, ottenendo l'elemento nella posizione cliccata,
+            anche se l'elenco può essere diverso.
              */
 
             else{
@@ -164,15 +177,16 @@ class SeeTracksAdapter(
                     ).value?.get(position)!!,
                     modifyLengthEditText.text.toString().toDouble()
                 )
-                notifyItemChanged(position)
-                dialog.dismiss()
+                notifyItemChanged(position) // aggiornare la vista dell'elemento nella RecyclerView
+                dialog.dismiss() // Dialog chiuso
             }
 
         }
+        // Bottone di annullamento modifiche
         cancelFrame.setOnClickListener {
-            dialog.dismiss()
+            dialog.dismiss()  // Dialog chiuso
         }
-        dialog.show()
+        dialog.show() // Mostra il Dialog
     }
 
     /*
@@ -184,7 +198,7 @@ class SeeTracksAdapter(
     } */
 
     /*
-    This function is used for filtering the list of tracks based on a search query.
+    Aggiorna l'elenco degli elementi all'interno di recyclerView.
      */
     fun setNewList(newList: MutableList<DataTrack>) {
         listTracks.clear()
@@ -193,6 +207,8 @@ class SeeTracksAdapter(
     }
 
 
+    // Metodo che aggiunge una nuova traccia utilizzando il tracksViewModel
+    // e quindi aggiorna la visualizzazione della RecyclerView con la lista filtrata aggiornata, se non è nulla
      @SuppressLint("SuspiciousIndentation")
      fun addNewTrack(newTrack: DataTrack) {
          tracksViewModel.addNewTrack(newTrack)
