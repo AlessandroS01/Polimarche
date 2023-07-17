@@ -30,20 +30,29 @@ class TracksRepository {
 
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
+    //_listTracks è una variabile privata di tipo MutableLiveData che contiene una lista mutabile
+    // di oggetti DataTrack.
     private val _listTracks: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
     val listTracks get() = _listTracks
+    // L'uso del modificatore get() indica che questa proprietà ha solo un'implementazione
+    // per la lettura e non per la scrittura.
 
 
     suspend fun fetchTracksFromFirestore() {
         val tracksCollection = db.collection("track")
 
         val trackSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
+            //get() per ottenere i dati delle tracks
             tracksCollection.get()
+                //addOnSuccessListener per registrare un ascoltatore di successo che viene eseguito
+                // quando il recupero dei dati della collezione delle tracks ha successo
                 .addOnSuccessListener { querySnapshot ->
-                    continuation.resume(querySnapshot)
+                    continuation.resume(querySnapshot)//per riprendere la sospensione e
+                    // restituire querySnapshot come risultato della funzione.
                 }
                 .addOnFailureListener { exception ->
-                    continuation.resumeWithException(exception)
+                    continuation.resumeWithException(exception)// per riprendere la sospensione
+                    // e restituire un'eccezione come risultato della funzione.
                 }
         }
 
@@ -65,8 +74,7 @@ class TracksRepository {
         }
 
         withContext(Dispatchers.Main) {
-            _listTracks.value =
-                trackList // Use postValue to update MutableLiveData on the main thread
+            _listTracks.value = trackList //Assegna il valore della variabile trackList a _listTracks
         }
 
         // Process the trackIdList as needed
@@ -79,14 +87,16 @@ class TracksRepository {
     fun modifyTrackLength(track: DataTrack, newLength: Double) {
 
         val collectionRef = db.collection("track")
+        // si desidera ottenere il documento nella collezione "track" in cui il campo "name"
+        // è uguale al valore di track.name
         val query = collectionRef.whereEqualTo("name", track.name)
 
-        query.get().addOnSuccessListener { querySnapshot ->
+        query.get().addOnSuccessListener { querySnapshot -> //se si è ottenuta la track correttamente
             if (!querySnapshot.isEmpty) {
                 val documentSnapshot = querySnapshot.documents[0]
                 val documentId = documentSnapshot.id
 
-                // Update the value
+                // Update della lunghezza
                 val newData = hashMapOf<String, Any>("length" to newLength.toString())
                 collectionRef.document(documentId).update(newData)
                     .addOnSuccessListener {
@@ -109,14 +119,18 @@ class TracksRepository {
     fun addNewTrack(newTrack: DataTrack) {
 
         val collectionRef = db.collection("track")
+        //La chiamata al metodo document() senza passare alcun argomento genera un nuovo ID univoco
+        // per il documento e restituisce un riferimento a quel documento
         val trackRef = collectionRef.document()
 
-        trackRef.set(newTrack)
+        trackRef.set(newTrack) //imposta i dati del nuovo documento nel database utilizzando il metodo set()
             .addOnSuccessListener {
                 val updatedList = _listTracks.value ?: mutableListOf() // Get the current list or initialize an empty list
 
                 updatedList.add(newTrack) // Add the new track to the updated list
-                _listTracks.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
+                _listTracks.postValue(updatedList) //Il valore di _listTracks viene aggiornato
+                // con la lista aggiornata updatedList utilizzando postValue()
+                // per garantire che l'aggiornamento venga eseguito in modo asincrono.
                 println(listTracks.value)
                 Log.e("TracksRepository", "New track added successfully")
             }

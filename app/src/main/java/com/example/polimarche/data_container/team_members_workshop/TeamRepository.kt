@@ -27,7 +27,6 @@ class TeamRepository {
 
     //_listMembers è una variabile privata di tipo MutableLiveData che contiene una lista mutabile
     // di oggetti DataTeamMember.
-    // Viene inizializzata con il valore di teamRepository.listMembers
     private val _listMembers: MutableLiveData<MutableList<DataTeamMember>> = MutableLiveData()
     val listMembers get() = _listMembers
     // L'uso del modificatore get() indica che questa proprietà ha solo un'implementazione

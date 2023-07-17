@@ -38,7 +38,8 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGeneralMainHomeBinding.inflate(inflater, container, false)
-        // La funzione inflate prende il layout XML del fragment_general_main_home e lo converte in un oggetto FragmentGeneralMainHomeBinding
+        // La funzione inflate prende il layout XML del fragment_general_main_home
+        // e lo converte in un oggetto FragmentGeneralMainHomeBinding
         return binding.root
     }
 
