@@ -22,23 +22,44 @@ class DepartmentHeadsPracticeSessionActivity: AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)// savedInstanceState è oggetto Bundle (contenitore di dati) che
+        // contiene i dati salvati dal precedente stato dell'activity
+        // super si riferisce alla superclasse AppCompatActivity
         binding = ActivityDepartmentHeadsPracticeSessionBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //crea un'istanza di ActivityDepartmentHeadsPracticeSessionBinding
+        // che è in grado di accedere agli elementi della vista definiti nel layout XML associato
+        // a ActivityDepartmentHeadsPracticeSessionBinding.
+        setContentView(binding.root) //binding.root rappresenta l'elemento radice del layout inflato
+                                    // che viene settato come layout dell'activity.
 
+        // imposta un flag per indicare che la barra di stato non deve essere traslucida
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
+
+        // imposta il colore della barra di stato su trasparente
         window.statusBarColor = Color.TRANSPARENT
+
+        // Imposta la visibilità dell'interfaccia utente per nascondere la barra di navigazione nell'activity
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
+        /*
+        Questa parte del codice elimina l'ombra di sfondo
+        creata dalla bottomNavigationView
+         */
+
+        // riferimento all'oggetto BottomNavigationView dall'XML del layout utilizzando il suo ID
         val bottomNavigationView = findViewById<BottomNavigationView>(binding.dHPracticeSessionBottomNavigationView.id)
+        // imposta il padding su tutti i lati a 0 pixel
         bottomNavigationView.setPadding(0, 0 , 0, 0)
+
+        //si setta a null l'ascoltatore per le modifiche
         bottomNavigationView.setOnApplyWindowInsetsListener(null)
+        // indica che l'etichetta sarà visibile solo quando il relativo menu sarà selezionato
         bottomNavigationView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
         bottomNavigationView.background = null
 
         /*
-        This part allows the user to go back at the main page
-        clicking on the back button at the top of the screen
+        Questa parte permette all'utente di tornare indietro alla pagina principale
+        cliccando sul bottone per tornare indietro nella parte alta dello schermo
          */
         val backButton = findViewById<ImageButton>(binding.backDHButtonPracticeSession.id)
         backButton.setOnClickListener {
@@ -48,6 +69,9 @@ class DepartmentHeadsPracticeSessionActivity: AppCompatActivity() {
         }
 
         val seePracticeSessionFragment = SeePracticeSessionFragment()
+
+        // Inizia una transazione del FragmentManager per effettuare una modifica
+        // al layout corrente
         supportFragmentManager.beginTransaction().apply {
             replace(binding.frameDHPracticeSession.id, seePracticeSessionFragment).commit()
         }

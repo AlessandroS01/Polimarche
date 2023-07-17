@@ -12,7 +12,7 @@ class PracticeSessionViewModel: ViewModel() {
 
     private val practiceSessionRepository: PracticeSessionRepository = PracticeSessionRepository()
 
-    init {
+    init {//blocco di inizializzazione
         viewModelScope.launch {
             practiceSessionRepository.fetchSessionFromFirestore()
         }

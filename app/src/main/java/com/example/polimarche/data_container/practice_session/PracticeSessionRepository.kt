@@ -16,7 +16,7 @@ import kotlin.coroutines.suspendCoroutine
 
 class PracticeSessionRepository {
 
-    init {
+    init {//blocco di inizializzazione
         CoroutineScope(Dispatchers.IO).launch {
             fetchSessionFromFirestore()
         }

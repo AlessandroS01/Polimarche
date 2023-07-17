@@ -23,11 +23,16 @@ import com.example.polimarche.users.all.menu.tracks.SeeTracksAdapter
 class SeePracticeSessionFragment : Fragment(
     R.layout.fragment_general_practice_session_see_practice_session
 ){
+
+    // Variabili utilizzate per eseguire il binding degli elementi del layout
+    // fragment_general_practice_session_see_pratice_session
+    // utilizzando FragmentPracticeSessionSeePracticeSessionBinding
     private var _binding: FragmentGeneralPracticeSessionSeePracticeSessionBinding? = null
     private val binding get() = _binding!!
 
     private val practiceSessionViewModel: PracticeSessionViewModel by viewModels()
 
+    //variabili che verranno inizializzate in un momento successivo alla loro dichiarazione
     private lateinit var searchView: SearchView
     private lateinit var recyclerViewSeePracticeSession: RecyclerView
     private lateinit var adapterPracticeSession: SeePracticeSessionAdapter
@@ -43,6 +48,8 @@ class SeePracticeSessionFragment : Fragment(
             container,
             false
         )
+        // La funzione inflate prende il layout XML del fragment_general_practice_session_see_pratice_session
+        // e lo converte in un oggetto FragmentPracticeSessionSeePracticeSessionBinding
         return binding.root
     }
 
