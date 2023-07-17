@@ -24,13 +24,15 @@ class TeamAdapter (
     // e un'implementazione di OnWorkshopAreaClickListener
 
     /*
-    listMembers è lista mutabile di tipo DataTeamMember, inizializzata con il valore di teamViewModel.listMembers.value
+    listMembers è lista mutabile di tipo DataTeamMember, inizializzata con il valore di
+    teamViewModel.listMembers.value
      */
     private val listMembers: MutableList<DataTeamMember> =
         teamViewModel.listMembers.value?.toMutableList()!!
 
     /*
-     listDepartments è lista mutabile di tipo DataWorkshopArea, inizializzata con il valore di teamViewModel.listDepartments.value
+     listDepartments è lista mutabile di tipo DataWorkshopArea, inizializzata con il
+     valore di teamViewModel.listDepartments.value
      */
     private val listDepartments: MutableList<DataWorkshopArea> =
         teamViewModel.listDepartments.value?.toMutableList()!!
@@ -44,13 +46,14 @@ class TeamAdapter (
     private var sortedList = getSortedItems(listDepartments, listMembers)
 
     /*
-    Lista mutabile di tipo DataTeamMember contenente tutti i membri del team che sono attualmente "invisibili"
-    dopo il clic su un dipartimento.
+    Lista mutabile di tipo DataTeamMember contenente tutti i membri del team che sono attualmente
+    "invisibili" dopo il clic su un dipartimento.
      */
     private var membersToggled : MutableList<DataTeamMember> = mutableListOf()
 
     /*
-    Prende in ingresso la lista dei membri e dei dipartimenti e ordina gli articoli all'interno della recyclerView.
+    Prende in ingresso la lista dei membri e dei dipartimenti e ordina gli articoli
+    all'interno della recyclerView.
     Infatti crea automaticamente un elenco ordinato in cui ogni membro del team
     hanno un posto proprio sotto il dipartimento di cui fanno parte.
      */
@@ -75,7 +78,8 @@ class TeamAdapter (
     }
 
 
-    // Dichiarazione di due costanti per identificare gli elementi DataTeamMember e DataWorkshopArea nella RecyclerView
+    // Dichiarazione di due costanti per identificare gli elementi DataTeamMember e DataWorkshopArea
+    // nella RecyclerView
     private val ITEM_TYPE_MEMBER = 1
     private val ITEM_TYPE_WORKSHOP = 2
 
@@ -88,24 +92,29 @@ class TeamAdapter (
         fun onWorkshopAreaClick(workshopAreaClicked: String)
     }
 
-    // Classe interna che estende la classe ViewHolder e gestisce la visualizzazione dei membri del team nella RecyclerView
+    // Classe interna che estende la classe ViewHolder e gestisce la visualizzazione dei membri
+    // del team nella RecyclerView
     inner class ViewHolderMembersList(memberView : View) : ViewHolder(memberView) {
 
-        // identifyMember viene inizializzata con la vista corrispondente all'ID identifyMember presente nella vista memberView
+        // identifyMember viene inizializzata con la vista corrispondente all'ID identifyMember
+        // presente nella vista memberView
         val identifyMember: TextView = memberView.findViewById(R.id.identifyMember)
-        // detailsView viene inizializzata con la vista corrispondente all'ID viewDetailsMember presente nella vista memberView
+        // detailsView viene inizializzata con la vista corrispondente all'ID viewDetailsMember
+        // presente nella vista memberView
         val detailsView: ImageView = memberView.findViewById(R.id.viewDetailsMember)
 
         @SuppressLint("SetTextI18n")
         /*
         Questo metodo viene chiamato all'interno di onBindViewHolder e imposta i 2 attributi
-        cercando all'interno di sortedList() l'elemento che viene mostrato all'interno di recyclerView.
+        cercando all'interno di sortedList() l'elemento che viene mostrato all'interno
+        di recyclerView.
          */
         fun bind(item: Any){
             // Viene filtrata listMembers per trovare l'elemento corrispondente a item nell'elenco
             // e viene assegnato il primo elemento trovato a teamMember
             val teamMember = listMembers.filter { it == item }[0]
-            // Imposta il testo della vista identifyMember concatenando la matricola e il firstName del membro del team
+            // Imposta il testo della vista identifyMember concatenando la matricola e il firstName
+            // del membro del team
             identifyMember.text = "${teamMember.matriculationNumber}:  ${teamMember.firstName}"
             // Imposta l'immagine della vista detailsView con l'icona dell'occhiolino
             detailsView.setImageResource(R.drawable.visibility_icon)
@@ -127,21 +136,24 @@ class TeamAdapter (
         }
     }
 
-    // Classe interna che estende la classe ViewHolder e gestisce la visualizzazione delle aree di lavoro del team nella RecyclerView
+    // Classe interna che estende la classe ViewHolder e gestisce la visualizzazione
+    // delle aree di lavoro del team nella RecyclerView
     inner class ViewHolderWorkshopAreas(
         workshopAreaView : View
     ) : ViewHolder(workshopAreaView), View.OnClickListener{
 
-        // identifyArea viene inizializzata con la vista corrispondente all'ID identifyWorkshopArea presente nella vista workshopAreaView
+        // identifyArea viene inizializzata con la vista corrispondente all'ID
+        // identifyWorkshopArea presente nella vista workshopAreaView
         private val identifyArea: TextView = workshopAreaView.findViewById(R.id.identifyWorkshopArea)
 
         /*
         Questo metodo viene chiamato all'interno di onBindViewHolder e imposta i 2 attributi
-        cercando all'interno di sortedList() l'elemento che viene mostrato all'interno di recyclerView.
+        cercando all'interno di sortedList() l'elemento che viene mostrato
+        all'interno di recyclerView.
          */
         fun bind(item: Any){
-            // Viene filtrato listDepartments per trovare l'elemento corrispondente a item nell'elenco e si assegna
-            // il primo elemento risultante a workshopArea
+            // Viene filtrato listDepartments per trovare l'elemento corrispondente a
+            // item nell'elenco e si assegna il primo elemento risultante a workshopArea
             val workshopArea = listDepartments.filter { item == it }[0]
             identifyArea.text = workshopArea.department
         }
@@ -154,11 +166,15 @@ class TeamAdapter (
             workshopAreaView.setOnClickListener(this)
         }
         override fun onClick(v: View?) {
-            val position : Int = adapterPosition // viene ottenuta la posizione dell'elemento cliccato nella RecyclerView
+            val position : Int = adapterPosition // viene ottenuta la posizione dell'elemento
+            // cliccato nella RecyclerView
             if (position != RecyclerView.NO_POSITION) {
                 val workshopArea: DataWorkshopArea = listDepartments.filter {
-                    sortedList[position] == it }[0] // viene ricavato l'oggetto DataWorkshopArea corrispondente all'elemento cliccato
-                // viene richiamato il metodo onWorkshopAreaClick dell'interfaccia OnWorkshopAreaClickListener tramite l'oggetto listener,
+                    sortedList[position] == it }[0] // viene ricavato l'oggetto DataWorkshopArea
+                // corrispondente all'elemento cliccato.
+
+                // viene richiamato il metodo onWorkshopAreaClick dell'interfaccia
+                // OnWorkshopAreaClickListener tramite l'oggetto listener,
                 // passando come argomento il nome del dipartimento dell'area di lavoro
                 listener.onWorkshopAreaClick(workshopArea.department)
             }
@@ -167,18 +183,19 @@ class TeamAdapter (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return when (viewType){ // Restituisce un oggetto ViewHolder in base al tipo di visualizzazione (viewType) dell'elemento
+        return when (viewType){ // Restituisce un oggetto ViewHolder in base al tipo di
+                                // visualizzazione (viewType) dell'elemento
             ITEM_TYPE_WORKSHOP ->{
-                // Se il tipo di visualizzazione è ITEM_TYPE_WORKSHOP, crea una nuova istanza di ViewHolderWorkshopAreas
-                // responsabile della visualizzazione delle aree di lavoro
+                // Se il tipo di visualizzazione è ITEM_TYPE_WORKSHOP, crea una nuova istanza
+                // di ViewHolderWorkshopAreas responsabile della visualizzazione delle aree di lavoro
                 val view = LayoutInflater.from(parent.context).inflate(
                     R.layout.item_general_workshop_area, parent, false
                 )
                 ViewHolderWorkshopAreas(view)
             }
             ITEM_TYPE_MEMBER ->{
-                // Se il tipo di visualizzazione è ITEM_TYPE_MEMBER, crea una nuova istanza di ViewHolderMembersList
-                // responsabile della visualizzazione dei membri del team
+                // Se il tipo di visualizzazione è ITEM_TYPE_MEMBER, crea una nuova istanza
+                // di ViewHolderMembersList responsabile della visualizzazione dei membri del team
                 val view = LayoutInflater.from(parent.context).inflate(
                     R.layout.item_general_team_member, parent, false
                 )
@@ -209,11 +226,13 @@ class TeamAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) { // si determina il tipo specifico del ViewHolder
             is ViewHolderWorkshopAreas -> { // se è di tipo ViewHolderWorkshopAreas
-                val item = sortedList[position] // Ottiene l'elemento corrispondente alla posizione dalla sortedList
+                val item = sortedList[position] // Ottiene l'elemento corrispondente alla posizione
+                                                // dalla sortedList
                 holder.bind(item) // Imposta i dati dell'elemento corrente nella vista del ViewHolder
             }
             is ViewHolderMembersList -> { // se è di tipo ViewHolderMembersList
-                val item = sortedList[position] // Ottiene l'elemento corrispondente alla posizione position dalla sortedList
+                val item = sortedList[position] // Ottiene l'elemento corrispondente alla posizione
+                                                // position dalla sortedList
                 holder.bind(item) // Imposta i dati dell'elemento corrente nella vista del ViewHolder
             }
         }
@@ -226,9 +245,11 @@ class TeamAdapter (
     Viene richiamato direttamente da TeamFragment.
      */
     fun switchingVisibility(department : String){
-        // Controlla se nessun membro del team è stato precedentemente nascosto per il dipartimento specificato
+        // Controlla se nessun membro del team è stato precedentemente nascosto per il dipartimento
+        // specificato
         if (membersToggled.none{ it.workshopArea == department }) {
-            // Si filtra listMembers e si selezionano solo i membri con workshopArea uguale al dipartimento.
+            // Si filtra listMembers e si selezionano solo i membri con workshopArea uguale
+            // al dipartimento.
             // I membri filtrati vengono convertiti in una MutableList e aggiunti a membersToggled
             membersToggled += listMembers.filter {
                 it.workshopArea == department
@@ -241,7 +262,8 @@ class TeamAdapter (
             changeSortedList()
         }
         else { // Se alcuni membri del team sono stati nascosti per il dipartimento specificato
-            // Aggiunge alla lista listMembers i membri del team che sono stati precedentemente nascosti per il dipartimento specificato
+            // Aggiunge alla lista listMembers i membri del team che sono stati
+            // precedentemente nascosti per il dipartimento specificato
             listMembers.addAll(membersToggled.filter {
                 it.workshopArea == department
             })

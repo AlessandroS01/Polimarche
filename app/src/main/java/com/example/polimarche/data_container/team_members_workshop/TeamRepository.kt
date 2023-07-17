@@ -25,8 +25,13 @@ class TeamRepository {
 
     private val db = FirebaseFirestore.getInstance()
 
+    //_listMembers è una variabile privata di tipo MutableLiveData che contiene una lista mutabile
+    // di oggetti DataTeamMember.
+    // Viene inizializzata con il valore di teamRepository.listMembers
     private val _listMembers: MutableLiveData<MutableList<DataTeamMember>> = MutableLiveData()
     val listMembers get() = _listMembers
+    // L'uso del modificatore get() indica che questa proprietà ha solo un'implementazione
+    // per la lettura e non per la scrittura.
 
     private val _listDepartments: MutableLiveData<MutableList<DataWorkshopArea>> = MutableLiveData()
     val listDepartments get() = _listDepartments
@@ -37,12 +42,17 @@ class TeamRepository {
         val teamMembersCollection = db.collection("team_members")
 
         val teamMembersSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
+            //get() per ottenere i dati della collezione dei membri del team
             teamMembersCollection.get()
+                //addOnSuccessListener per registrare un ascoltatore di successo che viene eseguito
+                // quando il recupero dei dati della collezione dei membri della squadra ha successo
                 .addOnSuccessListener { querySnapshot ->
-                    continuation.resume(querySnapshot)
+                    continuation.resume(querySnapshot) //per riprendere la sospensione e
+                                            // restituire querySnapshot come risultato della funzione.
                 }
                 .addOnFailureListener { exception ->
-                    continuation.resumeWithException(exception)
+                    continuation.resumeWithException(exception) // per riprendere la sospensione
+                                        // e restituire un'eccezione come risultato della funzione.
                 }
         }
 
@@ -57,6 +67,7 @@ class TeamRepository {
             val email = document.getString("email")!!
             val cellNumber = document.getString("cellNumber")!!
             val workshopArea = document.getString("workshopArea")!!
+            //Viene creato un oggetto DataTeamMember utilizzando i valori estratti dalle variabili precedenti.
             val member = DataTeamMember(
                 matriculation,
                 firstName,
@@ -66,11 +77,11 @@ class TeamRepository {
                 cellNumber,
                 workshopArea
             )
-
+            //L'oggetto member viene aggiunto alla lista membersList.
             membersList.add(member)
         }
         withContext(Dispatchers.Main) {
-            _listMembers.value = membersList // Use postValue to update MutableLiveData on the main thread
+            _listMembers.value = membersList //Assegna il valore della variabile memberList a _listMembers
         }
 
         val departmentsCollection = db.collection("departments")

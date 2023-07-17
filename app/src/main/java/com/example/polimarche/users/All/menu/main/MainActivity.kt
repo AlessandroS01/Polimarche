@@ -36,7 +36,8 @@ class MainActivity: AppCompatActivity(){
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState) // savedInstanceState è oggetto Bundle (contenitore di dati) che contiene i dati salvati dal precedente stato dell'activity
+        super.onCreate(savedInstanceState) // savedInstanceState è oggetto Bundle (contenitore di dati) che
+        // contiene i dati salvati dal precedente stato dell'activity
         // super si riferisce alla superclasse AppCompatActivity
         setContentView(R.layout.activity_general_main)  // metodo imposta il layout dell'activity specificando il file XML activity_login
                                                                         // come il layout da visualizzare
@@ -77,12 +78,15 @@ class MainActivity: AppCompatActivity(){
         setCurrentFragment(homeFragment)
 
         // listener per la selezione degli elementi nella bottomNavBar
-        // Il codice all'interno delle parentesi verrà eseguito quando un elemento del menu viene selezionato
+        // Il codice all'interno delle parentesi verrà eseguito quando un elemento del menu viene
+        // selezionato
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                // quando l'ID dell'elemento selezionato corrisponde a R.id.home si setta come fragment homeFragment
+                // quando l'ID dell'elemento selezionato corrisponde a R.id.home si setta
+                // come fragment homeFragment
                 R.id.home -> setCurrentFragment(homeFragment)
-                // quando l'ID dell'elemento selezionato corrisponde a R.id.team_members si setta come fragment teamFragment
+                // quando l'ID dell'elemento selezionato corrisponde a R.id.team_members si setta
+                // come fragment teamFragment
                 R.id.team_members -> setCurrentFragment(teamFragment)
             }
             true
@@ -94,11 +98,14 @@ class MainActivity: AppCompatActivity(){
 
         // riferimento a un elemento FloatingActionButton nel layout corrente utilizzando il suo ID
         val floatingMenuButton: FloatingActionButton = findViewById(R.id.floatingButton)
-        val dialog = Dialog(this) // dichiarata una variabile di tipo Dialog passando this come contesto
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // rimuovere la barra del titolo predefinita
+        val dialog = Dialog(this) // dichiarata una variabile di tipo Dialog passando this
+        // come contesto
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // rimuovere la barra del titolo
+        // predefinita
         // si imposta il layout da utilizzare per il contenuto del Dialog
         dialog.setContentView(R.layout.dialog_box_general_main_floating_menu)
-        // Di seguito si ottengono dei riferimenti a i vari LinearLayout all'interno del Dialog utilizzando gli ID
+        // Di seguito si ottengono dei riferimenti a i vari LinearLayout all'interno del Dialog
+        // utilizzando gli ID
         val homeLayout = dialog.findViewById<LinearLayout>(R.id.layoutHome)
         val teamLayout = dialog.findViewById<LinearLayout>(R.id.layoutTeam)
         val setupLayout = dialog.findViewById<LinearLayout>(R.id.layoutSetup)
@@ -115,7 +122,8 @@ class MainActivity: AppCompatActivity(){
         // avvia una coroutine nell'ambito del thread di I/O per eseguire operazioni asincrone
         // senza bloccare il thread principale dell'interfaccia utente
         CoroutineScope(Dispatchers.IO).launch {
-            // Viene effettuata una query al documento corrispondente all'utente corrente nel database.
+            // Viene effettuata una query al documento corrispondente all'utente corrente
+            // nel database.
             // Se il documento esiste, il codice all'interno del blocco di istruzioni verrà eseguito.
             db.collection("Users")
                 .document(userId)
@@ -141,7 +149,8 @@ class MainActivity: AppCompatActivity(){
                                             dialog.hide()
                                             val itemHome = R.id.home
                                             setCurrentFragment(homeFragment)
-                                        // seleziona l'elemento del menu "home" nel BottomNavigationView tramite la proprietà selectedItemId
+                                        // seleziona l'elemento del menu "home" nel
+                                        // BottomNavigationView tramite la proprietà selectedItemId
                                             bottomNavigationView.selectedItemId = itemHome
                                         }
                                         teamLayout.setOnClickListener {
@@ -158,7 +167,8 @@ class MainActivity: AppCompatActivity(){
                                             }
                                 }
                         when(role) {
-                            // in base al valore del campo "role" estratto dal db e in base al bottone cliccato, viene nascosto il menù e
+                            // in base al valore del campo "role" estratto dal db e in base al
+                            // bottone cliccato, viene nascosto il menù e
                             // vengono aperte le activity corrispondenti al valore stesso
                             "Manager" -> {
                                 setupLayout.setOnClickListener {
@@ -230,11 +240,14 @@ class MainActivity: AppCompatActivity(){
         Fragment.
      */
             private fun setCurrentFragment(fragment: Fragment) {
-                // Inizia una transazione del FragmentManager per effettuare una modifica al layout corrente
+                // Inizia una transazione del FragmentManager per effettuare una modifica
+                // al layout corrente
                 supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.frameMainUsers, fragment).commit() // sostituisce il contenuto del frameMainUsers con l'istanza di fragment passata come parametro
+                    replace(R.id.frameMainUsers, fragment).commit() // sostituisce il contenuto
+                    // del frameMainUsers con l'istanza di fragment passata come parametro
                     setReorderingAllowed(true) // riordinamento delle transazioni
-                    addToBackStack(null) // aggiungere la transazione corrente nello stack di transazioni all'indietro
+                    addToBackStack(null) // aggiungere la transazione corrente nello
+                                               // stack di transazioni all'indietro
                 }
             }
 
