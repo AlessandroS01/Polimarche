@@ -28,10 +28,11 @@ class SeeTracksAdapter(
      */
     private val listTracks: MutableList<DataTrack> = mutableListOf()
     init { // blocco di inizializzazione
-        // Observer per l'oggetto LiveData listTracks che viene eseguito ogni volta che il valore di listTracks cambia
+        // Observer per l'oggetto LiveData listTracks che viene eseguito
+        // ogni volta che il valore di listTracks cambia
         tracksViewModel.listTracks.observeForever { tracks ->
             listTracks.clear()  // Svuota la lista
-            listTracks.addAll(tracks) // Aggiunge tutti gli elementi presenti nell'oggetto session
+            listTracks.addAll(tracks) // Aggiunge tutti gli elementi presenti nell'oggetto tracks
             notifyDataSetChanged() // Notifica all'adapter che i dati sono cambiati
         }
     }
@@ -93,7 +94,7 @@ class SeeTracksAdapter(
                        dalla lista listTracks nella posizione corrente.
                        Se l'elemento è espanso, la visibilità viene impostata su View.VISIBLE,
                        altrimenti viene impostata su View.GONE
-                   * */
+                    */
                     linearLayout.visibility = if (expansion) View.VISIBLE else View.GONE
 
                     // Quando viene cliccato, inverte lo stato di espansione dell'elemento in listTracks
@@ -201,14 +202,15 @@ class SeeTracksAdapter(
     Aggiorna l'elenco degli elementi all'interno di recyclerView.
      */
     fun setNewList(newList: MutableList<DataTrack>) {
-        listTracks.clear()
-        listTracks.addAll(newList)
-        notifyDataSetChanged()
+        listTracks.clear() // Svuota la lista
+        listTracks.addAll(newList) // Aggiunge tutti gli elementi presenti nell'oggetto tracks
+        notifyDataSetChanged() // Notifica all'adapter che i dati sono cambiati
     }
 
 
-    // Metodo che aggiunge una nuova traccia utilizzando il tracksViewModel
-    // e quindi aggiorna la visualizzazione della RecyclerView con la lista filtrata aggiornata, se non è nulla
+    // Metodo che aggiunge una nuova track utilizzando il tracksViewModel
+    // e quindi aggiorna la visualizzazione della RecyclerView con la lista filtrata aggiornata,
+    // se non è nulla
      @SuppressLint("SuspiciousIndentation")
      fun addNewTrack(newTrack: DataTrack) {
          tracksViewModel.addNewTrack(newTrack)

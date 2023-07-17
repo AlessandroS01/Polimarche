@@ -24,18 +24,27 @@ class TracksViewModel: ViewModel() {
         }
     }
 
-
+    //_listTracks è una variabile privata di tipo MutableLiveData che contiene una lista mutabile
+    // di oggetti DataTrack.
+    // Viene inizializzata con il valore di teamRepository.listMembers
     private val _listTracks: MutableLiveData<MutableList<DataTrack>> =
         tracksRepository.listTracks
     val listTracks get() = _listTracks
+    // L'uso del modificatore get() indica che questa proprietà ha solo un'implementazione
+    // per la lettura e non per la scrittura.
 
     /*
-    Returns a new list of MutableLiveData<MutableList<DataTrack>> in which all elements
-    have a name that contains a created by a search view.
+    Ritorna un MutableLiveData<MutableList<DataTrack>> contenente la lista delle tracks
+    filtrata in base al nome inserito dall'utente nella search view (barra di ricerca).
      */
-    fun filterList(query: String): MutableLiveData<MutableList<DataTrack>> {
-        val mutableLiveData: MutableLiveData<MutableList<DataTrack>> =
+    fun filterList(query: String): MutableLiveData<MutableList<DataTrack>> { //query è ciò che
+        val mutableLiveData: MutableLiveData<MutableList<DataTrack>> =        //l'utente inserisce
             MutableLiveData<MutableList<DataTrack>>().apply {
+                //L'uso di apply consente di configurare l'oggetto senza dover fare riferimento
+                // esplicito ad esso.
+
+                // Viene utilizzata la funzione emptyList<DataTrack>() per creare una lista vuota
+                // di tipo DataTrack.
                 value= emptyList<DataTrack>().toMutableList()
             }
         _listTracks.value?.forEach {
@@ -48,7 +57,7 @@ class TracksViewModel: ViewModel() {
     }
 
     /*
-    Recalls directly the repository to change the length of a track given
+        Richiama direttamente la Repository per cambiare la lunghezza della track
      */
     fun modifyTrackLength(track: DataTrack, newLength: Double) {
         track.length = newLength.toString()
@@ -58,14 +67,14 @@ class TracksViewModel: ViewModel() {
 
 
     /*
-    Recalls directly the repository to change the length of a track given
+       Richiama direttamente la Repository per aggiungere una nuova track
      */
     fun addNewTrack(newTrack: DataTrack){
         tracksRepository.addNewTrack(newTrack)
     }
 
     /*
-    Recalls directly the repository to delete a track given
+       Richiama direttamente la Repository per eliminare una track
      */
     fun removeTrack(trackToDelete: DataTrack){
         tracksRepository.removeTrack(trackToDelete)
