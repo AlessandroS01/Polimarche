@@ -44,7 +44,7 @@ class DepartmentHeadsTracksActivity: AppCompatActivity() {
         // super si riferisce alla superclasse AppCompatActivity
         binding = ActivityDepartmentHeadsTracksBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_department_heads_tracks) // metodo imposta il layout
-                                                // dell'activity specificando il file XML ...
+                                                // dell'activity specificando il file XML scritto
                                                 // come il layout da visualizzare
 
         // imposta un flag per indicare che la barra di stato non deve essere traslucida
