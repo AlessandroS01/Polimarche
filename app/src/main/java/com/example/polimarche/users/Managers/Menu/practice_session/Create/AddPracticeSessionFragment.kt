@@ -75,11 +75,11 @@ class AddPracticeSessionFragment : Fragment(
 
         binding.linearLayoutCreatePS.setOnClickListener {
             /*
-            Checks if the date, the time and all the other edit text are inserted
-            and controls the correctness of date and time.
-            If everything is correct then a new occurrence of DataPracticeSession will be created
-            and it will be passed to the repository trough the viewModel.
-            Then every input text will be cleared.
+            Controlla se la data, l'ora e tutti gli altri testi di modifica sono inseriti
+            e controlla la correttezza di data e ora.
+            Se tutto è corretto, verrà creata una nuova occorrenza di DataPracticeSession
+            e verrà passato al repository tramite viewModel.
+            Quindi ogni testo di input verrà cancellato.
              */
             if(trackName != ""
                 && correctnessDate
