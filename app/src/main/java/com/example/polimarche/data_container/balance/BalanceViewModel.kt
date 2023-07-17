@@ -48,6 +48,7 @@ class BalanceViewModel: ViewModel() {
         }?.toMutableList()?: mutableListOf()
     }
 
+
     fun setFrontBalanceParametersStocked(balanceParameters: DataBalance){
         balanceRepository.setFrontBalanceParametersStocked(balanceParameters)
     }

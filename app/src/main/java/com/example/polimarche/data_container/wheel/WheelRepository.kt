@@ -79,63 +79,65 @@ class WheelRepository {
 
 
 
-    fun addNewWheelParameters(listWheelStocked: MutableList<DataWheel>){
-        listWheelStocked.forEach {
-            _listWheel.value?.addAll(listWheelStocked) as MutableList<DataWheel>?
+        fun addNewWheelParameters(listWheelStocked: MutableList<DataWheel>){
+            listWheelStocked.forEach {
+                _listWheel.value?.addAll(listWheelStocked) as MutableList<DataWheel>?
+            }
         }
-    }
 
 
-    private var stockedFrontRightWheelParameters: MutableLiveData<DataWheel>? = null
-    fun setFrontRightWheelParameters(wheelParameters: DataWheel){
-        if (stockedFrontRightWheelParameters == null) {
-            stockedFrontRightWheelParameters = MutableLiveData()
+        private var stockedFrontRightWheelParameters: MutableLiveData<DataWheel>? = null
+        fun setFrontRightWheelParameters(wheelParameters: DataWheel){
+            if (stockedFrontRightWheelParameters == null) {
+                stockedFrontRightWheelParameters = MutableLiveData()
+            }
+            stockedFrontRightWheelParameters?.value = wheelParameters
         }
-        stockedFrontRightWheelParameters?.value = wheelParameters
-    }
-    fun getFrontRightParametersStocked(): MutableLiveData<DataWheel>?{
-        return stockedFrontRightWheelParameters
-    }
-
-    private var stockedFrontLeftWheelParameters: MutableLiveData<DataWheel>? = null
-    fun setFrontLeftWheelParameters(wheelParameters: DataWheel){
-        if (stockedFrontLeftWheelParameters == null) {
-            stockedFrontLeftWheelParameters = MutableLiveData()
+        fun getFrontRightParametersStocked(): MutableLiveData<DataWheel>?{
+            return stockedFrontRightWheelParameters
         }
-        stockedFrontLeftWheelParameters?.value = wheelParameters
-    }
-    fun getFrontLeftParametersStocked(): MutableLiveData<DataWheel>?{
-        return stockedFrontLeftWheelParameters
-    }
 
-    private var stockedRearRightWheelParameters: MutableLiveData<DataWheel>? = null
-    fun setRearRightWheelParameters(wheelParameters: DataWheel){
-        if (stockedRearRightWheelParameters == null) {
-            stockedRearRightWheelParameters = MutableLiveData()
+        private var stockedFrontLeftWheelParameters: MutableLiveData<DataWheel>? = null
+        fun setFrontLeftWheelParameters(wheelParameters: DataWheel){
+            if (stockedFrontLeftWheelParameters == null) {
+                stockedFrontLeftWheelParameters = MutableLiveData()
+            }
+            stockedFrontLeftWheelParameters?.value = wheelParameters
         }
-        stockedRearRightWheelParameters?.value = wheelParameters
-    }
-    fun getRearRightParametersStocked(): MutableLiveData<DataWheel>?{
-        return stockedRearRightWheelParameters
-    }
-
-    private var stockedRearLeftWheelParameters: MutableLiveData<DataWheel>? = null
-    fun setRearLeftWheelParameters(wheelParameters: DataWheel){
-        if (stockedRearLeftWheelParameters == null) {
-            stockedRearLeftWheelParameters = MutableLiveData()
+        fun getFrontLeftParametersStocked(): MutableLiveData<DataWheel>?{
+            return stockedFrontLeftWheelParameters
         }
-        stockedRearLeftWheelParameters?.value = wheelParameters
-    }
-    fun getRearLeftParametersStocked(): MutableLiveData<DataWheel>?{
-        return stockedRearLeftWheelParameters
-    }
+
+        private var stockedRearRightWheelParameters: MutableLiveData<DataWheel>? = null
+        fun setRearRightWheelParameters(wheelParameters: DataWheel){
+            if (stockedRearRightWheelParameters == null) {
+                stockedRearRightWheelParameters = MutableLiveData()
+            }
+            stockedRearRightWheelParameters?.value = wheelParameters
+        }
+        fun getRearRightParametersStocked(): MutableLiveData<DataWheel>?{
+            return stockedRearRightWheelParameters
+        }
+
+        private var stockedRearLeftWheelParameters: MutableLiveData<DataWheel>? = null
+        fun setRearLeftWheelParameters(wheelParameters: DataWheel){
+            if (stockedRearLeftWheelParameters == null) {
+                stockedRearLeftWheelParameters = MutableLiveData()
+            }
+            stockedRearLeftWheelParameters?.value = wheelParameters
+        }
+        fun getRearLeftParametersStocked(): MutableLiveData<DataWheel>?{
+            return stockedRearLeftWheelParameters
+        }
 
 
-    fun clearStockedParameters(){
-        stockedFrontRightWheelParameters = null
-        stockedFrontLeftWheelParameters = null
-        stockedRearRightWheelParameters = null
-        stockedRearLeftWheelParameters = null
-    }
+        fun clearStockedParameters(){
+            stockedFrontRightWheelParameters = null
+            stockedFrontLeftWheelParameters = null
+            stockedRearRightWheelParameters = null
+            stockedRearLeftWheelParameters = null
+        }
+
+
 }
 

@@ -233,12 +233,6 @@ class MainActivity: AppCompatActivity(){
                 win.attributes = winParams
             }
 
-            /*
-        Questo metodo viene utilizzato per modificare la vista all'interno del file
-        FrameLayout utilizzato direttamente in "activity_managers_main".
-        senza l'uso dei metodi forniti dalla classe
-        Fragment.
-     */
             private fun setCurrentFragment(fragment: Fragment) {
                 // Inizia una transazione del FragmentManager per effettuare una modifica
                 // al layout corrente

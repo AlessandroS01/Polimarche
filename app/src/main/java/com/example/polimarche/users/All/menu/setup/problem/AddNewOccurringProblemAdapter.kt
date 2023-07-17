@@ -13,12 +13,6 @@ import com.example.polimarche.R
 import com.example.polimarche.data_container.setup.DataSetup
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
 
-/*
-Utilizzato per visualizzare tutte i setup in cui si è verificato il problema
-non attualmente in corso.
-Utilizzato per recyclerView creato dopo che l'utente fa clic su New
-Setup Facing The Problem all'interno di ManageProblemsFragment.
- */
 class AddNewOccurringProblemAdapter(
     private val listSetups: MutableList<DataSetup>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -61,11 +55,8 @@ class AddNewOccurringProblemAdapter(
                         }
                     }
 
-                    /*
-                    Modifica i valori all'interno delle 2 liste create come attributi
-                    dell'adapter.
-                     */
                     description.visibility = View.GONE
+
                     // Quando il testo della descrizione cambia il valore viene memorizzato in listDescriptionElements
                     description.addTextChangedListener {
                         listDescriptionElements[listSetups[position]] = description.text.toString()

@@ -42,6 +42,7 @@ class OccurringProblemAdapter(
         val linearLayout: LinearLayout = occurringProblemView.findViewById(R.id.linearLayoutExpandableOccurringProblem)
 
         init {
+            // Imposta l'oggetto corrente come listener per il clic sull'elemento removeProblem
             removeProblem.setOnClickListener(this)
         }
 
@@ -106,9 +107,7 @@ class OccurringProblemAdapter(
     }
 
     /*
-    Aggiunge un nuovo elemento all'elenco all'interno di ViewModel.
-    Quindi chiama direttamente un metodo dell'adattatore
-    che sostituisce l'elenco dell'adapter.
+    Aggiunge un nuovo OccurringProblem all'elenco all'interno di occurringProblemViewModel.
      */
     fun addItemToItemView(item: DataOccurringProblem){
         occurringProblemViewModel.addNewOccurringProblem(item)
@@ -122,9 +121,6 @@ class OccurringProblemAdapter(
     in cui il codice del problema è quello del problema cliccato, il
     il codice di setup è quello dell'elemento rimosso e la descrizione è quella passata
     come parametro da OccurringProblemFragment.
-    Quindi chiama direttamente un metodo dell'adattatore
-    che sostituisce l'elenco dell'adattatore.
-
      */
     suspend fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
         val newList = occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!

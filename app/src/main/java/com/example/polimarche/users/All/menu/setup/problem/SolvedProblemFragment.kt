@@ -71,7 +71,8 @@ class SolvedProblemFragment(
         }
     }
 
-
+    // Quando l'utente clicca su "Problem Reappeared" viene chiamato il metodo
+    // showReappearedProblemDialog
     override fun onProblemReappearedClick(
         element: DataSolvedProblem,
         itemView: View
@@ -79,13 +80,10 @@ class SolvedProblemFragment(
         showReappearedProblemDialog(element, itemView)
     }
 
-
-
-
     /*
-    Se gli utenti fanno clic su imageVew, viene visualizzata una finestra di dialogo e, all'interno
+    Se gli utenti fanno clic su Problem Reappeared, viene visualizzata una finestra di dialogo e, all'interno
     finestra di dialogo, l'utente può inserire una nuova descrizione del problema.
-    Quindi, se l'utente conferma la ricomparsa del problema, l'elemento verrà rimosso.
+    Quindi, se l'utente preme Confirm, il Solved Problem verrà rimosso.
     */
     private fun showReappearedProblemDialog(element: DataSolvedProblem, view: View) {
         val dialog = Dialog(view.context)
@@ -99,9 +97,7 @@ class SolvedProblemFragment(
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_box_general_all_uses)
 
-        val descriptionNewOccurringProblem = dialog.findViewById(
-            R.id.editTextAllUses
-        ) as EditText
+        val descriptionNewOccurringProblem = dialog.findViewById(R.id.editTextAllUses) as EditText
 
         val confirmReappearedProblem = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
         val cancelReappearedProblem = dialog.findViewById(R.id.cancelFrameAllUses) as FrameLayout

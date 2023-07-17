@@ -71,41 +71,42 @@ class BalanceRepository {
         }
     }
 
-    fun addNewBalanceParameters(listBalanceStocked: MutableList<DataBalance>) {
-        listBalanceStocked.forEach {
-            _balanceList.value =
-                _balanceList.value?.plus(it) as MutableList<DataBalance>?
-        }
+
+fun addNewBalanceParameters(listBalanceStocked: MutableList<DataBalance>) {
+    listBalanceStocked.forEach {
+        _balanceList.value =
+            _balanceList.value?.plus(it) as MutableList<DataBalance>?
     }
+}
 
 
-    private var stockedFrontBalanceParameters: MutableLiveData<DataBalance>? = null
-    fun setFrontBalanceParametersStocked(balanceParameters: DataBalance){
-        if (stockedFrontBalanceParameters == null) {
-            stockedFrontBalanceParameters = MutableLiveData()
-        }
-        stockedFrontBalanceParameters?.value = balanceParameters
+private var stockedFrontBalanceParameters: MutableLiveData<DataBalance>? = null
+fun setFrontBalanceParametersStocked(balanceParameters: DataBalance){
+    if (stockedFrontBalanceParameters == null) {
+        stockedFrontBalanceParameters = MutableLiveData()
     }
-    fun getFrontBalanceParametersStocked(): MutableLiveData<DataBalance>?{
-        return stockedFrontBalanceParameters
+    stockedFrontBalanceParameters?.value = balanceParameters
+}
+fun getFrontBalanceParametersStocked(): MutableLiveData<DataBalance>?{
+    return stockedFrontBalanceParameters
+}
+
+private var stockedBackBalanceParameters: MutableLiveData<DataBalance>? = null
+fun setBackBalanceParametersStocked(balanceParameters: DataBalance){
+    if (stockedBackBalanceParameters == null) {
+        stockedBackBalanceParameters = MutableLiveData()
     }
-    
-    private var stockedBackBalanceParameters: MutableLiveData<DataBalance>? = null
-    fun setBackBalanceParametersStocked(balanceParameters: DataBalance){
-        if (stockedBackBalanceParameters == null) {
-            stockedBackBalanceParameters = MutableLiveData()
-        }
-        stockedBackBalanceParameters?.value = balanceParameters
-    }
-    fun getBackBalanceParametersStocked(): MutableLiveData<DataBalance>?{
-        return stockedBackBalanceParameters
-    }
+    stockedBackBalanceParameters?.value = balanceParameters
+}
+fun getBackBalanceParametersStocked(): MutableLiveData<DataBalance>?{
+    return stockedBackBalanceParameters
+}
 
 
-    fun clearStockedParameters(){
-        stockedFrontBalanceParameters = null
-        stockedBackBalanceParameters = null
-    }
+fun clearStockedParameters(){
+    stockedFrontBalanceParameters = null
+    stockedBackBalanceParameters = null
+}
 
 
 }

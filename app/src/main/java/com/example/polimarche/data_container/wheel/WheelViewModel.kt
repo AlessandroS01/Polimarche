@@ -132,4 +132,6 @@ class WheelViewModel: ViewModel() {
             getStockedParameters()
         )
     }
+
+
 }

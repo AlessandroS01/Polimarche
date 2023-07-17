@@ -28,13 +28,11 @@ class PracticeSessionRepository {
         }
     }
 
-    private val db= FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
 
     private val _listPracticeSessions: MutableLiveData<MutableList<DataPracticeSession>> =
         MutableLiveData()
     val listPracticeSession get() = _listPracticeSessions
-
-
 
 
     suspend fun fetchSessionFromFirestore() {
@@ -62,6 +60,7 @@ class PracticeSessionRepository {
                     val date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
                     val startingTimeStr = document.getString("startingTime") ?: ""
+                    // DateTimeFormatter.ofPattern("yyyy-MM-dd") specifica il formato atteso della stringa di input
                     val startingTime = LocalTime.parse(startingTimeStr, DateTimeFormatter.ofPattern("HH:mm:ss"))
 
                     val endingTimeStr = document.getString("endingTime") ?: ""
@@ -94,7 +93,7 @@ class PracticeSessionRepository {
         // Creazione di un nuovo documento con un ID generato automaticamente
         val newDocumentRef = db.collection("practiceSessions").document()
 
-        // Creazione di un oggetto mappa contenente i dati della nuova sessione di pratica
+        // Creazione di un oggetto Map contenente i dati della nuova sessione di pratica
         val practiceSessionData = hashMapOf(
             "eventType" to newSession.eventType,
             "date" to newSession.date.toString(),
@@ -107,6 +106,7 @@ class PracticeSessionRepository {
             "ambientPressure" to newSession.ambientPressure,
             "airTemperature" to newSession.airTemperature
         )
+        // Esegue la formattazione di newSession.date in una stringa nel formato "yyyy-MM-dd"
         val dateStr = newSession.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         practiceSessionData["date"] = dateStr
 
@@ -121,11 +121,9 @@ class PracticeSessionRepository {
         newDocumentRef.set(practiceSessionData)
             .addOnSuccessListener {
                 // Aggiunta avvenuta con successo
-                // Puoi eseguire eventuali azioni aggiuntive qui, se necessario
             }
             .addOnFailureListener { e ->
                 // Errore durante l'aggiunta della sessione di pratica a Firestore
-                // Puoi gestire l'errore qui o visualizzare un messaggio all'utente
             }
     }
 

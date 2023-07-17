@@ -79,6 +79,7 @@ class TeamRepository {
             //L'oggetto member viene aggiunto alla lista membersList.
             membersList.add(member)
         }
+        // Funzione di sospensione che viene utilizzata per eseguire un blocco di codice nel thread principale
         withContext(Dispatchers.Main) {
             _listMembers.value = membersList //Assegna il valore della variabile memberList a _listMembers
         }

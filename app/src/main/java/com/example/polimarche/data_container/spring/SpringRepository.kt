@@ -75,36 +75,40 @@ class SpringRepository {
         }
     }
 
-    fun addNewSpringParameters(listSpringStocked: MutableList<DataSpring>) {
-        _listSpring.value?.addAll(listSpringStocked)
-    }
 
-    private var stockedFrontSpringParameters: MutableLiveData<DataSpring>? = null
-    fun setFrontSpringParametersStocked(springParameters: DataSpring) {
-        if (stockedFrontSpringParameters == null) {
-            stockedFrontSpringParameters = MutableLiveData()
-        }
-        stockedFrontSpringParameters?.value = springParameters
-    }
+ fun addNewSpringParameters(listSpringStocked: MutableList<DataSpring>) {
+     _listSpring.value?.addAll(listSpringStocked)
+ }
 
-    fun getFrontSpringParametersStocked(): MutableLiveData<DataSpring>? {
-        return stockedFrontSpringParameters
-    }
 
-    private var stockedBackSpringParameters: MutableLiveData<DataSpring>? = null
-    fun setBackSpringParametersStocked(springParameters: DataSpring) {
-        if (stockedBackSpringParameters == null) {
-            stockedBackSpringParameters = MutableLiveData()
-        }
-        stockedBackSpringParameters?.value = springParameters
-    }
+ private var stockedFrontSpringParameters: MutableLiveData<DataSpring>? = null
+ fun setFrontSpringParametersStocked(springParameters: DataSpring) {
+     if (stockedFrontSpringParameters == null) {
+         stockedFrontSpringParameters = MutableLiveData()
+     }
+     stockedFrontSpringParameters?.value = springParameters
+ }
 
-    fun getBackSpringParametersStocked(): MutableLiveData<DataSpring>? {
-        return stockedBackSpringParameters
-    }
+ fun getFrontSpringParametersStocked(): MutableLiveData<DataSpring>? {
+     return stockedFrontSpringParameters
+ }
 
-    fun clearStockedParameters() {
-        stockedFrontSpringParameters = null
-        stockedBackSpringParameters = null
-    }
+ private var stockedBackSpringParameters: MutableLiveData<DataSpring>? = null
+ fun setBackSpringParametersStocked(springParameters: DataSpring) {
+     if (stockedBackSpringParameters == null) {
+         stockedBackSpringParameters = MutableLiveData()
+     }
+     stockedBackSpringParameters?.value = springParameters
+ }
+
+ fun getBackSpringParametersStocked(): MutableLiveData<DataSpring>? {
+     return stockedBackSpringParameters
+ }
+
+ fun clearStockedParameters() {
+     stockedFrontSpringParameters = null
+     stockedBackSpringParameters = null
+ }
+
+
 }

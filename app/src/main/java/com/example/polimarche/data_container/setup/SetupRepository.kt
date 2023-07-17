@@ -52,13 +52,12 @@ class SetupRepository {
         val setupList = mutableListOf<DataSetup>() // Initialize with an empty list
 
         for (document in setupSnapshot) {
-            //val documentId = document.id // Get the document ID
-            // setupIdList.add(documentId)
-            //Log.d("IDSETUP", "IDSETUP:$documentId")
+
             val code = document.getLong("code")?.toInt() ?: 0
             val frontRightWheelRef = document.getDocumentReference("frontRightWheel")
+            // await() blocca il flusso dell'esecuzione fino a quando non viene completata l'operazione asincrona
             val frontRightWheelDocument = frontRightWheelRef?.get()?.await()
-
+            // Converte i dati di un documento Firestore in un oggetto di classe DataWheel
             val frontRightWheel = frontRightWheelDocument?.toObject(DataWheel::class.java)
 
             val frontLeftWheelRef = document.getDocumentReference("frontLeftWheel")
@@ -109,6 +108,9 @@ class SetupRepository {
                 notes.addAll(notesArray)
             }
 
+            // Viene creato l'oggetto setup con tutti i rispettivi oggetti e
+            // se un oggetto è nullo, il blocco di codice all'interno del let non viene eseguito
+            // e il risultato finale sarà null
             val setup = frontRightWheel?.let { frontRightWheel ->
                 frontLeftWheel?.let { frontLeftWheel ->
                     rearRightWheel?.let { rearRightWheel ->
@@ -146,6 +148,7 @@ class SetupRepository {
                 }
             }
 
+            // Verifica se l'oggetto setup non è nullo e, in caso affermativo, lo aggiunge alla lista setupList
             setup?.let { setupList.add(it) }
         }
 
@@ -161,9 +164,10 @@ class SetupRepository {
         val collectionRef = db.collection("setup")
 
         collectionRef.whereEqualTo("code", setup.code)
-            .get()
+            .get() // querySnapshot viene ottenuta da questo get su collectionRef
             .addOnSuccessListener { querySnapshot ->
                 if (!querySnapshot.isEmpty) {
+                    // Si ottiene il primo documento dalla query snapshot
                     val documentSnapshot = querySnapshot.documents[0]
                     val documentId = documentSnapshot.id
 
@@ -177,10 +181,8 @@ class SetupRepository {
 
                         }
                         .addOnFailureListener {
-
                         }
                 } else {
-
                 }
             }
             .addOnFailureListener { exception ->
@@ -230,24 +232,3 @@ class SetupRepository {
         }
     }
 }
-/*
-    fun addNewSetup(newSetup: DataSetup) {
-        val collectionRef = db.collection("setup")
-        val setupRef = collectionRef.document()
-
-        setupRef.set(newSetup)
-            .addOnSuccessListener {
-                val updatedList = _listSetup.value
-                    ?: mutableListOf() // Get the current list or initialize an empty list
-
-                updatedList.add(newSetup) // Add the new setup to the updated list
-                _listSetup.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
-
-                Log.e("SetupRepository", "Nuovo setup aggiunto con successo")
-            }
-            .addOnFailureListener { exception ->
-                Log.e("SetupRepository", "Impossibile aggiungere il nuovo setup", exception)
-            }
-    }
-}
-*/

@@ -42,7 +42,7 @@ class TracksRepository {
         val tracksCollection = db.collection("track")
 
         val trackSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
-            //get() per ottenere i dati delle tracks
+            //get() per ottenere i documenti delle tracks dalla collection track
             tracksCollection.get()
                 //addOnSuccessListener per registrare un ascoltatore di successo che viene eseguito
                 // quando il recupero dei dati della collezione delle tracks ha successo
@@ -76,9 +76,6 @@ class TracksRepository {
         withContext(Dispatchers.Main) {
             _listTracks.value = trackList //Assegna il valore della variabile trackList a _listTracks
         }
-
-        // Process the trackIdList as needed
-        // ...
     }
 
     /*
@@ -87,7 +84,7 @@ class TracksRepository {
     fun modifyTrackLength(track: DataTrack, newLength: Double) {
 
         val collectionRef = db.collection("track")
-        // si desidera ottenere il documento nella collezione "track" in cui il campo "name"
+        // Si cerca il documento nella collezione "track" in cui il valore del campo "name"
         // è uguale al valore di track.name
         val query = collectionRef.whereEqualTo("name", track.name)
 
@@ -96,7 +93,7 @@ class TracksRepository {
                 val documentSnapshot = querySnapshot.documents[0]
                 val documentId = documentSnapshot.id
 
-                // Update della lunghezza
+                // Si setta il valore di newLength in corrispondenza della chiave "length" dell'hashMap
                 val newData = hashMapOf<String, Any>("length" to newLength.toString())
                 collectionRef.document(documentId).update(newData)
                     .addOnSuccessListener {

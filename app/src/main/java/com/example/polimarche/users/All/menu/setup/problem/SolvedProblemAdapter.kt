@@ -22,6 +22,7 @@ class SolvedProblemAdapter(
         solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
 
 
+    // Per una gestione personalizzata del click su "Problem reappeared"
     interface OnProblemReappearedClick{
         fun onProblemReappearedClick(element: DataSolvedProblem, itemView: View)
     }
@@ -38,6 +39,7 @@ class SolvedProblemAdapter(
         val linearLayout: LinearLayout = solvedProblemView.findViewById(R.id.linearLayoutExpandableSolvedProblem)
 
         init {
+            // Imposta l'oggetto corrente come listener per il clic sull'elemento reappearedProblem
             reappearedProblem.setOnClickListener(this)
         }
 
@@ -48,8 +50,8 @@ class SolvedProblemAdapter(
                 if (id == R.id.imageViewReappearedSolvedProblem) {
                     listener.onProblemReappearedClick(
                         /*
-                        Trova l'istanza di DataProblem che ha lo stesso codice problema
-                        di quello cliccato nella posizione indicata dall'adattatore
+                        Trova l'istanza di DataProblem che ha lo stesso problem code
+                        di quello cliccato nella posizione indicata dall'adapter
                          */
                         solvedProblemViewModel.filterListByProblemCode(
                             problemClicked.code
@@ -102,21 +104,17 @@ class SolvedProblemAdapter(
     }
 
     /*
-    In primo luogo aggiunge all'elenco all'interno di occurringProblemViewProblem un nuovo OccurringProblem
+    Aggiunge all'interno di occurringProblemViewProblem un nuovo OccurringProblem
     in cui il codice del problema è quello del problema cliccato, il
     il codice di setup è quello dell'elemento rimosso e la descrizione è quella passata
     come parametro da SolvedProblemFragment.
-    Quindi chiama direttamente un metodo dell'adattatore
-    che sostituisce l'elenco dell'adapter.
      */
     suspend fun removeItemFromList(item: DataSolvedProblem, description: String){
         val newList = solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
 
         newList.removeIf { it.setupCode == item.setupCode }
 
-        setNewList(
-            newList
-        )
+        setNewList(newList)
 
         solvedProblemViewModel.removeItemFromList(item, description)
     }

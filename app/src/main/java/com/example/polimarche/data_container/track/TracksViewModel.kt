@@ -45,8 +45,10 @@ class TracksViewModel: ViewModel() {
 
                 // Viene utilizzata la funzione emptyList<DataTrack>() per creare una lista vuota
                 // di tipo DataTrack.
-                value= emptyList<DataTrack>().toMutableList()
+                value = emptyList<DataTrack>().toMutableList()
             }
+        /* Filtra _listTracks in base alla corrispondenza tra il valore di query e il nome degli elementi.
+        Gli elementi che soddisfano la condizione vengono aggiunti a mutableLiveData*/
         _listTracks.value?.forEach {
             if(query.lowercase() in it.name.lowercase()) {
                 mutableLiveData.value = mutableLiveData.value?.plus(it)

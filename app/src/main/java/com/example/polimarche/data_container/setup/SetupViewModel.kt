@@ -39,13 +39,8 @@ class SetupViewModel: ViewModel() {
         return listSetupCodes
     }
 
-
     fun deleteSetup(setup: DataSetup){
         setupRepository.removeSetup(setup)
     }
-/*
-    fun addNewSetup(newSetup: DataSetup){
-        setupRepository.addNewSetup(newSetup)
-    }
-*/
+
 }
