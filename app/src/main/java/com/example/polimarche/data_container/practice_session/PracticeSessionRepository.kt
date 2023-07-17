@@ -30,40 +30,59 @@ class PracticeSessionRepository {
 
     private val db = FirebaseFirestore.getInstance()
 
+    //_listPracticeSessions è una variabile privata di tipo MutableLiveData che contiene una lista mutabile
+    // di oggetti DataPracticeSession.
     private val _listPracticeSessions: MutableLiveData<MutableList<DataPracticeSession>> =
         MutableLiveData()
     val listPracticeSession get() = _listPracticeSessions
+    // L'uso del modificatore get() indica che questa proprietà ha solo un'implementazione
+    // per la lettura e non per la scrittura.
 
 
     suspend fun fetchSessionFromFirestore() {
         val practiceSessionsCollection = db.collection("practiceSessions")
 
         val sessionSnapshot = suspendCoroutine<QuerySnapshot> { continuation ->
+            //get() per ottenere i documenti delle tracks dalla collection track
             practiceSessionsCollection.get()
+                //addOnSuccessListener per registrare un ascoltatore di successo che viene eseguito
+                // quando il recupero dei dati della collezione delle tracks ha successo
                 .addOnSuccessListener { querySnapshot ->
-                    continuation.resume(querySnapshot)
+                    continuation.resume(querySnapshot)//per riprendere la sospensione e
+                    // restituire querySnapshot come risultato della funzione.
                 }
                 .addOnFailureListener { exception ->
-                    continuation.resumeWithException(exception)
+                    continuation.resumeWithException(exception)// per riprendere la sospensione
+                    // e restituire un'eccezione come risultato della funzione.
                 }
         }
 
-        val practiceSessionsList = mutableListOf<DataPracticeSession>()
-        val practiceSessionsIdList = mutableListOf<String>()
+        val practiceSessionsList = mutableListOf<DataPracticeSession>() // Initialize with an empty list
+        val practiceSessionsIdList = mutableListOf<String>() // Initialize with an empty list for IDs
 
                 for (document in sessionSnapshot) {
                     val documentId = document.id // Get the document ID
                     practiceSessionsIdList.add(documentId)
+
                     Log.d("ID","$documentId")
+
+                    //Assegniamo il valore della stringa associata alla chiave "eventType"
+                    // nell'oggetto document alla variabile eventType, se presente,
+                    // altrimenti assegna una stringa vuota come valore predefinito.
                     val eventType = document.getString("eventType") ?: ""
                     val dateStr = document.getString("date") ?: ""
+                    // DateTimeFormatter.ofPattern("yyyy-MM-dd") specifica il formato atteso
+                    // della stringa di input
                     val date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
                     val startingTimeStr = document.getString("startingTime") ?: ""
-                    // DateTimeFormatter.ofPattern("yyyy-MM-dd") specifica il formato atteso della stringa di input
+                    // DateTimeFormatter.ofPattern("yyyy-MM-dd") specifica il formato atteso
+                    // della stringa di input
                     val startingTime = LocalTime.parse(startingTimeStr, DateTimeFormatter.ofPattern("HH:mm:ss"))
 
                     val endingTimeStr = document.getString("endingTime") ?: ""
+                    // DateTimeFormatter.ofPattern("yyyy-MM-dd") specifica il formato atteso
+                    // della stringa di input
                     val endingTime = LocalTime.parse(endingTimeStr, DateTimeFormatter.ofPattern("HH:mm:ss"))
 
                     val trackName = document.getString("trackName") ?: ""
