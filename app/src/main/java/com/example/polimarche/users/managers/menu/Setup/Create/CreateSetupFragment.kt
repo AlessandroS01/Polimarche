@@ -27,6 +27,7 @@ import com.example.polimarche.users.managers.menu.setup.create.choosing_springs.
 import com.example.polimarche.users.managers.menu.setup.create.choosing_wheels.ChooseWheelsMain
 import com.example.polimarche.users.managers.menu.setup.create.choosing_wheels.WheelsAdapter
 
+/*
 class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_setup){
 
     private var _binding: FragmentManagersSetupCreateSetupBinding? = null
@@ -73,7 +74,7 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         // everytime the fragment resume it should refresh the adapters of all the different
         // recyclerViews
         super.onResume()
-
+/*
         adapterBalanceParameters.setNewList(
             balanceViewModel.getStockedParameters()
         )
@@ -88,7 +89,7 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
 
         adapterSpringParameters.setNewList(
             springViewModel.getStockedParameters()
-        )
+        ) */
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -105,8 +106,8 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         binding.chooseWheelsCreateSetup.setOnClickListener {
             // when the user wants to change the parameters it would be required
             // to add the parameters again
-            wheelViewModel.clearStockedParameters()
-            adapterWheelParameters.setNewList(wheelViewModel.getStockedParameters())
+            // wheelViewModel.clearStockedParameters()
+            //adapterWheelParameters.setNewList(wheelViewModel.getStockedParameters())
             Intent(it.context, ChooseWheelsMain::class.java).apply{
                 startActivity(this)
             }
@@ -125,8 +126,8 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         binding.chooseDampersCreateSetup.setOnClickListener {
             // when the user wants to change the parameters it would be required
             // to add the parameters again
-            damperViewModel.clearStockedParameters()
-            adapterDamperParameters.setNewList(damperViewModel.getStockedParameters())
+            // damperViewModel.clearStockedParameters()
+            // adapterDamperParameters.setNewList(damperViewModel.getStockedParameters())
             Intent(it.context, ChooseDampersMain::class.java).apply{
                 startActivity(this)
             }
@@ -334,3 +335,4 @@ class CreateSetupFragment : Fragment(R.layout.fragment_managers_setup_create_set
         adapterSetupNotes.clearNoteList()
     }
 }
+        */

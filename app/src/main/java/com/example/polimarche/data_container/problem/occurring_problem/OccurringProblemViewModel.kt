@@ -43,9 +43,9 @@ class OccurringProblemViewModel: ViewModel() {
     }
 
     /*
-    This method return a new MutableLiveData list in which all the elements
-    are an instance of DataOccurringProblem class having the attribute
-    problemCode set to the problemCode clicked on ProblemsSetupFragment.
+    Questo metodo restituisce un nuovo elenco MutableLiveData in cui tutti gli elementi
+    sono un'istanza della classe DataOccurringProblem con l'attributo
+    problemCode impostato su problemCode cliccato su ProblemsSetupFragment.
      */
     fun filterListByProblemCode(problemCode: Int): MutableLiveData<MutableList<DataOccurringProblem>>{
         val mutableLiveData: MutableLiveData<MutableList<DataOccurringProblem>> =

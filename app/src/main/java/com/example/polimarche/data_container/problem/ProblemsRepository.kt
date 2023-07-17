@@ -14,11 +14,6 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-/*
-Class that will contain all the data from which the various viewModel
-referring to any kind of DataProblem, like DataSolvedProblem or even DataProblem,
-can get and set their list values.
- */
 class ProblemsRepository {
 
     init {
@@ -37,19 +32,17 @@ class ProblemsRepository {
         }*/
     }
 
-
     private val db = FirebaseFirestore.getInstance()
 
-
     /*
-    Contains the list of all the problems faced by all the different setups
+    Contiene l'elenco di tutti i problems
      */
     private val _listProblemsData: MutableLiveData<MutableList<DataProblem>> =
         MutableLiveData()
     val listProblems get()= _listProblemsData
 
     /*
-    Contains the list of setups that face the problem clicked
+    Contiene l'elenco degli occurringProblem
      */
     private val _listOccurringProblemsData: MutableLiveData<MutableList<DataOccurringProblem>> =
         MutableLiveData(
@@ -59,7 +52,7 @@ class ProblemsRepository {
     val listOccurringProblems get()= _listOccurringProblemsData
 
     /*
-    Contains the list of setups that solved the problem clicked
+    Contiene l'elenco degli solvedProblem
      */
     private val _listSolvedProblemsData: MutableLiveData<MutableList<DataSolvedProblem>> =
         MutableLiveData(
@@ -186,8 +179,8 @@ class ProblemsRepository {
 
 
     /*
-    It adds a new problem to _listProblemsData when the user
-    decides to create a new problem.
+   Aggiunge un nuovo problema a _listProblemsData quando l'utente
+    decide di creare un nuovo problema e alla collection DataProblem.
      */
     fun addNewProblem(newProblem: DataProblem) {
         val collectionRef = db.collection("DataProblem")
@@ -197,12 +190,11 @@ class ProblemsRepository {
             .addOnSuccessListener {
                 val updatedList = _listProblemsData.value ?: mutableListOf() // Get the current list or initialize an empty list
 
-                updatedList.add(newProblem) // Add the new track to the updated list
+                updatedList.add(newProblem) // Add the new problem to the updated list
                 _listProblemsData.postValue(updatedList) // Use postValue to update the MutableLiveData asynchronously
                 println(_listProblemsData.value)
                 Log.e("ProblemsRepository", "New problem added successfully")
 
-                // Aggiorna la lista locale o esegui altre azioni necessarie
             }
             .addOnFailureListener { exception ->
                 Log.e("ProblemsRepository", "Failed to add new problem", exception)
@@ -211,9 +203,8 @@ class ProblemsRepository {
 
 
     /*
-    It firstly removes the item from the list of OccurringProblems and then
-    creates a new object of DataSolvedProblem to add to the list _listSolvedProblemsData.
-    It calls a method in which the new element is formally added.
+    Rimuove l'elemento dall'elenco di OccurringProblems e poi
+    crea un nuovo oggetto di DataSolvedProblem da aggiungere _listSolvedProblemsData.
      */
     suspend fun removeItemFromOccurringProblem(
         occurredProblem: DataOccurringProblem,
@@ -259,7 +250,7 @@ class ProblemsRepository {
             }
     }
 
-
+    // Aggiunge un nuovo SolvedProblem passato in ingresso nella collection DataSolvedProblem
     fun addNewSolvedProblem(newSolvedProblem: DataSolvedProblem){
         val collectionRef = db.collection("DataSolvedProblem")
         val newSolvedProblemRef = collectionRef.document()
@@ -281,10 +272,9 @@ class ProblemsRepository {
 
 
     /*
-    It firstly removes the item from the list of SolvedProblems
-    and then creates a new object of of DataOccurringProblem to add
-    to the list _listOccurringProblemsData.
-    It calls a method in which the new element is formally added.
+    Rimuove l'elemento dall'elenco _listSolvedProblemsData
+    e crea un nuovo oggetto di DataOccurringProblem da aggiungere
+    all'elenco _listOccurringProblemsData.
      */
     suspend fun removeItemFromSolvedProblem(
         solvedProblem: DataSolvedProblem,
@@ -329,7 +319,7 @@ class ProblemsRepository {
             }
     }
 
-
+    // Aggiunge un nuovo OccurringProblem passato in ingresso nella collection DataOccurringProblem
     fun addNewOccurringProblem(newOccurringProblem: DataOccurringProblem){
         val collectionRef = db.collection("DataOccurringProblem")
         val ProblemRef = collectionRef.document()

@@ -37,7 +37,8 @@ class WheelViewModel: ViewModel() {
         return codificationList
     }
     /*
-    Used to assign to every codification the wheels quantity having the same codification
+    Calcola la quantità di ruote per ogni codifica e restituisce una mappa che associa
+    ogni codifica alla sua quantità corrispondente
      */
     fun mapQuantityCodification(): MutableMap<String, Int>{
         val mappingCodificationQuantity = emptyMap<String, Int>().toMutableMap()
