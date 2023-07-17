@@ -40,7 +40,14 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
     private lateinit var seeTracksAdapter: SeeTracksAdapter
 
     private val trackList: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
+
+    /*
+   Usato per osservare il valore della query creata dalla searchView quando
+   un utente scrive su di essa.
+    */
     private val inputQuery: MutableLiveData<String?> = MutableLiveData("")
+
+    // Lista immutabile di oggetti DataTrack che rappresenta la lista originale di tutte le tracks
     private var originalTrackList: List<DataTrack> = emptyList()
 
 
@@ -72,23 +79,31 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
             seeTracksAdapter.setNewList(tracks)
         }
 
-
+        // Observer su listTracks
         tracksViewModel.listTracks.observe(viewLifecycleOwner) { newList ->
+            // Quando listTracks viene modificata
             originalTrackList = newList
             trackList.value = originalTrackList.toMutableList()
+
+            // Viene chiamato il metodo setNewList dell'adapter passando la lista delle tracce originali convertita
+            // in una lista modificabile
             (originalTrackList as MutableList<DataTrack>?)?.let { seeTracksAdapter.setNewList(it) }
         }
 
+        // Observer su trackList
         trackList.observe(viewLifecycleOwner, Observer { tracks ->
             seeTracksAdapter.setNewList(tracks)
         })
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            // Quando l'utente invia la query di ricerca, si rimuove il focus dalla SearchView.
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
                 return false
             }
 
+            // Quando il testo nella SearchView cambia, se il nuovo testo non è nullo,
+            // viene chiamato il metodo setQuery passando il nuovo testo per gestire la ricerca
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     setQuery(newText)
@@ -100,9 +115,6 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         binding.imageButtonAddTrack.setOnClickListener {
             showAddTrackDialog()
         }
-
-
-
     }
 
     private fun setQuery(query: String) {
@@ -112,10 +124,11 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
 
     private fun filterList() {
-        val query = inputQuery.value.toString().trim() // Rimuovi eventuali spazi bianchi prima e dopo la query
-        if (query.isNotBlank()) {
+        val query = inputQuery.value.toString().trim() // Viene ottenuta la query rimuovendo eventuali spazi bianchi prima e dopo la query
+        if (query.isNotBlank()) { // Se la query non è vuota
             val filteredList = originalTrackList.filter { track ->
-                track.name.contains(query, ignoreCase = true) // Filtra in base al nome della traccia ignorando maiuscole/minuscole
+                track.name.contains(query, ignoreCase = true) //  La lambda function verifica se il nome della traccia contiene la query di ricerca,
+                                                                            // ignorando la differenza tra maiuscole e minuscole
             }
             trackList.value = filteredList.toMutableList()
         } else {
@@ -127,6 +140,7 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
     private fun showAddTrackDialog(){
         val dialog = Dialog(requireContext())
+        // Proprietà del Dialog
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
@@ -137,24 +151,25 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_box_general_add_track)
 
+        // Vengono ottenute le referenze alle diverse viste all'interno del layout del dialog
         val newTrackName = dialog.findViewById(R.id.editTextAddTrackName) as EditText
         val newTrackLength = dialog.findViewById(R.id.editTextAddTrackLength) as EditText
         val descriptionText = dialog.findViewById(R.id.textViewChangeableAddTracks) as TextView
 
+        // Indica che l'input accettato deve essere un numero decimale.
         newTrackLength.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
-
 
         val confirmFrame = dialog.findViewById(R.id.confirmFrameAddTracks) as FrameLayout
         val cancelFrame = dialog.findViewById(R.id.cancelFrameAddTracks) as FrameLayout
 
         /*
-        Confirm to add a new track
+        Bottone di conferma per modificare la lunghezza della traccia
          */
         confirmFrame.setOnClickListener {
             descriptionText.text = ""
 
             /*
-            Searches if a saved track has the same name as the one inserted.
+            Metodo che verifica se esiste già una traccia con lo stesso nome all'interno di listTracks
              */
             if ( tracksViewModel.listTracks.value?.filter {
                     newTrackName.text.toString().lowercase() == it.name.lowercase()
@@ -163,9 +178,9 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
                 descriptionText.append("${newTrackName.text} already exists.")
             }
             /*
-                Whenever the user inserts a value that cannot be converted to a Double value,
-                the dialog won't be dismissed and changes also the color and the text of a textView
-                in which there's written what the error is.
+            Ogni volta che l'utente inserisce un valore che non può essere convertito in un valore Double,
+            la finestra di dialogo non verrà chiusa e cambia anche il colore e il testo di una textView
+            in cui c'è scritto qual è l'errore.
                  */
             else if ( newTrackLength.text.toString().toDoubleOrNull() == null ){
                 descriptionText.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_700))
@@ -174,8 +189,8 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
             }
             else {
                 /*
-                The new track name should be saved with only the first letter in uppercase
-                and all the others in lowercase
+                Il nuovo nome della traccia deve essere salvato con solo la prima lettera maiuscola
+                e tutti gli altri in minuscolo
                  */
                 var trackName = ""
                 newTrackName.text.toString().forEachIndexed { index, c ->
@@ -194,6 +209,7 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
                 dialog.dismiss()
             }
         }
+        // Bottone per annullamento modifiche
         cancelFrame.setOnClickListener {
             dialog.dismiss()
         }
