@@ -39,6 +39,7 @@ class DetailsWheelActivity: AppCompatActivity() {
         setupViewModel.setupList.observe(this) {
             val setup = setupViewModel.setupList.value?.filter { it.code == setupCode  }?.get(0)!!
 
+            // A seconda del valore di wheelPosition, viene assegnato il corrispondente valore di wheelDetails da setup
             when(wheelPosition){
                 "Front right" -> {
                     wheelDetails = setup.frontRightWheel
@@ -55,7 +56,7 @@ class DetailsWheelActivity: AppCompatActivity() {
             }
 
             binding.wheelCodeDetailsWheel.text = "Wheel code: ${wheelDetails.code}"
-            Log.d("wheelDetails","wheelDetails:$wheelDetails")
+
             binding.codificationDetailsWheel.text = wheelDetails.codification
 
             binding.positionDetailsWheel.text = wheelPosition

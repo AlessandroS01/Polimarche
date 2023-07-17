@@ -55,7 +55,7 @@ class OccurringProblemFragment(
     private lateinit var recyclerViewOccurringProblem: RecyclerView
 
     /*
-    List of setups in which the problem clicked doesn't occur and it's not been solved.
+    Elenco dei setups in cui il problema cliccato non è occorrente e non è stato risolto.
      */
     private lateinit var adapterAddOccurringProblems: AddNewOccurringProblemAdapter
 
@@ -77,8 +77,8 @@ class OccurringProblemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /*
-        Passes to the adapter the list of problems that matches with the problem code clicked
-        on ProblemsSetupFragment.
+        Passa all'adattatore l'elenco dei problemi che corrisponde al codice del problema selezionato
+        su ProblemiSetupFragment.
          */
 
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
@@ -100,7 +100,7 @@ class OccurringProblemFragment(
 
         binding.imageButtonAddOccurringProblem.setOnClickListener {
 
-            // Fetch data and populate listSetupsWithoutProblem
+            // Recupera i dati e popola listSetupsWithoutProblem
             window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             val listSetupsWithoutProblem = findSetupsWithoutProblem()
@@ -113,8 +113,8 @@ class OccurringProblemFragment(
     }
 
     /*
-    Create a dialog box that let the user add a new setup in which the problem
-    previously selected occurs.
+    Crea una finestra di dialogo che consente all'utente di aggiungere un nuovo setup in cui il problema
+    selezionato è occorrente.
      */
     private fun showDialogAddOccurringProblem(listSetupsWithoutProblem: MutableList<DataSetup>) {
         val dialog = Dialog(requireContext())
@@ -137,8 +137,8 @@ class OccurringProblemFragment(
             R.id.listAddNewOccurringProblem
         )
         /*
-        Check if there are other problems in which the problem can occur.
-        If there aren't then a toast will be shown.
+        Controlla se ci sono altri setup in cui il problema può verificarsi.
+        Se non ci sono, verrà mostrato un toast.
          */
         if (listSetupsWithoutProblem.size == 0){
             textView.text = "There isn't any setup left."
@@ -153,12 +153,12 @@ class OccurringProblemFragment(
         }
 
         /*
-        The confirm button check weather if a checkbox inside the recycler view
-        isChecked or not using a map created inside the adapter itself.
-        If it's checked then it reads first the code of the setup inside listSetupAddOccurringProblem
-        in the same position of the checkbox checked and, then, it reads the value of the description
-        given using, as for the checkBox, the map created inside the adapter that keeps updated
-        all the descriptions for every setup shown.
+        Il pulsante di conferma controlla se la checkbox all'interno della recycler view
+        è checkata o meno, utilizzando una mappa creata all'interno dell'adapter stesso.
+        Se è spuntato legge prima il codice del setup all'interno di listSetupAddOccurringProblem
+        nella stessa posizione della checkbox spuntata e, dopo, legge il valore della descrizione
+        data utilizzando, come per il checkBox, la mappa creata all'interno dell'adapter che si mantiene aggiornata
+        con tutte le descrizioni per ogni setup mostrato.
          */
         confirmAddition.setOnClickListener {
 
@@ -166,10 +166,11 @@ class OccurringProblemFragment(
                 it.value // this value is set to true when the a checkbox is clicked
             }.forEach {
                 /*
-                Foreach setup linked to a checked checkBox it adds directly to the repository,
-                calling a method of the adapter first and a method of the viewModel afterwards,
-                the new problem created thanks to the description edit text that appears whenever
-                the user checks a checkbox.
+                Per ogni setup collegato a una checkbox spuntata viene aggiunto, direttamente al repository,
+                chiamando prima un metodo dell'adattatore e successivamente un metodo del viewModel,
+                il nuovo problema creato grazie al testo di modifica della descrizione che appare ogni volta
+                l'utente spunta una checkbox.
+
                  */
                 val newOccurringProblem =
                     DataOccurringProblem(
@@ -189,16 +190,16 @@ class OccurringProblemFragment(
     }
 
     /*
-    Whenever the user clicks on removeItem the dialog box shows up
-    after the call on showDialogRemovingProblem method.
+    Ogni volta che l'utente fa clic su removeItem, viene visualizzata la finestra di dialogo
+    dopo la chiamata al metodo showDialogRemovingProblem.
      */
     override fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View) {
         showDialogRemovingProblem(element, itemView)
     }
 
     /*
-    Create a dialog box that lets the user add a description
-    if the he clicks on reappeared problem
+    Crea una finestra di dialogo che consenta all'utente di aggiungere una descrizione
+    se ha cliccato su un problema che è ricomparso
      */
     private fun showDialogRemovingProblem(element: DataOccurringProblem, view: View) {
         val dialog = Dialog(view.context)
@@ -220,13 +221,10 @@ class OccurringProblemFragment(
         val confirmReappearedProblem = dialog.findViewById(R.id.confirmFrameAllUses) as FrameLayout
         val cancelReappearedProblem = dialog.findViewById(R.id.cancelFrameAllUses) as FrameLayout
 
-        /*
-        Confirm that the problem that was solved before reappeared on the same setup.
-         */
         confirmReappearedProblem.setOnClickListener {
             /*
-            Calls the method removeItemFromList of the adapter and pass
-            the element clicked and the description of the future problemSolved.
+            Chiama il metodo removeItemFromList dell'adattatore e passa
+            l'elemento cliccato e la descrizione del problema futuro risolto.
              */
 
             viewLifecycleOwner.lifecycleScope.launch{
@@ -245,6 +243,11 @@ class OccurringProblemFragment(
     }
 
      /*
+     Restituisce una lista in cui non sono già memorizzate tutti i diversi setup in
+    listOccurringProblem.
+    Quindi analizza tutti i setup memorizzati e poi restituisce quelli che non sono all'interno
+    l'elenco menzionato prima. Inoltre controlla se il setup ha già risolto il problema.
+
     Returns a list in which all the different setups are not already stored inside
     listOccurringProblem.
     So it analyzes all the setups stored and then it returns the ones that are not inside
@@ -259,7 +262,7 @@ class OccurringProblemFragment(
          val listSolvedProblems = solvedProblemViewModel.listSolvedProblem.value
 
 
-         // Execute the observation on the main thread
+         // Esegue l'osservazione sul thread principale sul LiveData setupList
          setupViewModel.setupList.observe(viewLifecycleOwner){listSetups ->
 
              listSetups?.forEach { dataSetup ->

@@ -32,6 +32,7 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
     private var _binding: FragmentGeneralSetupProblemsSetupBinding? = null
     private val binding get() = _binding!!
 
+    // Rappresenta la finestra dell'attività a cui il frammento è associato
     private val window = window
 
     private lateinit var searchView: SearchView
@@ -58,10 +59,8 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
 
         problemViewModel.listProblems.observe(viewLifecycleOwner) {problem ->
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-            problemAdapter = ProblemAdapter(
-                problemViewModel.listProblems.value?.toMutableList()!!,
-                this
-            )
+
+            problemAdapter = ProblemAdapter(problemViewModel.listProblems.value?.toMutableList()!!, this)
             recyclerView = binding.problemSetupList
             val layoutManager = LinearLayoutManager(this.context)
             recyclerView.layoutManager = layoutManager
@@ -89,10 +88,10 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
     }
 
     /*
-    Method used by the search view that allows the adapter to show the items
-    that matches with the given input.
-    Since the description and the input can be given in uppercase or lowercase,
-    the comparison between the query and the saved description is made in lowercase.
+    Metodo utilizzato dalla search view che consente all'adapter di mostrare gli elementi
+    che corrisponde all'input dato.
+    Poiché la descrizione e l'input possono essere forniti in maiuscolo o in minuscolo,
+    il confronto tra la query e la descrizione salvata viene effettuato in minuscolo.
      */
     private fun filterList(query: String?){
         if(query != null){
@@ -104,7 +103,7 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
     }
 
     /*
-    Create a dialog box that let the user add a new setup problem
+    Crea una finestra di dialogo che consenta all'utente di aggiungere un nuovo problem setup
      */
     private fun showDialog() {
         val dialog = Dialog(requireContext())
@@ -127,10 +126,10 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
         val cancelAddNewProblem = dialog.findViewById(R.id.cancelAddNewProblem) as FrameLayout
 
         /*
-        Control if a problem inserted already exists or not.
-        The value of correctness boolean variable is set to false if the problem
-        already exists or the user has not inserted nothing inside the edit text.
-        During the confirm then, there's a check on the value of correctness.
+        Controlla se un problema inserito esiste già o meno.
+        Il valore della variabile booleana di correttezza è impostato su false se il problema
+        esiste già oppure l'utente non ha inserito nulla all'interno di editText.
+        Durante la conferma poi, c'è un controllo sul valore di correttezza.
          */
         var correctness = false
         newDescription.addTextChangedListener {
@@ -148,8 +147,8 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
             }
         }
         /*
-        Confirm the add of the new problem inside the list and the call to the
-        adapter to let it know that the item was added.
+        Conferma l'aggiunta del nuovo problema all'interno della lista e si chiama
+        l'adapter per informarlo che l'elemento è stato aggiunto.
          */
         confirmAddNewProblem.setOnClickListener {
             if (correctness) {
@@ -179,6 +178,9 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
         dialog.show()
     }
 
+    // Quando viene gestito un clic su un problema, la funzione rende invisibili alcuni elementi di interfaccia utente,
+    // crea un nuovo fragment ManageProblemFragment con i dati del problema cliccato e lo sostituisce nel layout
+    // corrente utilizzando una transazione del fragment manager.
     override fun onManageProblemClick(problemClicked: DataProblem) {
         searchView.visibility = View.GONE
 

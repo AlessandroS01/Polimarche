@@ -16,6 +16,7 @@ class ProblemAdapter(
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
+    // Definisce un modo per gestire il clic su un problema
     interface OnManageProblemClick{
         fun onManageProblemClick(problemClicked: DataProblem)
     }
@@ -32,10 +33,14 @@ class ProblemAdapter(
 
         init {
             /*
-            It sets the click listener only when the user touches manageProblem textView
+           Imposta il click listener solo quando l'utente tocca manageProblem textView
              */
             manageProblem.setOnClickListener(this)
         }
+
+        /* la funzione onClick viene chiamata quando si verifica un clic su un elemento all'interno della RecyclerView.
+        Se l'elemento corrisponde all'ID R.id.openManageProblemSetup, viene richiamato il metodo onManageProblemClick del listener
+        passando l'oggetto DataProblem corrispondente al problema cliccato.*/
         override fun onClick(v: View?) {
             val id = v?.id
             val position : Int = adapterPosition
@@ -78,8 +83,8 @@ class ProblemAdapter(
     }
 
     /*
-    This method changes the list of items of the recyclerView
-    based on the text inserted inside the SearchView
+    Questo metodo modifica l'elenco di elementi della recyclerView
+    in base al testo inserito all'interno di SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setFilteredList(filteredList: MutableList<DataProblem>){
@@ -88,7 +93,7 @@ class ProblemAdapter(
     }
 
     /*
-        This method changes the list of items of the recyclerView
+        Questo metodo modifica l'elenco di elementi di recyclerView
      */
     fun setList(newList: MutableList<DataProblem>){
         this.problemList = newList

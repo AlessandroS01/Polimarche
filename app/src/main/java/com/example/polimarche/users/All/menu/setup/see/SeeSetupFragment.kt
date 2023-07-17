@@ -44,6 +44,7 @@ class SeeSetupFragment(window: Window) : Fragment(R.layout.fragment_general_setu
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Impostare la finestra corrente in uno stato in cui gli input utente non sono intercettabili o gestiti
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         searchView = binding.searchViewSetupSee
@@ -53,8 +54,10 @@ class SeeSetupFragment(window: Window) : Fragment(R.layout.fragment_general_setu
         recyclerView = binding.seeSetupList
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
+
         setupViewModel.setupList.observe(viewLifecycleOwner) {
 
+            // Ripristinare la normale interattività agli input utente
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             adapter = SeeSetupAdapter(setupViewModel)
@@ -77,6 +80,8 @@ class SeeSetupFragment(window: Window) : Fragment(R.layout.fragment_general_setu
 
     private fun filterList(query: String?){
         if(query != null){
+            // Viene utilizzata una lambda function per definire il criterio di filtro (query in it.toString())
+            // La lambda function verifica se la query è contenuta nella rappresentazione in stringa di ciascun oggetto.
             val filteredList = setupViewModel.getSetupCodes().filter { query in it.toString() }
             adapter.setFilteredList(filteredList.toMutableList())
         }

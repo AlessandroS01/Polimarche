@@ -48,8 +48,8 @@ class SolvedProblemAdapter(
                 if (id == R.id.imageViewReappearedSolvedProblem) {
                     listener.onProblemReappearedClick(
                         /*
-                        Find the instance of DataProblem that has the same problem code
-                        as the one clicked at the position given by the adapter
+                        Trova l'istanza di DataProblem che ha lo stesso codice problema
+                        di quello cliccato nella posizione indicata dall'adattatore
                          */
                         solvedProblemViewModel.filterListByProblemCode(
                             problemClicked.code
@@ -102,12 +102,12 @@ class SolvedProblemAdapter(
     }
 
     /*
-    Firstly it adds to the list inside occurringProblemViewProblem a new OccurringProblem
-    in which the problem code is the one of the problem clicked, the
-    setup code is the one of the item removed and the description is the one passed
-    as a parameter from SolvedProblemFragment.
-    Then it calls directly a method of the adapter
-    that replaces the list of the adapter.
+    In primo luogo aggiunge all'elenco all'interno di occurringProblemViewProblem un nuovo OccurringProblem
+    in cui il codice del problema è quello del problema cliccato, il
+    il codice di setup è quello dell'elemento rimosso e la descrizione è quella passata
+    come parametro da SolvedProblemFragment.
+    Quindi chiama direttamente un metodo dell'adattatore
+    che sostituisce l'elenco dell'adapter.
      */
     suspend fun removeItemFromList(item: DataSolvedProblem, description: String){
         val newList = solvedProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!

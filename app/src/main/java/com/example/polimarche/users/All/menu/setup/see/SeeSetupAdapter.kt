@@ -34,8 +34,8 @@ class SeeSetupAdapter (
     }
 
     /*
-    This method lets change the item on the recyclerView
-    at the change of the text inserted inside the SearchView
+    Questo metodo consente di modificare l'elemento su recyclerView
+    al cambio del testo inserito all'interno della SearchView
      */
     @SuppressLint("NotifyDataSetChanged")
     fun setFilteredList(filteredList: MutableList<Int>){
@@ -67,10 +67,10 @@ class SeeSetupAdapter (
                     detailSetup.setOnClickListener {
                         Intent(holder.itemView.context, DetailsSetupActivity::class.java).apply {
                             /*
-                            To the new activity it passes directly the value
-                            of the setup code clicked.
-                            Doing this we can find the parameters of the entire
-                            setup inside the activity.
+                            Alla nuova attività passa direttamente il valore
+                            del codice di configurazione cliccato.
+                            In questo modo possiamo trovare i parametri dell'intero
+                            setup all'interno dell'activity.
                              */
                             this.putExtra("SETUP_CODE", listSetupCodes[position])
                             it.context.startActivity(this)

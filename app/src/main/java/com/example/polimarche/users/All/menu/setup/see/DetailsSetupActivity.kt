@@ -23,24 +23,30 @@ class DetailsSetupActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityGeneralDetailsSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
+        // Impostare la finestra corrente in uno stato in cui gli input utente non sono intercettabili o gestiti
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
-
+        // Valore di fallback (-1) da restituire nel caso in cui l'extra non sia presente nell'intent.
         val setupCode = intent.getIntExtra("SETUP_CODE", -1)
 
 
         setupViewModel.setupList.observe(this) {
+                // Ripristinare la normale interattività agli input utente
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-            // Entire setup data found from the setup code
+            // Tutti i dati del setup trovati tramite codice del setup
                 val filteredList = setupViewModel.setupList.value?.filter { it.code == setupCode }
                     ?.toMutableList()!!
 
+            // Assegna il primo elemento della lista filteredList alla variabile setup
+            // Se filteredList è nullo, l'espressione restituisce null.
                 this.setup = filteredList?.get(0)!!
                 binding.setupCodeSeeSetup.text = "Setup code: ${this.setup.code}"
 
@@ -67,6 +73,8 @@ class DetailsSetupActivity: AppCompatActivity() {
 
                 var notes = ""
 
+            // Itera attraverso gli elementi della lista notes nell'oggetto setup e crea una stringa notes
+            // che contiene tutti i valori delle note separati da un carattere di nuova riga (\n)
                 this.setup.notes.forEachIndexed { index, s ->
                     notes += if (index == this.setup.notes.size - 1) s else "${s}\n"
                 }
@@ -81,9 +89,8 @@ class DetailsSetupActivity: AppCompatActivity() {
         }
 
         /*
-        Let the user navigate from the details of a setup to
-        the particular frame listing all the details of the single
-        wheel.
+        Consente all'utente di navigare dai dettagli di un setup al frame che
+        riporta tutti i dettagli della singola ruota.
          */
         val frontRightWheel: ImageView = binding.frontRightWheelDetails
         val frontLeftWheel: ImageView = binding.frontLeftWheelDetails
@@ -119,9 +126,8 @@ class DetailsSetupActivity: AppCompatActivity() {
         }
 
         /*
-        Let the user navigate from the details of a setup to
-        the particular frame listing all the details of the single
-        damper.
+        Consente all'utente di navigare dai dettagli di un setup al frame che
+        riporta tutti i dettagli di ogni singolo damper.
          */
         val frontDamper: ImageView = binding.frontDamperDetails
         val backDamper: ImageView = binding.backDamperDetails
@@ -141,9 +147,8 @@ class DetailsSetupActivity: AppCompatActivity() {
         }
 
         /*
-        Let the user navigate from the details of a setup to
-        the particular frame listing all the details of the single
-        spring.
+        Consente all'utente di navigare dai dettagli di un setup al frame che
+        riporta tutti i dettagli di ogni singolo spring.
          */
         val frontSpring: ImageView = binding.frontSpringDetails
         val backSpring: ImageView = binding.backSpringDetails

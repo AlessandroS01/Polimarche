@@ -14,10 +14,7 @@ import com.example.polimarche.data_container.problem.DataProblem
 import com.example.polimarche.data_container.problem.occurring_problem.OccurringProblemViewModel
 import com.example.polimarche.data_container.problem.solved_problem.DataSolvedProblem
 import com.example.polimarche.users.all.menu.setup.see.DetailsSetupActivity
-/*
-Passes directly the list of problems that matches with the problem clicked
-on ProblemsSetupFragment and then the viewModel to
- */
+
 class OccurringProblemAdapter(
     private val problemClicked: DataProblem,
     private val occurringProblemViewModel: OccurringProblemViewModel,
@@ -55,8 +52,8 @@ class OccurringProblemAdapter(
                 if (id == R.id.imageViewRemoveOccurringProblem) {
                     listener.onProblemSolvedClick(
                         /*
-                        Find the instance of DataProblem that has the same problem code
-                        as the one clicked at the position given by the adapter
+                        Trova l'istanza di DataProblem che ha lo stesso codice problema
+                        come quello cliccato nella posizione indicata dall'adapter
                          */
                         occurringProblemViewModel.filterListByProblemCode(
                             problemClicked.code
@@ -109,9 +106,9 @@ class OccurringProblemAdapter(
     }
 
     /*
-    Adds a new item to the list inside the ViewModel.
-    Then it calls directly a method of the adapter
-    that replaces the list of the adapter.
+    Aggiunge un nuovo elemento all'elenco all'interno di ViewModel.
+    Quindi chiama direttamente un metodo dell'adattatore
+    che sostituisce l'elenco dell'adapter.
      */
     fun addItemToItemView(item: DataOccurringProblem){
         occurringProblemViewModel.addNewOccurringProblem(item)
@@ -121,12 +118,13 @@ class OccurringProblemAdapter(
     }
 
     /*
-    Firstly it adds to the list inside solvedProblemViewModel a new SolvedProblem
-    in which the problem code is the one of the problem clicked, the
-    setup code is the one of the item removed and the description is the one passed
-    as a parameter from OccurringProblemFragment.
-    Then it calls directly a method of the adapter
-    that replaces the list of the adapter.
+    Aggiunge all'elenco all'interno solvedProblemViewModel un nuovo SolvedProblem
+    in cui il codice del problema è quello del problema cliccato, il
+    il codice di setup è quello dell'elemento rimosso e la descrizione è quella passata
+    come parametro da OccurringProblemFragment.
+    Quindi chiama direttamente un metodo dell'adattatore
+    che sostituisce l'elenco dell'adattatore.
+
      */
     suspend fun removeItemFromList(item: DataOccurringProblem, descriptionSolvedProblem: String){
         val newList = occurringProblemViewModel.filterListByProblemCode(problemClicked.code).value?.toMutableList()!!
