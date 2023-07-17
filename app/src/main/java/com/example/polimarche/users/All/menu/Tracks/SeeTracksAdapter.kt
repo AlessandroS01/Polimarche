@@ -24,20 +24,21 @@ class SeeTracksAdapter(
 
 
     /*
-    Contains the complete list of tracks of the viewModel
+    Contiene l'elenco completo delle tracks del viewModel
      */
     private val listTracks: MutableList<DataTrack> = mutableListOf()
-    init {
+    init { // blocco di inizializzazione
+        // Observer per l'oggetto LiveData listTracks che viene eseguito ogni volta che il valore di listTracks cambia
         tracksViewModel.listTracks.observeForever { tracks ->
-            listTracks.clear()
-            listTracks.addAll(tracks)
-            notifyDataSetChanged()
+            listTracks.clear()  // Svuota la lista
+            listTracks.addAll(tracks) // Aggiunge tutti gli elementi presenti nell'oggetto session
+            notifyDataSetChanged() // Notifica all'adapter che i dati sono cambiati
         }
     }
 
     /*
-    Used to keep an eye on the value of the query created by the searchView when
-    a user writes on it.
+    Utilizzato per tenere d'occhio il valore della query creata dalla searchView quando
+    un utente scrive su di essa.
      */
     private var inputQuery: MutableLiveData<String> = MutableLiveData("")
     fun setQuery(query: String){
@@ -50,15 +51,17 @@ class SeeTracksAdapter(
         tracksView: View
     ): RecyclerView.ViewHolder(tracksView){
 
+        // Vengono passati a queste variabili i riferimenti dei corrispondenti elementi di layout XML
         val trackName = tracksView.findViewById(R.id.trackName) as TextView
         val trackLength = tracksView.findViewById(R.id.trackLength) as TextView
         val modifyTrackLength = tracksView.findViewById(R.id.imageViewModifyAllUsesTracks) as ImageView
 
+        // Layout principale dell'elemento della traccia
         val constraintLayout: ConstraintLayout = tracksView.findViewById(
             R.id.constraintLayoutAllUsesTracks
         )
+        // Utilizzato per il layout delle tracce espandibili
         val linearLayout: LinearLayout = tracksView.findViewById(R.id.linearLayoutExpandableTracks)
-
 
     }
 

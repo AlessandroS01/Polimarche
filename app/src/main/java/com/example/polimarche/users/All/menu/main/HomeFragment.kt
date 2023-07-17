@@ -25,6 +25,8 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
 
+    // Variabili utilizzate per eseguire il binding degli elementi del layout
+    // fragment_general_main_home utilizzando FragmentGeneralMainHomeBinding
     private var _binding: FragmentGeneralMainHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -36,31 +38,39 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGeneralMainHomeBinding.inflate(inflater, container, false)
+        // La funzione inflate prende il layout XML del fragment_general_main_home e lo converte in un oggetto FragmentGeneralMainHomeBinding
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // viene ottenuto l'utente corrente tramite il FirebaseAuth e assegnato a currentUser
         val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
+        // Controllo che currentUser non sia null
         if (currentUser != null) {
-            val matricola: String? = currentUser.email
+
+            val matricola: String? = currentUser.email // Viene ottenuta la matricola dell'utente
+            // estrae il valore della matricola dall'email dell'utente
             val matriculation = matricola!!.split("@")[0].substring(1, matricola.indexOf("@"))
-            binding.textView24.text = matriculation
+            binding.textView24.text = matriculation // imposta matriculation come testo di textView24
 
-            val userId: String = currentUser.uid
-            val db = FirebaseFirestore.getInstance()
+            val userId: String = currentUser.uid // Viene ottenuto l'ID dell'utente corrente
+            val db = FirebaseFirestore.getInstance() // Viene ottenuta un'istanza di FirebaseFirestore
 
+            // Viene avviata una coroutine nell'ambito del thread di I/O
             CoroutineScope(Dispatchers.IO).launch {
+                // Viene effettuata una query al documento nel database corrispondente all'utente corrente
                 db.collection("Users")
                 .document(userId)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        role = documentSnapshot.getString("role")
-                        binding.textView80.text = role
+                    if (documentSnapshot.exists()) { // se il documento relativo all'utente esiste
+                        role = documentSnapshot.getString("role") // Viene ottenuto il valore del campo "role"
+                        binding.textView80.text = role // e lo si setta come testo di textView80
 
+                        // Vengono impostati listener per il click su vari elementi dell'interfaccia utente
                         binding.frameLayoutSetup.setOnClickListener {
                             if (role == "Manager") {
                                 Intent(context, ManagersSetupActivity::class.java).apply {
@@ -73,6 +83,7 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
                             }
                         }
 
+                        // Vengono impostati listener per il click su vari elementi dell'interfaccia utente
                         binding.frameLayoutPracticeSession.setOnClickListener {
                             if (role == "Manager") {
                                 Intent(context, ManagersPracticeSessionActivity::class.java).apply {
@@ -85,6 +96,7 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
                             }
                         }
 
+                        // Vengono impostati listener per il click su vari elementi dell'interfaccia utente
                         binding.frameLayoutTracks.setOnClickListener {
                             if (role == "Manager") {
                                 Intent(context, ManagersTracksActivity::class.java).apply {
@@ -99,6 +111,7 @@ class HomeFragment : Fragment(R.layout.fragment_general_main_home) {
                     }
                 }
                 .addOnFailureListener { e ->
+                    // Se la query non va a buon fine viene stampato nel logcat un messaggio di errore
                     Log.e(TAG, "Errore durante la query: ${e.message}")
                 }
             }

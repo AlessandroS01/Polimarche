@@ -70,10 +70,6 @@ class DetailsWheelActivity: AppCompatActivity() {
         binding.backButtonDetailWheel.setOnClickListener {
             finish()
         }
-
-
-
-
     }
 
     /*

@@ -11,16 +11,20 @@ import com.example.polimarche.databinding.ActivityGeneralDetailsMemberBinding
 
 class DetailsMemberActivity: AppCompatActivity() {
 
+    // Variabile utilizzata per effettuare il binding dei componenti del file di layout XML
     private lateinit var binding : ActivityGeneralDetailsMemberBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityGeneralDetailsMemberBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        super.onCreate(savedInstanceState) // Invocazione dell'implementazione del metodo onCreate() nella classe genitore AppCompatActivity
+        binding = ActivityGeneralDetailsMemberBinding.inflate(layoutInflater) // Inflating
+        setContentView(binding.root) // Imposta il layout dell'attività
+
+        // Istruzioni per rendere trasparente la barra di stato
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         window.statusBarColor = Color.TRANSPARENT
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
+        // Istruzioni per impostare i valori passati tramite l'intent, nelle varie componenti di layout
         binding.textViewCN.text = intent.getStringExtra("NUMBER")
         binding.textViewDOB.text = intent.getStringExtra("DOB")
         binding.textViewEmail.text = intent.getStringExtra("EMAIL")
@@ -30,17 +34,16 @@ class DetailsMemberActivity: AppCompatActivity() {
         binding.textViewMNumber.text = intent.getLongExtra("MATRICULATION", 0).toString()
 
 
-
         val backButton : ImageButton = findViewById(R.id.backButtonDetailMember)
+        // Quando il bottone viene cliccato si chiude l'activity corrente
         backButton.setOnClickListener {
             finish()
         }
     }
 
     /*
-        This method is used to set the status bar
-        completely transparent but keeping the icon at the top
-        of the layout
+        Questo metodo viene utilizzato per impostare la barra di stato
+        completamente trasparente
      */
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window

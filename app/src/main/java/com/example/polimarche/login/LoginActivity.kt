@@ -13,73 +13,34 @@ import com.google.firebase.firestore.FirebaseFirestore
 class LoginActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // Inizializza Firebase
-        FirebaseApp.initializeApp(this)
-        setContentView(R.layout.activity_login)
+        super.onCreate(savedInstanceState) // savedInstanceState è oggetto Bundle (contenitore di dati) che contiene i dati salvati dal precedente stato dell'activity
+        // super si riferisce alla superclasse AppCompatActivity
+        FirebaseApp.initializeApp(this) // inizializza Firebase nel contesto corrente dell'activity
+        setContentView(R.layout.activity_login) // metodo imposta il layout dell'activity specificando il file XML activity_login
+                                                            // come il layout da visualizzare
 
+        // imposta un flag per indicare che la barra di stato non deve essere traslucida
         setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
+
+        // imposta il colore della barra di stato su trasparente
         window.statusBarColor = Color.TRANSPARENT
 
+        // Imposta la visibilità dell'interfaccia utente per nascondere la barra di navigazione nell'activity
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
-        val loginFragment = LoginFragment()
+        val loginFragment = LoginFragment() // viene creato un oggetto di tipo LoginFragment
+
+        // Inizia una transazione del FragmentManager per effettuare una modifica al layout corrente.
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frameLayoutLoginSignIn, loginFragment).commit()
-            setReorderingAllowed(true)
-            addToBackStack(null)
+            replace(R.id.frameLayoutLoginSignIn, loginFragment).commit() // sostituisce il contenuto del frameLayoutLoginSignIn con l'istanza di loginFragment
+            setReorderingAllowed(true) // riordinamento delle transazioni
+            addToBackStack(null) // aggiungere la transazione corrente nello stack di transazioni all'indietro
         }
-        /*
-        val firebaseFirestore = FirebaseFirestore.getInstance()
-        // Assuming you have initialized the Firebase Firestore instance and have a reference to the existing item
-        val existingItemRef = firebaseFirestore.collection("setup").document("HL231voQtS0EslAVU0o3")
-
-        val arrayDocument: MutableList<String> = mutableListOf("zjjOVwZLA3QuI4CN8xQk", "cxahVhfu3PH8PyNsVshM", "3CTDoR5G3hCqDdYPEvkM")
-
-        arrayDocument.forEach { doc ->
-            // Create a new document reference for the destination location
-        val newItemRef = firebaseFirestore.collection("setup").document(doc)
-
-        // Retrieve the existing item
-        existingItemRef.get().addOnSuccessListener { documentSnapshot ->
-            if (documentSnapshot.exists()) {
-                // Get the data from the existing item
-                val existingItemData = documentSnapshot.data
-
-                // Create a new document with the same data as the existing item
-                if (existingItemData != null) {
-                    newItemRef.set(existingItemData)
-                        .addOnSuccessListener {
-                            // The new item has been successfully created
-                            // You can perform any additional operations here if needed
-                        }
-                        .addOnFailureListener {
-                            // An error occurred while creating the new item
-                            // Handle the error accordingly
-                        }
-                }
-            } else {
-                // The existing item does not exist or could not be retrieved
-                // Handle the case accordingly
-            }
-        }.addOnFailureListener { exception ->
-            // An error occurred while retrieving the existing item
-            // Handle the error accordingly
-        }
-        }
-
- */
-
-
-
-
-
     }
 
     /*
-        This method is used to set the status bar
-        completely transparent but keeping the icon at the top
-        of the layout
+        Questo metodo viene utilizzato per impostare la barra di stato
+        completamente trasparente
      */
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
@@ -92,8 +53,9 @@ class LoginActivity : AppCompatActivity(){
         win.attributes = winParams
     }
 
+    // Questa funzione sposta l'attività in background anziché terminarla immediatamente
     override fun onBackPressed(){
-        moveTaskToBack(false);
+        moveTaskToBack(false) // False indica che l'attività non deve essere terminata
     }
 
 
