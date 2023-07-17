@@ -31,10 +31,13 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
     private val tracksViewModel: TracksViewModel by viewModels()
 
+    // Variabili utilizzate per eseguire il binding degli elementi del layout
+    // fragment_general_tracks_see_tracks utilizzando FragmentGeneralTracksSeeTracksBinding
     private var _binding: FragmentGeneralTracksSeeTracksBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var searchView: SearchView
+    private lateinit var searchView: SearchView //variabile che verrà inizializzata in un
+                                                // momento successivo rispetto alla sua dichiarazione
 
     private lateinit var seeTracksRecyclerView: RecyclerView
     private lateinit var seeTracksAdapter: SeeTracksAdapter
@@ -42,8 +45,8 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
     private val trackList: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
 
     /*
-   Usato per osservare il valore della query creata dalla searchView quando
-   un utente scrive su di essa.
+        Usata per osservare il valore della query creata dalla searchView quando
+        un utente scrive su di essa.
     */
     private val inputQuery: MutableLiveData<String?> = MutableLiveData("")
 
@@ -57,6 +60,8 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGeneralTracksSeeTracksBinding.inflate(inflater, container, false)
+        // La funzione inflate prende il layout XML del fragment_general_tracks_see_tracks
+        // e lo converte in un oggetto FragmentGeneralTracksSeeTracksBinding
         return binding.root
     }
 
@@ -67,6 +72,7 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
 
         tracksViewModel.initialize()
 
+        //Osservatore sulla lista di tracce (listTracks) all'interno del tracksViewModel
         tracksViewModel.listTracks.observe(viewLifecycleOwner) {tracks ->
             seeTracksAdapter = SeeTracksAdapter(tracksViewModel)
 
