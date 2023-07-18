@@ -40,13 +40,13 @@ class AddPracticeSessionFragment : Fragment(
     private lateinit var adapterSeeTracks: UseTrackNewPracticeSessionAdapter
 
     /*
-    These variables controls if the values inserted as date and time are correct or not.
+    Queste variabili controllano se i valori inseriti nella date e negli orari siano corretti o meno
      */
     private var correctnessDate = false
     private var correctnessTime = false
     private var correctnessStartingTime = false
     private var correctnessEndingTime = false
-    // Variable in which we will store the name of the track selected by the user
+    // Variabile nella quale andremo a salvare il nome della track selezionata dall'utente
     private var trackName = ""
 
     override fun onCreateView(
@@ -54,7 +54,8 @@ class AddPracticeSessionFragment : Fragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        // La funzione inflate prende il layout XML del fragment_general_practice_session_add
+        // e lo converte in un oggetto FragmentPracticeSessionAddBinding
         _binding = FragmentManagersPracticeSessionAddBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -63,6 +64,9 @@ class AddPracticeSessionFragment : Fragment(
         super.onViewCreated(view, savedInstanceState)
 
         tracksViewModel.initialize()
+        // Impostazione un observer sull'oggetto LiveData listPracticeSession
+        // all'interno del practiceSessionViewModel.
+        // L'observer viene notificato ogni volta che il valore di listPracticeSession cambia.
         tracksViewModel.listTracks.observe(viewLifecycleOwner) {
             recyclerViewSeeTracks = binding.listTracksAddPS
             val linearLayoutManager = LinearLayoutManager(requireContext())
@@ -115,13 +119,13 @@ class AddPracticeSessionFragment : Fragment(
                 ).show()
 
                 /*
-                Restore the initial state of track input and event type
+                Ristabilisce lo stato iniziale del track inout e dell'event type
                  */
                 binding.setTrackPS.text = "Set track"
                 adapterSeeTracks.changeListTracksOnClick(tracksViewModel.listTracks)
                 binding.radioGroupEventCategories.check(binding.radioButtonEndurance.id)
 
-                // Create a list of editText elements inside the view
+                // Crea una lista di elementi dentro la View
                 val editTexts = listOf(
                     binding.setDatePSEditText,
                     binding.setStartingTimePS,
@@ -134,7 +138,7 @@ class AddPracticeSessionFragment : Fragment(
                 )
 
                 /*
-                Clear the text inside all the editTexts
+                Pulisce il testo dentro tutti gli editTexts
                  */
                 editTexts.forEach {
                     it.text.clear()
@@ -152,7 +156,7 @@ class AddPracticeSessionFragment : Fragment(
         binding.setTrackPS.text = "Track choosen: ${trackClicked.name}"
         trackName = trackClicked.name
         /*
-        Generates a new list containing all the tracks that are different from the one selected
+        Genera una nuova lista contenente tutte le tracks differenti da quella selezionata
          */
         val newListTracks: MutableLiveData<MutableList<DataTrack>> =
             MutableLiveData(
@@ -161,18 +165,17 @@ class AddPracticeSessionFragment : Fragment(
                 }?.toMutableList()!!
             )
         /*
-        Changes the shown list of the recyclerView.
+        Cambia la visualizzazione della lista della RecyclerView.
          */
         adapterSeeTracks.changeListTracksOnClick(newListTracks)
     }
 
     /*
-    Used to control the input of the date
+    Utilizzato per controllare l'input della data.
      */
     private fun setDate(){
         /*
-        When the user clicks on the button, the edit text will contain
-        the current date.
+        Quando l'utente clicca sul bottone, l'edit text conterrà la data corrente.
          */
         binding.setDatePSButton.setOnClickListener {
             binding.setDatePSEditText.setText(
@@ -186,7 +189,7 @@ class AddPracticeSessionFragment : Fragment(
                 )
             )
         }
-        // Used to keep a record of the length of the text
+        //Utilizzato per mantenere un record della lunghezza del testo
         var previousLength = 0
         binding.setDatePSEditText.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -195,7 +198,7 @@ class AddPracticeSessionFragment : Fragment(
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(s?.length == 10){
                     /*
-                    Sets the text to red when the date inserted is not valid.
+                    Setta il testo a rosso quando la data inserita non è valida.
                      */
                     correctnessDate = if (isValidDate(s.toString(), "yyyy-MM-dd")) {
                         true
@@ -216,23 +219,22 @@ class AddPracticeSessionFragment : Fragment(
                 // Sees the actual length of the string
                 val currentLength = s?.length ?: 0
                 /*
-                Calculate the difference between the current length of the string and
-                the previous length.
-                So whenever the user deletes a character the difference will be signed
-                negatively.
+                Calcola la differenza tra la current lenght della stringa e la previous length.
+                Quindi in qualsiasi momento l'utente elimina un carattere, la variabile diff
+                sarà negativa.
                  */
                 val diff = currentLength - previousLength
                 /*
-                If the difference is positive, so the user is writing and not deleting characters,
-                whenever the string length is 4 or 7, to the editText text will be added "-".
-                Then, since setText set focus to the first character, we need to set the
-                focus at the end of the string.
+                Se la differenza è positiva, quindi l'utente sta scrivendo e non eliminando
+                caratteri, quando la lunghezza della stringa è 4 o 7, verrà aggiunto un "-"
+                all'ediText. Poi, poiché setText setta il focus sul primo carattere, dobbiamo
+                settare il focus alla fine della stringa.
                  */
                 if (diff > 0 && (currentLength == 4 || currentLength == 7)) {
                     binding.setDatePSEditText.setText("$s-")
                     binding.setDatePSEditText.setSelection(binding.setDatePSEditText.text.length)
                 }
-                previousLength = currentLength // update previous length
+                previousLength = currentLength //Aggiorna la lunghezza precedente
                 if(currentLength != 10)
                     binding.setDatePSEditText.setTextColor(
                             ContextCompat.getColor(
@@ -244,6 +246,11 @@ class AddPracticeSessionFragment : Fragment(
         })
     }
 
+    //Se l'analisi ha successo e non viene generata alcuna eccezione,
+    // la funzione restituisce true, indicando che dateStr è una data valida secondo
+    // il formato specificato. Se si verifica un'eccezione durante l'analisi,
+    // la funzione cattura l'eccezione e restituisce false,
+    // indicando che dateStr non è una data valida.
     fun isValidDate(dateStr: String, format: String): Boolean {
         val sdf = SimpleDateFormat(format, Locale.ENGLISH)
         sdf.isLenient = false
@@ -256,11 +263,12 @@ class AddPracticeSessionFragment : Fragment(
     }
 
     /*
+    Utilizzato per controllare l'input dell'orario
     Used to control the input of the time
      */
     private fun setTime(){
 
-        // Used to keep a record of the length of the text
+        //Utilizzato per mantenere un record della lunghezza dell'orario
         var previousLength = 0
         binding.setStartingTimePS.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -268,11 +276,11 @@ class AddPracticeSessionFragment : Fragment(
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 /*
-                Checks if the time inserted is valid or not.
+                Controlla se l'orario inserito è valido o meno.
                  */
                 if(s?.length == 8){
                     /*
-                    Sets the text to red when the time inserted is not valid.
+                    Setta il testo a rosso quando l'orario inserito non è corretto.
                      */
                     if (isValidTime(s.toString(), "HH:mm:ss")) {
                         correctnessStartingTime = true
@@ -290,20 +298,19 @@ class AddPracticeSessionFragment : Fragment(
             }
 
             override fun afterTextChanged(s: Editable?) {
-                // Sees the actual length of the string
+                // Vede la lunghezza attuale della stringa
                 val currentLength = s?.length ?: 0
                 /*
-                Calculate the difference between the current length of the string and
-                the previous length.
-                So whenever the user deletes a character the difference will be signed
-                negatively.
+                Calcola la differenza tra la current lenght della stringa e la previous length.
+                Quindi in qualsiasi momento l'utente elimina un carattere, la variabile diff
+                sarà negativa.
                  */
                 val diff = currentLength - previousLength
                 if(diff > 0 && ( currentLength == 2 || currentLength == 5) ){
                     binding.setStartingTimePS.setText("$s:")
                     binding.setStartingTimePS.setSelection(binding.setStartingTimePS.text.length)
                 }
-                previousLength = currentLength // update previous length
+                previousLength = currentLength // Aggiorna la lunghezza precedente
                 if(currentLength != 8)
                     binding.setStartingTimePS.setTextColor(
                             ContextCompat.getColor(
@@ -322,7 +329,7 @@ class AddPracticeSessionFragment : Fragment(
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(s?.length == 8){
                     /*
-                    Sets the text to red when the time inserted is not valid.
+                    Setta il testo a rosso quando l'orario inserito non è corretto
                      */
                     if (isValidTime(s.toString(), "HH:mm:ss")) {
                         correctnessEndingTime = true
@@ -340,20 +347,19 @@ class AddPracticeSessionFragment : Fragment(
             }
 
             override fun afterTextChanged(s: Editable?) {
-                // Sees the actual length of the string
+                // Vede la lunghezza attuale della stringa
                 val currentLength = s?.length ?: 0
                 /*
-                Calculate the difference between the current length of the string and
-                the previous length.
-                So whenever the user deletes a character the difference will be signed
-                negatively.
+                Calcola la differenza tra la current lenght della stringa e la previous length.
+                Quindi in qualsiasi momento l'utente elimina un carattere, la variabile diff
+                sarà negativa.
                  */
                 val diff = currentLength - previousLength2
                 if(diff > 0 && ( currentLength == 2 || currentLength == 5) ){
                     binding.setEndingTimePS.setText("$s:")
                     binding.setEndingTimePS.setSelection(binding.setEndingTimePS.text.length)
                 }
-                previousLength2 = currentLength // update previous length
+                previousLength2 = currentLength // Aggiorna la lunghezza precedente
                 if(currentLength != 8)
                     binding.setEndingTimePS.setTextColor(
                             ContextCompat.getColor(
@@ -376,9 +382,9 @@ class AddPracticeSessionFragment : Fragment(
         }
     }
     /*
-    Parse the string created as input by the user and controls if the starting time
-    is before the ending time.
-    If that's not happening then the color of setTime will be set to red.
+    Effettua il parsing della stringa creata in input dall'utente e controlla se l'orario di inizio
+    sia precedente a quello di fine.à
+    Se ciò non accade allora il colore del setTime verrà settato a rosso.
      */
     private fun controlOverTimeSubmitted(
         startingTimeCorrectness: Boolean,
@@ -409,8 +415,8 @@ class AddPracticeSessionFragment : Fragment(
     }
 
     /*
-    Returns a string that has as value the name of the event
-    linked to the radioButton checked.
+    Ritorna una stringa che ha come valore il nome dell'evento
+    collgeato al radio button checkato
      */
     private fun findRadioButtonChecked(): String{
         when(binding.radioGroupEventCategories.checkedRadioButtonId){

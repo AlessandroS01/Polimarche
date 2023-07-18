@@ -77,6 +77,8 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
             seeTracksAdapter = SeeTracksAdapter(tracksViewModel)
 
             seeTracksRecyclerView = binding.listTracks
+            //LinearLayoutManager è una classe fornita dal framework Android
+            //che viene utilizzata per gestire il layout di un RecyclerView
             val linearLayoutManager = LinearLayoutManager(this.context)
             seeTracksRecyclerView.layoutManager = linearLayoutManager
             seeTracksRecyclerView.adapter = seeTracksAdapter
@@ -133,8 +135,9 @@ class SeeTracksFragment : Fragment(R.layout.fragment_general_tracks_see_tracks){
         val query = inputQuery.value.toString().trim() // Viene ottenuta la query rimuovendo eventuali spazi bianchi prima e dopo la query
         if (query.isNotBlank()) { // Se la query non è vuota
             val filteredList = originalTrackList.filter { track ->
-                track.name.contains(query, ignoreCase = true) //  La lambda function verifica se il nome della traccia contiene la query di ricerca,
-                                                                            // ignorando la differenza tra maiuscole e minuscole
+                track.name.contains(query, ignoreCase = true) //  La lambda function verifica se
+                                            // il nome della traccia contiene la query di ricerca,
+                                            // ignorando la differenza tra maiuscole e minuscole
             }
             trackList.value = filteredList.toMutableList()
         } else {

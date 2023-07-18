@@ -62,13 +62,15 @@ class SeePracticeSessionFragment : Fragment(
 
         searchView = binding.searchViewPracticeSession
         /*
-        Utilizzato per impostare l'hint per la query su "Data sessione pratica \"AAAA-MM-GG\""
+        Utilizzato per impostare l'hint per la query su Practice Session date \"YYYY-MM-DD\""
          */
         searchView.queryHint = setQueryHintSearchView(0)
 
         practiceSessionViewModel.initialize() // inizializzare il practiceSessionViewModel
 
-        // Impostazione un observer sull'oggetto LiveData listPracticeSession all'interno del practiceSessionViewModel. L'observer viene notificato ogni volta che il valore di listPracticeSession cambia.
+        // Impostazione un observer sull'oggetto LiveData listPracticeSession
+        // all'interno del practiceSessionViewModel.
+        // L'observer viene notificato ogni volta che il valore di listPracticeSession cambia.
         practiceSessionViewModel.listPracticeSession.observe(viewLifecycleOwner) {
             adapterPracticeSession = SeePracticeSessionAdapter(practiceSessionViewModel)
 
@@ -79,16 +81,20 @@ class SeePracticeSessionFragment : Fragment(
         }
 
         /*
-        Imposta la visibilità del radio button su NONE ogni volta che la casella selezionata è deselezionata.
+        Imposta la visibilità del radio button su NONE ogni volta che la casella selezionata
+        è deselezionata.
         Imposta anche l'hint per la query di searchView.
          */
         searchForEventCategoryCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            // Se il checkbox è selezionato, il gruppo di radiobutton viene reso visibile, altrimenti viene reso invisibile.
+            // Se il checkbox è selezionato, il gruppo di radiobutton viene reso visibile,
+            // altrimenti viene reso invisibile.
             radioGroupEventCategories.visibility = if (isChecked) View.VISIBLE else View.GONE
 
             /* Imposta l'hint per la query nel SearchView a seconda dello stato del checkbox.
-               Se il checkbox non è selezionato, l'hint viene impostato come "Practice session date "YYYY-MM-DD"".
-               Altrimenti, viene richiamato il metodo setQueryHintSearchView() per impostare l'hint in base al radiobutton
+               Se il checkbox non è selezionato, l'hint viene impostato come
+               "Practice session date "YYYY-MM-DD"".
+               Altrimenti, viene richiamato il metodo setQueryHintSearchView()
+               per impostare l'hint in base al radiobutton
                selezionato nel radioGroupEventCategories. */
             searchView.queryHint = if (!isChecked) "Practice session date \"YYYY-MM-DD\"" else {
                 setQueryHintSearchView(radioGroupEventCategories.checkedRadioButtonId)
@@ -123,6 +129,8 @@ class SeePracticeSessionFragment : Fragment(
                 Blocca l'invio ogni volta che la query contiene almeno una lettera e la
                 lunghezza è inferiore a 10.
                  */
+
+                //none ritorna true se query non matcha le due condizioni
                 return if(query != null && query.none{ it.isLetter() } && query.length == 10){
                     searchView.clearFocus()
                     setQueryFilterByEventCategory(query)
@@ -139,15 +147,19 @@ class SeePracticeSessionFragment : Fragment(
                     Impedisci alla query di avere una lunghezza superiore a 10.
                      */
                     if(newText.length>10){
+                        //restituisce una sottostringa dei primi 10 caratteri del testo newText
                         searchView.setQuery(newText.substring(0, 10), false)
+                        //Passando false, l'ascoltatore non verrà chiamato in questo caso.
                     }
 
-                    if(newText.none { // Verifica se il nuovo testo inserito non contiene alcuna lettera
+                    if(newText.none { // Verifica se il nuovo testo inserito non
+                            // contiene alcuna lettera
                             it.isLetter()
                         }
                     ){
-                        searchView.findViewById<EditText>( // Se il testo è composto solo da numeri o caratteri speciali,
-                                                                        // il colore del testo viene impostato su bianco
+                        searchView.findViewById<EditText>( // Se il testo è composto solo da
+                                                            // numeri o caratteri speciali,
+                                            // il colore del testo viene impostato su bianco
                             androidx.appcompat.R.id.search_src_text
                         ).setTextColor(
                             ContextCompat.getColor(
@@ -155,14 +167,17 @@ class SeePracticeSessionFragment : Fragment(
                                 R.color.white
                             )
                         )
-                        // Controlla se la lunghezza del testo è di 4 o 7 caratteri. Se questa condizione è vera,
-                        // il testo viene formattato aggiungendo un trattino ("-") dopo il quarto carattere o dopo il settimo carattere.
+                        // Controlla se la lunghezza del testo è di 4 o 7 caratteri.
+                        // Se questa condizione è vera, il testo viene formattato
+                        // aggiungendo un trattino ("-") dopo il quarto carattere o
+                        // dopo il settimo carattere.
                         if(newText.length == 4 || newText.length == 7){
                             searchView.setQuery("$newText-", false)
                         }
                         return true
                     }
-                    else { // Se il testo contiene almeno una lettera e il colore viene settato a rosso
+                    else { // Se il testo contiene almeno una lettera e il colore
+                        // viene settato a rosso
                         searchView.findViewById<EditText>(
                             androidx.appcompat.R.id.search_src_text
                         ).setTextColor(
@@ -227,7 +242,8 @@ class SeePracticeSessionFragment : Fragment(
     }
 
     /*
-    Verifica se il radio button è selezionato e filtra gli elementi in base alla data inserita nella query.
+    Verifica se il radio button è selezionato e filtra gli elementi in base alla data
+    inserita nella query.
     */
     private fun setQueryFilterByEventCategory(query: String){
         when(findRadioButtonChecked()){

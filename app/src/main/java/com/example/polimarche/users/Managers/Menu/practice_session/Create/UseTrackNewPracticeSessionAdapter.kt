@@ -66,7 +66,7 @@ class UseTrackNewPracticeSessionAdapter(
     }
 
     /*
-    Sets the new list to be shown inside the recyclerView.
+    Setta la nuova lista che deve essere vista all'interno della recyclerView.
      */
     fun changeListTracksOnClick(newList: MutableLiveData<MutableList<DataTrack>>){
         listTracks = newList

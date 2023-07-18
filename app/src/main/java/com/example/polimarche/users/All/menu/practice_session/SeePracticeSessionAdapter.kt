@@ -30,7 +30,8 @@ class SeePracticeSessionAdapter(
         }
     }
 
-    // ViewHolder personalizzato utilizzato per visualizzare gli elementi di ogni PracticeSession della lista in un RecyclerView
+    // ViewHolder personalizzato utilizzato per visualizzare gli elementi di ogni PracticeSession
+    // della lista in un RecyclerView
     inner class ViewHolderPracticeSession(
         practiceSessionView : View
     ) : RecyclerView.ViewHolder(practiceSessionView){
@@ -45,7 +46,8 @@ class SeePracticeSessionAdapter(
         val ambientPressure: TextView = practiceSessionView.findViewById(R.id.pSAmbientPressure)
         val airTemperature: TextView = practiceSessionView.findViewById(R.id.pSAirTemperature)
 
-        // ConstraintLayout che rappresenta la vista cliccabile per interagire con l'elemento della sessione di pratica.
+        // ConstraintLayout che rappresenta la vista cliccabile per interagire con
+        // l'elemento della sessione di pratica.
         val constraintTouchable: ConstraintLayout = practiceSessionView.findViewById(
             R.id.constraintLayoutSeePS
         )
