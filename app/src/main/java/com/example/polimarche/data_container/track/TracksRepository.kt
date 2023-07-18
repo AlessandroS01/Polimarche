@@ -32,7 +32,11 @@ class TracksRepository {
 
     //_listTracks è una variabile privata di tipo MutableLiveData che contiene una lista mutabile
     // di oggetti DataTrack.
+
+    // La variabile _listTracks è privata e può essere modificata solo all'interno della classe
     private val _listTracks: MutableLiveData<MutableList<DataTrack>> = MutableLiveData()
+
+    // listTracks è pubblica e di sola lettura e non specifichiamo il tipo
     val listTracks get() = _listTracks
     // L'uso del modificatore get() indica che questa proprietà ha solo un'implementazione
     // per la lettura e non per la scrittura.
