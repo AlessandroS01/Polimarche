@@ -93,9 +93,9 @@ class DeleteSetupFragment(window: Window) : Fragment(R.layout.fragment_managers_
     }
 
     /*
-    Override the method contained inside the interface OnSetupCodeClickListener
-    that let the user see the details of the setup clicked.
-    Add the possibility to delete the setup.
+    Esegue l'override del metodo contenuto all'interno dell'interfaccia OnSetupCodeClickListener
+    che permette all'utente di vedere i dettagli del setup cliccato.
+    Aggiunge la possibilità di eliminare il setup.
      */
     override fun onSetupCodeClickListener(setupClicked: DataSetup) {
 

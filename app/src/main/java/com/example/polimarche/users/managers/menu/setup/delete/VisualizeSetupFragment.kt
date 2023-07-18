@@ -67,17 +67,19 @@ class VisualizeSetupFragment(
             binding.notesSetupClicked = notes
         }
         /*
-        Closes the fragment when a user click on the Image view positioned
-        in the upper right corner.
+        Chiude il frammento quando un utente fa clic sulla Image view posizionata
+        nell'angolo in alto a destra.
+
          */
         binding.imageViewCloseVisualizationSetup.setOnClickListener {
             parentFragmentManager.beginTransaction().remove(this).commit()
         }
 
         /*
-        Removes the item clicked if the user confirms his/her decision
-        inside a dialog box that will appear after himself/herself click
-        on the the image View positioned on the bottom right of this fragment.
+        Rimuove l'elemento cliccato se l'utente conferma la sua decisione
+        all'interno di una finestra di dialogo che apparirà al suo stesso click
+        sull'image View posizionata in basso a destra di questo frammento.
+
          */
         binding.imageViewDeleteSetup.setOnClickListener {
             showDialog()
@@ -85,8 +87,8 @@ class VisualizeSetupFragment(
     }
 
     /*
-    Create a dialog box that let the user cancel or confirm the
-    setup deletion.
+    Creare una finestra di dialogo che consenta all'utente di annullare o confermare il
+    cancellazione del setup.
      */
     @OptIn(DelicateCoroutinesApi::class)
     private fun showDialog() {
@@ -102,15 +104,15 @@ class VisualizeSetupFragment(
         val confirmDeletion = dialog.findViewById(R.id.confirmDeletionSetup) as FrameLayout
         val cancelDeletion = dialog.findViewById(R.id.cancelDeletionSetup) as FrameLayout
         /*
-        Confirm the deletion with the removal of the item inside the list and the call to the
-        adapter to let it know that the item was removed.
+        Conferma la cancellazione con la rimozione dell'elemento all'interno della lista e chiama l'adapter
+         per informarlo che l'elemento è stato rimosso.
          */
         confirmDeletion.setOnClickListener {
             GlobalScope.launch(Dispatchers.Main) {
-                // Call the deleteSetup function and wait for it to finish
+                // Chiama la funzione deleteSetup e attende che finisca
                 setupViewModel.deleteSetup(setupClicked)
 
-                // Continue with the remaining code after deletion is complete
+                // Continua con il codice rimanente al termine dell'eliminazione del setup
                 adapter.setNewList(setupViewModel.setupList.value?.toMutableList()!!)
                 parentFragmentManager.beginTransaction().remove(this@VisualizeSetupFragment).commit()
                 dialog.dismiss()

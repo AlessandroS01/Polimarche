@@ -37,8 +37,8 @@ class ManagersSetupActivity : AppCompatActivity(){
         bottomNavigationView.background = null
 
         /*
-        This part allows the user to go back at the main page
-        clicking on the back button at the top of the screen
+        Questa parte permette all'utente di tornare alla pagina principale
+        facendo clic sul pulsante Indietro nella parte superiore dello schermo
          */
         val backButton = findViewById<ImageButton>(R.id.backButtonSetup)
         backButton.setOnClickListener {
