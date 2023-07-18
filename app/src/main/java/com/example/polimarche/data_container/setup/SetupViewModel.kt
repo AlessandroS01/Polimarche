@@ -33,6 +33,8 @@ class SetupViewModel: ViewModel() {
 
     fun getSetupCodes(): MutableList<Int> {
         val listSetupCodes = mutableListOf<Int>()
+        //Per ogni elemento setup nella lista _setupList.value aggiunge il valore del campo
+        // code dell'oggetto setup alla lista listSetupCodes
         _setupList.value?.forEach { setup ->
             listSetupCodes.add(setup.code)
         }

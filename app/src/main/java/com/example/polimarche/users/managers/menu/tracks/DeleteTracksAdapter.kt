@@ -21,8 +21,8 @@ class DeleteTracksAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /*
-    Used to keep an eye on the value of the query created by the searchView when
-    a user writes on it.
+    Utilizzata per tenere d'occhio il valore della query creata dalla searchView quando un utente
+    scrive su essa.
      */
     private var inputQuery: MutableLiveData<String> = MutableLiveData("")
     fun setQuery(query: String){
@@ -30,7 +30,7 @@ class DeleteTracksAdapter(
     }
 
     /*
-    Contains the complete list of tracks of the viewModel
+    Contiene la lista completa delle tracks del viewModel
      */
     private var listTracks: MutableList<DataTrack> = mutableListOf()
     init {
@@ -90,8 +90,8 @@ class DeleteTracksAdapter(
 
                     removeTrack.setOnClickListener {
                         /*
-                        Recalls a method in which the user can confirm or cancel the
-                        track length modification
+                        Richiama un metodo dove l'utente può confermare o cancellare
+                        la modifica sulla lunghezza della track.
                          */
                         showDialogRemoveTrack(holder.itemView, position)
                     }
@@ -127,7 +127,7 @@ class DeleteTracksAdapter(
 
 
         /*
-        Confirm to modify the length of the track
+        Conferma di modificare la lunghezza della track
          */
         confirmFrame.setOnClickListener {
             val track = tracksViewModel.filterList(inputQuery.value.toString()).value?.get(position)
@@ -144,15 +144,15 @@ class DeleteTracksAdapter(
     }
 
     /*
-    Calls a method which allows the dynamic change of the list of the recyclerView.
+    Chiama un metodo che permette il cambiamento dinamico della list della recyclerView
      */
     fun filterNameByQuery(){
         setNewList(tracksViewModel.filterList(inputQuery.value.toString()).value?.toMutableList()!!)
     }
 
     /*
-    Inflate inside listTracks a newList in which all the elements' name
-    contain inputQuery.
+    Inflate all'interno di newList da parte di listTracks che contiene tutti i nomi degli
+    elementi che contengono inputQuery.
      */
     fun setNewList(newList: MutableList<DataTrack>){
         listTracks.clear()

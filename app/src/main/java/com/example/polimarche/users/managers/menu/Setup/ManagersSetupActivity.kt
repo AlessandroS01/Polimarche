@@ -48,9 +48,8 @@ class ManagersSetupActivity : AppCompatActivity(){
         }
 
         /*
-        Part that allow us to change the Fragments inside
-        R.id.frameSetupManagers at the touch of the buttons
-        right below the bottomNavigationBar
+        Parte che ci permette di cambiare i Fragment dentro R.id.frameSetupManagers al tocco
+        del bottone nella bottomNavigationBar
          */
         val seeSetupFragment = SeeSetupFragment(window)
         //val createSetupFragment = CreateSetupFragment(window)

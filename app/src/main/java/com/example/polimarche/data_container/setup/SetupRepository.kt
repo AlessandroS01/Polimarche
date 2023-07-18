@@ -55,7 +55,8 @@ class SetupRepository {
 
             val code = document.getLong("code")?.toInt() ?: 0
             val frontRightWheelRef = document.getDocumentReference("frontRightWheel")
-            // await() blocca il flusso dell'esecuzione fino a quando non viene completata l'operazione asincrona
+            // await() blocca il flusso dell'esecuzione fino a quando non viene completata
+            // l'operazione asincrona
             val frontRightWheelDocument = frontRightWheelRef?.get()?.await()
             // Converte i dati di un documento Firestore in un oggetto di classe DataWheel
             val frontRightWheel = frontRightWheelDocument?.toObject(DataWheel::class.java)
@@ -148,7 +149,8 @@ class SetupRepository {
                 }
             }
 
-            // Verifica se l'oggetto setup non è nullo e, in caso affermativo, lo aggiunge alla lista setupList
+            // Verifica se l'oggetto setup non è nullo e, in caso affermativo,
+            // lo aggiunge alla lista setupList
             setup?.let { setupList.add(it) }
         }
 
@@ -217,6 +219,8 @@ class SetupRepository {
         query.get().addOnSuccessListener { querySnapshot ->
             for (documentSnapshot in querySnapshot) {
                 // Delete each document in the query results
+                //reference viene utilizzato per ottenere il riferimento
+                // al documento corrente all'interno del ciclo for
                 documentSnapshot.reference.delete()
                     .addOnSuccessListener {
                         // Document successfully deleted
