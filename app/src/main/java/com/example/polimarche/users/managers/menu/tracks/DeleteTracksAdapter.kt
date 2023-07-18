@@ -127,7 +127,7 @@ class DeleteTracksAdapter(
 
 
         /*
-        Conferma di modificare la lunghezza della track
+        Conferma di rimuovere la track selezionata
          */
         confirmFrame.setOnClickListener {
             val track = tracksViewModel.filterList(inputQuery.value.toString()).value?.get(position)
@@ -144,7 +144,7 @@ class DeleteTracksAdapter(
     }
 
     /*
-    Chiama un metodo che permette il cambiamento dinamico della list della recyclerView
+    Metodo che permette il cambiamento dinamico della list della recyclerView
      */
     fun filterNameByQuery(){
         setNewList(tracksViewModel.filterList(inputQuery.value.toString()).value?.toMutableList()!!)

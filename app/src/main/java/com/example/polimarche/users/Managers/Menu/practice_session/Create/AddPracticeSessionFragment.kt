@@ -150,7 +150,7 @@ class AddPracticeSessionFragment : Fragment(
     }
 
     /*
-    Sets the track on click on an item inside the recyclerview.
+    Imposta la traccia al clic su un elemento all'interno di recyclerview.
      */
     override fun onTrackClickListener(trackClicked: DataTrack) {
         binding.setTrackPS.text = "Track choosen: ${trackClicked.name}"
@@ -189,7 +189,7 @@ class AddPracticeSessionFragment : Fragment(
                 )
             )
         }
-        //Utilizzato per mantenere un record della lunghezza del testo
+        // Utilizzato per mantenere un record della lunghezza del testo
         var previousLength = 0
         binding.setDatePSEditText.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -264,7 +264,6 @@ class AddPracticeSessionFragment : Fragment(
 
     /*
     Utilizzato per controllare l'input dell'orario
-    Used to control the input of the time
      */
     private fun setTime(){
 
@@ -372,6 +371,11 @@ class AddPracticeSessionFragment : Fragment(
 
     }
 
+    //Se l'analisi ha successo e non viene generata alcuna eccezione,
+    // la funzione restituisce true, indicando che timeStr è una data valida secondo
+    // il formato specificato. Se si verifica un'eccezione durante l'analisi,
+    // la funzione cattura l'eccezione e restituisce false,
+    // indicando che timeStr non è una data valida.
     fun isValidTime(timeStr: String, format: String): Boolean {
         return try {
             val formatter = DateTimeFormatter.ofPattern(format)
@@ -383,7 +387,7 @@ class AddPracticeSessionFragment : Fragment(
     }
     /*
     Effettua il parsing della stringa creata in input dall'utente e controlla se l'orario di inizio
-    sia precedente a quello di fine.à
+    sia precedente a quello di fine.
     Se ciò non accade allora il colore del setTime verrà settato a rosso.
      */
     private fun controlOverTimeSubmitted(
@@ -416,7 +420,7 @@ class AddPracticeSessionFragment : Fragment(
 
     /*
     Ritorna una stringa che ha come valore il nome dell'evento
-    collgeato al radio button checkato
+    collegato al radio button checkato
      */
     private fun findRadioButtonChecked(): String{
         when(binding.radioGroupEventCategories.checkedRadioButtonId){

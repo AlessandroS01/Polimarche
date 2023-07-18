@@ -16,16 +16,16 @@ class SetupRepositoryTest {
 
     @Test
     fun testFetch() = runBlocking {
-        // Create an instance of the repository
+        // Creare un'istanza di SetupRepository
         val repository = SetupRepository()
 
-        // Call the suspend function to fetch setup data
+        // Chiama la funzione suspend per recuperare i dati dei setup
         repository.fetchSetupFromFirestore()
 
-        // Delay to allow the data to be processed
-        delay(5000) // Adjust the delay time if needed
+        // Delay per consentire il processamento dei dati
+        delay(5000)
 
-        // Assert that the fetched setup list is not null and not empty
+        // Verificare che l'elenco dei setup recuperato non è nullo e non è vuoto
         val fetchedSetupList = repository.listSetup.value
         assertNotNull(fetchedSetupList)
         assertTrue(fetchedSetupList!!.isNotEmpty())
