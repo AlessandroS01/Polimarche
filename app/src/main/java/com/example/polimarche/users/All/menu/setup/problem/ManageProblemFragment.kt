@@ -47,7 +47,8 @@ class ManageProblemFragment(
         }
 
         /*
-        Cambia il fragment da visualizzare all'interno del frame del fragment corrente in base al radio button checkato.
+        Cambia il fragment da visualizzare all'interno del frame del fragment
+        corrente in base al radio button checkato.
          */
         val occurringProblemFragment = OccurringProblemFragment(problemClicked, window)
         val solvedProblemFragment = SolvedProblemFragment(problemClicked, window)

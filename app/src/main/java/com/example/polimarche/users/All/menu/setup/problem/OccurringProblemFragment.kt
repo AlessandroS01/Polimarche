@@ -73,8 +73,8 @@ class OccurringProblemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         /*
-        Passa all'adattatore l'elenco dei problemi che corrisponde al codice del problema selezionato
-        su ProblemiSetupFragment.
+        Passa all'adattatore l'elenco dei problemi che corrisponde al codice
+        del problema selezionato su ProblemSetupFragment.
          */
 
         window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
@@ -108,8 +108,8 @@ class OccurringProblemFragment(
     }
 
     /*
-    Crea una finestra di dialogo che consente all'utente di aggiungere un nuovo setup in cui il problema
-    selezionato è occorrente.
+    Crea una finestra di dialogo che consente all'utente
+    di aggiungere un nuovo setup in cui il problema selezionato è occorrente.
      */
     private fun showDialogAddOccurringProblem(listSetupsWithoutProblem: MutableList<DataSetup>) {
         val dialog = Dialog(requireContext())
@@ -180,7 +180,8 @@ class OccurringProblemFragment(
 
     /*
     Quando l'utente fa clic su "Problem solved", viene mostrata la finestra di dialogo
-    dopo la chiamata al metodo showDialogRemovingProblem, per spostare quel problema tra i Solved Problems.
+    dopo la chiamata al metodo showDialogRemovingProblem,
+    per spostare quel problema tra i Solved Problems.
      */
     override fun onProblemSolvedClick(element: DataOccurringProblem, itemView: View) {
         showDialogRemovingProblem(element, itemView)
@@ -231,9 +232,9 @@ class OccurringProblemFragment(
         dialog.show()
     }
 
-     /*
-     Restituisce una lista di setup che non hanno problemi occorrenti e che quindi non si trovano in
-     listOccurringProblem. Inoltre controlla se il setup ha già risolto il problema.
+    /*
+    Restituisce una lista di setup che non hanno problemi occorrenti e che quindi non si trovano in
+    listOccurringProblem. Inoltre controlla se il setup ha già risolto il problema.
 
     Returns a list in which all the different setups are not already stored inside
     listOccurringProblem.
@@ -252,8 +253,8 @@ class OccurringProblemFragment(
          // Esegue l'osservazione sul thread principale sul LiveData setupList
          setupViewModel.setupList.observe(viewLifecycleOwner){listSetups ->
 
-             // il blocco di codice filtra gli elementi della lista listSetups, escludendo quelli che sono
-             // associati a un problema in corso o a un problema risolto.
+             // il blocco di codice filtra gli elementi della lista listSetups,
+             // escludendo quelli che sono associati a un problema in corso o a un problema risolto.
              listSetups?.forEach { dataSetup ->
                  val isOccurringProblem = listOccurringProblems?.any {
                      dataSetup.code == it.setupCode && it.problemCode == problemClicked.code

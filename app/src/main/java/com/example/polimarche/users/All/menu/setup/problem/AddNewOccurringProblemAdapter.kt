@@ -18,8 +18,9 @@ class AddNewOccurringProblemAdapter(
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /*
-    Questi 2 attributi vengono utilizzati per passare direttamente a OccurringProblemFragment
-    i setup che vengono scelti dall'intero elenco grazie al metodo isChecked della Checkbox.
+    Questi 2 attributi vengono utilizzati per passare direttamente a
+    OccurringProblemFragment i setup che vengono scelti dall'intero elenco
+    grazie al metodo isChecked della Checkbox.
      */
     private val listCheckedElements = initializeMappingCheckedElements()
     private val listDescriptionElements = initializeMappingDescriptionElements()
@@ -57,13 +58,14 @@ class AddNewOccurringProblemAdapter(
 
                     description.visibility = View.GONE
 
-                    // Quando il testo della descrizione cambia il valore viene memorizzato in listDescriptionElements
+                    // Quando il testo della descrizione cambia, il valore
+                    // viene memorizzato in listDescriptionElements
                     description.addTextChangedListener {
                         listDescriptionElements[listSetups[position]] = description.text.toString()
                     }
 
-                    // Quando lo stato di selezione di setupCode cambia, la visibilità di description viene regolata
-                    // e il valore di selezione viene memorizzato in listCheckedElements
+                    // Quando lo stato di selezione di setupCode cambia, la visibilità di description
+                    // viene regolata e il valore di selezione viene memorizzato in listCheckedElements
                     setupCode.setOnCheckedChangeListener { _, isChecked ->
                         listCheckedElements[listSetups[position]] = isChecked
                         description.visibility = if (isChecked) View.VISIBLE else View.GONE
@@ -73,7 +75,7 @@ class AddNewOccurringProblemAdapter(
         }
     }
 
-    // Questa funzioni inizializzano le mappe listCheckedElements e listDescriptionElements
+    // Queste funzioni inizializzano le mappe listCheckedElements e listDescriptionElements
     // associando ciascun elemento DataSetup a un valore di default (false per listCheckedElements e
     // "" per listDescriptionElements)
     private fun initializeMappingCheckedElements(): MutableMap<DataSetup, Boolean> {

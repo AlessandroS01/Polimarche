@@ -38,12 +38,17 @@ class ProblemAdapter(
             manageProblem.setOnClickListener(this)
         }
 
-        /* la funzione onClick viene chiamata quando si verifica un clic su un elemento all'interno della RecyclerView.
-        Se l'elemento corrisponde all'ID R.id.openManageProblemSetup, viene richiamato il metodo onManageProblemClick del listener
+        /* la funzione onClick viene chiamata quando si verifica un clic su un elemento all'interno
+         della RecyclerView.
+        Se l'elemento corrisponde all'ID R.id.openManageProblemSetup,
+        viene richiamato il metodo onManageProblemClick del listener
         passando l'oggetto DataProblem corrispondente al problema cliccato.*/
         override fun onClick(v: View?) {
             val id = v?.id
             val position : Int = adapterPosition
+            //Rappresenta una posizione non valida all'interno di una RecyclerView
+            //se position è diversa da RecyclerView.NO_POSITION, significa che la posizione
+            // ha un valore valido all'interno della RecyclerView.
             if (position != RecyclerView.NO_POSITION) {
                 if (id == R.id.openManageProblemSetup) {
                     listener.onManageProblemClick(problemList[position])

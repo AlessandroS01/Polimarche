@@ -82,8 +82,8 @@ class DeleteSetupFragment(window: Window) : Fragment(R.layout.fragment_managers_
     }
 
     /*
-    Method used by the search view that allows the adapter to show the items
-    that matches with the given input.
+    Metodo usato dalla search view che permette all'adapter di mostrare gli item che matchano
+    con l'input dato.
      */
     private fun filterList(query: String?){
         if(query != null){
@@ -100,7 +100,7 @@ class DeleteSetupFragment(window: Window) : Fragment(R.layout.fragment_managers_
     override fun onSetupCodeClickListener(setupClicked: DataSetup) {
 
         /*
-        Passes the clicked setup code to visualizeSetupFragment.
+        Viene passato il codice del setup cliccato al visualizeSetupFragment.
          */
         val bundle = Bundle()
         bundle.putInt("SETUP_CODE", setupClicked.code)
