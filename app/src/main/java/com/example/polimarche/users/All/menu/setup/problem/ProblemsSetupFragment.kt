@@ -179,9 +179,9 @@ class ProblemsSetupFragment(window: Window) : Fragment(R.layout.fragment_general
     }
 
     // Quando viene gestito un clic su un problema,
-    // la funzione rende invisibili alcuni elementi di interfaccia utente,
+    // la funzione rende invisibile la SearchView e il bottone AddProblem,
     // crea un nuovo fragment ManageProblemFragment con i dati del problema cliccato
-    // e lo sostituisce nel layout corrente utilizzando una transazione del fragment manager.
+    // e lo sostituisce nel layout corrente utilizzando una transazione del Fragment Manager.
     override fun onManageProblemClick(problemClicked: DataProblem) {
         searchView.visibility = View.GONE
 
