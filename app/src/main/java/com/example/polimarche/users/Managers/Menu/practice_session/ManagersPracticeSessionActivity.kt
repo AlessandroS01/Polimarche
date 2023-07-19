@@ -35,8 +35,8 @@ class ManagersPracticeSessionActivity : AppCompatActivity(){
         bottomNavigationView.background = null
 
         /*
-        This part allows the user to go back at the main page
-        clicking on the back button at the top of the screen
+        Questa parte permette all'utente di tornare alla pagina principale
+        facendo clic sul pulsante Indietro nella parte superiore dello schermo.
          */
         val backButton = findViewById<ImageButton>(R.id.backButtonPracticeSession)
         backButton.setOnClickListener {
@@ -47,9 +47,9 @@ class ManagersPracticeSessionActivity : AppCompatActivity(){
 
 
         /*
-        Part that allow us to change the Fragments inside
-        R.id.framePracticeSessionManagers at the touch of the buttons
-        right below the bottomNavigationBar
+        Parte che ci permette di cambiare i frammenti all'interno
+        R.id.framePracticeSessionManager al tocco dei pulsanti
+        proprio sotto il bottomNavigationBar
         */
         val seePracticeSessionFragment = SeePracticeSessionFragment()
         val addPracticeSessionFragment = AddPracticeSessionFragment()
@@ -83,10 +83,9 @@ class ManagersPracticeSessionActivity : AppCompatActivity(){
     }
 
     /*
-        This method is used to change the View inside the
-        FrameLayout used in the "activity_managers_practice_session" directly
-        without the use of the methods provided by the class
-        Fragment.
+        Questo metodo viene utilizzato per modificare la vista all'interno del file
+        FrameLayout utilizzato direttamente in "activity_managers_practice_session".
+        senza l'uso dei metodi forniti dalla classe Fragment.
      */
     private fun setCurrentFragment(fragment : Fragment){
         supportFragmentManager.beginTransaction().apply {
